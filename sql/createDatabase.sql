@@ -7,7 +7,7 @@ CREATE TABLE company (
 CREATE TABLE users (
   id  INT auto_increment unique key,
   email VARCHAR(40),
-  pass VARCHAR(40), #SHA-1 is 40 characters
+  password VARCHAR(40), #SHA-1 is 40 characters
   role ENUM('company', 'manager', 'employee', 'parent')
 );
 
