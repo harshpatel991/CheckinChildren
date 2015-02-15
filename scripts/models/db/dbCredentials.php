@@ -7,6 +7,6 @@
 class DbCredentials
 {
     public static $dbName = "";
-    public static $username = "";
+    public static $username = "root";
     public static $password = "";
 }

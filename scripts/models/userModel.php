@@ -8,8 +8,8 @@ class User
 {
     public $id;
 
-    public function __construct()
+    public function __construct($data)
     {
-        $this->$id = "";
+        $this->$id=$data["id"];
     }
 }
