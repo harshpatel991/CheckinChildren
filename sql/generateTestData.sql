@@ -1,10 +1,13 @@
+#TODO: fix this file so it runs
+
+
 #Add sample companies
-INSERT INTO company(address, phone) VALUES (1, '1 Fake St.\n Champaign IL 61820', '847123456');
-INSERT INTO company(address, phone) VALUES (3, '3 Real Blvd.\n Urbana IL 61821', '8474833945');
-INSERT INTO company(address, phone) VALUES (5, '7 Unreal Blvd.\n Austin TX 78728', '8472031023');
+INSERT INTO company(id, address, phone) VALUES (1, '1 Fake St.\n Champaign IL 61820', '847123456');
+INSERT INTO company(id, address, phone) VALUES (3, '3 Real Blvd.\n Urbana IL 61821', '8474833945');
+INSERT INTO company(id, address, phone) VALUES (5, '7 Unreal Blvd.\n Austin TX 78728', '8472031023');
 
 #Add sample users with SHA-1 hashed passwords
-INSERT INTO users(id, pass, role) VALUES (0, '1b3a43e7f7ee544c862d405940a2fa8651a5eb4a', 'parent'); #password: 'password0'
+
 INSERT INTO users(id, pass, role) VALUES (1, 'e38ad214943daad1d64c102faec29de4afe9da3d', 'company'); #password: 'password1'
 INSERT INTO users(id, pass, role) VALUES (2, '2aa60a8ff7fcd473d321e0146afd9e26df395147', 'employee'); #password: 'password2'
 INSERT INTO users(id, pass, role) VALUES (3, '1119cfd37ee247357e034a08d844eea25f6fd20f', 'company'); #password: 'password3'
@@ -26,6 +29,9 @@ INSERT INTO users(id, pass, role) VALUES (16, '3de778e515e707114b622e769a308d1a2
 INSERT INTO users(id, pass, role) VALUES (17, 'b9c3d15c70a945d9e308ac763dd254b47c29bc0a', 'employee'); #password: 'password17'
 INSERT INTO users(id, pass, role) VALUES (18, 'e7369527332f65fe86c44d87116801a0f4fbe5d3', 'employee'); #password: 'password18'
 
+INSERT INTO users(id, pass, role) VALUES (19, '2c30de294b2ca17d5c356645a04ff4d0de832594', 'parent'); #password: 'password19'
+
+
 #Add sample facilities
 INSERT INTO day_care_facility(facility_id, company_id, address, phone) VALUES (1, 1, '1 Facility Rd. Champaign IL 61820', '1235933945');
 INSERT INTO day_care_facility(facility_id, company_id, address, phone) VALUES (2, 1, '2 Facility Rd. Champaign IL 61820', '1235933945');
@@ -38,10 +44,10 @@ INSERT INTO day_care_facility(facility_id, company_id, address, phone) VALUES (6
 INSERT INTO day_care_facility(facility_id, company_id, address, phone) VALUES (7, 5, '7 Facility Rd. Champaign IL 61820', '2939949969');
 
 #Insert regular employees
-INSERT INTO employee(id, emp_name, facility_id) VALUES (2, 'Matt Wallicky', 1);
+INSERT INTO employee(id, emp_name, facility_id) VALUES (2, 'Matt Wallick', 1);
 INSERT INTO employee(id, emp_name, facility_id) VALUES (4, 'Nick Samata', 2);
 INSERT INTO employee(id, emp_name, facility_id) VALUES (15,'Elzabad Kennedy' , 3);
-INSERT INTO employee(id, emp_name, facility_id) VALUES (16, 'Olhaz Alipov', 4);
+INSERT INTO employee(id, emp_name, facility_id) VALUES (16, 'Olzhas Alipov', 4);
 INSERT INTO employee(id, emp_name, facility_id) VALUES (17, 'Alex Dahlquist', 5);
 INSERT INTO employee(id, emp_name, facility_id) VALUES (18, 'Harsh Patel', 6);
 
@@ -55,12 +61,12 @@ INSERT INTO employee(id, emp_name, facility_id) VALUES (13, 'Saul Goodman', 6);
 INSERT INTO employee(id, emp_name, facility_id) VALUES (14, 'Sterling Archer', 6);
 
 #Insert parents
-INSERT INTO parent(id, parent_name, address, phone_number, email) VALUES (0, 'Momma Jamma', 6);
-INSERT INTO parent(id, parent_name, address, phone_number, email) VALUES (8, 'Big Daddy', 6);
+INSERT INTO parent(id, parent_name, address, phone_number, email) VALUES (8, 'Big Daddy', '123 Fake Ave Champaign IL 61820', '1234563456', 'bigdaddy@gmail.com' );
+INSERT INTO parent(id, parent_name, address, phone_number, email) VALUES (19, 'Momma Jamma', '456 Real Ave Urbana IL 61820', '6786546789', 'mommaJamma@gmail.com');
 
 #Insert children
-INSERT INTO child(child_id, parent_id, child_name, allergies) VALUES (0, 0, 'Peter Parker', '');
-INSERT INTO child(child_id, parent_id, child_name, allergies) VALUES (1, 0, 'Ludvig Beetoven', 'Dogs');
-
 INSERT INTO child(child_id, parent_id, child_name, allergies) VALUES (2, 8, 'Mark Zuckerberg', 'Peanut Butter');
 INSERT INTO child(child_id, parent_id, child_name, allergies) VALUES (3, 8, 'Dawn Summers', 'Vampires');
+
+INSERT INTO child(child_id, parent_id, child_name, allergies) VALUES (0, 19, 'Peter Parker', '');
+INSERT INTO child(child_id, parent_id, child_name, allergies) VALUES (1, 19, 'Ludvig Beetoven', 'Dogs');
