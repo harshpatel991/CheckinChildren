@@ -11,8 +11,8 @@ CREATE TABLE users (
 );
 
 CREATE TABLE day_care_facility (
-  company_id INT unique key,
-  id INT,
+  facility_id INT unique key,
+  company_id INT,
   address VARCHAR(50),
   phone varchar(10)
 );
