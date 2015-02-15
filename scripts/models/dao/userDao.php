@@ -17,7 +17,7 @@ class UserDAO
 
     public function find($id)
     {
-        $query = "";
+        $query = "t";
         $this->$connection->prepare($query);
         $this->$connection->execute($query);
     }
