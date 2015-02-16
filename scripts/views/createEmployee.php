@@ -53,7 +53,7 @@ function test_input($data) {
     Name: <input type="text" name="name" value="<?php echo $name;?>">
     <span class="error">* <?php echo $nameErr;?></span>
     <br><br>
-    Facility ID: <input type="text" name="facility_id" value="<?php echo $facility_id; ?>">
+    Facility ID:<input type="text" name="facility_id" value="<?php echo $facility_id; ?>">
     <span class="error">* <?php echo $facErr; ?></span>
     <br><br>
     <input type="submit" name="submit" value="Submit">
