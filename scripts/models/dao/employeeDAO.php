@@ -35,20 +35,28 @@ class employeeDao {
         return $emp;
     }
 
-    public function create_employee($email, $password){
-        $connection = DbConnectionFactory::create();
-
-        $newUser=new userModel($email, $password, "employee");
+    public function create_DCP($employee){
+        $newEmployee=new userModel($employee->email, $employee->password, $employee->role);
         $userDAO=new userDAO();
 
+        $id=$userDAO->insert($newEmployee);
 
+        insert($employee->name, $employee->facility_id, $id);
 
     }
 
-    private function insert($employee){
+    private function insert( $name, $facility_id, $id){
         $connection = DbConnectionFactory::create();
-        $query = "INSERT INTO employee ";
-        $this->$connection->prepare($query);
+
+        $query = "INSERT INTO employee (emp_name, facility_id, id) VALUES ( :name, :facility_id, :id)";
+        $stmt=$connection->prepare($query);
+
+        $stmt->bindParam("facility_id", $facility_id);
+        $stmt->bindParam(":emp_name", $name);
+        $stmt->bindParam(":id", $id);
+
         $this->$connection->execute($query);
+
+        $connection->null;
     }
 }
