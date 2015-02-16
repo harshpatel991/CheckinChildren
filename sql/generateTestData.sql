@@ -31,15 +31,15 @@ INSERT INTO users(id, email, password, role) VALUES (18, 'employee18@gmail.com',
 INSERT INTO users(id, email, password, role) VALUES (19, 'employee19@gmail.com', '2c30de294b2ca17d5c356645a04ff4d0de832594', 'parent'); #password: 'password19'
 
 #Add sample facilities
-INSERT INTO day_care_facility(facility_id, company_id, address, phone) VALUES (1, 1, '1 Facility Rd. Champaign IL 61820', '1235933945');
-INSERT INTO day_care_facility(facility_id, company_id, address, phone) VALUES (2, 1, '2 Facility Rd. Champaign IL 61820', '1235933945');
+INSERT INTO facility(facility_id, company_id, address, phone) VALUES (1, 1, '1 Facility Rd. Champaign IL 61820', '1235933945');
+INSERT INTO facility(facility_id, company_id, address, phone) VALUES (2, 1, '2 Facility Rd. Champaign IL 61820', '1235933945');
 
-INSERT INTO day_care_facility(facility_id, company_id, address, phone) VALUES (3, 3, '3 Facility Rd. Champaign IL 61820', '1234562343');
-INSERT INTO day_care_facility(facility_id, company_id, address, phone) VALUES (4, 3, '4 Facility Rd. Champaign IL 61820', '4564854985');
+INSERT INTO facility(facility_id, company_id, address, phone) VALUES (3, 3, '3 Facility Rd. Champaign IL 61820', '1234562343');
+INSERT INTO facility(facility_id, company_id, address, phone) VALUES (4, 3, '4 Facility Rd. Champaign IL 61820', '4564854985');
 
-INSERT INTO day_care_facility(facility_id, company_id, address, phone) VALUES (5, 5, '5 Facility Rd. Champaign IL 61820', '2942956875');
-INSERT INTO day_care_facility(facility_id, company_id, address, phone) VALUES (6, 5, '6 Facility Rd. Champaign IL 61820', '6875963921');
-INSERT INTO day_care_facility(facility_id, company_id, address, phone) VALUES (7, 5, '7 Facility Rd. Champaign IL 61820', '2939949969');
+INSERT INTO facility(facility_id, company_id, address, phone) VALUES (5, 5, '5 Facility Rd. Champaign IL 61820', '2942956875');
+INSERT INTO facility(facility_id, company_id, address, phone) VALUES (6, 5, '6 Facility Rd. Champaign IL 61820', '6875963921');
+INSERT INTO facility(facility_id, company_id, address, phone) VALUES (7, 5, '7 Facility Rd. Champaign IL 61820', '2939949969');
 
 #Insert regular employees
 INSERT INTO employee(id, emp_name, facility_id) VALUES (2, 'Matt Wallick', 1);
