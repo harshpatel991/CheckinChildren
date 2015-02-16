@@ -6,6 +6,8 @@
  * Time: 1:23 PM
  */
 
+require_once(dirname(__FILE__).'/../employeeModel.php');
+require_once(dirname(__FILE__).'/../dbConnectionFactory.php');
 class employeeDao {
 
     //TODO: Use cache to reduce DB calls.
@@ -23,11 +25,13 @@ class employeeDao {
         $stmt=$this->$connection->prepare($query);
         $stmt->bindParam(':id', $id);
 
-        $result=$stmt->execute();
+        $stmt->execute();
 
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'employeeModel');
+        $emp=$stmt->fetch();
         $connection=null;
 
-        return new employeeModel($result);
+        return $emp;
     }
 
     public function create_employee($emp_info){
@@ -39,6 +43,7 @@ class employeeDao {
 
         $stmt->execute();
         $id=$stmt->lastInsertId();
+
 
 
     }
