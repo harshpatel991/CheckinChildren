@@ -25,7 +25,7 @@ class UserDAO
         return $user;
     }
 
-    public function insert(User $user)
+    public function insert($user)
     {
         $connection = DbConnectionFactory::create();
         $query = 'INSERT INTO users (email, password, role) VALUES (:email, :password, :role)';

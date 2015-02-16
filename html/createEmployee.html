@@ -5,12 +5,12 @@
     <title></title>
 </head>
 <body>
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <form method="post" action="../scripts/controllers/createEmployeeController.php">
         Name: <input type="text" name="name" > <br>
-        Facility ID:<input type="text" name="facility_id">
-        <br>
-        <input type="radio" name="role" value="employee"> Employee
-         <input type="radio" name="role" value="manager"> Manager
+        Facility ID: <input type="text" name="facility_id"><br>
+        Employee Email: <input type="text" name="email"> <br>
+        Employee Password: <input type="text" name="password"><br>
+        <input type="hidden" name="role" value="employee">
         <input type="submit" value="Submit">
     </form>
 </body>

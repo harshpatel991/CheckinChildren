@@ -22,4 +22,16 @@ class employeeModel extends userModel{
         $this->role=$role;
     }
 
+    public function isValid() {
+        if (strlen($this->name)>30 || strlen($this->name)<=0) {
+            return false;
+        }
+
+        if (strlen($this->email)>40 || strlen($this->password)>40) {
+            return false;
+        }
+
+        return true;
+    }
+
 }

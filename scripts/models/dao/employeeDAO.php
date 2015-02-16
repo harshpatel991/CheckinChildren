@@ -7,8 +7,8 @@
  */
 
 require_once(dirname(__FILE__).'/../employeeModel.php');
-require_once(dirname(__FILE__).'/../dbConnectionFactory.php');
-require_once(dirname(__FILE__).'/userDAO');
+require_once(dirname(__FILE__).'/../db/dbConnectionFactory.php');
+require_once(dirname(__FILE__).'/userDAO.php');
 class employeeDao {
 
     //TODO: Use cache to reduce DB calls.
@@ -41,7 +41,7 @@ class employeeDao {
 
         $id=$userDAO->insert($newEmployee);
 
-        insert($employee->name, $employee->facility_id, $id);
+        $this->insert($employee->name, $employee->facility_id, $id);
 
     }
 
@@ -51,12 +51,12 @@ class employeeDao {
         $query = "INSERT INTO employee (emp_name, facility_id, id) VALUES ( :name, :facility_id, :id)";
         $stmt=$connection->prepare($query);
 
-        $stmt->bindParam("facility_id", $facility_id);
-        $stmt->bindParam(":emp_name", $name);
+        $stmt->bindParam(":facility_id", $facility_id);
+        $stmt->bindParam(":name", $name);
         $stmt->bindParam(":id", $id);
 
-        $this->$connection->execute($query);
+        $stmt->execute();
 
-        $connection->null;
+        $connection=null;
     }
 }
