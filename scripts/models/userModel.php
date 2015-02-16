@@ -7,9 +7,11 @@
 class User
 {
     public $id;
+    public $email;
+    public $password;
+    public $role;
 
-    public function __construct()
-    {
-        $this->$id = "";
+    public function isValid(){
+        return 'asd';
     }
 }
