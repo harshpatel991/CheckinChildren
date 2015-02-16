@@ -1,16 +1,23 @@
 <?php
 
+require_once(dirname(__FILE__).'/../models/dao/facilityDAO.php');
 
 //Read in POST data
-if(!empty($_POST['submitted'])) {
+//if(!empty($_POST['submitted'])) {
 
-    model = new userModel(POST['name'], POST['address'], POST['phone_number'], POST['facility_id'])
-// isValid = model.isValid();
+    $facilityModel = new facilityModel($_POST['company_id'], $_POST['address'], $_POST['phone_number']);
 
-// if (isValid)
-//call the userDAO and insert the new user
-//redirect to the employee home page with a success message
-// else
-//redirect to employee creation page with error message
+    if ($facilityModel->isValid()) {
+        $facilityDAO = new FacilityDAO();
+        $facility_id = $facilityDAO->insert($facilityModel);
 
-}
+        header("Location: ../../public/facilities.php?facility_id=".$facility_id); //send browser to the page for newly created facility
+        exit();
+
+    } else {
+        //redirect to employee creation page with error message
+        header("Location: ../../public/companyHome.php"); /* Redirect browser */
+        exit();
+    }
+
+//}
