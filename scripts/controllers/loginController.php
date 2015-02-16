@@ -6,7 +6,7 @@
  * Time: 4:38 PM
  */
 
-require_once(dirname(__FILE__).'/../models/dao/userDao.php');
+require_once(dirname(__FILE__) . '/../models/dao/userDAO.php');
 
 $userDao = new UserDAO();
 $user = new User();
