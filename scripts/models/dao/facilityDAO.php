@@ -27,7 +27,6 @@ class FacilityDAO
 
     public function insert(facilityModel $facility)
     {
-        var_dump($facility);
         $connection = DbConnectionFactory::create();
         $query = 'INSERT INTO facility (company_id, address, phone) VALUES (:company_id, :address, :phone)';
         $stmt = $connection->prepare($query);
