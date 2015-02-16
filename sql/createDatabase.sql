@@ -1,17 +1,19 @@
-CREATE TABLE company ( #TODO: separate address into street/city/zip code to facilitate searching
+CREATE TABLE company (
   id INT unique key,
+  company_name VARCHAR(50),
   address VARCHAR(50),
   phone VARCHAR(10)
 );
 
 CREATE TABLE users (
   id  INT auto_increment unique key,
-  pass VARCHAR(40), #SHA-1 is 40 characters
+  email VARCHAR(40),
+  password VARCHAR(40), #SHA-1 is 40 characters
   role ENUM('company', 'manager', 'employee', 'parent')
 );
 
-CREATE TABLE day_care_facility (
-  facility_id INT unique key,
+CREATE TABLE facility (
+  facility_id INT auto_increment unique key,
   company_id INT,
   address VARCHAR(50),
   phone varchar(10)
