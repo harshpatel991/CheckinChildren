@@ -1,5 +1,6 @@
 CREATE TABLE company (
   id INT unique key,
+  name VARCHAR(50),
   address VARCHAR(50),
   phone VARCHAR(10)
 );

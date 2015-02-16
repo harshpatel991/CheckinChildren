@@ -2,9 +2,9 @@
 
 
 #Add sample companies
-INSERT INTO company(id, address, phone) VALUES (1, '1 Fake St.\n Champaign IL 61820', '847123456');
-INSERT INTO company(id, address, phone) VALUES (3, '3 Real Blvd.\n Urbana IL 61821', '8474833945');
-INSERT INTO company(id, address, phone) VALUES (5, '7 Unreal Blvd.\n Austin TX 78728', '8472031023');
+INSERT INTO company(id, name, address, phone) VALUES (1, 'Company 1', '1 Fake St.\n Champaign IL 61820', '847123456');
+INSERT INTO company(id, name, address, phone) VALUES (3, 'Company 2','3 Real Blvd.\n Urbana IL 61821', '8474833945');
+INSERT INTO company(id, name, address, phone) VALUES (5, 'Company 3','7 Unreal Blvd.\n Austin TX 78728', '8472031023');
 
 #Add sample users with SHA-1 hashed passwords
 INSERT INTO users(id, email, password, role) VALUES (1, 'bigcompany1@gmail.com', 'e38ad214943daad1d64c102faec29de4afe9da3d', 'company'); #password: 'password1'
