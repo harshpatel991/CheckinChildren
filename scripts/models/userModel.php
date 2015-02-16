@@ -4,7 +4,7 @@
  * User: matt
  */
 
-class User
+class userModel
 {
     public $id;
     public $email;
@@ -13,5 +13,12 @@ class User
 
     public function isValid(){
         return 'asd';
+    }
+
+    public function __construct( $email, $password, $role, $id=""){
+        $this->password=$password;
+        $this->email=$email;
+        $this->role=$role;
+        $this->id=$id;
     }
 }
