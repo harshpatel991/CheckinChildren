@@ -18,26 +18,24 @@ $dbUser = $userDao->find('email', $email);
 
 if (!isset($dbUser) || !$dbUser){
     //Failure: user does not exist..
-    echo 'no user';
     cookieManager::clearAuthCookies();
+    header("Location: ../../public/login.php");
     exit;
 }
 
 $hashPass = userModel::genHashPassword($password);
 if ($hashPass !== $dbUser->password){
-    //Failure: incorrect password...
-    echo 'bad password';
+    //Failure: incorrect password..
     cookieManager::clearAuthCookies();
+    header("Location: ../../public/login.php");
     exit;
 }
 
 $token = $dbUser->genAuthToken();
 $userDao->updateField($dbUser->id, 'auth_token', $token);
 $dbUser->auth_token = $token;
-var_dump($dbUser);
 
 cookieManager::setAuthCookies($dbUser);
 
 //Success: redirect
-echo 'success';
-exit;
+header("Location: ../../public/index.php");
