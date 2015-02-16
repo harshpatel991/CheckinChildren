@@ -11,8 +11,8 @@ CREATE TABLE users (
   role ENUM('company', 'manager', 'employee', 'parent')
 );
 
-CREATE TABLE day_care_facility (
-  facility_id INT unique key,
+CREATE TABLE facility (
+  facility_id INT auto_increment unique key,
   company_id INT,
   address VARCHAR(50),
   phone varchar(10)
