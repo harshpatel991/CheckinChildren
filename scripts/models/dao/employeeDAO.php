@@ -8,6 +8,7 @@
 
 require_once(dirname(__FILE__).'/../employeeModel.php');
 require_once(dirname(__FILE__).'/../dbConnectionFactory.php');
+require_once(dirname(__FILE__).'/userDAO');
 class employeeDao {
 
     //TODO: Use cache to reduce DB calls.
@@ -34,15 +35,11 @@ class employeeDao {
         return $emp;
     }
 
-    public function create_employee($emp_info){
+    public function create_employee($email, $password){
         $connection = DbConnectionFactory::create();
 
-        $query = "INSERT INTO user (pass, roll) VALUES(:pass, 'employee')";
-        $stmt=$connection->prepare($query);
-        $stmt->bindParam(':pass', $emp_info[0]);
-
-        $stmt->execute();
-        $id=$stmt->lastInsertId();
+        $newUser=new userModel($email, $password, "employee");
+        $userDAO=new userDAO();
 
 
 
