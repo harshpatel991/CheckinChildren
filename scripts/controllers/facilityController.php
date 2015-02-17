@@ -2,7 +2,7 @@
 
 require_once(dirname(__FILE__).'/../models/dao/facilityDAO.php');
 
-class displayFacilitiesController {
+class facilityController {
 
     public function getAllFacilities($companyId) {
         $facilityDAO = new FacilityDAO();
