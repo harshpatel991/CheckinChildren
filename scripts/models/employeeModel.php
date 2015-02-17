@@ -12,7 +12,7 @@ class employeeModel extends userModel{
     public $name;
     public $facility_id;
 
-    public function __construct( $name, $password, $facility_id, $email, $role, $id="")
+    public function __construct( $name="", $password="", $facility_id="", $email="", $role="", $id="")
     {
         $this->id=$id;
         $this->name=$name;
