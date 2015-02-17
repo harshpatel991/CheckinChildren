@@ -60,8 +60,8 @@ INSERT INTO employee(id, emp_name, facility_id) VALUES (13, 'Saul Goodman', 6);
 INSERT INTO employee(id, emp_name, facility_id) VALUES (14, 'Sterling Archer', 6);
 
 #Insert parents
-INSERT INTO parent(id, parent_name, address, phone_number, email) VALUES (8, 'Big Daddy', '123 Fake Ave Champaign IL 61820', '1234563456', 'bigdaddy@gmail.com' );
-INSERT INTO parent(id, parent_name, address, phone_number, email) VALUES (19, 'Momma Jamma', '456 Real Ave Urbana IL 61820', '6786546789', 'mommaJamma@gmail.com');
+INSERT INTO parent(id, parent_name, address, phone_number) VALUES (8, 'Big Daddy', '123 Fake Ave Champaign IL 61820', '1234563456');
+INSERT INTO parent(id, parent_name, address, phone_number) VALUES (19, 'Momma Jamma', '456 Real Ave Urbana IL 61820', '6786546789');
 
 #Insert children
 INSERT INTO child(child_id, parent_id, child_name, allergies) VALUES (2, 8, 'Mark Zuckerberg', 'Peanut Butter');
