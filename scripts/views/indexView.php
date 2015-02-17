@@ -1,30 +1,12 @@
-<?php require_once(dirname(__FILE__).'/../cookieManager.php');
-      require_once(dirname(__FILE__).'/../controllers/managerController.php');
-      require_once(dirname(__FILE__).'/../models/dao/employeeDAO.php');
-      require_once(dirname(__FILE__).'/../models/employeeModel.php');?>
+<?php require_once(dirname(__FILE__).'/../cookieManager.php');?>
 
 <h1>Welcome to Checkin Children</h1>
 <h3>Currently signed in as a <?php echo $_COOKIE[cookieManager::$userRole]?></h3>
 
 <?php
     if ($_COOKIE[cookieManager::$userRole]=='manager') {
-        $htmlFileLocation = dirname(__FILE__).'/../../html/managerIndex.html';
-
-        $managercontroller= new managerController();
-
-        $employeedao=new employeeDAO();
-        $manager = $employeedao->find($_COOKIE[cookieManager::$userId]);
-        $employees=$employeedao->getFacilityEmployees($manager->facility_id);
-
-        $emplist="";
-
-        foreach ($employees as $employee) {
-            $emplist=$emplist.($employee->emp_name)."<br>";
-        }
-
-        $template=file_get_contents ($htmlFileLocation);
-        $template=str_replace(EMPLOYEE_LIST, $emplist, $template);
-        echo $template;
+        ?>
+        <a href="displayEmployeesView.php">View My Employees</a> <?php
     }
 
     else if ($_COOKIE[cookieManager::$userRole]=='company') {
