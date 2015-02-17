@@ -1,5 +1,2 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: matt
- */
+//Files located in the views folder will load an HTML file and replace any place holder text
