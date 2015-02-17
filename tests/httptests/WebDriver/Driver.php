@@ -123,13 +123,17 @@ class WebDriver_Driver {
         $response_info = $response_status_code . " - " . self::$status_codes[$response_status_code][0] . " - " . self::$status_codes[$response_status_code][1];
         $additional_info = isset($response_json['value']['message']) ? "Message: " . $response_json['value']['message'] : "Response: " . $response['body'];
         if ($response_status_code == 7) {
-          throw new WebDriver_NoSuchElementException("Could not find element: " . print_r($payload, true));
+          //throw new WebDriver_NoSuchElementException("Could not find element: " . print_r($payload, true));
+          //hacky workaround for deprecated versions of phpunit
+          PHPUnit_Framework_Assert::assertNotNull(null, "Could not find element: " . print_r($payload, true));
         }
         if ($response_status_code == 10) {
           throw new WebDriver_StaleElementReferenceException();
         }
         if ($response_status_code == 11) {
-          throw new WebDriver_ElementNotVisibleException($command_info);
+          //throw new WebDriver_ElementNotVisibleException($command_info);
+          //hacky workaround for deprecated versions of phpunit
+          PHPUnit_Framework_Assert::assertNotNull(null, "Element not visible: " . print_r($payload, true));
         }
         PHPUnit_Framework_Assert::assertEquals(0, $response_status_code, "Unsuccessful WebDriver command: $response_info\nCommand: $command_info\n$additional_info");
       }
