@@ -15,9 +15,7 @@ class employeeDAO {
     private static $employeeCache = array();
 
     public function __construct()
-    {
-
-    }
+    { }
 
     public function find($id){
         $connection = DbConnectionFactory::create();
