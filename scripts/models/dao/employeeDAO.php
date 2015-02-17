@@ -9,7 +9,7 @@
 require_once(dirname(__FILE__).'/../employeeModel.php');
 require_once(dirname(__FILE__).'/../db/dbConnectionFactory.php');
 require_once(dirname(__FILE__).'/userDAO.php');
-class employeeDao {
+class employeeDAO {
 
     //TODO: Use cache to reduce DB calls.
     private static $employeeCache = array();
@@ -21,14 +21,14 @@ class employeeDao {
 
     public function find($id){
         $connection = DbConnectionFactory::create();
-        $query = "SELECT * FROM employee WHERE id=:id";
+        $query = "SELECT * FROM employee NATURAL JOIN users WHERE id=:id";
 
-        $stmt=$this->$connection->prepare($query);
+        $stmt=$connection->prepare($query);
         $stmt->bindParam(':id', $id);
 
         $stmt->execute();
 
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'employeeModel');
+        $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'employeeModel'); //MAY NEED FETCH_PROPS_LATE FLAG. see below
         $emp=$stmt->fetch();
         $connection=null;
 
@@ -58,5 +58,22 @@ class employeeDao {
         $stmt->execute();
 
         $connection=null;
+    }
+
+    public function getFacilityEmployees($facility_id){
+        $connection=DbConnectionFactory::create();
+
+        $query = "SELECT * FROM employee WHERE facility_id = :facility_id";
+        $stmt=$connection->prepare($query);
+
+        $stmt->bindParam(":facility_id",$facility_id);
+
+        $stmt->execute();
+
+        $employees = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'employeeModel');
+        $connection=null;
+
+        return $employees;
+
     }
 }
