@@ -9,13 +9,13 @@
 require_once(dirname(__FILE__).'/userModel.php');
 
 class employeeModel extends userModel{
-    public $name;
+    public $emp_name;
     public $facility_id;
 
-    public function __construct( $name, $password, $facility_id, $email, $role, $id="")
+    public function __construct( $emp_name="", $password="", $facility_id=0, $email="", $role="", $id=0)
     {
         $this->id=$id;
-        $this->name=$name;
+        $this->emp_name=$emp_name;
         $this->facility_id=$facility_id;
         $this->password=$password;
         $this->email=$email;
@@ -23,15 +23,11 @@ class employeeModel extends userModel{
     }
 
     public function isValid() {
-        if (strlen($this->name)>30 || strlen($this->name)<=0) {
+        if (strlen($this->emp_name)>30 || strlen($this->emp_name)<=0) {
             return false;
         }
 
-        if (strlen($this->email)>40 || strlen($this->password)>40) {
-            return false;
-        }
-
-        return true;
+        return parent::isValid();
     }
 
 }

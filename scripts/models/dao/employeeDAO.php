@@ -9,7 +9,7 @@
 require_once(dirname(__FILE__).'/../employeeModel.php');
 require_once(dirname(__FILE__).'/../db/dbConnectionFactory.php');
 require_once(dirname(__FILE__).'/userDAO.php');
-class employeeDao {
+class employeeDAO {
 
     //TODO: Use cache to reduce DB calls.
     private static $employeeCache = array();
@@ -19,14 +19,14 @@ class employeeDao {
 
     public function find($id){
         $connection = DbConnectionFactory::create();
-        $query = "SELECT * FROM employee WHERE id=:id";
+        $query = "SELECT * FROM employee NATURAL JOIN users WHERE id=:id";
 
-        $stmt=$this->$connection->prepare($query);
+        $stmt=$connection->prepare($query);
         $stmt->bindParam(':id', $id);
 
         $stmt->execute();
 
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'employeeModel');
+        $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'employeeModel'); //MAY NEED FETCH_PROPS_LATE FLAG. see below
         $emp=$stmt->fetch();
         $connection=null;
 
@@ -39,22 +39,40 @@ class employeeDao {
 
         $id=$userDAO->insert($newEmployee);
 
-        $this->insert($employee->name, $employee->facility_id, $id);
+        $this->insert($employee->emp_name, $employee->facility_id, $id);
 
+        return $id;
     }
 
-    private function insert( $name, $facility_id, $id){
+    private function insert( $emp_name, $facility_id, $id){
         $connection = DbConnectionFactory::create();
 
-        $query = "INSERT INTO employee (emp_name, facility_id, id) VALUES ( :name, :facility_id, :id)";
+        $query = "INSERT INTO employee (emp_name, facility_id, id) VALUES ( :emp_name, :facility_id, :id)";
         $stmt=$connection->prepare($query);
 
         $stmt->bindParam(":facility_id", $facility_id);
-        $stmt->bindParam(":name", $name);
+        $stmt->bindParam(":emp_name", $emp_name);
         $stmt->bindParam(":id", $id);
 
         $stmt->execute();
 
         $connection=null;
+    }
+
+    public function getFacilityEmployees($facility_id){
+        $connection=DbConnectionFactory::create();
+
+        $query = "SELECT * FROM employee WHERE facility_id = :facility_id ORDER BY emp_name ASC";
+        $stmt=$connection->prepare($query);
+
+        $stmt->bindParam(":facility_id",$facility_id);
+
+        $stmt->execute();
+
+        $employees = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'employeeModel');
+        $connection=null;
+
+        return $employees;
+
     }
 }
