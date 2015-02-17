@@ -35,12 +35,12 @@ class parentDAO {
 
         $id=$userDAO->insert($newParent);
 
-        $this->insert($parent->parent_name, $parent->addr, $parent->phone, $id);
+        $this->insert($parent->parent_name, $parent->addr, $parent->phone, $parent->email, $id);
 
         return $id;
     }
 
-    private function insert( $parent_name, $addr, $phone, $id){
+    private function insert( $parent_name, $addr, $phone, $email, $id){
         $connection = DbConnectionFactory::create();
 
         $query = "INSERT INTO parent (parent_name, address, phone_number, email, id) VALUES ( :parent_name, :addr, :phone, :email, :id)";
