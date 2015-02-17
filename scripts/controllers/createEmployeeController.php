@@ -10,9 +10,13 @@ ini_set("display_errors", 1);
 
 require_once(dirname(__FILE__).'/../models/dao/employeeDAO.php');
 require_once(dirname(__FILE__).'/../models/employeeModel.php');
+require_once(dirname(__FILE__).'/../cookieManager.php');
+require_once(dirname(__FILE__).'/managerController.php');
 
+$manCon=new managerController();
+$facility_id=$manCon->getFacilityID($_COOKIE[cookieManager::$userId]);
 //TODO: HAsh the password before it gets here
-$employee=new employeeModel($_POST['name'], $_POST['password'], $_POST['facility_id'], $_POST['email'], $_POST['role']);
+$employee=new employeeModel($_POST['name'], $_POST['password'], $facility_id, $_POST['email'], $_POST['role']);
 
 
 if ($employee->isValid()) {
@@ -20,7 +24,7 @@ if ($employee->isValid()) {
 
     $employeeDAO->create_DCP($employee);
 
-    header("Location: ../../public/createEmployee.php");
+    header("Location: ../../public/index.php");
     exit();
 }
 
