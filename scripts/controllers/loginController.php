@@ -7,13 +7,35 @@
  */
 
 require_once(dirname(__FILE__) . '/../models/dao/userDAO.php');
+require_once(dirname(__FILE__).'/../models/userModel.php');
+require_once(dirname(__FILE__).'/../cookieManager.php');
+
+$email = $_POST['email'];
+$password = $_POST['password'];
 
 $userDao = new UserDAO();
-$user = new User();
-$user->email='m@test.com';
-$user->password = 'fakepass';
-$user->role='employee';
-$id = $userDao->insert($user);
-echo $id;
-echo "<br>";
-var_dump($userDao->find($id));
+$dbUser = $userDao->find('email', $email);
+
+if (!isset($dbUser) || !$dbUser){
+    //Failure: user does not exist..
+    cookieManager::clearAuthCookies();
+    header("Location: ../../public/login.php");
+    exit;
+}
+
+$hashPass = userModel::genHashPassword($password);
+if ($hashPass !== $dbUser->password){
+    //Failure: incorrect password..
+    cookieManager::clearAuthCookies();
+    header("Location: ../../public/login.php");
+    exit;
+}
+
+$token = $dbUser->genAuthToken();
+$userDao->updateField($dbUser->id, 'auth_token', $token);
+$dbUser->auth_token = $token;
+
+cookieManager::setAuthCookies($dbUser);
+
+//Success: redirect
+header("Location: ../../public/index.php");
