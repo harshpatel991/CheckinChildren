@@ -46,7 +46,7 @@ class employeeDAOTest extends PHPUnit_Framework_TestCase {
         $this->assertFalse($employee);
     }
 
-    public function testgetFacilityEmployees(){
+    public function testgetOneFacilityEmployees(){
         $employeeDAO=new employeeDAO();
 
         $employeelist1=$employeeDAO->getFacilityEmployees(1);
@@ -54,14 +54,19 @@ class employeeDAOTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals("Matt Wallick", $employeelist1[0]->emp_name);
         $this->assertEquals("1", $employeelist1[0]->facility_id);
 
-        $employeelist2=$employeeDAO->getFacilityEmployees(6);
+    }
 
-        $names=array("Harsh Patel", "Bob Dude", "Rick Grimes", "Tyrion Lannister", "Alex Trebeck", "Princess Bubblegum"
-            , "Saul Goodman", "Sterling Archer");
-        foreach($employeelist2 as $employee){
+    public function testgetMultipleFacilityEmployees()
+    {
+        $employeeDAO = new employeeDAO();
+
+        $employeelist2 = $employeeDAO->getFacilityEmployees(6);
+
+        $names = array("Harsh Patel", "Bob Dude", "Rick Grimes", "Tyrion Lannister", "Alex Trebeck", "Princess Bubblegum"
+        , "Saul Goodman", "Sterling Archer");
+        foreach ($employeelist2 as $employee) {
+
             $this->assertTrue(in_array($employee->emp_name, $names));
         }
-
-
     }
 }

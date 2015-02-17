@@ -27,11 +27,7 @@ class employeeModel extends userModel{
             return false;
         }
 
-        if (strlen($this->email)>40 || strlen($this->password)>40) {
-            return false;
-        }
-
-        return true;
+        return parent::isValid();
     }
 
 }
