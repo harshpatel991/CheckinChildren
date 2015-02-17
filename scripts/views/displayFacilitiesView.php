@@ -1,13 +1,13 @@
 <?php
 
-require_once(dirname(__FILE__).'/../controllers/displayFacilitiesController.php');
+require_once(dirname(__FILE__) . '/../controllers/facilityController.php');
 require_once(dirname(__FILE__).'/../models/facilityModel.php');
 
 $displayFacilitiesController = new displayFacilitiesController();
 
 if(isset($_GET['facility_id'])) { //check if a GET has been set
 
-
+    //TODO: fill this out
 
 } else {
 

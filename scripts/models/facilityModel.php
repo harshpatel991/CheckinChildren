@@ -13,7 +13,7 @@ class facilityModel {
     var $address;
     var $phone;
 
-    function __construct($company_id='', $address='', $phone='', $facility_id='') {
+    function __construct($company_id=0, $address='', $phone='', $facility_id=0) {
         $this->facility_id = $facility_id;
         $this->company_id = $company_id;
         $this->address = $address;
