@@ -1,5 +1,6 @@
 <?php
 
+require_once(dirname(__FILE__).'/../cookieManager.php');
 require_once(dirname(__FILE__).'/../models/dao/facilityDAO.php');
 
 //Read in POST data from form
