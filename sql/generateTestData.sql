@@ -1,7 +1,3 @@
-
-#TODO: fix this file so it runs
-
-
 #Add sample companies
 INSERT INTO company(id, company_name, address, phone) VALUES (1, 'Company 1', '1 Fake St.\n Champaign IL 61820', '847123456');
 INSERT INTO company(id, company_name, address, phone) VALUES (3, 'Company 2','3 Real Blvd.\n Urbana IL 61821', '8474833945');

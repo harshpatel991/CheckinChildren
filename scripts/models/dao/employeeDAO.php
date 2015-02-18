@@ -11,9 +11,6 @@ require_once(dirname(__FILE__).'/../db/dbConnectionFactory.php');
 require_once(dirname(__FILE__).'/userDAO.php');
 class employeeDAO {
 
-    //TODO: Use cache to reduce DB calls.
-    private static $employeeCache = array();
-
     public function __construct()
     { }
 
