@@ -9,8 +9,6 @@ require_once(dirname(__FILE__).'/../db/dbConnectionFactory.php');
 
 class UserDAO
 {
-    //TODO: Use cache to reduce DB calls.
-    //private static $userCache = array();
 
     public function find($field, $value){
         $connection = DbConnectionFactory::create();
