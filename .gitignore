@@ -1,2 +1,2 @@
 .idea
-/tests/httptests/SeleniumTestBase.php
+tests/httptests/SeleniumTestBase.php

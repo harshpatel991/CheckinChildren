@@ -6,7 +6,7 @@
  * Time: 8:43 PM
  */
 
-require_once 'SeleniumTestBase.php';
+require_once '../SeleniumTestBase.php';
 
 class ManagerTest extends SeleniumTestBase {
 
