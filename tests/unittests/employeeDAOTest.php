@@ -25,7 +25,7 @@ class employeeDAOTest extends PHPUnit_Framework_TestCase {
     public function testCreate_DCP(){
         $employeeDAO=new employeeDAO();
 
-        $emp1= new employeeModel("Carl Frederickson", "testpass", 2,"test@email.com", "employee");
+        $emp1= new employeeModel("Carl Frederickson", sha1("testpass"), 2,"test@email.com", "employee");
         $emp1id=$employeeDAO->create_DCP($emp1);
 
         $employee=$employeeDAO->find($emp1id);
@@ -34,7 +34,7 @@ class employeeDAOTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($employee->facility_id, "2");
         $this->assertEquals($employee->id, $emp1id);
         $this->assertEquals($employee->email, "test@email.com");
-        $this->assertEquals($employee->password, "testpass");
+        $this->assertEquals($employee->password, sha1("testpass"));
     }
 
     public function testBadEmpID()
@@ -46,24 +46,13 @@ class employeeDAOTest extends PHPUnit_Framework_TestCase {
         $this->assertFalse($employee);
     }
 
-    public function testgetOneFacilityEmployees(){
-        $employeeDAO=new employeeDAO();
-
-        $employeelist1=$employeeDAO->getFacilityEmployees(1);
-
-        $this->assertEquals("Matt Wallick", $employeelist1[0]->emp_name);
-        $this->assertEquals("1", $employeelist1[0]->facility_id);
-
-    }
-
     public function testgetMultipleFacilityEmployees()
     {
         $employeeDAO = new employeeDAO();
 
         $employeelist2 = $employeeDAO->getFacilityEmployees(6);
 
-        $names = array("Harsh Patel", "Bob Dude", "Rick Grimes", "Tyrion Lannister", "Alex Trebeck", "Princess Bubblegum"
-        , "Saul Goodman", "Sterling Archer");
+        $names = array("Harsh Patel", "Sterling Archer", "Alex Trebeck");
         foreach ($employeelist2 as $employee) {
 
             $this->assertTrue(in_array($employee->emp_name, $names));
