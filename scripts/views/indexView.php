@@ -6,7 +6,14 @@
 <?php
     if ($_COOKIE[cookieManager::$userRole]=='manager') {
         ?>
-        <a id="display_employee" href="displayEmployees.php">View My Employees</a> <?php
+        <a id="display_employee" href="displayEmployees.php">View My Employees</a>
+        <br><br>
+        <a href="createParent.php">Create a Parent</a> <?php
+    }
+
+    else if ($_COOKIE[cookieManager::$userRole]=='employee') {
+        ?>
+        <a href="createParent.php">Create a Parent</a> <?php
     }
 
     else if ($_COOKIE[cookieManager::$userRole]=='company') {
@@ -15,5 +22,6 @@
 
 ?>
 <form method="post" action="../scripts/controllers/logoutController.php">
+    <br><br>
     <input type="submit" name="submit" value="Logout">
 </form>
