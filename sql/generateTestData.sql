@@ -47,12 +47,12 @@ INSERT INTO employee(id, emp_name, facility_id) VALUES (17, 'Alex Dahlquist', 5)
 INSERT INTO employee(id, emp_name, facility_id) VALUES (18, 'Harsh Patel', 6);
 
 #Insert manager employees
-INSERT INTO employee(id, emp_name, facility_id) VALUES (6, 'Bob Dude', 6);
-INSERT INTO employee(id, emp_name, facility_id) VALUES (9, 'Rick Grimes', 6);
-INSERT INTO employee(id, emp_name, facility_id) VALUES (10, 'Tyrion Lannister', 6);
+INSERT INTO employee(id, emp_name, facility_id) VALUES (6, 'Bob Dude', 1);
+INSERT INTO employee(id, emp_name, facility_id) VALUES (9, 'Rick Grimes', 2);
+INSERT INTO employee(id, emp_name, facility_id) VALUES (10, 'Tyrion Lannister', 3);
 INSERT INTO employee(id, emp_name, facility_id) VALUES (11, 'Alex Trebeck', 6);
-INSERT INTO employee(id, emp_name, facility_id) VALUES (12, 'Princess Bubblegum', 6);
-INSERT INTO employee(id, emp_name, facility_id) VALUES (13, 'Saul Goodman', 6);
+INSERT INTO employee(id, emp_name, facility_id) VALUES (12, 'Princess Bubblegum', 4);
+INSERT INTO employee(id, emp_name, facility_id) VALUES (13, 'Saul Goodman', 5);
 INSERT INTO employee(id, emp_name, facility_id) VALUES (14, 'Sterling Archer', 6);
 
 #Insert parents
