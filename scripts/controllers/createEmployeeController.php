@@ -17,7 +17,7 @@ if ($employee->isValid()) {
     $employeeDAO=new employeeDAO();
     $employeeDAO->create_DCP($employee);
 
-    header("Location: ../../public/index.php");
+    header("Location: ../../public/displayEmployees.php");
     exit();
 } else {
     header("Location: ../../public/createEmployee.php?error=1");

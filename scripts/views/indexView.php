@@ -6,7 +6,7 @@
 <?php
     if ($_COOKIE[cookieManager::$userRole]=='manager') {
         ?>
-        <a href="displayEmployeesView.php">View My Employees</a> <?php
+        <a href="displayEmployees.php">View My Employees</a> <?php
     }
 
     else if ($_COOKIE[cookieManager::$userRole]=='company') {
