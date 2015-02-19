@@ -1,12 +1,12 @@
 <?php require_once(dirname(__FILE__).'/../cookieManager.php');?>
 
 <h1>Welcome to Checkin Children</h1>
-<h3>Currently signed in as a <?php echo $_COOKIE[cookieManager::$userRole]?></h3>
+<div id="signed-in"><h3>Currently signed in as a <?php echo $_COOKIE[cookieManager::$userRole]?></h3></div>
 
 <?php
     if ($_COOKIE[cookieManager::$userRole]=='manager') {
         ?>
-        <a href="displayEmployees.php">View My Employees</a> <?php
+        <a id="display_employee" href="displayEmployees.php">View My Employees</a> <?php
     }
 
     else if ($_COOKIE[cookieManager::$userRole]=='company') {
