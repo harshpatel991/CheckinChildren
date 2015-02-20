@@ -5,7 +5,7 @@
  * Date: 2/17/15
  * Time: 4:27 AM
  */
-require_once 'SeleniumTestBase.php';
+require_once '../SeleniumTestBase.php';
 
 class LoginTest extends SeleniumTestBase
 {
