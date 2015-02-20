@@ -10,7 +10,10 @@
     }
 
     else if ($_COOKIE[cookieManager::$userRole]=='company') {
-        ?> <a href="displayFacilities.php">View My Facilities</a> <?php
+        ?>
+            <a href="displayFacilities.php">View My Facilities</a><br>
+            <a href="displayManagers.php">View My Managers</a>
+        <?php
     }
 
 ?>
