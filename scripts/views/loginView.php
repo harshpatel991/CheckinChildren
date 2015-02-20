@@ -10,7 +10,7 @@
     <br><br>
     <input type="submit" name="submit" value="Login" id="submit">
 </form>
-
+<a href="createCompany.php">Register New Company</a><br><br>
 
 ------------LOGIN AS:------------<br>
 <a href="javascript:void(0)" onclick="autoFillUser(0);">Company - bigcompany1@gmail.com</a><br>
@@ -33,7 +33,5 @@
         submitBox.click();
     }
 </script>
-    <input type="submit" name="submit" value="Login">
-</form>
-<a href="createCompany.php">Register New Company</a>
+
 
