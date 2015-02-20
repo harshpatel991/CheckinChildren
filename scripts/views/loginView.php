@@ -8,7 +8,6 @@
     <br><br>
     Password: <input type="text" name="password" id="password">
     <br><br>
-
     <input type="submit" name="submit" value="Login" id="submit">
 </form>
 
@@ -34,3 +33,7 @@
         submitBox.click();
     }
 </script>
+    <input type="submit" name="submit" value="Login">
+</form>
+<a href="createCompany.php">Register New Company</a>
+
