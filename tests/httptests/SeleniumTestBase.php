@@ -15,7 +15,7 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
   protected $driver;
   protected $dbConn;
   private static $serverRunning = false;
-  private static $baseUrl = "http://localhost:63342/CheckinChildren/public/"; //Change if necessary for your Apache setup
+  private static $baseUrl = "http://localhost/CheckinChildren/public/"; //Change if necessary for your Apache setup
 
   public function setUp() {
     shell_exec(sprintf('%s > /dev/null 2>&1 &', 'java -jar WebDriver/selenium-server-standalone-2.44.0.jar'));
