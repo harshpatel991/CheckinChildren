@@ -8,12 +8,12 @@
         ?>
         <a id="display_employee" href="displayEmployees.php">View My Employees</a>
         <br><br>
-        <a href="createParent.php">Create a Parent</a> <?php
+        <a id="create_parent" href="createParent.php">Create a Parent</a> <?php
     }
 
     else if ($_COOKIE[cookieManager::$userRole]=='employee') {
         ?>
-        <a href="createParent.php">Create a Parent</a> <?php
+        <a id="create_parent" href="createParent.php">Create a Parent</a> <?php
     }
 
     else if ($_COOKIE[cookieManager::$userRole]=='company') {
