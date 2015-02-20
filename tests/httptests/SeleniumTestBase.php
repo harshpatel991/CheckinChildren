@@ -18,7 +18,8 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
   private static $baseUrl = "http://localhost:63342/CheckinChildren/public/"; //Change if necessary for your Apache setup
 
   public function setUp() {
-    shell_exec(sprintf('%s > /dev/null 2>&1 &', 'java -jar WebDriver/selenium-server-standalone-2.44.0.jar'));
+    shell_exec(sprintf('%s > /dev/null 2>&1 &', 'java -jar ../WebDriver/selenium-server-standalone-2.44.0.jar'));
+    sleep(1);
     // If you want to set preferences in your Firefox profile
     $fp = new WebDriver_FirefoxProfile();
     $fp->set_preference("capability.policy.default.HTMLDocument.compatMode", "allAccess");
