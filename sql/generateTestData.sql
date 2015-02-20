@@ -25,7 +25,7 @@ INSERT INTO users(id, email, password, role) VALUES (16, 'employee16@gmail.com',
 INSERT INTO users(id, email, password, role) VALUES (17, 'employee17@gmail.com', 'b9c3d15c70a945d9e308ac763dd254b47c29bc0a', 'employee'); #password: 'password17'
 INSERT INTO users(id, email, password, role) VALUES (18, 'employee18@gmail.com', 'e7369527332f65fe86c44d87116801a0f4fbe5d3', 'employee'); #password: 'password18'
 
-INSERT INTO users(id, email, password, role) VALUES (19, 'employee19@gmail.com', '2c30de294b2ca17d5c356645a04ff4d0de832594', 'parent'); #password: 'password19'
+INSERT INTO users(id, email, password, role) VALUES (19, 'parent19@gmail.com', '2c30de294b2ca17d5c356645a04ff4d0de832594', 'parent'); #password: 'password19'
 
 #Add sample facilities
 INSERT INTO facility(facility_id, company_id, address, phone) VALUES (1, 1, '1 Facility Rd. Champaign IL 61820', '1235933945');
