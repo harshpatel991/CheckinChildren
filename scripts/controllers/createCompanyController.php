@@ -4,7 +4,8 @@ require_once(dirname(__FILE__).'/../models/dao/companyDAO.php');
 
 //Read in POST data from form
 header("Location: ../../public/createCompany.php");
-$company = new companyModel($_POST['company_name'],$_POST['address'], $_POST['phone_number'], $_POST['email'], $_POST['password'], $_POST['role']);
+$hashedPassword = companyModel::genHashPassword($_POST['password']);
+$company = new companyModel($_POST['company_name'],$_POST['address'], $_POST['phone_number'], $_POST['email'], $hashedPassword, $_POST['role']);
 
 if ($company->isValid()) {
 
