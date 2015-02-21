@@ -5,8 +5,8 @@
  * Date: 2/17/15
  * Time: 4:27 AM
  */
-require_once '../SeleniumTestBase.php';
-require_once '../TestMacros.php';
+require_once dirname(__FILE__).'/../SeleniumTestBase.php';
+require_once dirname(__FILE__).'/../TestMacros.php';
 
 class LoginTest extends SeleniumTestBase
 {
