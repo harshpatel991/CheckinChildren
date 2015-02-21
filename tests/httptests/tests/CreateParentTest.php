@@ -1,7 +1,7 @@
 <?php
 
 
-require_once '../SeleniumTestBase.php';
+require_once dirname(__FILE__).'/../SeleniumTestBase.php';
 
 class createParentTest extends SeleniumTestBase
 {
