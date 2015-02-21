@@ -10,15 +10,22 @@ require_once 'WebDriver/NoSuchElementException.php';
 require_once 'WebDriver/StaleElementReferenceException.php';
 require_once 'WebDriver/ElementNotVisibleException.php';
 require_once dirname(__FILE__).'/../../scripts/models/db/dbConnectionFactory.php';
+require_once dirname(__FILE__).'/../../config.php';
 
 class SeleniumTestBase extends PHPUnit_Framework_TestCase {
   protected $driver;
   protected $dbConn;
-  private static $serverRunning = false;
-  private static $baseUrl = "http://localhost:63342/CheckinChildren/public/"; //Change if necessary for your Apache setup
+  public static $baseUrl = "";
+  public static $isWindows = false;
 
   public function setUp() {
-    shell_exec(sprintf('%s > /dev/null 2>&1 &', 'java -jar ../WebDriver/selenium-server-standalone-2.44.0.jar'));
+    if (self::$isWindows){
+      exec('start java -jar ../WebDriver/selenium-server-standalone-2.44.0.jar');
+    }
+    else {
+      shell_exec(sprintf('%s > /dev/null 2>&1 &', 'java -jar ../WebDriver/selenium-server-standalone-2.44.0.jar'));
+    }
+
     sleep(1);
     // If you want to set preferences in your Firefox profile
     $fp = new WebDriver_FirefoxProfile();
@@ -54,3 +61,6 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
     parent::tearDown();
   }
 }
+
+SeleniumTestBase::$baseUrl = $config['sitepath'];
+SeleniumTestBase::$isWindows = $config['isWindows'];
