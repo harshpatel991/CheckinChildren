@@ -24,7 +24,7 @@ if(isset($_GET['facility_id'])) { //check if a GET has been set
     $facilities = $facilityController->getAllFacilities($companyId);
 
 
-    $facilityAddressList = '';
+    $facilityList = '';
     foreach ($facilities as $facility) { //format each list item
 
         $facilityList .=  '<a href="?facility_id='. $facility->facility_id .'">'.$facility->address . '</a><br>'; //add on to the list
