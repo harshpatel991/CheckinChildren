@@ -21,7 +21,7 @@ class CompanyDAO {
     //Inserts the specified company in the data base
     public function insert($company, $id) {
         $connection = DbConnectionFactory::create();
-        $query = 'INSERT INTO company (company_name, address, phone) VALUES (:company_name, :address, :phone)';
+        $query = 'INSERT INTO company (id, company_name, address, phone) VALUES (:id,:company_name, :address, :phone)';
         $stmt = $connection->prepare($query);
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':company_name', $company->company_name);
