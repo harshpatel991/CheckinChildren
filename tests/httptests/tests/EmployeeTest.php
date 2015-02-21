@@ -21,7 +21,6 @@ class EmployeeTest extends SeleniumTestBase {
         $this->get_element("name=submit")->click();
 
         $this->get_element("id=signed-in")->assert_text("Currently signed in as a employee");
-        //TODO: Finish this test case.
     }
 
     public function tearDown(){
