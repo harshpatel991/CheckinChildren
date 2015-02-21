@@ -2,9 +2,10 @@
 require_once(dirname(__FILE__).'/../../scripts/models/dao/managerDAO.php');
 require_once(dirname(__FILE__).'/../../scripts/models/dao/tableCleanerDAO.php');
 require_once(dirname(__FILE__).'/../../scripts/models/managerModel.php');
+require_once(dirname(__FILE__).'/UnitTestBase.php');
 
 
-class managerDAOTest extends PHPUnit_Framework_TestCase {
+class managerDAOTest extends unitTestBase {
     private $name1 = "test1";
     private $name2 = "test2";
     private $email1 = "1@1";
