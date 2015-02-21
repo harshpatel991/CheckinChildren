@@ -6,7 +6,7 @@
  * Time: 8:34 PM
  */
 
-require_once '../SeleniumTestBase.php';
+require_once dirname(__FILE__).'/../SeleniumTestBase.php';
 
 class EmployeeTest extends SeleniumTestBase {
 
@@ -21,7 +21,6 @@ class EmployeeTest extends SeleniumTestBase {
         $this->get_element("name=submit")->click();
 
         $this->get_element("id=signed-in")->assert_text("Currently signed in as a employee");
-        //TODO: Finish this test case.
     }
 
     public function tearDown(){
