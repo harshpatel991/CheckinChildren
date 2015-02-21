@@ -12,7 +12,7 @@ class companyModel extends userModel{
     var $address;
     var $phone;
 
-    function __construct($company_name='', $address='', $phone='', $email, $password='', $role='', $id=0) {
+    function __construct($company_name='', $address='', $phone='', $email = '', $password='', $role='', $id=0) {
         $this->id = $id;
         $this->company_name = $company_name;
         $this->address = $address;

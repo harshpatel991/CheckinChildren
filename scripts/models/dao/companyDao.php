@@ -37,7 +37,7 @@ class CompanyDAO {
     //Returns false if a company is not found
     public function find($id) {
         $connection = DbConnectionFactory::create();
-        $query = 'SELECT * FROM company WHERE id=:id';
+        $query = 'SELECT * FROM company NATURAL JOIN users WHERE id=:id';
         $stmt = $connection->prepare($query);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
@@ -46,18 +46,4 @@ class CompanyDAO {
         $connection = null;
         return $company;
     }
-
-    //Retrieves all facilities assoicated with a company
-    public function findFacilitiesInCompany($companyId) {
-        $connection = DbConnectionFactory::create();
-        $query = 'SELECT * FROM facility WHERE company_id=:company_id';
-        $stmt = $connection->prepare($query);
-        $stmt->bindParam(':company_id', $companyId);
-        $stmt->execute();
-        $facilities = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'facilityModel');
-        $connection = null;
-
-        return $facilities;
-    }
-
 }
