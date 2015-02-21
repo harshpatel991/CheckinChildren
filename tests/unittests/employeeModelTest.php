@@ -7,8 +7,9 @@
  */
 
 require_once(dirname(__FILE__).'/../../scripts/models/employeeModel.php');
+require_once(dirname(__FILE__).'/UnitTestBase.php');
 
-class employeeModelTest extends PHPUnit_Framework_TestCase {
+class employeeModelTest extends unitTestBase {
 
     public function testConstructor(){
         $employee=new employeeModel("Herbert", "hello", 34, "test@test.com", "employee", 45);

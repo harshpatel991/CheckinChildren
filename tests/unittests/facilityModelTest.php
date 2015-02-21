@@ -1,8 +1,9 @@
 <?php
 
 require_once(dirname(__FILE__).'/../../scripts/models/facilityModel.php');
+require_once(dirname(__FILE__).'/UnitTestBase.php');
 
-class facilityModelTest extends PHPUnit_Framework_TestCase {
+class facilityModelTest extends unitTestBase {
 
     //Test constructor
     public function testConstructor() {

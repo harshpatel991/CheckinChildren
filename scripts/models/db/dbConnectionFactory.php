@@ -10,6 +10,6 @@ class DbConnectionFactory
 {
     public static function create()
     {
-        return new PDO('mysql:host=127.0.0.1;dbname='.DbCredentials::$dbName, DbCredentials::$username, DbCredentials::$password);
+        return new PDO(DbCredentials::$dbName, DbCredentials::$username, DbCredentials::$password);
     }
 }

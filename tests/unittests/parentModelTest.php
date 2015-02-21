@@ -2,8 +2,9 @@
 
 
 require_once(dirname(__FILE__).'/../../scripts/models/parentModel.php');
+require_once(dirname(__FILE__).'/UnitTestBase.php');
 
-class parentModelTest extends PHPUnit_Framework_TestCase {
+class parentModelTest extends unitTestBase {
 
     public function testConstructor(){
         $parent=new parentModel("Herbert", "pword", "test@test.com", "parent", "8008888989", "123 fake st", 999);

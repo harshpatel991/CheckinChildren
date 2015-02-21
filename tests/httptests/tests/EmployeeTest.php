@@ -6,7 +6,7 @@
  * Time: 8:34 PM
  */
 
-require_once '../SeleniumTestBase.php';
+require_once dirname(__FILE__).'/../SeleniumTestBase.php';
 
 class EmployeeTest extends SeleniumTestBase {
 

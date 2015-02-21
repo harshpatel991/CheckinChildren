@@ -1,9 +1,10 @@
 <?php
 require_once(dirname(__FILE__).'/../../scripts/models/dao/facilityDAO.php');
 require_once(dirname(__FILE__).'/../../scripts/models/facilityModel.php');
+require_once(dirname(__FILE__).'/UnitTestBase.php');
 
 
-class facilityDAOTest extends PHPUnit_Framework_TestCase {
+class facilityDAOTest extends unitTestBase {
 
     //Tests inserting into facility database
     public function testInsertFacility() {

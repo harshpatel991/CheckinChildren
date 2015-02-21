@@ -1,8 +1,9 @@
 <?php
 
 require_once(dirname(__FILE__).'/../../scripts/models/managerModel.php');
+require_once(dirname(__FILE__).'/UnitTestBase.php');
 
-class managerModelTest extends PHPUnit_Framework_TestCase {
+class managerModelTest extends unitTestBase {
 
     private $name = "test1";
     private $password = "pass1";
