@@ -6,6 +6,7 @@
  * Time: 4:27 AM
  */
 require_once '../SeleniumTestBase.php';
+require_once '../TestMacros.php';
 
 class LoginTest extends SeleniumTestBase
 {
@@ -15,10 +16,20 @@ class LoginTest extends SeleniumTestBase
     }
 
     public function test() {
-        $this->get_element("name=email")->send_keys("bigcompany1@gmail.com");
-        $this->get_element("name=password")->send_keys("password1");
+        //I am redirected to login page
+        $this->assert_title("Login");
+
+        //Failed login
+        testMacros::login($this->driver, "bigcompany1@gmail.com", "passwordwrong");
+        $this->assert_title("Login");
+
+        //Successful Login
+        testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
+        $this->assert_title("CheckinChildren");
+
+        //Logout
         $this->get_element("name=submit")->click();
-        //TODO: Finish this test case.
+        $this->assert_title("Login");
     }
 
     public function tearDown(){
