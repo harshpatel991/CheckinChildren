@@ -4,9 +4,13 @@
  * User: matt
  */
 
+require_once(dirname(__FILE__).'/../../../config.php');
+
 class DbCredentials
 {
-    public static $dbName = "mysql:host=127.0.0.1:3306;dbname=checkin_children";
+    public static $dbName = "";
     public static $username = "root";
     public static $password = "";
 }
+
+DbCredentials::$dbName='mysql:host='.$config["dbhost"].';dbname='.$config['dbname'];
