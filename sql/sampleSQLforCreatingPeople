@@ -1,0 +1,18 @@
+//creating person
+INSERT INTO users (pass, roll)
+VALUES ($hashedPassword, $roll);
+
+//getting the ID back, will be slightly more complicated
+ in PHP then just equals but that can be figured out in the
+ actual program
+$ID =
+SELECT id FROM users WHERE pass = $hashedPassword LIMIT 1;
+
+
+//if Employee
+INSERT INTO employee (id, emp_name, facility_id)
+VALUES ($ID, $name, $facility);
+
+//if parent
+INSERT INTO parent (id, parent_name, address, phone_number, email)
+VALUES ($ID, $name, $address, $phone, $email);
