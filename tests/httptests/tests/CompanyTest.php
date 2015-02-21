@@ -1,6 +1,6 @@
 <?php
 
-require_once '../SeleniumTestBase.php';
+require_once dirname(__FILE__).'/../SeleniumTestBase.php';
 
 class CompanyTest extends SeleniumTestBase
 {
@@ -8,33 +8,20 @@ class CompanyTest extends SeleniumTestBase
         parent::setUp();
     }
 
-    public function testSignInAsCompany() {
-        $this->get_element("name=email")->send_keys("bigcompany1@gmail.com");
-        $this->get_element("name=password")->send_keys("password1");
-        $this->get_element("name=submit")->click();
 
-        $this->get_element("signed-in")->assert_text("Currently signed in as a company");
-    }
-
-    public function testViewAllFacilities() {
-        $this->get_element("name=email")->send_keys("bigcompany1@gmail.com");
-        $this->get_element("name=password")->send_keys("password1");
-        $this->get_element("name=submit")->click();
-        $this->get_element("link=View My Facilities")->click();
-
-        $page = $this->driver->get_source();
-        $this->assertContains("My Facilities", $page);
-        $this->assertContains("2 Facility Rd. Champaign IL 61820", $page);
-    }
 
     public function testViewFacility() {
         $this->get_element("name=email")->send_keys("bigcompany1@gmail.com");
         $this->get_element("name=password")->send_keys("password1");
         $this->get_element("name=submit")->click();
-        $this->get_element("link=View My Facilities")->click();
 
+        $this->get_element("signed-in")->assert_text("Currently signed in as a company");
+
+        $this->get_element("link=View My Facilities")->click();
         $page = $this->driver->get_source();
         $this->assertContains("My Facilities", $page);
+        $this->assertContains("2 Facility Rd. Champaign IL 61820", $page);
+
         $this->get_element("link=2 Facility Rd. Champaign IL 61820")->click();
 
         $page = $this->driver->get_source();

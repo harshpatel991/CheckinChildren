@@ -7,8 +7,9 @@
  */
 
 require_once(dirname(__FILE__).'/../../scripts/models/dao/employeeDAO.php');
+require_once(dirname(__FILE__).'/UnitTestBase.php');
 
-class employeeDAOTest extends PHPUnit_Framework_TestCase {
+class employeeDAOTest extends unitTestBase {
 
     public function testFind(){
         $employeeDAO=new employeeDAO();
