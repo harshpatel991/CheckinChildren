@@ -1,8 +1,9 @@
 <?php
 
 require_once(dirname(__FILE__).'/../../scripts/models/dao/parentDAO.php');
+require_once(dirname(__FILE__).'/UnitTestBase.php');
 
-class parentDAOTest extends PHPUnit_Framework_TestCase
+class parentDAOTest extends unitTestBase
 {
 
     public function testFind()

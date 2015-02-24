@@ -6,7 +6,9 @@
  * Time: 4:41 PM
  */
 require_once(dirname(__FILE__).'/../../scripts/models/companyModel.php');
-class companyModelTest extends PHPUnit_Framework_TestCase {
+require_once(dirname(__FILE__).'/UnitTestBase.php');
+
+class companyModelTest extends unitTestBase {
     public function testConstructor(){
         $company=new companyModel("Family Daycare", "509 E Stoughton", "2023457654", "test@test.com","testpassword", "company", 21);
 
