@@ -1,5 +1,7 @@
 <?php require_once(dirname(__FILE__).'/../cookieManager.php');?>
-
+<head>
+    <title>CheckinChildren</title>
+</head>
 <h1>Welcome to Checkin Children</h1>
 <div id="signed-in"><h3>Currently signed in as a <?php echo $_COOKIE[cookieManager::$userRole]?></h3></div>
 
@@ -18,8 +20,8 @@
 
     else if ($_COOKIE[cookieManager::$userRole]=='company') {
         ?>
-            <a href="displayFacilities.php">View My Facilities</a><br>
-            <a href="displayManagers.php">View My Managers</a>
+            <a id="display_facilities" href="displayFacilities.php">View My Facilities</a><br>
+            <a id="display_managers" href="displayManagers.php">View My Managers</a>
         <?php
     }
 

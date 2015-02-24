@@ -17,11 +17,9 @@ class userModel
     public function isValid(){
         if (strlen($this->email)>40 || strlen($this->password)>40 || strlen($this->email)<=0 || strlen($this->password)<=0) {
             return false;
-        };
-
+        }
         return true;
     }
-
 
     public function __construct( $email="", $password="", $role="", $id=""){
         $this->password=$password;
