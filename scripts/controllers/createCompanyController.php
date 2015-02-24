@@ -16,6 +16,6 @@ if ($company->isValid()) {
     exit();
 
 } else { //redirect to employee creation page with error message
-    header("Location: ../../public/createCompany.php?error=1"); //TODO: how is this handled?
+    header("Location: ../../public/createCompany.php?error=1");
     exit();
 }
