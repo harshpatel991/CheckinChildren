@@ -1,7 +1,7 @@
 <?php
 
-require_once(dirname(__FILE__).'/../cookieManager.php');
-require_once(dirname(__FILE__).'/../models/dao/facilityDAO.php');
+require_once(dirname(__FILE__) . '/../../cookieManager.php');
+require_once(dirname(__FILE__) . '/../../models/dao/facilityDAO.php');
 
 //Read in POST data from form
 $company_id = $_COOKIE[cookieManager::$userId];
@@ -11,10 +11,10 @@ if ($facility->isValid()) {
     $facilityDAO = new FacilityDAO();
     $facility_id = $facilityDAO->insert($facility);
 
-    header("Location: ../../public/displayFacilities.php?facility_id=".$facility_id); //send browser to the page for newly created facility
+    header("Location: ../../../public/displayFacilities.php?facility_id=".$facility_id); //send browser to the page for newly created facility
     exit();
 
 } else { //redirect to employee creation page with error message
-    header("Location: ../../public/createFacility.php?error=1");
+    header("Location: ../../../public/createFacility.php?error=1");
     exit();
 }
