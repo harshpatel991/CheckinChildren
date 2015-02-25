@@ -60,8 +60,8 @@ INSERT INTO parent(id, parent_name, address, phone_number) VALUES (8, 'Big Daddy
 INSERT INTO parent(id, parent_name, address, phone_number) VALUES (19, 'Momma Jamma', '456 Real Ave Urbana IL 61820', '6786546789');
 
 #Insert children
-INSERT INTO child(child_id, parent_id, child_name, allergies) VALUES (2, 8, 'Mark Zuckerberg', 'Peanut Butter');
-INSERT INTO child(child_id, parent_id, child_name, allergies) VALUES (3, 8, 'Dawn Summers', 'Vampires');
+INSERT INTO child(child_id, parent_id, child_name, allergies, facility_id) VALUES (2, 8, 'Mark Zuckerberg', 'Peanut Butter', 1);
+INSERT INTO child(child_id, parent_id, child_name, allergies, facility_id) VALUES (3, 8, 'Dawn Summers', 'Vampires', 2);
 
-INSERT INTO child(child_id, parent_id, child_name, allergies) VALUES (0, 19, 'Peter Parker', '');
-INSERT INTO child(child_id, parent_id, child_name, allergies) VALUES (1, 19, 'Ludvig Beetoven', 'Dogs');
+INSERT INTO child(child_id, parent_id, child_name, allergies, facility_id) VALUES (0, 19, 'Peter Parker', '', 3);
+INSERT INTO child(child_id, parent_id, child_name, allergies, facility_id) VALUES (1, 19, 'Ludvig Beetoven', 'Dogs', 4);

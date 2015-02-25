@@ -6,12 +6,14 @@ class childModel {
     var $parent_id;
     var $child_name;
     var $allergies;
+    var $facility_id;
 
-    function __construct($parent_id=0, $child_name="", $allergies="", $child_id=0) {
-        $this->child_id = $child_id;
+    function __construct($parent_id=0, $child_name="", $allergies="", $facility_id=0, $child_id=0) {
         $this->parent_id = $parent_id;
         $this->child_name = $child_name;
         $this->allergies = $allergies;
+        $this->facility_id = $facility_id;
+        $this->child_id = $child_id;
     }
 
     public function isValid() {

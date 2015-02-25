@@ -14,13 +14,14 @@ class childDAOTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(8, $child->parent_id);
         $this->assertEquals("Mark Zuckerberg", $child->child_name);
         $this->assertEquals("Peanut Butter", $child->allergies);
+        $this->assertEquals(1, $child->facility_id);
     }
 
     public function testCreate_Child()
     {
         $childDAO = new ChildDAO();
 
-        $childTest = new childModel(8, "Red Ranger", "None");
+        $childTest = new childModel(8, "Red Ranger", "None", 1);
         $child_id = $childDAO->insert($childTest);
 
         $childFound=$childDAO->find($child_id);

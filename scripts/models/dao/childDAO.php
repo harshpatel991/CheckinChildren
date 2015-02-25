@@ -9,13 +9,14 @@ class childDAO {
     function insert($child){
         $connection = DbConnectionFactory::create();
 
-        $query = "INSERT INTO child (child_id, parent_id, child_name, allergies) VALUES ( :child_id, :parent_id, :child_name, :allergies)";
+        $query = "INSERT INTO child (child_id, parent_id, child_name, allergies, facility_id) VALUES ( :child_id, :parent_id, :child_name, :allergies, :facility_id)";
         $stmt=$connection->prepare($query);
 
         $stmt->bindParam(":child_id", $child->child_id);
         $stmt->bindParam(":parent_id", $child->parent_id);
         $stmt->bindParam(":child_name", $child->child_name);
         $stmt->bindParam(":allergies", $child->allergies);
+        $stmt->bindParam(":facility_id", $child->facility_id);
 
         $stmt->execute();
         $child_id = $connection->lastInsertId();
