@@ -21,13 +21,16 @@ if(isset($_GET['facility_id'])) { //check if a GET has been set
 
 //Show a single facility
 function displaySingleFacility($facility) {
-    $facilityTemplate = file_get_contents(dirname(__FILE__) . '/../../html/displayFacility.html');
-    $facilityTemplate = str_replace("FACILITY_ID", $facility->facility_id, $facilityTemplate);
-    $facilityTemplate = str_replace("COMPANY_ID", $facility->company_id, $facilityTemplate);
-    $facilityTemplate = str_replace("FACILITY_ADDRESS", $facility->address, $facilityTemplate);
-    $facilityTemplate = str_replace("FACILITY_PHONE", $facility->phone, $facilityTemplate);
+?>
+    <h3>Facility ID: <?php echo $facility->facility_id; ?></h3>
+    <p>
+        Company ID: <?php echo $facility->company_id; ?> <br>
+        Address: <?php echo $facility->address; ?> <br>
+        Phone: <?php echo $facility->phone; ?> <br>
+        <a href="displayFacilities.php">View all facilities</a>
+    </p>
+<?php
 
-    echo $facilityTemplate;
 }
 
 //Display a list of all facilities
@@ -41,10 +44,16 @@ function displayAllFacilities($errorMessage = '') {
     foreach ($facilities as $facility) { //format each list item
         $facilityList .= '<a href="?facility_id=' . $facility->facility_id . '">' . $facility->address . '</a><br>'; //add on to the list
     }
+    ?>
 
-    $template = file_get_contents(dirname(__FILE__) . '/../../html/displayFacilities.html');
-    $template = str_replace("FACILITY_LIST", $facilityList, $template);
-    $template = str_replace("ERROR_MESSAGE", $errorMessage, $template);
+    <p style="color:red"><?php $errorMessage; ?></p> <br>
 
-    echo $template;
+    <h1 id="title">My Facilities</h1>
+
+        <?php echo $facilityList; ?>
+
+    <h3><a href="createFacility.php">Create a new facility</a></h3>
+    <h3><a  id="home" href="index.php">Back to home</a></h3>
+
+<?php
 }
