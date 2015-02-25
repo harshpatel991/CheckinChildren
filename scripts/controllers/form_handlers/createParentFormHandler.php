@@ -8,10 +8,10 @@
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
-require_once(dirname(__FILE__).'/../models/dao/parentDAO.php');
-require_once(dirname(__FILE__).'/../models/parentModel.php');
-require_once(dirname(__FILE__).'/../cookieManager.php');
-require_once(dirname(__FILE__).'/managerController.php');
+require_once(dirname(__FILE__) . '/../../models/dao/parentDAO.php');
+require_once(dirname(__FILE__) . '/../../models/parentModel.php');
+require_once(dirname(__FILE__) . '/../../cookieManager.php');
+require_once(dirname(__FILE__) . '/../managerController.php');
 
 $manCon=new managerController();
 
@@ -24,12 +24,12 @@ if ($parent->isValid()) {
 
     $parentDAO->create_parent($parent);
 
-    header("Location: ../../public/index.php");
+    header("Location: ../../../public/index.php");
     exit();
 }
 
 else{
 
-   header("Location: ../../public/createParentView.php?error=1");
+   header("Location: ../../../public/createParentView.php?error=1");
 
 }
