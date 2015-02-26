@@ -29,4 +29,6 @@
 <form method="post" action="../scripts/controllers/logoutController.php">
     <br><br>
     <input type="submit" name="submit" value="Logout">
+    <!-- Standard button -->
+    <button type="button" class="btn btn-primary">Primary</button>
 </form>
