@@ -16,7 +16,7 @@ class parentModel extends userModel{
         $this->email=$email;
         $this->role=$role;
         $this->address=$address;
-        $this->phone=$phone_number;
+        $this->phone_number=$phone_number;
 
     }
 

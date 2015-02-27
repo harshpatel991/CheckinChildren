@@ -47,7 +47,6 @@ class parentDAO {
         $stmt->bindParam(":id", $id);
         $stmt->bindParam(":phone", $phone);
 
-
         $stmt->execute();
 
         $connection=null;
@@ -72,5 +71,4 @@ class parentDAO {
         $stmt->execute();
         $connection = null;
     }
-
 }
