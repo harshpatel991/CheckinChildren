@@ -31,5 +31,5 @@ ini_set("display_errors",1);
     </tr>
 </table>
 <a href="">Edit Information</a><br>
-<a href="">Change Password</a><br>
+<a href="updatePassword.php">Change Password</a><br>
 
