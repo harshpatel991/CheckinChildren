@@ -6,12 +6,8 @@ require_once(dirname(__FILE__).'/../db/dbConnectionFactory.php');
 require_once(dirname(__FILE__).'/userDAO.php');
 class parentDAO {
 
-
-
     public function __construct()
-    {
-
-    }
+    { }
 
     public function find($id){
         $connection = DbConnectionFactory::create();
@@ -51,10 +47,28 @@ class parentDAO {
         $stmt->bindParam(":id", $id);
         $stmt->bindParam(":phone", $phone);
 
-
         $stmt->execute();
 
         $connection=null;
     }
 
+    public function update($parent) {
+        $userDAO=new userDAO();
+
+        $userDAO->updateField($parent->id, 'email', $parent->email);
+
+        $this->updateField($parent->id, 'parent_name', $parent->parent_name);
+        $this->updateField($parent->id, 'address', $parent->address);
+        $this->updateField($parent->id, 'phone_number', $parent->phone_number);
+    }
+
+    private function updateField($userId, $field, $value){
+        $connection = DbConnectionFactory::create();
+        $query = 'UPDATE parent SET '.$field.'=:value WHERE id=:id';
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':value', $value);
+        $stmt->bindParam(':id', $userId);
+        $stmt->execute();
+        $connection = null;
+    }
 }
