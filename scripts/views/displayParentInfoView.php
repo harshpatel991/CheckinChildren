@@ -30,6 +30,6 @@ ini_set("display_errors",1);
         <td><?php echo $parent->phone_number; ?></td>
     </tr>
 </table>
-<a href="">Edit Information</a><br>
+<a href="editParent.php">Edit Information</a><br>
 <a href="updatePassword.php">Change Password</a><br>
 
