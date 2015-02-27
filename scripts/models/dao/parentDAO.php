@@ -31,27 +31,29 @@ class parentDAO {
 
         $id=$userDAO->insert($newParent);
 
-        $this->insert($parent->parent_name, $parent->addr, $parent->phone, $id);
+        $this->insert($parent->parent_name, $parent->address, $parent->phone_number, $id);
 
         return $id;
     }
 
-    private function insert( $parent_name, $addr, $phone, $id){
+    private function insert( $parent_name, $address, $phone_number, $id){
         $connection = DbConnectionFactory::create();
 
-        $query = "INSERT INTO parent (parent_name, address, phone_number, id) VALUES ( :parent_name, :addr, :phone, :id)";
+        $query = "INSERT INTO parent (parent_name, address, phone_number, id) VALUES ( :parent_name, :address, :phone_number, :id)";
         $stmt=$connection->prepare($query);
 
         $stmt->bindParam(":parent_name", $parent_name);
-        $stmt->bindParam(":addr", $addr);
+        $stmt->bindParam(":address", $address);
         $stmt->bindParam(":id", $id);
-        $stmt->bindParam(":phone", $phone);
+        $stmt->bindParam(":phone_number", $phone_number);
 
         $stmt->execute();
 
         $connection=null;
     }
 
+    // Updates the email, parent_name, address, phone_number of a parent
+    // **** DOES NOT UPDATE PASSWORD or ID OF PARENT! ****
     public function update($parent) {
         $userDAO=new userDAO();
 
