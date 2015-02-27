@@ -15,7 +15,7 @@ class userModel
     private static $privateKey = 'd@t$yuk';
 
     public function isValid(){
-        if (strlen($this->email)>40 || strlen($this->password)>40 || strlen($this->email)<=0 || strlen($this->password)<=0) {
+        if (strlen($this->email)>40 || strlen($this->password)>40 || strlen($this->email)<=0) {
             return false;
         }
         return true;
