@@ -20,7 +20,18 @@ foreach ($managers as $manager) {
 }
 
 $emplist=$emplist."</table>";
+?>
 
-$template=file_get_contents ($htmlFileLocation);
-$template=str_replace("MANAGER_LIST", $emplist, $template);
-echo $template;
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h2 id="title">Created Managers</h2>
+    <div id="managers"><?php echo $emplist; ?></div>
+    <h3><a href="../public/createManager.php">Create A New Manager</a><br></h3>
+    <h3><a id="home" href="../public/index.php">Back to home</a></h3>
+</body>
+</html>
