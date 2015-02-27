@@ -25,6 +25,12 @@
         <?php
     }
 
+    else if ($_COOKIE[cookieManager::$userRole]=='parent') {
+        ?>
+        <a id="display_managers" href="">Edit My Profile</a>
+    <?php
+    }
+
 ?>
 <form method="post" action="../scripts/controllers/logoutController.php">
     <br><br>
