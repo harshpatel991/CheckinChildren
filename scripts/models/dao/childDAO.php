@@ -42,4 +42,19 @@ class childDAO {
         return $child;
     }
 
+    public function findChildrenWithParent($parent_id) {
+        $connection=DbConnectionFactory::create();
+
+        $query = "SELECT * FROM child WHERE parent_id = :parent_id ORDER BY child_name ASC";
+        $stmt=$connection->prepare($query);
+
+        $stmt->bindParam(":parent_id",$parent_id);
+        $stmt->execute();
+
+        $children = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'childModel');
+        $connection=null;
+
+        return $children;
+    }
+
 }
