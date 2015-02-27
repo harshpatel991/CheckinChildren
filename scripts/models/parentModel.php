@@ -21,7 +21,7 @@ class parentModel extends userModel{
     }
 
     public function isValid() {
-        if (strlen($this->parent_name)>30 || strlen($this->parent_name)<=0) {
+        if (strlen($this->parent_name)>30 || strlen($this->parent_name)<=0 || strlen($this->phone_number)!=10) {
             return false;
         }
 

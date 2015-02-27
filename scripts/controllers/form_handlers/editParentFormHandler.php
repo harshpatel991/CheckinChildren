@@ -6,7 +6,7 @@ require_once(dirname(__FILE__) . '/../../models/dao/parentDAO.php');
 //Read in POST data from form
 $parent_id = $_COOKIE[cookieManager::$userId];
 
-$parent = new parentModel($_POST["parent_name"],"", $_POST["email"], $_POST["role"], $_POST["phone_number"], $_POST["address"], $parent_id);
+$parent = new parentModel($_POST["parent_name"],"", $_POST["email"], "parent", $_POST["phone_number"], $_POST["address"], $parent_id);
 
 if ($parent->isValid()) {
     $parentDAO = new ParentDAO();

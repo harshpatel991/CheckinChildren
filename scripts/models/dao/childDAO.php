@@ -5,7 +5,6 @@ require_once(dirname(__FILE__).'/../db/dbConnectionFactory.php');
 
 class childDAO {
 
-
     function insert($child){
         $connection = DbConnectionFactory::create();
 
@@ -55,6 +54,23 @@ class childDAO {
         $connection=null;
 
         return $children;
+    }
+
+    // Updates a child's name and allergies
+    // *** DOES NOT UPDATE ANY OTHER VALUES OF THE CHILD! ***
+    public function update($child) {
+        $this->updateField($child->child_id, 'child_name', $child->child_name);
+        $this->updateField($child->child_id, 'allergies', $child->allergies);
+    }
+
+    private function updateField($child_id, $field, $value){
+        $connection = DbConnectionFactory::create();
+        $query = 'UPDATE child SET '.$field.'=:value WHERE child_id=:id';
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':value', $value);
+        $stmt->bindParam(':id', $child_id);
+        $stmt->execute();
+        $connection = null;
     }
 
 }
