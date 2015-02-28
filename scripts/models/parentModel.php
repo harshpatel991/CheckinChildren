@@ -5,23 +5,23 @@ require_once(dirname(__FILE__).'/userModel.php');
 
 class parentModel extends userModel{
     public $parent_name;
-    public $addr;
-    public $phone;
+    public $address;
+    public $phone_number;
 
-    public function __construct( $parent_name="", $password="", $email="", $role="", $phone="", $addr="", $id=0)
+    public function __construct( $parent_name="", $password="", $email="", $role="", $phone_number="", $address="", $id=0)
     {
         $this->id=$id;
         $this->parent_name=$parent_name;
         $this->password=$password;
         $this->email=$email;
         $this->role=$role;
-        $this->addr=$addr;
-        $this->phone=$phone;
+        $this->address=$address;
+        $this->phone_number=$phone_number;
 
     }
 
     public function isValid() {
-        if (strlen($this->parent_name)>30 || strlen($this->parent_name)<=0) {
+        if (strlen($this->parent_name)>30 || strlen($this->parent_name)<=0 || strlen($this->phone_number)!=10) {
             return false;
         }
 
