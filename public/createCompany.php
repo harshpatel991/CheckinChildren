@@ -1,8 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Elzabad
- * Date: 2/19/2015
- * Time: 1:33 AM
- */
-require_once(dirname(__FILE__).'/../scripts/views/createCompanyView.php');
+error_reporting(E_ALL); //turn on error reporting
+ini_set("display_errors", 1);
+?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php require_once(dirname(__FILE__).'/importBoostrap.php'); ?>
+    </head>
+
+    <body>
+        <?php require_once(dirname(__FILE__).'/../scripts/views/createCompanyView.php'); ?>
+    </body>
+</html>
+
