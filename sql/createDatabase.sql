@@ -22,7 +22,7 @@ CREATE TABLE facility (
 
 CREATE TABLE employee (
   id INT unique key,
-  emp_name VARCHAR(30),
+  emp_name VARCHAR(31),
   facility_id INT
 );
 
