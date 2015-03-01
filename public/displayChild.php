@@ -12,7 +12,7 @@ require_once(dirname(__FILE__).'/../scripts/controllers/authController.php');
     </head>
 
     <body>
-        <?php require_once(dirname(__FILE__).'/../scripts/views/indexView.php'); ?>
+        <?php require_once(dirname(__FILE__).'/../scripts/views/displayChildView.php'); ?>
     </body>
 </html>
 
