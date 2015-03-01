@@ -1,8 +1,8 @@
 <?php
-    error_reporting(E_ALL); //turn on error reporting
-    ini_set("display_errors", 1);
+error_reporting(E_ALL); //turn on error reporting
+ini_set("display_errors", 1);
 
-    require_once(dirname(__FILE__).'/../scripts/controllers/authController.php');
+require_once(dirname(__FILE__).'/../scripts/controllers/authController.php');
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +14,5 @@
     <body>
         <?php require_once(dirname(__FILE__).'/../scripts/views/indexView.php'); ?>
     </body>
-
 </html>
 
