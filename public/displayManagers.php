@@ -1,6 +1,21 @@
 <?php
+error_reporting(E_ALL); //turn on error reporting
+ini_set("display_errors", 1);
 
-//Add require nav bar here
 require_once(dirname(__FILE__).'/../scripts/controllers/authController.php');
-require_once(dirname(__FILE__).'/../scripts/views/displayManagersView.php');
-//Add require footer here
+?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php require_once(dirname(__FILE__).'/importBoostrap.php'); ?>
+    </head>
+
+    <body>
+        <?php require_once(dirname(__FILE__).'/../scripts/views/displayManagersView.php'); ?>
+    </body>
+</html>
+
+
+
+
