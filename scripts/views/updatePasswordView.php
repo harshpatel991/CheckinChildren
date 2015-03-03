@@ -17,7 +17,7 @@
     ?>
 </p>
 <form method="post" action="../scripts/controllers/form_handlers/updatePasswordFormHandler.php">
-    Old Password: <input type="password" name="old_password"> <br>
+    Old Password: <input type="password" name="old_gitpassword"> <br>
     New Password: <input type="password" name="new_password"> <br>
     Confirm Password: <input type="password" name="con_password"> <br>
     <input type="submit" name="submit" value="Submit">
