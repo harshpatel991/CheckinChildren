@@ -21,7 +21,6 @@ $child=new childModel($_POST['PID'], $_POST['name'],  $_POST['aller'], $facility
 
 if ($child->isValid()) {
     $childDAO=new childDAO();
-
     $childDAO->insert($child);
     header("Location: ../../../public/index.php");
     exit();
