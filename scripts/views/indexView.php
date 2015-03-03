@@ -29,6 +29,13 @@
         <?php
     }
 
+    else if ($_COOKIE[cookieManager::$userRole]=='parent') {
+        ?>
+        <a id="display_managers" href="displayParentInfo.php">View My Profile</a><br>
+        <a id="display_managers" href="displayChildren.php">My Children</a>
+    <?php
+    }
+
 ?>
 <form method="post" action="../scripts/controllers/logoutController.php">
     <br><br>
