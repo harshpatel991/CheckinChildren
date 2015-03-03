@@ -12,7 +12,6 @@ class checkinController {
 
     public function getFacilityID($manager_id){
         $employeeDAO=new employeeDAO();
-
         $manager=$employeeDAO->find($manager_id);
         return $manager->facility_id;
     }
