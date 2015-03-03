@@ -1,10 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Elzabad
- * Date: 2/26/2015
- * Time: 8:10 PM
- */
+error_reporting(E_ALL); //turn on error reporting
+ini_set("display_errors", 1);
 
 require_once(dirname(__FILE__).'/../scripts/controllers/authController.php');
-require_once(dirname(__FILE__).'/../scripts/views/updatePasswordView.php');
+?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php require_once(dirname(__FILE__).'/importBoostrap.php'); ?>
+    </head>
+
+    <body>
+        <?php require_once(dirname(__FILE__).'/../scripts/views/updatePasswordView.php'); ?>
+    </body>
+</html>
+
