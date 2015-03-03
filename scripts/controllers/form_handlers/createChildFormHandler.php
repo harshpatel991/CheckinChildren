@@ -23,7 +23,6 @@ if ($child->isValid()) {
     $childDAO=new childDAO();
 
     $childDAO->insert($child);
-
     header("Location: ../../../public/index.php");
     exit();
 }
