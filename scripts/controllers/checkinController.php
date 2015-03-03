@@ -6,7 +6,6 @@ class checkinController {
     public function getChildren($facility_id){
 
         $employeeDAO=new employeeDAO();
-
         return $employeeDAO->getFacilityEmployees($facility_id);
 
     }

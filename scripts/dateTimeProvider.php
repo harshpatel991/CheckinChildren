@@ -3,7 +3,7 @@
 class dateTimeProvider
 {
     public static function getCurrentDateTime(){
-        date_default_timezone_set('America/Chicago');
+        //date_default_timezone_set('America/Chicago');
         if (isset($_SESSION['test_timestamp'])){
             return getdate($_SESSION['test_timestamp']);
         }
@@ -18,5 +18,9 @@ class dateTimeProvider
         date_default_timezone_set('America/Chicago');
         $timestamp = strtotime($dateTime);
         $_SESSION['test_timestamp'] = $timestamp;
+    }
+
+    public static function unsetTestDateTime(){
+        unset($_SESSION['test_timestamp']);
     }
 }
