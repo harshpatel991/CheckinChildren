@@ -1,6 +1,4 @@
 <?php
-
-
 require_once(dirname(__FILE__).'/../../scripts/models/parentModel.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
 
@@ -11,9 +9,9 @@ class parentModelTest extends unitTestBase {
 
         $this->assertEquals("Herbert", $parent->parent_name);
         $this->assertEquals("pword", $parent->password);
-        $this->assertEquals("8008888989", $parent->phone);
+        $this->assertEquals("8008888989", $parent->phone_number);
         $this->assertEquals("test@test.com", $parent->email);
-        $this->assertEquals("123 fake st", $parent->addr);
+        $this->assertEquals("123 fake st", $parent->address);
         $this->assertEquals("parent", $parent->role);
         $this->assertEquals(999, $parent->id);
     }
