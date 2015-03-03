@@ -10,12 +10,16 @@
         ?>
         <a id="display_employee" href="displayEmployees.php">View My Employees</a>
         <br><br>
-        <a id="create_parent" href="createParent.php">Create a Parent</a> <?php
+        <a id="create_parent" href="createParent.php">Create a Parent</a>
+        <br><br>
+        <a id="checkin_children" href="checkinChildren.php">View Children</a> <?php
     }
 
     else if ($_COOKIE[cookieManager::$userRole]=='employee') {
         ?>
-        <a id="create_parent" href="createParent.php">Create a Parent</a> <?php
+        <a id="create_parent" href="createParent.php">Create a Parent</a>
+        <br><br>
+        <a id="checkin_children" href="checkinChildren.php">View Children</a> <?php
     }
 
     else if ($_COOKIE[cookieManager::$userRole]=='company') {
