@@ -27,6 +27,7 @@ if(isset($_GET['child_id'])) {
     </table>
 
     <?php
+    echo '<br><a href="editChild.php?child_id=' . $_GET['child_id'] . '">Edit This Child</a>';
     echo '<br><a href="displayChildren.php">Back to my children</a>';
 
 } else {
