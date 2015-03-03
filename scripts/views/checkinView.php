@@ -3,17 +3,9 @@
 require_once(dirname(__FILE__).'/../cookieManager.php');
 require_once(dirname(__FILE__).'/../dateTimeProvider.php');
 require_once(dirname(__FILE__).'/../models/childModel.php');
+require_once(dirname(__FILE__).'/../models/dao/childDAO.php');
 require_once(dirname(__FILE__).'/../controllers/authController.php');
 
-
-/*$childList="";
-$childCount = 0;
-foreach ($children as $child) {
-    $childList .= '<button type=button class="btn btn-primary" id="btn_chld'.$child->child_id. '">' . ($child->child_name). "</button>";
-    if ($childCount++ % 2 == 0){
-        $childList .= '<br>';
-    }
-}*/
 
 
 echo getAccordion();
@@ -33,12 +25,19 @@ echo getAccordion();
             <div class="modal-body">
                 <p id="modal-ci-number">You are about to check-in # children:</p>
                 <ul id="ci-list">
-                    <li id="modal-ci-0" class="hidden">Doug Stamper</li>
-                    <li id="modal-ci-3" class="hidden">Rachel Posner</li>
+                    <li id="modal-ci-0" class="hidden">Child 3</li>
+                    <li id="modal-ci-1" class="hidden">Child 8</li>
+                    <li id="modal-ci-2" class="hidden">Child 1</li>
+                    <li id="modal-ci-3" class="hidden">Child 6</li>
+                    <li id="modal-ci-4" class="hidden">Child 7</li>
                 </ul>
                 <p id="modal-co-number">You are about to check-out # children:</p>
                 <ul id="co-list">
-                    <li id="modal-co-1" class="hidden">Frank Underwood</li>
+                    <li id="modal-co-0" class="hidden">Child 2</li>
+                    <li id="modal-co-1" class="hidden">Child 4</li>
+                    <li id="modal-co-2" class="hidden">Child 5</li>
+                    <li id="modal-co-3" class="hidden">Child 9</li>
+                    <li id="modal-co-4" class="hidden">Child 10</li>
                 </ul>
             </div>
             <div class="modal-footer">
@@ -53,43 +52,140 @@ echo getAccordion();
 
 function getAccordion(){
     return <<<HTML
-<div class="panel-group" id="accordion">
-         <div class="panel panel-default">
+<h1>Not Present</h1>
+<div class="panel-group" id="notnotpresent-accordion">
+         <div class="panel panel-danger">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Doug Stamper</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#notpresent-collapse-0">Child 3</a>
                     <button type="button" id="ci-0" class="btn btn-primary btn-ci btn-sm pull-right" value="0" data-toggle="button">Check-In </button>
                 </h4>
             </div>
-            <div id="collapse1" class="panel-collapse collapse">
+            <div id="notpresent-collapse-0" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <p>Some info about Doug Stamper</p>
+                    <p>Expected Today at 11:30</p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#notpresent-collapse-1">Child 8</a>
+                    <button type="button" id="ci-1" class="btn btn-primary btn-ci btn-sm pull-right" value="1" data-toggle="button">Check-In </button>
+                </h4>
+            </div>
+            <div id="notpresent-collapse-1" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>Expected Today at 11:30</p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#notpresent-collapse-2">Child 1</a>
+                    <button type="button" id="ci-2" class="btn btn-primary btn-ci btn-sm pull-right" value="2" data-toggle="button">Check-In </button>
+                </h4>
+            </div>
+            <div id="notpresent-collapse-2" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>Expected Today at 11:30</p>
                 </div>
             </div>
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Rachel Posner</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#notpresent-collapse-3">Child 6</a>
                     <button type="button" id="ci-3" class="btn btn-primary btn-ci btn-sm pull-right" value="3" data-toggle="button">Check-In </button>
                 </h4>
             </div>
-            <div id="collapse2" class="panel-collapse collapse">
+            <div id="notpresent-collapse-3" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <p>Some info about Rachel Posner</p>
+                    <p>Expected Today at 11:30</p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#notpresent-collapse-4">Child 7</a>
+                    <button type="button" id="ci-4" class="btn btn-primary btn-ci btn-sm pull-right" value="4" data-toggle="button">Check-In </button>
+                </h4>
+            </div>
+            <div id="notpresent-collapse-4" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>Expected Today at 11:30</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<h1>Present</h1>
+<div class="panel-group" id="accordion">
+         <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#present-collapse-0">Child 2</a>
+                    <button type="button" id="co-0" class="btn btn-primary btn-co btn-sm pull-right" value="0" data-toggle="button">Check-Out </button>
+                </h4>
+            </div>
+            <div id="present-collapse-0" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>Arrived Today at 11:30</p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#present-collapse-1">Child 4</a>
+                    <button type="button" id="co-1" class="btn btn-primary btn-co btn-sm pull-right" value="1" data-toggle="button">Check-Out </button>
+                </h4>
+            </div>
+            <div id="present-collapse-1" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>Arrived Today at 11:30</p>
                 </div>
             </div>
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Frank Underwood</a>
-                    <button type="button" id="co-1" class="btn btn-primary btn-co btn-sm pull-right" value="1" data-toggle="button">Check-Out</button>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#present-collapse-2">Child 5</a>
+                    <button type="button" id="co-2" class="btn btn-primary btn-co btn-sm pull-right" value="2" data-toggle="button">Check-Out </button>
                 </h4>
             </div>
-            <div id="collapse3" class="panel-collapse collapse">
+            <div id="present-collapse-2" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <p>Some info about Frank Underwood</p>
+                    <p>Arrived Today at 11:30</p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#present-collapse-3">Child 9</a>
+                    <button type="button" id="co-3" class="btn btn-primary btn-co btn-sm pull-right" value="3" data-toggle="button">Check-Out </button>
+                </h4>
+            </div>
+            <div id="present-collapse-3" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>Arrived Today at 11:30</p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#present-collapse-4">Child 10</a>
+                    <button type="button" id="co-4" class="btn btn-primary btn-co btn-sm pull-right" value="4" data-toggle="button">Check-Out </button>
+                </h4>
+            </div>
+            <div id="present-collapse-4" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>Arrived Today at 11:30</p>
                 </div>
             </div>
         </div>
