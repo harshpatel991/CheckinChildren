@@ -12,7 +12,7 @@ ini_set("display_errors",1);
 ?>
 
 <h3>Account Profile</h3>
-<table border="1">
+<table id="parent_info_table" border="1">
     <tr>
         <td>Name</td>
         <td><?php echo $parent->parent_name; ?></td>
@@ -30,6 +30,6 @@ ini_set("display_errors",1);
         <td><?php echo $parent->phone_number; ?></td>
     </tr>
 </table>
-<a href="editParent.php">Edit Information</a><br>
-<a href="updatePassword.php">Change Password</a><br>
+<a id="edit_parent" href="editParent.php">Edit Information</a><br>
+<a id="update_password" href="updatePassword.php">Change Password</a><br>
 
