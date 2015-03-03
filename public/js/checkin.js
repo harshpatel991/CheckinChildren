@@ -2,6 +2,8 @@
  * Created by matt on 3/1/15.
  */
 $(document).ready(function(){
+    //$('.panel-heading').css('min-height', 40);
+
     $('.btn-primary').click(function(){
         if($(this).is('.btn-success')){
             $(this).removeClass('btn-success');

@@ -3,6 +3,7 @@
 require_once(dirname(__FILE__).'/../cookieManager.php');
 require_once(dirname(__FILE__).'/../dateTimeProvider.php');
 require_once(dirname(__FILE__).'/../models/childModel.php');
+require_once(dirname(__FILE__).'/../controllers/authController.php');
 
 
 /*$childList="";
@@ -14,10 +15,9 @@ foreach ($children as $child) {
     }
 }*/
 
+
+echo getAccordion();
 ?>
-    <button type="button" id="ci-0" class="btn btn-primary btn-ci" value="0" data-toggle="button">Check-In</button><br>
-    <button type="button" id="ci-1" class="btn btn-primary btn-ci" value="3" data-toggle="button">Check-In</button><br>
-    <button type="button" id="co-1" class="btn btn-primary btn-co" value="1" data-toggle="button">Check-Out</button><br><br><br>
     <button type="button" class="btn btn-info confirm-submit" data-toggle="modal" data-target="#myModal">Submit</button>
     <br>
     <br><a href="index.php">Back to Home</a>
@@ -28,7 +28,7 @@ foreach ($children as $child) {
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                <h4 class="modal-title" id="myModalLabel">Confirm Changes</h4>
             </div>
             <div class="modal-body">
                 <p id="modal-ci-number">You are about to check-in # children:</p>
@@ -48,3 +48,52 @@ foreach ($children as $child) {
         </div>
     </div>
 </div>
+
+<?php
+
+function getAccordion(){
+    return <<<HTML
+<div class="panel-group" id="accordion">
+         <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Doug Stamper</a>
+                    <button type="button" id="ci-0" class="btn btn-primary btn-ci btn-sm pull-right" value="0" data-toggle="button">Check-In </button>
+                </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>Some info about Doug Stamper</p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Rachel Posner</a>
+                    <button type="button" id="ci-3" class="btn btn-primary btn-ci btn-sm pull-right" value="3" data-toggle="button">Check-In </button>
+                </h4>
+            </div>
+            <div id="collapse2" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>Some info about Rachel Posner</p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Frank Underwood</a>
+                    <button type="button" id="co-1" class="btn btn-primary btn-co btn-sm pull-right" value="1" data-toggle="button">Check-Out</button>
+                </h4>
+            </div>
+            <div id="collapse3" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>Some info about Frank Underwood</p>
+                </div>
+            </div>
+        </div>
+    </div>
+HTML;
+
+}
