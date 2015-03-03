@@ -5,6 +5,13 @@
     <title></title>
 </head>
 <body>
+<?php
+if(isset($_GET['error'])) {
+    if($_GET['error'] == 1) {
+        echo "Invalid information";
+    }
+}
+?>
 <form method="post" action="../scripts/controllers/form_handlers/createParentFormHandler.php">
     parent Name: <input type="text" name="name" > <br>
     Parent Email: <input type="text" name="email"> <br>
