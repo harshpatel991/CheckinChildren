@@ -75,10 +75,10 @@ INSERT INTO child(child_id, parent_id, child_name, allergies, facility_id, last_
 VALUES (5, 19, 'Child Expected Later', 'Dogs', 5, '2015-03-03 13:28:48', '2015-03-03 19:49:30', '930,930,930,930,930,930,930', '1200,1200,1200,1200,1200,1200,1200');
 
 INSERT INTO child(child_id, parent_id, child_name, allergies, facility_id, last_checkin, last_checkout, expect_checkin, expect_checkout)
-VALUES (6, 19, 'Child Missing', 'Dogs', 5, '2013-03-02 11:32:48', '2013-03-02 15:49:30', '870,870,870,870,870,870,870', '1020,1020,1020,1020,1020,1020,1020');
+VALUES (6, 19, 'Child Missing', 'Dogs', 5, '2015-03-03 13:28:48', '2015-03-05 16:49:30', '870,870,870,870,870,870,870', '1020,1020,1020,1020,1020,1020,1020');
 
 INSERT INTO child(child_id, parent_id, child_name, allergies, facility_id, last_checkin, last_checkout, expect_checkin, expect_checkout)
-VALUES (7, 19, 'Child CheckedOut', 'Dogs', 5, '2013-03-02 11:32:48', '2013-03-02 15:49:30', '700,700,700,700,700,700,700', '890,890,890,890,890,890,890');
+VALUES (7, 19, 'Child CheckedOut', 'Dogs', 5, '2015-03-04 12:15:48', '2015-03-04 14:49:30', '700,700,700,700,700,700,700', '890,890,890,890,890,890,890');
 
 INSERT INTO child(child_id, parent_id, child_name, allergies, facility_id, last_checkin, last_checkout, expect_checkin, expect_checkout)
-VALUES (8, 19, 'Child Pickup Later', 'Dogs', 5, '2013-03-02 11:32:48', '2013-03-02 15:49:30', '870,870,870,870,870,870,870', '1020,1020,1020,1020,1020,1020,1020');
+VALUES (8, 19, 'Child Pickup Later', 'Dogs', 5, '2015-03-04 14:28:48', '2014-03-03 16:49:30', '870,870,870,870,870,870,870', '1020,1020,1020,1020,1020,1020,1020');
