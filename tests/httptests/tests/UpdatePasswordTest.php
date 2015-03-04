@@ -19,7 +19,6 @@ class UpdatePasswordTest extends SeleniumTestBase
         //I am redirected to login page
         $this->assert_title("Login");
 
-
         //Login
         testMacros::login($this->driver, "parent19@gmail.com", "password19");
         $this->assert_title("CheckinChildren");
@@ -48,8 +47,12 @@ class UpdatePasswordTest extends SeleniumTestBase
         $this->get_element("name=con_password")->send_keys("pass19");
         $this->get_element("name=submit")->click();
 
+        $this->get_element("name=submit")->click(); //click logout
+
         testMacros::login($this->driver, "parent19@gmail.com", "pass19");
-        $this->assert_title("CheckinChildren");
+        $page = $this->driver->get_source();
+        $this->assertContains("Currently signed in as a parent", $page);
+
     }
 
     public function tearDown(){
