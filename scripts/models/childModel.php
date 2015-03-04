@@ -1,5 +1,7 @@
 <?php
 require_once(dirname(__FILE__).'/dao/parentDAO.php');
+require_once(dirname(__FILE__).'/../dateTimeProvider.php');
+require_once(dirname(__FILE__).'/childStatusEnum.php');
 class childModel {
 
     var $child_id;
@@ -40,34 +42,79 @@ class childModel {
         return true;
     }
 
+    public function getStatus($currentTime = null){
+        if ($currentTime === null){
+            $currentTime = dateTimeProvider::getCurrentDateTime();
+        }
+
+        $mfm = 60 * $currentTime['hours'] + $currentTime['minutes'];
+        if ($this->last_checkin > $this->last_checkout){
+            //here
+            $co_expect = $this->expect_checkout[$currentTime['wday']];
+            if (0 <= $co_expect && $co_expect < $mfm){
+                return childStatus::here_due;
+            }
+            return childStatus::here_ok;
+        }
+        else{
+            //not here
+            $ci_expect = $this->expect_checkin[$currentTime['wday']];
+            var_dump( $ci_expect);
+            if ($ci_expect < 0){
+                return childStatus::not_here_ok;
+            }
+            if ($ci_expect < $mfm){
+                return childStatus::not_here_late;
+            }
+            return childStatus::not_here_due;
+        }
+    }
+
+    /*public function getExpectedCheckin($dayOfWeek = -1, $readable = true){
+        return self::getExpected($this->expect_checkin, $dayOfWeek, $readable);
+    }
+
+    public function getExpectedCheckout($dayOfWeek = -1, $readable = true){
+        return self::getExpected($this->expect_checkout, $dayOfWeek, $readable);
+    }
+
+    private static function getExpected($arr, $dayOfWeek, $readable){
+        if ($dayOfWeek === -1){
+            $dayOfWeek = dateTimeProvider::getCurrentDateTime()['wday'];
+        }
+        if ($readable === true){
+            return self::readable($arr[$dayOfWeek]);
+        }
+        return $arr[$dayOfWeek];
+    }*/
+
    public function expectCheckinReadable(){
-       return self::readable($this->expect_checkin);
-    }
-
-    public function expectCheckoutReadable(){
-        return self::readable($this->expect_checkout);
-    }
-
-   private static function readable($arr){
        $readable = [];
-
        for ($i=0; $i<7; $i++){
-           $mfm = $arr[$i];
-           if ($mfm < 0){
-               $readable[$i] = '';
-               continue;
-           }
-           $min = $mfm % 60;
-           $hrs = $mfm / 60;
-           $ap = ($hrs >= 12) ?'pm' : 'am';
-           $hrs %= 12;
-           if ($hrs == 0){
-               $hrs = 12;
-           }
-
-           $readable[$i] = sprintf("%02d:%02d %s", $hrs, $min, $ap);
+           $readable[$i] = self::readable($this->expect_checkin[$i]);
        }
-
        return $readable;
+    }
+
+   public function expectCheckoutReadable(){
+       $readable = [];
+       for ($i=0; $i<7; $i++){
+           $readable[$i] = self::readable($this->expect_checkout[$i]);
+       }
+       return $readable;
+    }
+
+   private static function readable($mfm){
+       if ($mfm < 0){
+           return '';
+       }
+       $min = $mfm % 60;
+       $hrs = $mfm / 60;
+       $ap = ($hrs >= 12) ?'pm' : 'am';
+       $hrs %= 12;
+       if ($hrs == 0){
+           $hrs = 12;
+       }
+       return sprintf("%02d:%02d %s", $hrs, $min, $ap);
     }
 }

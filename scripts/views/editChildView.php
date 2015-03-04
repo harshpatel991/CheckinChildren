@@ -43,7 +43,6 @@ Allergies:
             $days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
             $ci = $child->expectCheckinReadable();
             $co = $child->expectCheckoutReadable();
-            var_dump($ci);
             for ($i=0; $i<7; $i++){
             ?>
             <tr>
@@ -60,6 +59,8 @@ Allergies:
 
     <input type="submit" value="Submit" name="submit">
 </form>
+
+<br><a href="displayChild.php?child_id=<?php echo $_GET['child_id']; ?>.php">Back to Child Info</a>
 
 <script>
     $(document).ready(function(){

@@ -1,12 +1,15 @@
 <?php
 
+require_once(dirname(__FILE__).'/../controllers/authController.php');
 require_once(dirname(__FILE__).'/../cookieManager.php');
 require_once(dirname(__FILE__).'/../dateTimeProvider.php');
 require_once(dirname(__FILE__).'/../models/childModel.php');
-require_once(dirname(__FILE__).'/../models/dao/childDAO.php');
-require_once(dirname(__FILE__).'/../controllers/authController.php');
+require_once(dirname(__FILE__).'/../controllers/checkinController.php');
 
+/*var_dump(dateTimeProvider::getCurrentDateTime());
 
+$checkinController = new checkinController();
+var_dump($checkinController->getChildrenBuckets($_COOKIE[cookieManager::$userId]));*/
 
 echo getAccordion();
 ?>
@@ -150,7 +153,7 @@ function getAccordion(){
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-success">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#here-collapse-2">Child 5</a>
@@ -163,7 +166,7 @@ function getAccordion(){
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-success">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#here-collapse-3">Child 9</a>
