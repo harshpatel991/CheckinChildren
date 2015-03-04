@@ -8,7 +8,7 @@ $parent_id = $_COOKIE[cookieManager::$userId];
 
 $parent = new parentModel($_POST["parent_name"],"", $_POST["email"], "parent", $_POST["phone_number"], $_POST["address"], $parent_id);
 
-if ($parent->isValid()) {
+if ($parent->isUpdateValid()) {
     $parentDAO = new ParentDAO();
     $parentDAO->update($parent);
 

@@ -6,9 +6,9 @@ require_once(dirname(__FILE__) . '/../../models/dao/childDAO.php');
 //Read in POST data from form
 $child_id = $_POST['child_id'];
 
-$child = new childModel(0, $_POST["child_name"], $_POST["allergies"], 0, $child_id); // set 0 for values that cannot be changed
+$child = new childModel($_COOKIE[cookieManager::$userId], $_POST["child_name"], $_POST["allergies"], 0, $child_id); // set 0 for values that cannot be changed
 
-if ($child->isValid()) {
+if ($child->isUpdateValid()) {
     $childDAO = new ChildDAO();
     $childDAO->update($child);
 

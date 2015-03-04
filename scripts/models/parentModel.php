@@ -1,6 +1,5 @@
 <?php
 
-
 require_once(dirname(__FILE__).'/userModel.php');
 
 class parentModel extends userModel{
@@ -17,15 +16,21 @@ class parentModel extends userModel{
         $this->role=$role;
         $this->address=$address;
         $this->phone_number=$phone_number;
-
     }
 
     public function isValid() {
-        if (strlen($this->parent_name)>30 || strlen($this->parent_name)<=0 || strlen($this->phone_number)!=10) {
+        if ($this->isUpdateValid() && parent::isValid()) {
+            return true;
+        }
+        return false;
+    }
+
+    public function isUpdateValid() {
+        if (strlen($this->parent_name)>30 || strlen($this->parent_name)<=0 || strlen($this->phone_number)!=10 || strlen($this->address)==0 || strlen($this->address)>50) {
             return false;
         }
 
-        return parent::isValid();
+        return parent::isUpdateValid();
     }
 
 }

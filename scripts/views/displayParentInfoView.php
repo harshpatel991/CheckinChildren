@@ -32,4 +32,5 @@ ini_set("display_errors",1);
 </table>
 <a id="edit_parent" href="editParent.php">Edit Information</a><br>
 <a id="update_password" href="updatePassword.php">Change Password</a><br>
+<a id="update_password" href="index.php">Back to Home</a>
 
