@@ -23,7 +23,9 @@ if($oldPassword != $user->password || $newPassword != $conPassword){
     header("Location: ../../../public/updatePassword.php?error=1");
 }
 else {
-    $userDAO->updateField($_COOKIE[cookieManager::$userId], "password", $newPassword);
-    cookieManager::clearAuthCookies();
-    header("Location: ../../../public/login.php");
+    $user->auth_token = $user->genAuthToken();
+    $userDAO->updateField($user->id, "password", $newPassword);
+    $userDAO->updateField($user->id, "auth_token", $user->auth_token);
+    cookieManager::setAuthCookies($user);
+    header("Location: ../../../public/index.php");
 }

@@ -1,5 +1,5 @@
 <?php
-
+require_once(dirname(__FILE__).'/dao/parentDAO.php');
 class childModel {
 
     var $child_id;
@@ -24,7 +24,9 @@ class childModel {
     }
 
     public function isValid() {
-        if (strlen($this->child_name) > 30 ||  strlen($this->child_name) <= 0 || strlen($this->allergies) > 50) {
+        $parentDAO = new parentDAO();
+        $parent = $parentDAO->find($this->parent_id);
+        if (strlen($this->child_name) > 30 ||  strlen($this->child_name) <= 0 || strlen($this->allergies) > 50 || $parent == false) {
             return false;
         }
         return true;
