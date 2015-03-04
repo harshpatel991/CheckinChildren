@@ -64,4 +64,5 @@ INSERT INTO child(child_id, parent_id, child_name, allergies, facility_id) VALUE
 INSERT INTO child(child_id, parent_id, child_name, allergies, facility_id) VALUES (3, 8, 'Dawn Summers', 'Vampires', 2);
 
 INSERT INTO child(child_id, parent_id, child_name, allergies, facility_id) VALUES (0, 19, 'Peter Parker', '', 3);
-INSERT INTO child(child_id, parent_id, child_name, allergies, facility_id) VALUES (1, 19, 'Ludvig Beetoven', 'Dogs', 4);
+INSERT INTO child(child_id, parent_id, child_name, allergies, facility_id, last_checkin, last_checkout, expect_checkin, expect_checkout)
+VALUES (1, 19, 'Ludvig Beetoven', 'Dogs', 4, '2013-03-02 11:32:48', '2013-03-02 15:49:30', '15,15,15,15,15,15,15', '30,30,30,30,30,30,30');

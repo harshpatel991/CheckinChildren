@@ -41,5 +41,6 @@ CREATE TABLE child (
   allergies varchar(50),
   last_checkin DATETIME DEFAULT 0,
   last_checkout DATETIME DEFAULT 0,
-  expect_checkin VARCHAR(50) DEFAULT '00:00,00:00,00:00,00:00,00:00,00:00,00:00'
+  expect_checkin VARCHAR(50) DEFAULT '-1,-1,-1,-1,-1,-1,-1',
+  expect_checkout VARCHAR(50) DEFAULT '-1,-1,-1,-1,-1,-1,-1'
 );
