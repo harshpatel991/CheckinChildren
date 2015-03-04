@@ -1,9 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: nick
- * Date: 2/16/15
- * Time: 12:47 pM
- */
+error_reporting(E_ALL); //turn on error reporting
+ini_set("display_errors", 1);
+
 require_once(dirname(__FILE__).'/../scripts/controllers/authController.php');
-require_once(dirname(__FILE__).'/../scripts/views/createChildView.php');
+?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <?php require_once(dirname(__FILE__).'/importBoostrap.php'); ?>
+    </head>
+
+    <body>
+        <?php require_once(dirname(__FILE__).'/../scripts/views/createChildView.php');?>
+    </body>
+</html>
+
