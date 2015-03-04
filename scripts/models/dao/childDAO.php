@@ -38,6 +38,7 @@ class childDAO {
         $child=$stmt->fetch();
         $connection=null;
         $child->expect_checkin = self::timesCsvToArray($child->expect_checkin);
+        $child->expect_checkout = self::timesCsvToArray($child->expect_checkout);
         return $child;
     }
 
@@ -51,6 +52,15 @@ class childDAO {
         $arr['f'] = $arr[5] = intval($arr[5]);
         $arr['s'] = $arr[6] = intval($arr[6]);
         return $arr;
+    }
+
+    private static function timesArrayToCsv($arr){
+        $csv = '';
+        for($i=0; $i<6; $i++){
+            $csv .= $arr[$i].',';
+        }
+        $csv .= $arr[6];
+        return $csv;
     }
 
     public function findChildrenWithParent($parent_id) {
@@ -73,6 +83,8 @@ class childDAO {
     public function update($child) {
         $this->updateField($child->child_id, 'child_name', $child->child_name);
         $this->updateField($child->child_id, 'allergies', $child->allergies);
+        $this->updateField($child->child_id, 'expect_checkin', self::timesArrayToCsv($child->expect_checkin));
+        $this->updateField($child->child_id, 'expect_checkout', self::timesArrayToCsv($child->expect_checkout));
     }
 
     private function updateField($child_id, $field, $value){

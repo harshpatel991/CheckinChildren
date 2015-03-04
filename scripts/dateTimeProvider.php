@@ -1,5 +1,5 @@
 <?php
-
+require(dirname(__FILE__).'/../config.php');
 class dateTimeProvider
 {
     public static function getCurrentDateTime(){
@@ -7,6 +7,7 @@ class dateTimeProvider
         if (isset($_SESSION['test_timestamp'])){
             return getdate($_SESSION['test_timestamp']);
         }
+
         return getdate();
     }
 
@@ -33,4 +34,8 @@ class dateTimeProvider
         $readable .= ':'.sprintf("%02d", $minutesFromMidnight % 60);
         return $readable;
     }
+}
+
+if (isset($config['test_time'])){
+    dateTimeProvider::setTestDateTime($config['test_time']);
 }

@@ -5,8 +5,11 @@
  * Date: 3/3/15
  * Time: 3:42 PM
  */
+
 require_once((dirname(__FILE__).'/../scripts/dateTimeProvider.php'));
 require_once((dirname(__FILE__).'/../scripts/models/dao/childDAO.php'));
+var_dump(dateTimeProvider::getCurrentDateTime());
+var_dump(getdate(-50));
 
 echo 'Current Time: '.date('m/d/Y h:i +T', dateTimeProvider::getCurrentDateTime()[0]);
 
