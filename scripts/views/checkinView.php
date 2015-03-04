@@ -52,16 +52,16 @@ echo getAccordion();
 
 function getAccordion(){
     return <<<HTML
-<h1>Not Present</h1>
-<div class="panel-group" id="notnotpresent-accordion">
+<h1>Not Here</h1>
+<div class="panel-group" id="notnothere-accordion">
          <div class="panel panel-danger">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#notpresent-collapse-0">Child 3</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#nothere-collapse-0">Child 3</a>
                     <button type="button" id="ci-0" class="btn btn-primary btn-ci btn-sm pull-right" value="0" data-toggle="button">Check-In </button>
                 </h4>
             </div>
-            <div id="notpresent-collapse-0" class="panel-collapse collapse">
+            <div id="nothere-collapse-0" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>Expected Today at 11:30</p>
                 </div>
@@ -70,11 +70,11 @@ function getAccordion(){
         <div class="panel panel-danger">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#notpresent-collapse-1">Child 8</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#nothere-collapse-1">Child 8</a>
                     <button type="button" id="ci-1" class="btn btn-primary btn-ci btn-sm pull-right" value="1" data-toggle="button">Check-In </button>
                 </h4>
             </div>
-            <div id="notpresent-collapse-1" class="panel-collapse collapse">
+            <div id="nothere-collapse-1" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>Expected Today at 11:30</p>
                 </div>
@@ -83,11 +83,11 @@ function getAccordion(){
         <div class="panel panel-warning">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#notpresent-collapse-2">Child 1</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#nothere-collapse-2">Child 1</a>
                     <button type="button" id="ci-2" class="btn btn-primary btn-ci btn-sm pull-right" value="2" data-toggle="button">Check-In </button>
                 </h4>
             </div>
-            <div id="notpresent-collapse-2" class="panel-collapse collapse">
+            <div id="nothere-collapse-2" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>Expected Today at 11:30</p>
                 </div>
@@ -96,11 +96,11 @@ function getAccordion(){
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#notpresent-collapse-3">Child 6</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#nothere-collapse-3">Child 6</a>
                     <button type="button" id="ci-3" class="btn btn-primary btn-ci btn-sm pull-right" value="3" data-toggle="button">Check-In </button>
                 </h4>
             </div>
-            <div id="notpresent-collapse-3" class="panel-collapse collapse">
+            <div id="nothere-collapse-3" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>Expected Today at 11:30</p>
                 </div>
@@ -109,11 +109,11 @@ function getAccordion(){
         <div class="panel panel-warning">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#notpresent-collapse-4">Child 7</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#nothere-collapse-4">Child 7</a>
                     <button type="button" id="ci-4" class="btn btn-primary btn-ci btn-sm pull-right" value="4" data-toggle="button">Check-In </button>
                 </h4>
             </div>
-            <div id="notpresent-collapse-4" class="panel-collapse collapse">
+            <div id="nothere-collapse-4" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>Expected Today at 11:30</p>
                 </div>
@@ -122,16 +122,16 @@ function getAccordion(){
     </div>
 
 
-<h1>Present</h1>
+<h1>Here</h1>
 <div class="panel-group" id="accordion">
          <div class="panel panel-danger">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#present-collapse-0">Child 2</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#here-collapse-0">Child 2</a>
                     <button type="button" id="co-0" class="btn btn-primary btn-co btn-sm pull-right" value="0" data-toggle="button">Check-Out </button>
                 </h4>
             </div>
-            <div id="present-collapse-0" class="panel-collapse collapse">
+            <div id="here-collapse-0" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>Arrived Today at 11:30</p>
                 </div>
@@ -140,11 +140,11 @@ function getAccordion(){
         <div class="panel panel-danger">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#present-collapse-1">Child 4</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#here-collapse-1">Child 4</a>
                     <button type="button" id="co-1" class="btn btn-primary btn-co btn-sm pull-right" value="1" data-toggle="button">Check-Out </button>
                 </h4>
             </div>
-            <div id="present-collapse-1" class="panel-collapse collapse">
+            <div id="here-collapse-1" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>Arrived Today at 11:30</p>
                 </div>
@@ -153,11 +153,11 @@ function getAccordion(){
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#present-collapse-2">Child 5</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#here-collapse-2">Child 5</a>
                     <button type="button" id="co-2" class="btn btn-primary btn-co btn-sm pull-right" value="2" data-toggle="button">Check-Out </button>
                 </h4>
             </div>
-            <div id="present-collapse-2" class="panel-collapse collapse">
+            <div id="here-collapse-2" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>Arrived Today at 11:30</p>
                 </div>
@@ -166,11 +166,11 @@ function getAccordion(){
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#present-collapse-3">Child 9</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#here-collapse-3">Child 9</a>
                     <button type="button" id="co-3" class="btn btn-primary btn-co btn-sm pull-right" value="3" data-toggle="button">Check-Out </button>
                 </h4>
             </div>
-            <div id="present-collapse-3" class="panel-collapse collapse">
+            <div id="here-collapse-3" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>Arrived Today at 11:30</p>
                 </div>
@@ -179,11 +179,11 @@ function getAccordion(){
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#present-collapse-4">Child 10</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#here-collapse-4">Child 10</a>
                     <button type="button" id="co-4" class="btn btn-primary btn-co btn-sm pull-right" value="4" data-toggle="button">Check-Out </button>
                 </h4>
             </div>
-            <div id="present-collapse-4" class="panel-collapse collapse">
+            <div id="here-collapse-4" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p>Arrived Today at 11:30</p>
                 </div>

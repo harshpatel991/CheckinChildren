@@ -17,4 +17,8 @@ dateTimeProvider::unsetTestDateTime();
 echo '<br>Current Time: '.date('m/d/Y h:i +T', dateTimeProvider::getCurrentDateTime()[0]);
 
 $dao = new childDAO();
-var_dump($dao->find(1));
+$child = $dao->find(1);
+var_dump($child);
+echo($child->expect_checkin[0]);
+echo(intval($child->expect_checkin[0]));
+var_dump(dateTimeProvider::readableTimeOfDay(intval($child->expect_checkin[0])));

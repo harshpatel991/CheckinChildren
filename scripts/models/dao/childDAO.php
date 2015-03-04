@@ -37,8 +37,20 @@ class childDAO {
         $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'childModel');
         $child=$stmt->fetch();
         $connection=null;
-
+        $child->expect_checkin = self::timesCsvToArray($child->expect_checkin);
         return $child;
+    }
+
+    private static function timesCsvToArray($csv){
+        $arr = explode(',',$csv);
+        $arr['u'] = $arr[0] = intval($arr[0]);
+        $arr['m'] = $arr[1] = intval($arr[1]);
+        $arr['t'] = $arr[2] = intval($arr[2]);
+        $arr['w'] = $arr[3] = intval($arr[3]);
+        $arr['r'] = $arr[4] = intval($arr[4]);
+        $arr['f'] = $arr[5] = intval($arr[5]);
+        $arr['s'] = $arr[6] = intval($arr[6]);
+        return $arr;
     }
 
     public function findChildrenWithParent($parent_id) {
