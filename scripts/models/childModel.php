@@ -9,24 +9,28 @@ class childModel {
     var $facility_id;
     var $last_checkin;
     var $last_checkout;
-    var $expect_checkin;
+    var $expect_checkin; //Stored as 'minutes from midnight'
 
-    function __construct($parent_id=0, $child_name="", $allergies="",$facility_id=0, $child_id=0,
-                         $last_checkin=0, $last_checkout=0) {
+    public function __get($property) {
+        if (property_exists($this, $property)) {
+            echo $property;
+            return $this->$property;
+        }
+    }
+
+    function __construct($parent_id=0, $child_name="", $allergies="",$facility_id=0, $child_id=0) {
         $this->parent_id = $parent_id;
         $this->child_name = $child_name;
         $this->allergies = $allergies;
         $this->facility_id = $facility_id;
-        $this->child_id = $child_id;
-        $this->$last_checkin = $last_checkin;
-        $this->$last_checkout = $last_checkout;
         $this->expect_checkin = [];
     }
 
-    public function isValid() {
+    public function isValid()
+    {
         $parentDAO = new parentDAO();
         $parent = $parentDAO->find($this->parent_id);
-        if (strlen($this->child_name) > 30 ||  strlen($this->child_name) <= 0 || strlen($this->allergies) > 50 || $parent == false) {
+        if (strlen($this->child_name) > 30 || strlen($this->child_name) <= 0 || strlen($this->allergies) > 50 || $parent == false) {
             return false;
         }
         return true;

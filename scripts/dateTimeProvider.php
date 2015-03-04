@@ -3,7 +3,7 @@
 class dateTimeProvider
 {
     public static function getCurrentDateTime(){
-        //date_default_timezone_set('America/Chicago');
+        date_default_timezone_set('America/Chicago');
         if (isset($_SESSION['test_timestamp'])){
             return getdate($_SESSION['test_timestamp']);
         }
@@ -14,7 +14,7 @@ class dateTimeProvider
      * dateTime must be in format mm/dd/YYYY hh:mm
      */
     public static function setTestDateTime($dateTime){
-        //date_default_timezone_set('America/Chicago');
+        date_default_timezone_set('America/Chicago');
         $timestamp = strtotime($dateTime);
         $_SESSION['test_timestamp'] = $timestamp;
     }
@@ -26,5 +26,11 @@ class dateTimeProvider
     public function getDateTimeFromStamp($timestamp){
         date_default_timezone_set('America/Chicago');
         return getdate($timestamp);
+    }
+
+    public static function readableTimeOfDay($minutesFromMidnight){
+        $readable = sprintf("%02d", $minutesFromMidnight / 60);
+        $readable .= ':'.sprintf("%02d", $minutesFromMidnight % 60);
+        return $readable;
     }
 }

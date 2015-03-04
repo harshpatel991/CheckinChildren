@@ -12,8 +12,7 @@
         <br><br>
         <a id="create_parent" href="createParent.php">Create a Parent</a>
         <br><br>
-        <a id="checkin_children" href="checkinChildren.php">View Children</a> <?php
-        <a id="create_parent" href="createParent.php">Create a Parent</a>
+        <a id="checkin_children" href="checkinChildren.php">View Children</a>
         <br><br>
         <a id="create_child" href="createChild.php">Create a Child</a> <?php
     }
@@ -22,8 +21,7 @@
         ?>
         <a id="create_parent" href="createParent.php">Create a Parent</a>
         <br><br>
-        <a id="checkin_children" href="checkinChildren.php">View Children</a> <?php
-        <a id="create_parent" href="createParent.php">Create a Parent</a>
+        <a id="checkin_children" href="checkinChildren.php">View Children</a>
         <br><br>
         <a id="create_child" href="createChild.php">Create a Child</a> <?php
     }
