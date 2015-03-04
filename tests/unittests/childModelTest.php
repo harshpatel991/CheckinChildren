@@ -3,7 +3,7 @@
 require_once(dirname(__FILE__).'/../../scripts/models/childModel.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
 
-class childModelTest extends PHPUnit_Framework_TestCase {
+class childModelTest extends unitTestBase {
     public function testConstructor(){
         $child = new childModel(18, "Blue Ranger", "Milk", 1, 99);
 
