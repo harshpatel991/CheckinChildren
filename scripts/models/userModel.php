@@ -15,6 +15,17 @@ class userModel
     private static $privateKey = 'd@t$yuk';
 
     public function isValid(){
+        if($this->isUpdateValid()) {
+            if(strlen($this->password)<=0) { //in an update, password is allowed to be length 0
+                return false;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function isUpdateValid() {
         if (strlen($this->email)>40 || strlen($this->password)>40 || strlen($this->email)<=0) {
             return false;
         }
