@@ -42,7 +42,23 @@ class childDAO {
         return $child;
     }
 
-    private static function timesCsvToArray($csv){
+    public function findChildrenInFacility($facilityId) {
+        $connection = DbConnectionFactory::create();
+        $query = 'SELECT * FROM child WHERE facility_id=:facility_id';
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':facility_id', $facilityId);
+        $stmt->execute();
+        $children = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'childModel');
+        $connection = null;
+
+        foreach ($children as $child){
+            $child->expect_checkin = self::timesCsvToArray($child->expect_checkin);
+            $child->expect_checkout = self::timesCsvToArray($child->expect_checkout);
+        }
+        return $children;
+    }
+
+    public static function timesCsvToArray($csv){
         $arr = explode(',',$csv);
         $arr['u'] = $arr[0] = intval($arr[0]);
         $arr['m'] = $arr[1] = intval($arr[1]);
@@ -54,7 +70,7 @@ class childDAO {
         return $arr;
     }
 
-    private static function timesArrayToCsv($arr){
+    public static function timesArrayToCsv($arr){
         $csv = '';
         for($i=0; $i<6; $i++){
             $csv .= $arr[$i].',';
