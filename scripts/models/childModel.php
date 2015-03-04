@@ -17,11 +17,23 @@ class childModel {
     }
 
     public function isValid() {
-        $parentDAO = new parentDAO();
-        $parent = $parentDAO->find($this->parent_id);
-        if (strlen($this->child_name) > 30 ||  strlen($this->child_name) <= 0 || strlen($this->allergies) > 50 || $parent == false) {
+        if($this->isUpdateValid()) {
+            $parentDAO = new parentDAO();
+            $parent = $parentDAO->find($this->parent_id);
+            if($parent == false) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function isUpdateValid() {
+        if (strlen($this->child_name) > 30 ||  strlen($this->child_name) <= 0 || strlen($this->allergies) > 50) {
             return false;
         }
         return true;
     }
+
 }

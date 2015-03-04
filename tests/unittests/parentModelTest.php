@@ -16,18 +16,30 @@ class parentModelTest extends unitTestBase {
         $this->assertEquals(999, $parent->id);
     }
 
-    public function testFilter(){
-        $parent=new parentModel("", "pword", "test@test.com", "parent", "8008888989", "123 fake st", 999);
-
-        $this->assertFalse($parent->isValid());
-
-        $parent->parent_name="Herbert";
-
+    public function testValidName() {
+        $parent = new parentModel("Herbert", "pword", "test@test.com", "parent", "8008888989", "123 fake st", 999);
         $this->assertTrue($parent->isValid());
+    }
 
-        $parent->parent_name="kadjflkfjsdklfjsdlfkjakslfjkdlasfjklajsdflkdjfklasdfjdskajlfkajsfdlfkjdaslfjlasdfkja";
-
+    public function testInvalidNameLong() {
+        $parent = new parentModel("kadjflkfjsdklfjsdlfkjakslfjkdlasfjklajsdflkdjfklasdfjdskajlfkajsfdlfkjdaslfjlasdfkja", "pword", "test@test.com", "parent", "8008888989", "123 fake st", 999);
         $this->assertFalse($parent->isValid());
+    }
+
+    public function testInvalidShortName() {
+        $parent = new parentModel("", "pword", "test@test.com", "parent", "8008888989", "123 fake st", 999);
+        $this->assertFalse($parent->isValid());
+    }
+
+    public function testInvalidShortPassword() {
+        $parent=new parentModel("Herbert", "", "test@test.com", "parent", "8008888989", "123 fake st", 999);
+        $this->assertFalse($parent->isValid());
+    }
+
+    //Short password is okay for an update
+    public function testValidUpdatePassword() {
+        $parent=new parentModel("Herbert", "n", "test@test.com", "parent", "8008888989", "123 fake st", 999);
+        $this->assertTrue($parent->isUpdateValid());
     }
 
 }
