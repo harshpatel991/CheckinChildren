@@ -36,7 +36,10 @@ CREATE TABLE parent (
 CREATE TABLE child (
   child_id INT auto_increment unique key,
   parent_id INT,
+  facility_id INT,
   child_name varchar(30),
   allergies varchar(50),
-  facility_id INT
+  last_checkin DATETIME DEFAULT 0,
+  last_checkout DATETIME DEFAULT 0,
+  expect_checkin VARCHAR(50) DEFAULT '00:00,00:00,00:00,00:00,00:00,00:00,00:00'
 );

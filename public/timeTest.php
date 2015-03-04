@@ -6,6 +6,7 @@
  * Time: 3:42 PM
  */
 require_once((dirname(__FILE__).'/../scripts/dateTimeProvider.php'));
+require_once((dirname(__FILE__).'/../scripts/models/dao/childDAO.php'));
 
 echo 'Current Time: '.date('m/d/Y h:i +T', dateTimeProvider::getCurrentDateTime()[0]);
 
@@ -14,3 +15,6 @@ echo '<br>Test Time: '.date('m/d/Y h:i +T', dateTimeProvider::getCurrentDateTime
 
 dateTimeProvider::unsetTestDateTime();
 echo '<br>Current Time: '.date('m/d/Y h:i +T', dateTimeProvider::getCurrentDateTime()[0]);
+
+$dao = new childDAO();
+var_dump($dao->find(1));
