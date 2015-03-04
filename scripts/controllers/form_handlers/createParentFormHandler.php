@@ -30,6 +30,6 @@ if ($parent->isValid()) {
 
 else{
 
-   header("Location: ../../../public/createParentView.php?error=1");
+   header("Location: ../../../public/createParent.php?error=1");
 
 }

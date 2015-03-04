@@ -13,6 +13,9 @@
         <a id="create_parent" href="createParent.php">Create a Parent</a>
         <br><br>
         <a id="checkin_children" href="checkinChildren.php">View Children</a> <?php
+        <a id="create_parent" href="createParent.php">Create a Parent</a>
+        <br><br>
+        <a id="create_child" href="createChild.php">Create a Child</a> <?php
     }
 
     else if ($_COOKIE[cookieManager::$userRole]=='employee') {
@@ -20,6 +23,9 @@
         <a id="create_parent" href="createParent.php">Create a Parent</a>
         <br><br>
         <a id="checkin_children" href="checkinChildren.php">View Children</a> <?php
+        <a id="create_parent" href="createParent.php">Create a Parent</a>
+        <br><br>
+        <a id="create_child" href="createChild.php">Create a Child</a> <?php
     }
 
     else if ($_COOKIE[cookieManager::$userRole]=='company') {
@@ -31,8 +37,8 @@
 
     else if ($_COOKIE[cookieManager::$userRole]=='parent') {
         ?>
-        <a id="display_managers" href="displayParentInfo.php">View My Profile</a><br>
-        <a id="display_managers" href="displayChildren.php">My Children</a>
+        <a id="view_parent_info" href="displayParentInfo.php">View My Profile</a><br>
+        <a id="display_children" href="displayChildren.php">My Children</a>
     <?php
     }
 
