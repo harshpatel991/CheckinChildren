@@ -27,9 +27,29 @@ class UpdatePasswordTest extends SeleniumTestBase
         $this->get_element("id=view_parent_info")->click();
         //Click Update Password
         $this->get_element("id=update_password")->click();
-        $this->get_element("name=)
 
+        //Bad old password
+        $this->get_element("name=old_password")->send_keys("password21");
+        $this->get_element("name=new_password")->send_keys("password19");
+        $this->get_element("name=con_password")->send_keys("password19");
+        $this->get_element("name=submit")->click();
+        $page = $this->driver->get_source();
+        $this->assertContains("Incorrect old password or new password didn't match", $page);
+        //Bad confirm password
+        $this->get_element("name=old_password")->send_keys("password19");
+        $this->get_element("name=new_password")->send_keys("test19");
+        $this->get_element("name=con_password")->send_keys("password19");
+        $this->get_element("name=submit")->click();
+        $page = $this->driver->get_source();
+        $this->assertContains("Incorrect old password or new password didn't match", $page);
+        //Good update password
+        $this->get_element("name=old_password")->send_keys("password19");
+        $this->get_element("name=new_password")->send_keys("pass19");
+        $this->get_element("name=con_password")->send_keys("pass19");
+        $this->get_element("name=submit")->click();
 
+        testMacros::login($this->driver, "parent19@gmail.com", "pass19");
+        $this->assert_title("CheckinChildren");
     }
 
     public function tearDown(){
