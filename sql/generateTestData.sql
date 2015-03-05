@@ -69,7 +69,7 @@ VALUES (1, 19, 'Ludvig Beethoven', 'Dogs', 4, '2013-03-02 11:32:48', '2013-03-02
 
 #Attempting to cover all use cases, it has to be 3:00 PM on March 4th (900 minutes)
 INSERT INTO child(child_id, parent_id, child_name, allergies, facility_id, last_checkin, last_checkout, expect_checkin, expect_checkout)
-VALUES (4, 19, 'Late Parent', 'Dogs', 5, '2015-03-04 12:58:48', '2013-03-02 15:49:30', '780,780,780,780,780,780,780', '880,880,880,880,880,880,880');
+VALUES (4, 19, 'Late Parent', 'Dogs', 5, '2015-03-04 12:58:48', '2015-03-03 15:38:30', '780,780,780,780,780,780,780', '880,880,880,880,880,880,880');
 
 INSERT INTO child(child_id, parent_id, child_name, allergies, facility_id, last_checkin, last_checkout, expect_checkin, expect_checkout)
 VALUES (5, 19, 'Child Expected Later', 'Dogs', 5, '2015-03-03 13:28:48', '2015-03-03 19:49:30', '930,930,930,930,930,930,930', '1200,1200,1200,1200,1200,1200,1200');
