@@ -48,7 +48,9 @@ class childModel {
         }
 
         $mfm = 60 * $currentTime['hours'] + $currentTime['minutes'];
-        if ($this->last_checkin > $this->last_checkout){
+        $ciStamp = strtotime($this->last_checkin);
+        $coStamp = strtotime($this->last_checkout);
+        if ($ciStamp > $coStamp){
             //here
             $co_expect = $this->expect_checkout[$currentTime['wday']];
             if (0 <= $co_expect && $co_expect < $mfm){
@@ -59,8 +61,10 @@ class childModel {
         else{
             //not here
             $ci_expect = $this->expect_checkin[$currentTime['wday']];
-            var_dump( $ci_expect);
-            if ($ci_expect < 0){
+            $lastCoStamp = dateTimeProvider::getdate($this->last_checkout);
+            $lastcoToday = $lastCoStamp['mon'] === $currentTime['mon']
+                && $lastCoStamp['year'] === $currentTime['year'] && $lastCoStamp['mday'] === $currentTime['mday'];
+            if ($ci_expect < 0 || $lastcoToday === true){
                 return childStatus::not_here_ok;
             }
             if ($ci_expect < $mfm){
