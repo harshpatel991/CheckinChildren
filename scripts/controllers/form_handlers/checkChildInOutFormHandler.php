@@ -11,7 +11,6 @@ require_once(dirname(__FILE__) . '/../../models/childModel.php');
 require_once(dirname(__FILE__) . '/../../dateTimeProvider.php');
 
 $checkinArray=$_POST["checkinIds"];
-var_dump($checkinArray);
 $checkoutArray=$_POST["checkoutIds"];
 
 
@@ -26,15 +25,11 @@ $timeString= sprintf($timeFill,$curTime["year"], $curTime["mon"], $curTime["mday
 $cDAO=new childDAO();
 
 foreach ($checkoutArray as $id){
-    $child=$cDAO->find($id);
-    $child->last_checkout=$timeString;
-    $cDAO->update($child);
+    $cDAO->updateField($id, 'last_checkout', $timeString);
 }
 
 foreach ($checkinArray as $id){
-    $child=$cDAO->find($id);
-    $child->last_checkin=$timeString;
-    $cDAO->update($child);
+    $cDAO->updateField($id, 'last_checkin', $timeString);
 }
 
 header("Location: ../../../public/checkinChildren.php");
