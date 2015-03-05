@@ -34,6 +34,32 @@ $(document).ready(function(){
 });
 
 
+function checkinSubmit(){
+    var inputs = getInputs();
+    var selectedCheckinIds = inputs[0];
+    var selectedCheckoutIds = inputs[1];
+
+    var para = document.getElementById('checkinInputs');
+    for (var i=0; i<selectedCheckinIds.length; i++){
+        addHiddenInput(para, 'checkinIds[]', selectedCheckinIds[i]);
+    }
+    for (var i=0; i<selectedCheckoutIds.length; i++){
+        addHiddenInput(para, 'checkoutIds[]', selectedCheckoutIds[i]);
+    }
+
+    return true;
+}
+
+function addHiddenInput(para, name, value){
+    var hiddenInput = document.createElement('input');
+    hiddenInput.type = 'hidden';
+    hiddenInput.name = name;
+    hiddenInput.value = value;
+    para.appendChild(hiddenInput);
+    var br = document.createElement('br');
+    para.appendChild(br);
+}
+
 function getSelection(){
     var checkinIds = [];
     var checkoutIds = [];
@@ -41,6 +67,19 @@ function getSelection(){
         checkinIds.push(this.value);
     });
     $('.btn-co.active').each(function(){
+        checkoutIds.push(this.value);
+    });
+
+    return [checkinIds,checkoutIds];
+}
+
+function getInputs(){
+    var checkinIds = [];
+    var checkoutIds = [];
+    $('.ci-input').not('.hidden').each(function(){
+        checkinIds.push(this.value);
+    });
+    $('.co-input').not('.hidden').each(function(){
         checkoutIds.push(this.value);
     });
 

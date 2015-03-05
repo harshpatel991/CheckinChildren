@@ -74,7 +74,7 @@ class childModel {
         }
     }
 
-    /*public function getExpectedCheckin($dayOfWeek = -1, $readable = true){
+    public function getExpectedCheckin($dayOfWeek = -1, $readable = true){
         return self::getExpected($this->expect_checkin, $dayOfWeek, $readable);
     }
 
@@ -90,7 +90,7 @@ class childModel {
             return self::readable($arr[$dayOfWeek]);
         }
         return $arr[$dayOfWeek];
-    }*/
+    }
 
    public function expectCheckinReadable(){
        $readable = [];

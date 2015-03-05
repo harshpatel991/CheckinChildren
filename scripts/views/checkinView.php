@@ -4,150 +4,48 @@ require_once(dirname(__FILE__).'/../controllers/authController.php');
 require_once(dirname(__FILE__).'/../cookieManager.php');
 require_once(dirname(__FILE__).'/../dateTimeProvider.php');
 require_once(dirname(__FILE__).'/../models/childModel.php');
+require_once(dirname(__FILE__).'/../models/childStatusEnum.php');
 require_once(dirname(__FILE__).'/../controllers/checkinController.php');
+require_once(dirname(__FILE__).'/../dateTimeProvider.php');
 
 $checkinController = new checkinController();
 $children = $checkinController->getChildrenBuckets($_COOKIE[cookieManager::$userId]);
+$time = dateTimeProvider::getCurrentDateTime();
 
 ?>
-
-<h1>Not Here</h1>
+<h1>Time: <?php echo dateTimeProvider::readableTime($time); ?></h1>
+<h2>Not Here</h2>
 <div class="panel-group" id="nothere-accordion">
-    <div class="panel panel-danger">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#nothere-collapse-0">Child 3</a>
-                <button type="button" id="ci-0" class="btn btn-primary btn-ci btn-sm pull-right" value="0" data-toggle="button">Check-In </button>
-            </h4>
-        </div>
-        <div id="nothere-collapse-0" class="panel-collapse collapse">
-            <div class="panel-body">
-                <p>Expected Today at 11:30</p>
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-danger">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#nothere-collapse-1">Child 8</a>
-                <button type="button" id="ci-1" class="btn btn-primary btn-ci btn-sm pull-right" value="1" data-toggle="button">Check-In </button>
-            </h4>
-        </div>
-        <div id="nothere-collapse-1" class="panel-collapse collapse">
-            <div class="panel-body">
-                <p>Expected Today at 11:30</p>
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-warning">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#nothere-collapse-2">Child 1</a>
-                <button type="button" id="ci-2" class="btn btn-primary btn-ci btn-sm pull-right" value="2" data-toggle="button">Check-In </button>
-            </h4>
-        </div>
-        <div id="nothere-collapse-2" class="panel-collapse collapse">
-            <div class="panel-body">
-                <p>Expected Today at 11:30</p>
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#nothere-collapse-3">Child 6</a>
-                <button type="button" id="ci-3" class="btn btn-primary btn-ci btn-sm pull-right" value="3" data-toggle="button">Check-In </button>
-            </h4>
-        </div>
-        <div id="nothere-collapse-3" class="panel-collapse collapse">
-            <div class="panel-body">
-                <p>Expected Today at 11:30</p>
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-warning">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#nothere-collapse-4">Child 7</a>
-                <button type="button" id="ci-4" class="btn btn-primary btn-ci btn-sm pull-right" value="4" data-toggle="button">Check-In </button>
-            </h4>
-        </div>
-        <div id="nothere-collapse-4" class="panel-collapse collapse">
-            <div class="panel-body">
-                <p>Expected Today at 11:30</p>
-            </div>
-        </div>
-    </div>
+    <?php
+    $i = 0;
+    foreach($children[childStatus::not_here_late] as $child){
+        echo accordionElement( $i, $child, childStatus::not_here_late);
+        $i++;
+    }
+    foreach($children[childStatus::not_here_due] as $child){
+        echo accordionElement( $i, $child, childStatus::not_here_due);
+        $i++;
+    }
+    foreach($children[childStatus::not_here_ok] as $child){
+        echo accordionElement( $i, $child, childStatus::not_here_ok);
+        $i++;
+    }
+    ?>
 </div>
 
-
-<h1>Here</h1>
-<div class="panel-group" id="accordion">
-    <div class="panel panel-danger">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#here-collapse-0">Child 2</a>
-                <button type="button" id="co-0" class="btn btn-primary btn-co btn-sm pull-right" value="0" data-toggle="button">Check-Out </button>
-            </h4>
-        </div>
-        <div id="here-collapse-0" class="panel-collapse collapse">
-            <div class="panel-body">
-                <p>Arrived Today at 11:30</p>
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-danger">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#here-collapse-1">Child 4</a>
-                <button type="button" id="co-1" class="btn btn-primary btn-co btn-sm pull-right" value="1" data-toggle="button">Check-Out </button>
-            </h4>
-        </div>
-        <div id="here-collapse-1" class="panel-collapse collapse">
-            <div class="panel-body">
-                <p>Arrived Today at 11:30</p>
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-success">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#here-collapse-2">Child 5</a>
-                <button type="button" id="co-2" class="btn btn-primary btn-co btn-sm pull-right" value="2" data-toggle="button">Check-Out </button>
-            </h4>
-        </div>
-        <div id="here-collapse-2" class="panel-collapse collapse">
-            <div class="panel-body">
-                <p>Arrived Today at 11:30</p>
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-success">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#here-collapse-3">Child 9</a>
-                <button type="button" id="co-3" class="btn btn-primary btn-co btn-sm pull-right" value="3" data-toggle="button">Check-Out </button>
-            </h4>
-        </div>
-        <div id="here-collapse-3" class="panel-collapse collapse">
-            <div class="panel-body">
-                <p>Arrived Today at 11:30</p>
-            </div>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#here-collapse-4">Child 10</a>
-                <button type="button" id="co-4" class="btn btn-primary btn-co btn-sm pull-right" value="4" data-toggle="button">Check-Out </button>
-            </h4>
-        </div>
-        <div id="here-collapse-4" class="panel-collapse collapse">
-            <div class="panel-body">
-                <p>Arrived Today at 11:30</p>
-            </div>
-        </div>
-    </div>
+<h2>Here</h2>
+<div class="panel-group" id="nothere-accordion">
+    <?php
+    $i = 0;
+    foreach($children[childStatus::here_due] as $child){
+        echo accordionElement( $i, $child, childStatus::here_due);
+        $i++;
+    }
+    foreach($children[childStatus::here_ok] as $child){
+        echo accordionElement( $i, $child, childStatus::here_ok);
+        $i++;
+    }
+    ?>
 </div>
 
 <button type="button" class="btn btn-info confirm-submit" data-toggle="modal" data-target="#myModal">Submit</button>
@@ -155,45 +53,104 @@ $children = $checkinController->getChildrenBuckets($_COOKIE[cookieManager::$user
 <br><a href="index.php">Back to Home</a>
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Confirm Changes</h4>
-            </div>
-            <div class="modal-body">
-                <p id="modal-ci-number">You are about to check-in # children:</p>
-                <ul id="ci-list">
-                    <li id="modal-ci-0" class="hidden">Child 3</li>
-                    <li id="modal-ci-1" class="hidden">Child 8</li>
-                    <li id="modal-ci-2" class="hidden">Child 1</li>
-                    <li id="modal-ci-3" class="hidden">Child 6</li>
-                    <li id="modal-ci-4" class="hidden">Child 7</li>
-                </ul>
-                <p id="modal-co-number">You are about to check-out # children:</p>
-                <ul id="co-list">
-                    <li id="modal-co-0" class="hidden">Child 2</li>
-                    <li id="modal-co-1" class="hidden">Child 4</li>
-                    <li id="modal-co-2" class="hidden">Child 5</li>
-                    <li id="modal-co-3" class="hidden">Child 9</li>
-                    <li id="modal-co-4" class="hidden">Child 10</li>
-                </ul>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Confirm Changes</h4>
+                </div>
+                <div class="modal-body">
+                    <?php
+                    $childrenHere = array_merge($children[childStatus::here_due], $children[childStatus::here_ok]);
+                    $childrenNotHere = array_merge($children[childStatus::not_here_late], $children[childStatus::not_here_due], $children[childStatus::not_here_ok]);
+                    ?>
+                    <p id="modal-ci-number">You are about to check-in # children:</p>
+                        <ul id="ci-list">
+                            <?php
+                            foreach($childrenNotHere as $i=>$child){
+                                echo '<li id="modal-ci-'.$i.'" class="ci-input hidden" value="'.$child->child_id.'">'.$child->child_name.'</li>';
+                            }
+                            ?>
+                        </ul>
+                        <p id="modal-co-number">You are about to check-out # children:</p>
+                        <ul id="co-list">
+                            <?php
+                            foreach($childrenHere as $i=>$child){
+                                echo '<li id="modal-co-'.$i.'" class="co-input hidden" value="'.$child->child_id.'">'.$child->child_name.'</li>';
+                            }
+                            ?>
+                        </ul>
+                </div>
+
+                <div class="modal-footer">
+                    <form name="checkinForm" method="post" action="../scripts/controllers/form_handlers/checkChildInOutFormHandler.php" onsubmit="checkinSubmit();">
+                        <p id="checkinInputs" class="hidden"></p>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button id="#modal-submit" type="submit" class="btn btn-primary">Save changes</button>
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>
-</div>
 
 <?php
 
-function getAccordion(){
-    return <<<HTML
-<h1>Not Here</h1>
+function getAccordionDetails($child, $status){
+    $details = array(
+        'buttonText' => 'Check-In',
+        'hereText' => 'nothere',
+        'cico' => 'ci',
+        'infoText' => 'problem'
+    );
 
-HTML;
+    if ($status === childStatus::not_here_late){
+        $details['class'] = 'danger';
+        $details['infoText'] = 'LATE: Expected at '.$child->getExpectedCheckin();
+    }
+    else if ($status === childStatus::not_here_due){
+        $details['class'] = 'warning';
+        $details['infoText'] = 'Expected at '.$child->getExpectedCheckin();
+    }
+    else if ($status === childStatus::not_here_ok){
+        $details['class'] = 'default';
+        $details['infoText'] = 'Checked Out';
+    }
+    else if ($status === childStatus::here_due){
+        $details['class'] = 'danger';
+        $details['buttonText'] = 'Check-Out';
+        $details['hereText'] = 'here';
+        $details['cico'] = 'co';
+        $details['infoText'] = 'PARENT LATE: Expected at '.$child->getExpectedCheckout();
+    }
+    else if ($status === childStatus::here_ok){
+        $details['class'] = 'default';
+        $details['buttonText'] = 'Check-Out';
+        $details['hereText'] = 'here';
+        $details['cico'] = 'co';
+        $details['infoText'] = 'Parent due at '.$child->getExpectedCheckout();
+    }
 
+    return $details;
+}
+
+function accordionElement($i, $child, $status){
+
+    $details = getAccordionDetails($child, $status);
+
+    $offer_html = '<div class="panel panel-'.$details['class'].'">';
+    $offer_html .= '<div class="panel-heading">';
+    $offer_html .= '<h4 class="panel-title">';
+    $offer_html .= '<a data-toggle="collapse" data-parent="#accordion" href="#'.$details['hereText'].'-collapse-'.$i.'">'.$child->child_name.'</a>';
+    $offer_html .= '<button type="button" id="ci-'.$i.'" class="btn btn-primary btn-'.$details['cico'].' btn-sm pull-right" value="'.$i.'" data-toggle="button">'.$details['buttonText'].'</button>';
+    $offer_html .= '</h4>';
+    $offer_html .= '</div>';
+    $offer_html .= '<div id="'.$details['hereText'].'-collapse-'.$i.'" class="panel-collapse collapse">';
+    $offer_html .= '<div class="panel-body">';
+    $offer_html .= '<p>'.$details['infoText'].'</p>';
+    $offer_html .= '</div></div></div>';
+
+    return $offer_html;
 }
