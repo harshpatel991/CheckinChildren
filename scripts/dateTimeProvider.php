@@ -11,6 +11,11 @@ class dateTimeProvider
         return getdate();
     }
 
+    public static function getdate($str){
+        date_default_timezone_set('America/Chicago');
+        return getdate(strtotime($str));
+    }
+
     /*
      * dateTime must be in format mm/dd/YYYY hh:mm
      */
