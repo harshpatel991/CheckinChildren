@@ -25,6 +25,10 @@ class dateTimeProvider
         $_SESSION['test_timestamp'] = $timestamp;
     }
 
+    public static function testTimeTick($millis=1000){
+        $_SESSION['test_timestamp'] += $millis;
+    }
+
     public static function unsetTestDateTime(){
         unset($_SESSION['test_timestamp']);
     }
@@ -46,7 +50,7 @@ class dateTimeProvider
             $ap = 'pm';
         }
 
-        return sprintf('%02d:%02d %s', $hrs, $time['minutes'], $ap);
+        return sprintf('%02d:%02d:%02d %s', $hrs, $time['minutes'], $time['seconds'], $ap);
     }
 
     public static function readableTimeOfDay($minutesFromMidnight){

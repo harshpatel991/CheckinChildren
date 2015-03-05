@@ -11,9 +11,10 @@ require_once(dirname(__FILE__).'/../dateTimeProvider.php');
 $checkinController = new checkinController();
 $children = $checkinController->getChildrenBuckets($_COOKIE[cookieManager::$userId]);
 $time = dateTimeProvider::getCurrentDateTime();
+dateTimeProvider::testTimeTick();
 
 ?>
-<h1>Time: <?php echo dateTimeProvider::readableTime($time); ?></h1>
+<h1>Time: <?php var_dump(dateTimeProvider::readableTime($time)); ?></h1>
 <h2>Not Here</h2>
 <div class="panel-group" id="nothere-accordion">
     <?php
