@@ -20,10 +20,10 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
 
   public function setUp() {
     if (self::$isWindows){
-      exec('start java -jar ../WebDriver/selenium-server-standalone-2.44.0.jar');
+      exec('start java -jar ../WebDriver/selenium-server-standalone-2.45.0.jar');
     }
     else {
-      shell_exec(sprintf('%s > /dev/null 2>&1 &', 'java -jar ../WebDriver/selenium-server-standalone-2.44.0.jar'));
+      shell_exec(sprintf('%s > /dev/null 2>&1 &', 'java -jar ../WebDriver/selenium-server-standalone-2.45.0.jar'));
     }
 
     sleep(1);
