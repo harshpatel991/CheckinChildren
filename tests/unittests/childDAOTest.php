@@ -78,8 +78,16 @@ class childDAOTest extends unitTestBase {
         $arr['s'] = $arr[6] = 200;
 
         $this->assertEquals($arr, $childUpdated->expect_checkout);
-        $this->assertEquals("2015-03-04 14:49:30", $childUpdated->last_checkout);
-        $this->assertEquals("2015-03-04 12:15:48", $childUpdated->last_checkin);
+        //Checkin/Out times must be updated separately
+        $this->assertEquals("0000-00-00 00:00:00", $childUpdated->last_checkout);
+        $this->assertEquals("0000-00-00 00:00:00", $childUpdated->last_checkin);
+
+        $childDAO->updateField(2, 'last_checkin', $childUpdates->last_checkin);
+        $childDAO->updateField(2, 'last_checkout', $childUpdates->last_checkout);
+
+        $childUpdated = $childDAO->find(2);
+        $this->assertEquals($childUpdates->last_checkout, $childUpdated->last_checkout);
+        $this->assertEquals($childUpdates->last_checkin, $childUpdated->last_checkin);
 
     }
 

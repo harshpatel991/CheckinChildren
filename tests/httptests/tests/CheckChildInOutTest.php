@@ -6,6 +6,8 @@
  * Time: 10:36 PM
  */
 
+require_once dirname(__FILE__).'/../SeleniumTestBase.php';
+
 class CheckChildInOutTest extends SeleniumTestBase{
 
     public function setUp(){
