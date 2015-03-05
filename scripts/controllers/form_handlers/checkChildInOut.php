@@ -6,18 +6,21 @@
  * Time: 9:05 PM
  */
 
-require_once(dirname(__FILE__) . '/../../models/dao/childDAO');
+require_once(dirname(__FILE__) . '/../../models/dao/childDAO.php');
 require_once(dirname(__FILE__) . '/../../models/childModel.php');
 require_once(dirname(__FILE__) . '/../../dateTimeProvider.php');
 
-$checkoutArray=$_POST["checkouts"];
-$checkinArray=$_POST["checkins"];
+$checkoutArray=$_POST["checkinIds"];
+$checkinArray=$_POST["checkoutIds"];
+
 
 $dtprovider= new dateTimeProvider();
 $curTime= $dtprovider->getCurrentDateTime();
 
-$timeString= $curTime["year"]. "-" . $curTime["month"] . "-" . $curTime["mday"] . " " . $curTime["hours"] .
-    ":" . $curTime["minutes"] . $curTime["seconds"];
+$timeFill= "%04d-%02d-%02d %02d:%02d:%02d";
+
+$timeString= sprintf($timeFill,$curTime["year"], $curTime["mon"], $curTime["mday"], $curTime["hours"],$curTime["minutes"]
+    , $curTime["seconds"]);
 
 $cDAO=new childDAO();
 
@@ -34,3 +37,4 @@ foreach ($checkinArray as $id){
 }
 
 header("Location: ../../../public/checkinChildren.php");
+exit();
