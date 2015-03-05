@@ -8,6 +8,7 @@ require_once(dirname(__FILE__).'/../controllers/checkinController.php');
 
 $checkinController = new checkinController();
 $children = $checkinController->getChildrenBuckets($_COOKIE[cookieManager::$userId]);
+
 ?>
 
 <h1>Not Here</h1>
