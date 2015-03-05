@@ -22,8 +22,8 @@ class checkinController {
             array_push($buckets[$child->getStatus($currTime)], $child);
         }
 
-        foreach ($buckets as $bucket){
-            usort($bucket, function($a, $b){
+        for($i=0; $i<sizeof($buckets); $i++){
+            usort($buckets[$i], function($a, $b){
                return strcmp($a->child_name, $b->child_name);
             });
         }

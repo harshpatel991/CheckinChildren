@@ -10,8 +10,9 @@ require_once(dirname(__FILE__) . '/../../models/dao/childDAO.php');
 require_once(dirname(__FILE__) . '/../../models/childModel.php');
 require_once(dirname(__FILE__) . '/../../dateTimeProvider.php');
 
-$checkoutArray=$_POST["checkinIds"];
-$checkinArray=$_POST["checkoutIds"];
+$checkinArray=$_POST["checkinIds"];
+var_dump($checkinArray);
+$checkoutArray=$_POST["checkoutIds"];
 
 
 $dtprovider= new dateTimeProvider();
