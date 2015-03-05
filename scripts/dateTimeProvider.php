@@ -4,8 +4,11 @@ class dateTimeProvider
 {
     public static function getCurrentDateTime(){
         date_default_timezone_set('America/Chicago');
+        if (false===isset($_SESSION['test_tick'])){
+            $_SESSION['test_tick'] = 0;
+        }
         if (isset($_SESSION['test_timestamp'])){
-            return getdate($_SESSION['test_timestamp']);
+            return getdate($_SESSION['test_timestamp'] + $_SESSION['test_tick']);
         }
 
         return getdate();
@@ -25,8 +28,11 @@ class dateTimeProvider
         $_SESSION['test_timestamp'] = $timestamp;
     }
 
-    public static function testTimeTick($millis=1000){
-        $_SESSION['test_timestamp'] += $millis;
+    public static function testTimeTick($millis=1){
+        if (!isset($_SESSION['test_tick'])){
+            $_SESSION['test_tick'] = 0;
+        }
+        $_SESSION['test_tick'] += $millis;
     }
 
     public static function unsetTestDateTime(){
@@ -59,7 +65,7 @@ class dateTimeProvider
         return $readable;
     }
 }
-
+session_start();
 if (isset($config['test_time'])){
     dateTimeProvider::setTestDateTime($config['test_time']);
 }
