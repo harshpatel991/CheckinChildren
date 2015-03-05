@@ -8,7 +8,9 @@ require_once(dirname(__FILE__).'/../scripts/controllers/authController.php');
 <!DOCTYPE html>
 <html>
     <head>
-        <?php require_once(dirname(__FILE__).'/importBoostrap.php'); ?>
+        <?php require_once(dirname(__FILE__).'/importBoostrap.php');?>
+        <script src="js/moment.js"></script>
+        <script src="js/combodate.js"></script>
     </head>
 
     <body>
