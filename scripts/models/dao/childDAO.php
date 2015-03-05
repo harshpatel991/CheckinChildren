@@ -101,6 +101,8 @@ class childDAO {
         $this->updateField($child->child_id, 'allergies', $child->allergies);
         $this->updateField($child->child_id, 'expect_checkin', self::timesArrayToCsv($child->expect_checkin));
         $this->updateField($child->child_id, 'expect_checkout', self::timesArrayToCsv($child->expect_checkout));
+        $this->updateField($child->child_id, 'last_checkin', self::timesArrayToCsv($child->expect_checkout));
+        $this->updateField($child->child_id, 'last_checkout', self::timesArrayToCsv($child->expect_checkout));
     }
 
     private function updateField($child_id, $field, $value){
