@@ -11,10 +11,9 @@ require_once(dirname(__FILE__).'/../dateTimeProvider.php');
 $checkinController = new checkinController();
 $children = $checkinController->getChildrenBuckets($_COOKIE[cookieManager::$userId]);
 $time = dateTimeProvider::getCurrentDateTime();
-dateTimeProvider::testTimeTick();
 
 ?>
-<h1>Time: <?php var_dump(dateTimeProvider::readableTime($time)); ?></h1>
+<h1>Time: <?php echo dateTimeProvider::readableTime($time); ?></h1>
 <h2>Not Here</h2>
 <div class="panel-group" id="nothere-accordion">
     <?php
@@ -35,7 +34,7 @@ dateTimeProvider::testTimeTick();
 </div>
 
 <h2>Here</h2>
-<div class="panel-group" id="nothere-accordion">
+<div class="panel-group" id="here-accordion">
     <?php
     $i = 0;
     foreach($children[childStatus::here_due] as $child){
@@ -49,18 +48,18 @@ dateTimeProvider::testTimeTick();
     ?>
 </div>
 
-<button type="button" class="btn btn-info confirm-submit" data-toggle="modal" data-target="#myModal">Submit</button>
+<button type="button" class="btn btn-info confirm-submit" data-toggle="modal" data-target="#confirmModal">Submit</button>
 <br>
 <br><a href="index.php">Back to Home</a>
 
 <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Confirm Changes</h4>
+                    <h4 class="modal-title" id="confirmModalLabel">Confirm Changes</h4>
                 </div>
                 <div class="modal-body">
                     <?php

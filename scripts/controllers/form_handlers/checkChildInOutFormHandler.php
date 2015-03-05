@@ -14,8 +14,8 @@ $checkinArray=$_POST["checkinIds"];
 $checkoutArray=$_POST["checkoutIds"];
 
 
-$dtprovider= new dateTimeProvider();
-$curTime= $dtprovider->getCurrentDateTime();
+$curTime= dateTimeProvider::getCurrentDateTime();
+dateTimeProvider::testTimeTick();
 
 $timeFill= "%04d-%02d-%02d %02d:%02d:%02d";
 

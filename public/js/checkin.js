@@ -13,7 +13,7 @@ $(document).ready(function(){
         }
     });
 
-    $('#myModal').on('show.bs.modal', function(){
+    $('#confirmModal').on('show.bs.modal', function(){
         $('#ci-list').find('li').addClass('hidden');
         $('#co-list').find('li').addClass('hidden');
 
