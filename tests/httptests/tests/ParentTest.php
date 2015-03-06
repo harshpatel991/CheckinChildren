@@ -73,13 +73,13 @@ class ParentTest extends SeleniumTestBase
         $this->get_element("link=My Children")->click();
 
         $page = $this->driver->get_source();
-        $this->assertContains("Ludvig Beetoven", $page);
+        $this->assertContains("Ludvig Beethoven", $page);
         $this->assertContains("Peter Parker", $page);
 
-        $this->get_element("link=Ludvig Beetoven")->click();
+        $this->get_element("link=Ludvig Beethoven")->click();
 
         $page = $this->driver->get_source();
-        $this->assertContains("Ludvig Beetoven", $page);
+        $this->assertContains("Ludvig Beethoven", $page);
         $this->assertContains("4", $page);
         $this->assertContains("Dogs", $page);
     }
@@ -91,11 +91,11 @@ class ParentTest extends SeleniumTestBase
         testMacros::login($this->driver, "parent19@gmail.com", "password19");
 
         $this->get_element("link=My Children")->click();
-        $this->get_element("link=Ludvig Beetoven")->click();
+        $this->get_element("link=Ludvig Beethoven")->click();
         $this->get_element("link=Edit This Child")->click();
 
         $this->get_element("name=child_name")->clear();//clear input box
-        $this->get_element("name=child_name")->send_keys("New Beetoven");
+        $this->get_element("name=child_name")->send_keys("New Beethoven");
 
         $this->get_element("name=allergies")->clear();//clear input box
         $this->get_element("name=allergies")->send_keys("None");
@@ -103,7 +103,7 @@ class ParentTest extends SeleniumTestBase
         $this->get_element("name=submit")->click();
 
         $page = $this->driver->get_source();
-        $this->assertContains("New Beetoven", $page);
+        $this->assertContains("New Beethoven", $page);
         $this->assertContains("None", $page);
     }
 
@@ -114,7 +114,7 @@ class ParentTest extends SeleniumTestBase
         testMacros::login($this->driver, "parent19@gmail.com", "password19");
 
         $this->get_element("link=My Children")->click();
-        $this->get_element("link=Ludvig Beetoven")->click();
+        $this->get_element("link=Ludvig Beethoven")->click();
         $this->get_element("link=Edit This Child")->click();
 
         $this->get_element("name=child_name")->clear();//clear input box
