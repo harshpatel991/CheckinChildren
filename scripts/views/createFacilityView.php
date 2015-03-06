@@ -1,15 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Create Day Care Facility</title>
+</head>
+<body>
+<p style="color:red">
 <?php
-
-//load the html template and fill in the appropriate values
-$htmlFileLocation = dirname(__FILE__).'/../../html/createFacility.html';
-$template = file_get_contents ($htmlFileLocation);
-
-if(isset($_GET['error'])) {
-    if($_GET['error'] == 1) {
-        $template = str_replace("ERROR_MESSAGE", "Invalid information", $template);
+    if(isset($_GET['error'])) {
+        if($_GET['error'] == 1) {
+            echo "Invalid Information";
+        }
     }
-} else {
-    $template = str_replace("ERROR_MESSAGE", "", $template);
-}
+?>
+</p>
+<form method="POST" action="../scripts/controllers/form_handlers/createFacilityFormHandler.php">
+    Facility address:
+    <input type="text" name="address"> <br>
+    Phone number:
+    <input type="text" name="phone_number"> <br>
 
-echo $template;//print out html
+    <input type="submit" name="submit" value="Submit">
+</form>
+
+</body>
+</html>
+
+

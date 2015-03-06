@@ -26,7 +26,7 @@ class facilityModel {
             return false;
         }
 
-        if(strlen($this->phone) != 10) { //Check that phone is exactly 10 chars
+        if(strlen($this->phone) != 10 || !is_numeric ($this->phone)) { //Check that phone is exactly 10 numbers
             return false;
         }
 

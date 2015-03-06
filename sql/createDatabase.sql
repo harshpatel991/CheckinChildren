@@ -22,7 +22,7 @@ CREATE TABLE facility (
 
 CREATE TABLE employee (
   id INT unique key,
-  emp_name VARCHAR(30),
+  emp_name VARCHAR(31),
   facility_id INT
 );
 
@@ -36,6 +36,11 @@ CREATE TABLE parent (
 CREATE TABLE child (
   child_id INT auto_increment unique key,
   parent_id INT,
+  facility_id INT,
   child_name varchar(30),
-  allergies varchar(50)
+  allergies varchar(50),
+  last_checkin DATETIME DEFAULT 0,
+  last_checkout DATETIME DEFAULT 0,
+  expect_checkin VARCHAR(50) DEFAULT '-1,-1,-1,-1,-1,-1,-1',
+  expect_checkout VARCHAR(50) DEFAULT '-1,-1,-1,-1,-1,-1,-1'
 );
