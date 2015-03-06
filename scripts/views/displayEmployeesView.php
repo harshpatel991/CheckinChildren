@@ -22,7 +22,18 @@ $emplist="";
 foreach ($employees as $employee) {
     $emplist=$emplist.($employee->emp_name)."<br>";
 }
+?>
 
-$template=file_get_contents ($htmlFileLocation);
-$template=str_replace("EMPLOYEE_LIST", $emplist, $template);
-echo $template;
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h2>Created Employees:</h2>
+<div id="employees"><?php echo $emplist;?></div>
+<a href="createEmployee.php">Create A New Employee</a><br>
+<h3><a href="index.php">Back to home</a></h3>
+</body>
+</html>

@@ -4,34 +4,56 @@ require_once(dirname(__FILE__).'/../cookieManager.php');
 require_once(dirname(__FILE__) . '/../controllers/facilityController.php');
 require_once(dirname(__FILE__).'/../models/facilityModel.php');
 
-$facilityController = new facilityController();
 
 if(isset($_GET['facility_id'])) { //check if a GET has been set
 
+    $facilityController = new facilityController();
     $facility = $facilityController->getFacility($_GET['facility_id']);
 
-    $facilityTemplate = file_get_contents (dirname(__FILE__).'/../../html/displayFacility.html');
-    $facilityTemplate = str_replace("FACILITY_ID", $facility->facility_id, $facilityTemplate);
-    $facilityTemplate = str_replace("COMPANY_ID", $facility->company_id, $facilityTemplate);
-    $facilityTemplate = str_replace("FACILITY_ADDRESS", $facility->address, $facilityTemplate);
-    $facilityTemplate = str_replace("FACILITY_PHONE", $facility->phone, $facilityTemplate);
+    if($_COOKIE[cookieManager::$userId] == $facility->company_id) { //check the facility belongs to the company
+        displaySingleFacility($facility);
+    } else {
+        displayAllFacilities('Facility does not belong to your company!');
+    }
+} else {
+    displayAllFacilities();
+}
 
-    echo $facilityTemplate;
+//Show a single facility
+function displaySingleFacility($facility) {
+?>
+    <h3>Facility ID: <?php echo $facility->facility_id; ?></h3>
+    <p>
+        Company ID: <?php echo $facility->company_id; ?> <br>
+        Address: <?php echo $facility->address; ?> <br>
+        Phone: <?php echo $facility->phone; ?> <br>
+        <a href="displayFacilities.php">View all facilities</a>
+    </p>
+<?php
 
-} else { //otherwise print out entire list of facilities
+}
 
+//Display a list of all facilities
+//@param errorMessage The error message to display, if there is one
+function displayAllFacilities($errorMessage = '') {
+    $facilityController = new facilityController();
     $companyId = $_COOKIE[cookieManager::$userId];
     $facilities = $facilityController->getAllFacilities($companyId);
 
-
     $facilityList = '';
     foreach ($facilities as $facility) { //format each list item
-
-        $facilityList .=  '<a href="?facility_id='. $facility->facility_id .'">'.$facility->address . '</a><br>'; //add on to the list
+        $facilityList .= '<a href="?facility_id=' . $facility->facility_id . '">' . $facility->address . '</a><br>'; //add on to the list
     }
+    ?>
 
-    $template = file_get_contents(dirname(__FILE__).'/../../html/displayFacilities.html');
-    $template = str_replace("FACILITY_LIST", $facilityList, $template);
-    echo $template;
+    <p style="color:red"><?php $errorMessage; ?></p> <br>
 
+    <h1 id="title">My Facilities</h1>
+
+        <?php echo $facilityList; ?>
+
+    <h3><a href="createFacility.php">Create a new facility</a></h3>
+    <h3><a  id="home" href="index.php">Back to home</a></h3>
+
+<?php
 }

@@ -9,7 +9,7 @@
 require_once(dirname(__FILE__).'/../../scripts/models/dao/companyDAO.php');
 require_once(dirname(__FILE__).'/../../scripts/models/companyModel.php');
 
-class companyDAOTest extends PHPUnit_Framework_TestCase {
+class companyDAOTest extends unitTestBase {
 //Tests inserting into facility database
     public function testCreateFacility() {
         $companyDAO = new companyDAO();

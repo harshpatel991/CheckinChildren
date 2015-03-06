@@ -7,7 +7,7 @@ require_once(dirname(__FILE__).'/../../scripts/models/facilityModel.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
 
 
-class managerDAOTest extends UnitTestBase {
+class managerDAOTest extends unitTestBase {
     private $name1 = "test1";
     private $name2 = "test2";
     private $pass1 = "pass1";
