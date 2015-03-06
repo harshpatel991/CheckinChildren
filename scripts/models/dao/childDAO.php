@@ -37,8 +37,48 @@ class childDAO {
         $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'childModel');
         $child=$stmt->fetch();
         $connection=null;
-
+        if ($child!=false) {
+            $child->expect_checkin = self::timesCsvToArray($child->expect_checkin);
+            $child->expect_checkout = self::timesCsvToArray($child->expect_checkout);
+        }
         return $child;
+    }
+
+    public function findChildrenInFacility($facilityId) {
+        $connection = DbConnectionFactory::create();
+        $query = 'SELECT * FROM child WHERE facility_id=:facility_id';
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':facility_id', $facilityId);
+        $stmt->execute();
+        $children = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'childModel');
+        $connection = null;
+
+        foreach ($children as $child){
+            $child->expect_checkin = self::timesCsvToArray($child->expect_checkin);
+            $child->expect_checkout = self::timesCsvToArray($child->expect_checkout);
+        }
+        return $children;
+    }
+
+    public static function timesCsvToArray($csv){
+        $arr = explode(',',$csv);
+        $arr['u'] = $arr[0] = intval($arr[0]);
+        $arr['m'] = $arr[1] = intval($arr[1]);
+        $arr['t'] = $arr[2] = intval($arr[2]);
+        $arr['w'] = $arr[3] = intval($arr[3]);
+        $arr['r'] = $arr[4] = intval($arr[4]);
+        $arr['f'] = $arr[5] = intval($arr[5]);
+        $arr['s'] = $arr[6] = intval($arr[6]);
+        return $arr;
+    }
+
+    public static function timesArrayToCsv($arr){
+        $csv = '';
+        for($i=0; $i<6; $i++){
+            $csv .= $arr[$i].',';
+        }
+        $csv .= $arr[6];
+        return $csv;
     }
 
     public function findChildrenWithParent($parent_id) {
@@ -61,9 +101,11 @@ class childDAO {
     public function update($child) {
         $this->updateField($child->child_id, 'child_name', $child->child_name);
         $this->updateField($child->child_id, 'allergies', $child->allergies);
+        $this->updateField($child->child_id, 'expect_checkin', self::timesArrayToCsv($child->expect_checkin));
+        $this->updateField($child->child_id, 'expect_checkout', self::timesArrayToCsv($child->expect_checkout));
     }
 
-    private function updateField($child_id, $field, $value){
+    public function updateField($child_id, $field, $value){
         $connection = DbConnectionFactory::create();
         $query = 'UPDATE child SET '.$field.'=:value WHERE child_id=:id';
         $stmt = $connection->prepare($query);

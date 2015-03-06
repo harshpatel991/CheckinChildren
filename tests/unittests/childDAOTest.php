@@ -46,6 +46,10 @@ class childDAOTest extends unitTestBase {
         $childDAO = new childDAO();
 
         $childUpdates = new childModel(0, "New Name", "New Allergies", 0, 2); //the updates to make, id and facility id are not updated
+        $childUpdates->expect_checkin=array(20,20,20,20,20,20,20);
+        $childUpdates->expect_checkout=array(200,200,200,200,200,200,200);
+        $childUpdates->last_checkin="2015-03-04 12:15:48";
+        $childUpdates->last_checkout="2015-03-04 14:49:30";
         $childDAO->update($childUpdates);
 
         $childUpdated = $childDAO->find(2);
@@ -55,6 +59,36 @@ class childDAOTest extends unitTestBase {
         $this->assertEquals("New Name", $childUpdated->child_name);
         $this->assertEquals("New Allergies", $childUpdated->allergies);
         $this->assertEquals(1, $childUpdated->facility_id); //facility id is not updated
+        $arr=[];
+        $arr['u'] = $arr[0] = 20;
+        $arr['m'] = $arr[1] = 20;
+        $arr['t'] = $arr[2] = 20;
+        $arr['w'] = $arr[3] = 20;
+        $arr['r'] = $arr[4] = 20;
+        $arr['f'] = $arr[5] = 20;
+        $arr['s'] = $arr[6] = 20;
+        $this->assertEquals($arr, $childUpdated->expect_checkin);
+        $arr=[];
+        $arr['u'] = $arr[0] = 200;
+        $arr['m'] = $arr[1] = 200;
+        $arr['t'] = $arr[2] = 200;
+        $arr['w'] = $arr[3] = 200;
+        $arr['r'] = $arr[4] = 200;
+        $arr['f'] = $arr[5] = 200;
+        $arr['s'] = $arr[6] = 200;
+
+        $this->assertEquals($arr, $childUpdated->expect_checkout);
+        //Checkin/Out times must be updated separately
+        $this->assertEquals("0000-00-00 00:00:00", $childUpdated->last_checkout);
+        $this->assertEquals("0000-00-00 00:00:00", $childUpdated->last_checkin);
+
+        $childDAO->updateField(2, 'last_checkin', $childUpdates->last_checkin);
+        $childDAO->updateField(2, 'last_checkout', $childUpdates->last_checkout);
+
+        $childUpdated = $childDAO->find(2);
+        $this->assertEquals($childUpdates->last_checkout, $childUpdated->last_checkout);
+        $this->assertEquals($childUpdates->last_checkin, $childUpdated->last_checkin);
+
     }
 
 }
