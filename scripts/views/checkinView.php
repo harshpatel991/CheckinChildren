@@ -48,7 +48,7 @@ $time = dateTimeProvider::getCurrentDateTime();
     ?>
 </div>
 
-<button type="button" class="btn btn-info confirm-submit" data-toggle="modal" data-target="#confirmModal">Submit</button>
+<button type="button" id="Submit" class="btn btn-info confirm-submit" data-toggle="modal" data-target="#confirmModal">Submit</button>
 <br>
 <br><a href="index.php">Back to Home</a>
 
@@ -144,7 +144,7 @@ function accordionElement($i, $child, $status){
     $offer_html .= '<div class="panel-heading">';
     $offer_html .= '<h4 class="panel-title">';
     $offer_html .= '<a data-toggle="collapse" data-parent="#accordion" href="#'.$details['hereText'].'-collapse-'.$i.'">'.$child->child_name.'</a>';
-    $offer_html .= '<button type="button" id="ci-'.$i.'" class="btn btn-primary btn-'.$details['cico'].' btn-sm pull-right" value="'.$i.'" data-toggle="button">'.$details['buttonText'].'</button>';
+    $offer_html .= '<button type="button" id="'.$details['cico'].'-'.$i.'" class="btn btn-primary btn-'.$details['cico'].' btn-sm pull-right" value="'.$i.'" data-toggle="button">'.$details['buttonText'].'</button>';
     $offer_html .= '</h4>';
     $offer_html .= '</div>';
     $offer_html .= '<div id="'.$details['hereText'].'-collapse-'.$i.'" class="panel-collapse collapse">';
