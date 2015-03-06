@@ -18,12 +18,13 @@
 <a href="javascript:void(0)" onclick="autoFillUser(0);">Company - bigcompany1@gmail.com</a><br>
 <a href="javascript:void(0)" onclick="autoFillUser(1);">Manager - manager6@gmail.com</a><br>
 <a href="javascript:void(0)" onclick="autoFillUser(2);">Employee - baba_ganush2@gmail.com</a><br>
-<a href="javascript:void(0)" onclick="autoFillUser(3);">Parent - parent19@gmail.com</a><br>
+<a href="javascript:void(0)" onclick="autoFillUser(3);">Employee - employee17@gmail.com</a><br>
+<a href="javascript:void(0)" onclick="autoFillUser(4);">Parent - parent19@gmail.com</a><br>
 
 
 <script><!-- TODO: move this to js folder -->
-    var emails = ["bigcompany1@gmail.com", "manager6@gmail.com", "baba_ganush2@gmail.com", "parent19@gmail.com" ];
-    var passwords = ["password1", "password6", "password2", "password19"];
+    var emails = ["bigcompany1@gmail.com", "manager6@gmail.com", "baba_ganush2@gmail.com", "employee17@gmail.com", "parent19@gmail.com" ];
+    var passwords = ["password1", "password6", "password2", "password17", "password19"];
 
     var emailBox=document.getElementById("email");
     var passwordBox=document.getElementById("password");

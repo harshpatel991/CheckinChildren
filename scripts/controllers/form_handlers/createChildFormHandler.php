@@ -17,11 +17,17 @@ $manCon=new managerController();
 $facility_id=$manCon->getFacilityID($_COOKIE[cookieManager::$userId]);
 
 $child=new childModel($_POST['PID'], $_POST['name'],  $_POST['aller'], $facility_id);
-
+for ($i=0; $i<7; $i++){
+    $child->expect_checkin[$i] = minutesFromMidnight($_POST['ci-'.$i]);
+    $child->expect_checkout[$i] = minutesFromMidnight($_POST['co-'.$i]);
+}
 
 if ($child->isValid()) {
     $childDAO=new childDAO();
-    $childDAO->insert($child);
+    $childId=$childDAO->insert($child);
+
+    $child->child_id=$childId;
+    $childDAO->update($child);
     header("Location: ../../../public/index.php");
     exit();
 }
@@ -30,4 +36,21 @@ else{
 
     header("Location: ../../../public/createChild.php?error=1");
 
+}
+
+/*
+ * $time is a string of format '2:30 am'
+ *
+ * returns minutes-from-midnight
+ */
+function minutesFromMidnight($time){
+    if(!isset($time) || $time==='' || $time==null) {
+        return -1;
+    }
+    $hmap = preg_split("/[\s:]+/", $time);
+    $hmap[0] %= 12;
+    if ($hmap[2] === 'pm'){
+        $hmap[0] += 12;
+    }
+    return $hmap[1] + $hmap[0] * 60;
 }
