@@ -1,7 +1,3 @@
-<head>
-    <title>Login</title>
-</head>
-
 
 <h2>Login</h2>
 <form method="post" action="../scripts/controllers/loginController.php">
