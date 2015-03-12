@@ -2,6 +2,7 @@
 require_once(dirname(__FILE__).'/../cookieManager.php');
 ?>
 
+<div class="container-fluid">
 <div class="row">
   <div class="col-sm-12 col-lg-8 col-lg-offset-2">
     <nav class="navbar navbar-default">
@@ -21,8 +22,6 @@ require_once(dirname(__FILE__).'/../cookieManager.php');
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
 
           <ul class="nav navbar-nav navbar-right">
-
-
             <?php if (isset($_COOKIE[cookieManager::$userRole])) { //TODO: is this okay to do? ?>
               <li><p class="navbar-text">Logged in as a <b><?php echo $_COOKIE[cookieManager::$userRole]; ?></b></p></li>
               <li><p class="navbar-text">ID: <?php echo $_COOKIE[cookieManager::$userId]; ?> </p></li>
@@ -34,12 +33,12 @@ require_once(dirname(__FILE__).'/../cookieManager.php');
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu" role="menu">
                   <li><a href="#">Settings</a></li>
-                  <li><a href="#">Logout</a></li>
+                  <li><a href="../scripts/controllers/logoutController.php">Logout</a></li>
                 </ul>
               </li>
 
             <?php } else { ?>
-              <li><button href="#" type="button" class="btn btn-primary navbar-btn">Login</button></li>
+              <li><button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#myModal">Login</button></li>
               <li><button href="#" type="button" class="btn btn-default navbar-btn">Sign Up</button></li>
             <?php } ?>
 
@@ -49,3 +48,5 @@ require_once(dirname(__FILE__).'/../cookieManager.php');
     </nav>
   </div>
 </div>
+</div>
+
