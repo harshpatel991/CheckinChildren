@@ -23,6 +23,6 @@ foreach ($employees as $employee) {
     <?php echo $emplist;?>
 </ul>
 
-<a class="btn btn-success" href="createEmployee.php"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create New Employee</a>
+<a class="btn btn-success" href="createEmployee.php" name="create_employee"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create New Employee</a>
 <hr>
-<a class="btn btn-primary" id="home" href="index.php"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Home</a>
+<a class="btn btn-primary" id="home" href="index.php" name="back_home"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Home</a>

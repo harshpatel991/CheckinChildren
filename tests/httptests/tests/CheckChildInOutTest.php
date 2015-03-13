@@ -1,12 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: alex
- * Date: 3/4/15
- * Time: 10:36 PM
- */
 
 require_once dirname(__FILE__).'/../SeleniumTestBase.php';
+require_once dirname(__FILE__).'/../TestMacros.php';
 
 class CheckChildInOutTest extends SeleniumTestBase{
 
