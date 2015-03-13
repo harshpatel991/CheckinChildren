@@ -25,7 +25,6 @@ for ($i=0; $i<7; $i++){
 if ($child->isValid()) {
     $childDAO=new childDAO();
     $childId=$childDAO->insert($child);
-
     $child->child_id=$childId;
     $childDAO->update($child);
     header("Location: ../../../public/index.php");
