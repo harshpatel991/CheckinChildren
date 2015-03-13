@@ -115,4 +115,22 @@ class childDAO {
         $connection = null;
     }
 
+    public function getAllChildrenWithPotentialStatusUpdate(){
+        $connection = DbConnectionFactory::create();
+        $query = "SELECT * FROM child";
+        $stmt=$connection->prepare($query);
+        $stmt->bindParam(':id', $id);
+
+        $stmt->execute();
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'childModel');
+        $child=$stmt->fetch();
+        $connection=null;
+        if ($child!=false) {
+            $child->expect_checkin = self::timesCsvToArray($child->expect_checkin);
+            $child->expect_checkout = self::timesCsvToArray($child->expect_checkout);
+        }
+        return $child;
+    }
+
 }
