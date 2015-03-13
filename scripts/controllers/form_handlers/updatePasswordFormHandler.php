@@ -19,10 +19,13 @@ $oldPassword = userModel::genHashPassword($_POST['old_password']);
 $newPassword = userModel::genHashPassword($_POST['new_password']);
 $conPassword = userModel::genHashPassword($_POST['con_password']);
 
-if($oldPassword != $user->password || $newPassword != $conPassword){
-    header("Location: ../../../public/updatePassword.php?error=1");
-}
-else {
+if($oldPassword != $user->password) {
+    header("Location: ../../../public/updatePassword.php?error=2");
+    exit();
+} else if($newPassword != $conPassword) {
+    header("Location: ../../../public/updatePassword.php?error=3");
+    exit();
+} else {
     $user->auth_token = $user->genAuthToken();
     $userDAO->updateField($user->id, "password", $newPassword);
     $userDAO->updateField($user->id, "auth_token", $user->auth_token);

@@ -11,6 +11,7 @@ class CompanyTest extends SeleniumTestBase
 
 
     public function testViewFacility() {
+        $this->get_element("name=login")->click();
         $this->get_element("name=email")->send_keys("bigcompany1@gmail.com");
         $this->get_element("name=password")->send_keys("password1");
         $this->get_element("name=submit")->click();

@@ -35,7 +35,8 @@
 
     else if ($_COOKIE[cookieManager::$userRole]=='parent') {
         ?>
-        <a id="view_parent_info" href="displayParentInfo.php">View My Profile</a><br>
+        <a id="view_parent_info" href="displayParentInfo.php">View My Profile</a>
+        <br><br>
         <a id="display_children" href="displayChildren.php">My Children</a>
     <?php
     }

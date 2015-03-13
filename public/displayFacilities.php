@@ -11,9 +11,9 @@ require_once(dirname(__FILE__).'/../scripts/controllers/authController.php');
         <?php require_once(dirname(__FILE__).'/importBoostrap.php'); ?>
     </head>
 
-    <?php require_once(dirname(__FILE__) . '/../scripts/views/navBarView.php'); ?>
-
     <body>
+        <?php require_once(dirname(__FILE__) . '/../scripts/views/navBarView.php'); ?>
+
         <div class="container-fluid">
             <?php require_once(dirname(__FILE__) . '/../scripts/views/displayError.php'); ?>
 
@@ -26,9 +26,9 @@ require_once(dirname(__FILE__).'/../scripts/controllers/authController.php');
                 </div>
             </div>
         </div>
-    </body>
 
-    <?php require_once(dirname(__FILE__) . '/../scripts/views/footerView.php'); ?>
+        <?php require_once(dirname(__FILE__) . '/../scripts/views/footerView.php'); ?>
+    </body>
 
 </html>
 

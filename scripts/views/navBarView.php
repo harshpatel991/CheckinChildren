@@ -32,13 +32,12 @@ require_once(dirname(__FILE__).'/../cookieManager.php');
                   <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Settings</a></li>
                   <li><a href="../scripts/controllers/logoutController.php">Logout</a></li>
                 </ul>
               </li>
 
             <?php } else { ?>
-              <li><button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#myModal">Login</button></li>
+              <li><button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#myModal" name="login">Login</button></li>
               <li><button href="#" type="button" class="btn btn-default navbar-btn">Sign Up</button></li>
             <?php } ?>
 
