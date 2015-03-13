@@ -18,6 +18,11 @@ $child=$childDAO->find($_GET['child_id']);
         <input type="text" name="allergies" id="allergies" value="<?php echo $child->allergies; ?>" class="form-control">
     </div>
 
+    <div class="form-group">
+        <label for="trusted_parties">Trusted Parties</label>
+        <input type="text" name="trusted_parties" id="trusted_parties" value="<?php echo $child->trusted_parties; ?>" class="form-control">
+    </div>
+
     <input type="hidden" name="child_id" id="child_id" value="<?php echo $_GET['child_id']; ?>">
 
     <table class="table table-striped">
