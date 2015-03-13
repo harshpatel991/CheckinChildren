@@ -48,7 +48,7 @@ $time = dateTimeProvider::getCurrentDateTime();
     ?>
 </div>
 
-<button type="button" id="Submit" class="btn btn-info confirm-submit" data-toggle="modal" data-target="#confirmModal">Submit</button>
+<button type="button" id="Submit" class="btn btn-primary confirm-submit" data-toggle="modal" data-target="#confirmModal">Submit</button>
 <br>
 <br><a href="index.php">Back to Home</a>
 

@@ -50,9 +50,10 @@ function displayAllFacilities($errorMessage = '') {
 
         <?php echo $facilityList; ?>
 
-    <h3><a class="btn btn-success" href="createFacility.php"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Facility</a></h3>
+    <br>
+    <a class="btn btn-success" href="createFacility.php"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Facility</a>
     <hr>
-    <h3><a id="home" href="index.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Home</a></h3>
+    <a id="home" href="index.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Home</a>
 
 
 

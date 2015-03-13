@@ -86,8 +86,6 @@ ini_set("display_errors", 1);
                     <img src="../images/Watches.png" width="150"> <br>
                     Give your customers real-time feed back on the status of their children
                 </div>
-
-
             </div>
 
             <!-- Login Modal -->
@@ -104,7 +102,6 @@ ini_set("display_errors", 1);
                     </div>
                 </div>
             </div>
-
 
         </div>
     </body>

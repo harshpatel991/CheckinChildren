@@ -8,27 +8,32 @@ $parent=$parentDAO->find($_COOKIE[cookieManager::$userId]);
 
 ?>
 
-<p style="color:red">
-    <?php
-    if(isset($_GET['error'])) {
-        if($_GET['error'] == 1) {
-            echo "Invalid Information";
-        }
-    }
-    ?>
-</p>
-
+<h1>Edit Account Profile</h1>
 <form method="post" action="../scripts/controllers/form_handlers/editParentFormHandler.php">
-    Name:
-    <input type="text" name="parent_name" value="<?php echo $parent->parent_name; ?>" > <br>
-    Email:
-    <input type="text" name="email" value="<?php echo $parent->email; ?>"><br>
-    Address:
-    <input type="text" name="address" value="<?php echo $parent->address; ?>"> <br>
-    Phone number:
-    <input type="text" name="phone_number" value="<?php echo $parent->phone_number; ?>"> <br>
 
-    <input type="submit" value="Submit" name="submit">
+    <div class="form-group">
+        <label for="parent_name">Name</label>
+        <input type="text" name="parent_name" id="parent_name" value="<?php echo $parent->parent_name; ?>" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" value="<?php echo $parent->email; ?>" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" name="address" id="address" value="<?php echo $parent->address; ?>" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="phone_number">Phone Number</label>
+        <input type="text" name="phone_number" id="phone_number" value="<?php echo $parent->phone_number; ?>" class="form-control">
+    </div>
+
+    <input type="submit" value="Submit" name="submit" class="btn btn-primary">
 </form>
 
+<hr>
 
+<a id="home" href="displayParentInfo.php" class="btn btn-danger"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Account Profile</a>
