@@ -11,7 +11,7 @@
 
     <input type="submit" name="submit" value="Login" class="btn btn-primary" id="submit">
 </form>
-<a id="createCompany" href="createCompany.php">Register New Company</a><br><br>
+
 
 <a class="btn btn-default" onclick="autoFillUser(0);">Company - bigcompany1@gmail.com</a><br>
 <a class="btn btn-default" onclick="autoFillUser(1);">Manager - manager6@gmail.com</a><br>

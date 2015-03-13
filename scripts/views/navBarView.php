@@ -38,7 +38,7 @@ require_once(dirname(__FILE__).'/../cookieManager.php');
 
             <?php } else { ?>
               <li><button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#myModal" name="login">Login</button></li>
-              <li><button href="#" type="button" class="btn btn-default navbar-btn">Sign Up</button></li>
+              <li><button onclick="location.href='createCompany.php'" class="btn btn-default navbar-btn" name="signup">Sign Up</button></li>
             <?php } ?>
 
           </ul>

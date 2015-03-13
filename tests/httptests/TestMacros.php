@@ -15,6 +15,7 @@ class testMacros
 
     public static function createCompany(WebDriver_Driver $driver, $name, $address, $phone, $email, $password)
     {
+        $driver->get_element("name=signup")->click();
         $driver->get_element("name=company_name")->send_keys($name);
         $driver->get_element("name=address")->send_keys($address);
         $driver->get_element("name=phone_number")->send_keys($phone);
