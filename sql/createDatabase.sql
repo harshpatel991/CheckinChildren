@@ -30,7 +30,8 @@ CREATE TABLE parent (
   id INT unique key,
   parent_name varchar(30),
   address varchar(50),
-  phone_number varchar(10)
+  phone_number varchar(10),
+  contact_pref varchar(30)
 );
 
 CREATE TABLE child (
