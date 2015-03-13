@@ -53,7 +53,7 @@ ini_set("display_errors", 1);
             </div>
 
             <div class="row businesses">
-                <div class="col-sm-12 col-lg-8 col-lg-offset-2">
+                <div class="col-sm-12 col-lg-10 col-lg-offset-1">
                     <h3>Own a day care facility? <br> See how Checkin Children can stream line your management and make it easier to do what you love</h3>
                     <a class="btn btn-default  btn-lg" href="#">Create a Company Account</a>
                 </div>
