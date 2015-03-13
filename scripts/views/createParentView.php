@@ -25,6 +25,13 @@
         <input type="text" name="password" id="password" class="form-control">
     </div>
 
+    <div class="form-group">
+        <label for="preferences">Alert Preferences</label>
+        <br />
+        Receive Texts &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="texting" id="texting"> <br />
+        Receive Emails &nbsp;&nbsp;<input type="checkbox" name="emailing" id="emailing">
+    </div>
+
     <input type="submit" name="submit" value="Submit" class="btn btn-primary">
 </form>
 
