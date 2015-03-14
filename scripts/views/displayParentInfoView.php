@@ -28,6 +28,10 @@ ini_set("display_errors",1);
         <th>Phone Number</th>
         <td><?php echo $parent->phone_number; ?></td>
     </tr>
+    <tr>
+        <th>Contact Preferences</th>
+        <td><?php echo $parent->contact_pref?></td>
+    </tr>
 </table>
 
 <br>
