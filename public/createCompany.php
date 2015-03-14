@@ -10,7 +10,19 @@ ini_set("display_errors", 1);
     </head>
 
     <body>
-        <?php require_once(dirname(__FILE__).'/../scripts/views/createCompanyView.php'); ?>
+        <?php require_once(dirname(__FILE__) . '/../scripts/views/navBarView.php'); ?>
+
+        <div class="container-fluid">
+            <?php require_once(dirname(__FILE__) . '/../scripts/views/displayError.php'); ?>
+
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <?php require_once(dirname(__FILE__).'/../scripts/views/createCompanyView.php'); ?>
+                </div>
+            </div>
+        </div>
+
+        <?php require_once(dirname(__FILE__) . '/../scripts/views/footerView.php'); ?>
     </body>
 </html>
 
