@@ -7,19 +7,21 @@
  */
 require_once(dirname(__FILE__).'/../lib/PHPMailer-master/PHPMailerAutoload.php');
 
+require_once(dirname(__FILE__).'/models/carrierEnum.php');
+
 
 class emailer
 {
     private $mailer;
 
     private static $carriers = array(
-        'att' => 'txt.att.net',
-        'boost' => 'myboostmobile.com',
-        'sprint' => 'messaging.sprintpcs.com',
-        'tmobile' => 'tmomail.net',
-        'us' => 'email.uscc.net',
-        'verizon' => 'vtext.com',
-        'virgin' => 'vmobl.com'
+        carrier::att => 'txt.att.net',
+        carrier::boost => 'myboostmobile.com',
+        carrier::sprint => 'messaging.sprintpcs.com',
+        carrier::tmobile => 'tmomail.net',
+        carrier::us => 'email.uscc.net',
+        carrier::verizon => 'vtext.com',
+        carrier::virgin => 'vmobl.com'
     );
 
     public function __construct(){

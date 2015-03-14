@@ -29,6 +29,10 @@ ini_set("display_errors",1);
         <td>Phone Number</td>
         <td><?php echo $parent->phone_number; ?></td>
     </tr>
+    <tr>
+        <td>Carrier</td>
+        <td><?php echo $parent->carrier; ?></td>
+    </tr>
 </table>
 <a id="edit_parent" href="editParent.php">Edit Information</a><br>
 <a id="update_password" href="updatePassword.php">Change Password</a><br>
