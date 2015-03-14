@@ -32,12 +32,10 @@ $parent=$parentDAO->find($_COOKIE[cookieManager::$userId]);
     </div>
 
     <div class="form-group">
-        <label for="preferences">Alert Preferences</label>
-        <br />
         <?php $contact=$parent->contact_pref;?>
 
-        Receive Texts &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" <?php if (strpos($contact, "text")!==false) echo "checked";?> name="texting" id="texting" value="text"> <br />
-        Receive Emails &nbsp;&nbsp;<input type="checkbox" <?php if (strpos($contact, "email")!==false) echo "checked";?> name="emailing" id="emailing" value="email">
+        <label for="texting">Receive Texts:&nbsp;&nbsp;&emsp;</label><input type="checkbox" <?php if (strpos($contact, "text")!==false) echo "checked";?> name="texting" id="texting" value="text"> <br />
+        <label for="emailing">Receive Emails:&emsp;</label><input type="checkbox" <?php if (strpos($contact, "email")!==false) echo "checked";?> name="emailing" id="emailing" value="email">
     </div>
 
     <input type="submit" value="Submit" name="submit" class="btn btn-primary">
