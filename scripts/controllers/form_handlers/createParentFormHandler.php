@@ -16,7 +16,21 @@ require_once(dirname(__FILE__) . '/../managerController.php');
 $manCon=new managerController();
 
 $hashedPassword = employeeModel::genHashPassword($_POST['password']);
-$parent=new parentModel($_POST['name'], $hashedPassword, $_POST['email'], "parent", $_POST['phone'], $_POST['addr']);
+
+//Store the contact preferences in a string
+$contact_string="";
+$texts=$_POST['texting'];
+$emails=$_POST['emailing'];
+if (!empty($texts)){
+    $contact_string.=$texts;
+    if (!empty($emails)){
+        $contact_string.=',';
+    }
+}
+if (!empty($emails)){
+    $contact_string.=$emails;
+}
+$parent=new parentModel($_POST['name'], $hashedPassword, $_POST['email'], "parent", $_POST['phone'], $_POST['addr'], $contact_string);
 
 
 if ($parent->isValid()) {

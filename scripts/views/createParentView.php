@@ -28,8 +28,8 @@
     <div class="form-group">
         <label for="preferences">Alert Preferences</label>
         <br />
-        Receive Texts &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="texting" id="texting"> <br />
-        Receive Emails &nbsp;&nbsp;<input type="checkbox" name="emailing" id="emailing">
+        Receive Texts &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="texting" id="texting" value="text"> <br />
+        Receive Emails &nbsp;&nbsp;<input type="checkbox" name="emailing" id="emailing" value="email">
     </div>
 
     <input type="submit" name="submit" value="Submit" class="btn btn-primary">
