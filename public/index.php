@@ -18,7 +18,10 @@ require_once(dirname(__FILE__).'/../scripts/controllers/authController.php');
             <?php require_once(dirname(__FILE__) . '/../scripts/views/displayError.php'); ?>
 
             <div class="row">
-                <div class="col-sm-8 col-sm-offset-2">
+                <div class="col-sm-2 col-sm-offset-2">
+                    <?php require_once(dirname(__FILE__) . '/../scripts/views/sideBarView.php'); ?>
+                </div>
+                <div class="col-sm-6">
                     <?php require_once(dirname(__FILE__).'/../scripts/views/indexView.php'); ?>
                 </div>
             </div>

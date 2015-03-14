@@ -13,7 +13,7 @@ class CheckChildInOutTest extends SeleniumTestBase{
 
         testMacros::login($this->driver, "employee17@gmail.com", "password17");
 
-        $this->get_element("id=checkin_children")->click();
+        $this->get_element("name=view_children")->click();
 
         $this->get_element("id=ci-0")->click();
         $this->get_element("id=co-0")->click();

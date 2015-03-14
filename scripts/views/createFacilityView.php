@@ -1,3 +1,4 @@
+<h1>Create Facility</h1>
 <form method="POST" action="../scripts/controllers/form_handlers/createFacilityFormHandler.php">
 
     <div class="form-group">

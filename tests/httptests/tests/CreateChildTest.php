@@ -16,7 +16,7 @@ class createChildTest extends SeleniumTestBase
 
         testMacros::login($this->driver, "manager6@gmail.com", "password6");
 
-        $this->get_element("id=create_child")->click();
+        $this->get_element("name=create_child")->click();
 
         $this->get_element("name=name")->send_keys("Test Case1");
         $this->get_element("name=PID")->send_keys("8");
@@ -32,7 +32,7 @@ class createChildTest extends SeleniumTestBase
     {
         testMacros::login($this->driver, "employee4@gmail.com", "password4");
 
-        $this->get_element("id=create_child")->click();
+        $this->get_element("name=create_child")->click();
 
 
         $this->get_element("name=name")->send_keys("Test Case1");
@@ -42,7 +42,7 @@ class createChildTest extends SeleniumTestBase
 
         $this->get_element("id=signed-in")->assert_text("Currently signed in as a employee");
 
-        $this->get_element("id=create_child")->click();
+        $this->get_element("name=create_child")->click();
 
         $this->get_element("name=name")->send_keys("Test Case1");
         $this->get_element("name=PID")->send_keys("999");

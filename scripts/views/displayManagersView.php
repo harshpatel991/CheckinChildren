@@ -18,9 +18,9 @@ foreach ($managers as $manager) {
 $emplist=$emplist."</table>";
 ?>
 
-<h1 id="title">Created Managers</h1>
+<h1 id="title">Managers</h1>
 <div id="managers"><?php echo $emplist; ?></div>
 
-<a class="btn btn-success" href="../public/createManager.php"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create A New Manager</a>
+<a class="btn btn-success" name="create_manager" href="../public/createManager.php"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create A New Manager</a>
 <hr>
 <a id="home" href="../public/index.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Home</a>

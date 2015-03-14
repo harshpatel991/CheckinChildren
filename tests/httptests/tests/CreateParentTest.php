@@ -16,7 +16,7 @@ class createParentTest extends SeleniumTestBase
     {
         testMacros::login($this->driver, "manager6@gmail.com", "password6");
 
-        $this->get_element("id=create_parent")->click();
+        $this->get_element("name=create_parent")->click();
 
         $this->get_element("name=name")->send_keys("Test Case1");
         $this->get_element("name=email")->send_keys("testcase1@gmail.com");
@@ -34,7 +34,7 @@ class createParentTest extends SeleniumTestBase
     {
         testMacros::login($this->driver, "employee4@gmail.com", "password4");
 
-        $this->get_element("id=create_parent")->click();
+        $this->get_element("name=create_parent")->click();
 
         $this->get_element("name=name")->send_keys("Test Case2");
         $this->get_element("name=email")->send_keys("testcase2@gmail.com");

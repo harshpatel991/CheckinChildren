@@ -18,7 +18,7 @@ class ManagerTest extends SeleniumTestBase {
 
     public function testEmployeeList() {
         testMacros::login($this->driver, "manager6@gmail.com", "password6");
-        $this->get_element("link=View My Employees")->click();
+        $this->get_element("name=view_employees")->click();
 
         $page = $this->driver->get_source();
         $this->assertContains("Matt Wallick", $page);
@@ -28,8 +28,7 @@ class ManagerTest extends SeleniumTestBase {
     public function testMakeEmployee(){
         testMacros::login($this->driver, "manager6@gmail.com", "password6");
 
-        $this->get_element("id=display_employee")->click();
-        $this->get_element("link=View My Employees")->click();
+        $this->get_element("name=view_employees")->click();
         $this->get_element("name=create_employee")->click();
 
         $this->get_element("name=name")->send_keys("Test Case");
@@ -40,12 +39,13 @@ class ManagerTest extends SeleniumTestBase {
 
         $this->get_element("name=back_home")->click();
 
-        $this->get_element("name=submit")->click(); //click logout
+        $this->get_element("name=profile")->click();
+        $this->get_element("name=logout")->click(); //click logout
 
         //Now to sign is as our new employee
         testMacros::login($this->driver, "testcase@gmail.com", "100pass");
 
-        $this->get_element("id=signed-in")->assert_text("Currently signed in as a employee");
+        $this->get_element("name=signed-in")->assert_text("Currently signed in as a employee");
 
     }
 
