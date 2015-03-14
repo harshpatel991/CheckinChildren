@@ -80,6 +80,9 @@ class childModel {
         return self::getExpected($this->expect_checkin, $dayOfWeek, $readable);
     }
 
+    public function getTrustedParties(){
+        return $this->trusted_parties;
+    }
     public function getExpectedCheckout($dayOfWeek = -1, $readable = true){
         return self::getExpected($this->expect_checkout, $dayOfWeek, $readable);
     }
