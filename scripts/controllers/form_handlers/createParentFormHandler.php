@@ -16,7 +16,7 @@ require_once(dirname(__FILE__) . '/../managerController.php');
 $manCon=new managerController();
 
 $hashedPassword = employeeModel::genHashPassword($_POST['password']);
-$parent=new parentModel($_POST['name'], $hashedPassword, $_POST['email'], "parent", $_POST['phone'], $_POST['addr']);
+$parent=new parentModel($_POST['name'], $hashedPassword, $_POST['email'], "parent", $_POST['phone'],$_POST['carrier'], $_POST['addr']);
 
 
 if ($parent->isValid()) {
