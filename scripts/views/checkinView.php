@@ -132,7 +132,7 @@ function getAccordionDetails($child, $status){
         $details['cico'] = 'co';
         $details['infoText'] = 'Parent due at '.$child->getExpectedCheckout();
     }
-
+    $details['infoText'] = $details['infoText'] . '<br />' .'Trusted Parties: '.$child->getTrustedParties();
     return $details;
 }
 
