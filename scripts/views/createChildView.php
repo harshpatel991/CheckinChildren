@@ -12,6 +12,10 @@
         <label for="aller">Allergies</label>
         <input type="text" name="aller" id="aller" class="form-control">
     </div>
+    <div class="form-group">
+        <label for="trusted_parties">Trusted Parties</label>
+        <input type="text" name="trusted_parties" id="trusted_parties" class="form-control">
+    </div>
 
     <table class="table table-striped">
         <thead>

@@ -24,6 +24,10 @@ if(isset($_GET['child_id'])) {
             <th>Allergies</th>
             <td><?php echo $child->allergies; ?></td>
         </tr>
+        <tr>
+            <th>Trusted Parties</th>
+            <td><?php echo $child->trusted_parties; ?></td>
+        </tr>
     </table>
 
 
