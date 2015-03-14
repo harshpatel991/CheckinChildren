@@ -53,7 +53,7 @@ function displayAllFacilities($errorMessage = '') {
     <br>
     <a class="btn btn-success" href="createFacility.php" name="new_facility"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Facility</a>
     <hr>
-    <a id="home" href="index.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Home</a>
+    <a id="home" name="home" href="index.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Home</a>
 
 
 

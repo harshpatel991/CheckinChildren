@@ -23,7 +23,7 @@ class ViewParentInfoTest extends SeleniumTestBase
         //Login
         testMacros::login($this->driver, "parent19@gmail.com", "password19");
         //Click View Profile
-        $this->get_element("id=view_parent_info")->click();
+        $this->get_element("name=view_parent_profile")->click();
         $page = $this->driver->get_source();
 
         $this->assertContains("Momma Jamma", $page);

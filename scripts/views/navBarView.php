@@ -23,16 +23,16 @@ require_once(dirname(__FILE__).'/../cookieManager.php');
 
           <ul class="nav navbar-nav navbar-right">
             <?php if (isset($_COOKIE[cookieManager::$userRole])) { //TODO: is this okay to do? ?>
-              <li><p class="navbar-text">Logged in as a <b><?php echo $_COOKIE[cookieManager::$userRole]; ?></b></p></li>
+              <li><p class="navbar-text" id="signed-in" name="signed-in">Currently signed in as a <b><?php echo $_COOKIE[cookieManager::$userRole]; ?></b></p></li>
               <li><p class="navbar-text">ID: <?php echo $_COOKIE[cookieManager::$userId]; ?> </p></li>
 
 
               <li class="dropdown">
-                <button href="#" class="dropdown-toggle btn btn-default navbar-btn" data-toggle="dropdown" role="button" aria-expanded="false">
+                <button href="#" name="profile" class="dropdown-toggle btn btn-default navbar-btn" data-toggle="dropdown" role="button" aria-expanded="false">
                   <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="../scripts/controllers/logoutController.php">Logout</a></li>
+                  <li><a href="../scripts/controllers/logoutController.php" name="logout">Logout</a></li>
                 </ul>
               </li>
 

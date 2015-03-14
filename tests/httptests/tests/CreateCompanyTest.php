@@ -5,7 +5,7 @@ require_once dirname(__FILE__).'/../TestMacros.php';
 
 class CreateCompanyTest extends SeleniumTestBase
 {
-    public function test() {
+    public function testCreateCompany() {
         //I am redirected to login page
         $this->assert_title("Login");
 
@@ -18,14 +18,12 @@ class CreateCompanyTest extends SeleniumTestBase
 
         //Login as new company
         testMacros::login($this->driver, "newcompany@gmail.com", "password1");
-        $this->assert_title("CheckinChildren");
 
         //View Facilities and Managers
-        $this->get_element("id=display_facilities")->click();
-        $this->get_element("id=title")->assert_text("My Facilities");
-        $this->get_element("id=home")->click();
-        $this->get_element("id=display_managers")->click();
-        $this->get_element("id=title")->assert_text("Created Managers");
+        $this->get_element("name=view_facilities")->click();
+        $this->get_element("name=home")->click();
+        $this->get_element("name=view_managers")->click();
+        $this->get_element("id=title")->assert_text("Managers");
 
     }
 }

@@ -23,7 +23,7 @@ class UpdatePasswordTest extends SeleniumTestBase
         testMacros::login($this->driver, "parent19@gmail.com", "password19");
         $this->assert_title("CheckinChildren");
         //Click View Profile
-        $this->get_element("id=view_parent_info")->click();
+        $this->get_element("name=view_parent_profile")->click();
         //Click Update Password
         $this->get_element("id=update_password")->click();
 
@@ -47,11 +47,12 @@ class UpdatePasswordTest extends SeleniumTestBase
         $this->get_element("name=con_password")->send_keys("pass19");
         $this->get_element("name=submit")->click();
 
-        $this->get_element("name=submit")->click(); //click logout
+        $this->get_element("name=profile")->click();
+        $this->get_element("name=logout")->click(); //click logout
 
         testMacros::login($this->driver, "parent19@gmail.com", "pass19");
         $page = $this->driver->get_source();
-        $this->assertContains("Currently signed in as a parent", $page);
+        $this->assertContains("parent", $page);
 
     }
 
