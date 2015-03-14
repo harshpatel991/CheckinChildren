@@ -45,7 +45,7 @@ class ManagerTest extends SeleniumTestBase {
         //Now to sign is as our new employee
         testMacros::login($this->driver, "testcase@gmail.com", "100pass");
 
-        $this->get_element("name=signed-in")->assert_text("Currently signed in as a employee");
+        $this->get_element("id=signed-in")->assert_text("Currently signed in as a employee");
 
     }
 
