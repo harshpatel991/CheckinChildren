@@ -11,6 +11,7 @@ require_once(dirname(__FILE__).'/../scripts/controllers/authController.php');
         <?php require_once(dirname(__FILE__).'/importBoostrap.php');?>
         <script src="js/moment.js"></script>
         <script src="js/combodate.js"></script>
+        <script src="js/select2.min.js"></script>
     </head>
 
     <body>

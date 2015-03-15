@@ -1,13 +1,19 @@
+<?php
+require_once(dirname(__FILE__).'/../controllers/authController.php');
+require_once(dirname(__FILE__).'/../models/dao/parentDAO.php');
+require_once(dirname(__FILE__).'/../models/parentModel.php');
+
+$parentDao = new parentDAO();
+$parents = $parentDao->findAll();
+?>
+
 <h1>Create Child</h1>
 <form method="post" action="../scripts/controllers/form_handlers/createChildFormHandler.php">
     <div class="form-group">
         <label for="name">Child Name</label>
         <input type="text" name="name" id="name" class="form-control">
     </div>
-    <div class="form-group">
-        <label for="PID">Parent ID</label>
-         <input type="text" name="PID" id="PID" class="form-control">
-    </div>
+
     <div class="form-group">
         <label for="aller">Allergies</label>
         <input type="text" name="aller" id="aller" class="form-control">
@@ -16,6 +22,20 @@
         <label for="trusted_parties">Trusted Parties</label>
         <input type="text" name="trusted_parties" id="trusted_parties" class="form-control">
     </div>
+    <div class="form-group">
+        <label for="PID">Parent</label><br>
+        <select class="select2-search--dropdown select2-parent" name="PID" id="PID" style="width: 100%">
+            <option disabled selected></option>
+
+            <?php
+            foreach($parents as $parent) {
+                echo '<option value="'.$parent->id.'">'.$parent->parent_name.' ('.$parent->email.')</option>';
+            }
+            ?>
+
+        </select>
+    </div>
+
 
     <table class="table table-striped">
         <thead>
@@ -52,6 +72,10 @@
 <script>
     $(document).ready(function(){
         $('.time-picker').combodate();
+        $('.select2-parent').select2({
+            placeholder: "Select parent",
+            allowClear: true
+        });
     });
 </script>
 
