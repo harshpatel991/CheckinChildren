@@ -7,12 +7,10 @@ class testMacros
     public static function login(WebDriver_Driver $driver, $email, $password)
     {
         $driver->get_element("name=login")->click();
-        sleep(1);
         $driver->get_element("name=email")->send_keys($email);
-        sleep(1);
         $driver->get_element("name=password")->send_keys($password);
         $driver->get_element("name=submit")->click();
-        sleep(1);
+
     }
 
     public static function createCompany(WebDriver_Driver $driver, $name, $address, $phone, $email, $password)

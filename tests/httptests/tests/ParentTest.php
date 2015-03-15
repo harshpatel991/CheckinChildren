@@ -81,7 +81,6 @@ class ParentTest extends SeleniumTestBase
 
         $this->get_element("link=Ludvig Beethoven")->click();
 
-        sleep(1);
         $page = $this->driver->get_source();
         $this->assertContains("Ludvig Beethoven", $page);
         $this->assertContains("4", $page);
