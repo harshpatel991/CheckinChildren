@@ -23,10 +23,12 @@ class createParentTest extends SeleniumTestBase
         $this->get_element("name=password")->send_keys("password1");
         $this->get_element("name=phone")->send_keys("8008881111");
         $this->get_element("name=addr")->send_keys("1 fake addr");
+
         $this->get_element("name=submit")->click();
 
 
         $this->get_element("id=signed-in")->assert_text("Currently signed in as a manager");
+
 
     }
 
@@ -41,10 +43,12 @@ class createParentTest extends SeleniumTestBase
         $this->get_element("name=password")->send_keys("password2");
         $this->get_element("name=phone")->send_keys("8008881111");
         $this->get_element("name=addr")->send_keys("2 fake addr");
+        $this->get_element("name=emailing")->click();
         $this->get_element("name=submit")->click();
 
 
         $this->get_element("id=signed-in")->assert_text("Currently signed in as a employee");
+
 
     }
 
