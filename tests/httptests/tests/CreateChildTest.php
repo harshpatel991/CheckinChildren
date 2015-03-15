@@ -19,7 +19,7 @@ class createChildTest extends SeleniumTestBase
         $this->get_element("name=create_child")->click();
 
         $this->get_element("name=name")->send_keys("Test Case1");
-        $this->get_element("name=PID")->send_keys("8");
+        $this->get_element("name=PID")->select2("Big Daddy (parent8@gmail.com)");
         $this->get_element("name=aller")->send_keys("many");
         $this->get_element("name=submit")->click();
 
@@ -36,7 +36,7 @@ class createChildTest extends SeleniumTestBase
 
 
         $this->get_element("name=name")->send_keys("Test Case1");
-        $this->get_element("name=PID")->send_keys("8");
+        $this->get_element("name=PID")->select2("Big Daddy (parent8@gmail.com)");
         $this->get_element("name=aller")->send_keys("many");
         $this->get_element("name=submit")->click();
 
@@ -45,7 +45,7 @@ class createChildTest extends SeleniumTestBase
         $this->get_element("name=create_child")->click();
 
         $this->get_element("name=name")->send_keys("Test Case1");
-        $this->get_element("name=PID")->send_keys("999");
+        $this->get_element("name=PID")->select2("invalid");
         $this->get_element("name=aller")->send_keys("many");
         $this->get_element("name=submit")->click();
 

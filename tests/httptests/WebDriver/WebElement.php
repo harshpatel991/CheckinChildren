@@ -226,6 +226,9 @@ class WebDriver_WebElement {
     $this->click(); // POST /session/:sessionId/element/:id/selected is deprecated as of Selenium 2.0.0
   }
 
+  public function select2($option_text){
+    $this->driver->select2($this->locator, $option_text);
+  }
   // See http://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/value
   public function send_keys($keys) {
     $payload = array("value" => preg_split('//u', $keys, -1, PREG_SPLIT_NO_EMPTY));

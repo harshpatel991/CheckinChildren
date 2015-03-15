@@ -18,12 +18,28 @@ class parentDAO {
 
         $stmt->execute();
 
-        $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'parentModel'); //MAY NEED FETCH_PROPS_LATE FLAG. see below
+        $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'parentModel');
         $parent=$stmt->fetch();
         $connection=null;
 
         return $parent;
     }
+
+    public function findAll(){
+        $connection = DbConnectionFactory::create();
+        $query = "SELECT * FROM parent NATURAL JOIN users";
+
+        $stmt=$connection->prepare($query);
+
+        $stmt->execute();
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'parentModel');
+        $parents=$stmt->fetchAll();
+        $connection=null;
+
+        return $parents;
+    }
+
 
     public function create_parent($parent){
         $newParent=new userModel($parent->email, $parent->password, $parent->role);

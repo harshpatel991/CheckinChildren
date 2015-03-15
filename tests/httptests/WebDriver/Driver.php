@@ -530,6 +530,12 @@ class WebDriver_Driver {
     $response = $this->execute("POST", "/session/:sessionId/execute_async", $payload);
     return WebDriver::GetJSONValue($response);
   }
+
+  public function select2($locator, $option_text){
+    $js = 'val=$("['.$locator.'] option").filter(function() {return ($(this).text().indexOf("'.$option_text.'")>-1);}).first().val();';
+    $js .= '$("['.$locator.']").select2("val", val);';
+    $this->execute_js_sync($js);
+  }
   
   // See http://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/keys
   public function send_keys($keys) {
