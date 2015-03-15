@@ -205,6 +205,11 @@ class WebDriver_WebElement {
   public function click() {
     $this->execute("POST", "/click");
   }
+
+  public function clickByJs(){
+    $js = '$("['.$this->locator.']")[0].click()';
+    $this->driver->execute_js_sync($js);
+  }
   
   // See http://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/submit
   public function submit() {
@@ -227,7 +232,9 @@ class WebDriver_WebElement {
   }
 
   public function select2($option_text){
-    $this->driver->select2($this->locator, $option_text);
+    $js = 'val=$("['.$this->locator.'] option").filter(function() {return ($(this).text().indexOf("'.$option_text.'")>-1);}).first().val();';
+    $js .= '$("['.$this->locator.']").select2("val", val);';
+    $this->driver->execute_js_sync($js);
   }
   // See http://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/value
   public function send_keys($keys) {
