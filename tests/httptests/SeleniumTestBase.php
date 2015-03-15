@@ -31,8 +31,9 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
     $fp = new WebDriver_FirefoxProfile();
     $fp->set_preference("capability.policy.default.HTMLDocument.compatMode", "allAccess");
     $this->driver = WebDriver_Driver::InitAtLocal("4444", "firefox");
-    $this->set_implicit_wait(5000);
-    $this->load(self::$baseUrl . 'index.php');
+    $this->driver->set_implicit_wait(5000);
+    $this->driver->set_throttle_factor(1);
+    $this->driver->load(self::$baseUrl . 'index.php');
     $this->dbConn = DbConnectionFactory::create(true);
     $sql = file_get_contents(dirname(__FILE__).'/../../sql/destroyTables.sql');
     $sql .= file_get_contents(dirname(__FILE__).'/../../sql/createDatabase.sql');
