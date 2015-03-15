@@ -18,7 +18,7 @@
         <a href="createManager.php" name="create_managers" class="list-group-item"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Create A Manager</a></li>
     <?php } else if ($_COOKIE[cookieManager::$userRole]=='parent') { ?>
         <a href="displayParentInfo.php" name="view_parent_profile" class="list-group-item"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> My Profile</a></li>
-        <a href="displayChildren.php" name="view_my_children" class="list-group-item"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> My Children</a></li>
+        <a href="displayChildren.php" id="view_my_children" class="list-group-item"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> My Children</a></li>
     <?php } ?>
 
 </ul>
