@@ -6,7 +6,6 @@
  * Time: 4:42 PM
  */
 require_once(dirname(__FILE__).'/../lib/PHPMailer-master/PHPMailerAutoload.php');
-
 require_once(dirname(__FILE__).'/models/carrierEnum.php');
 
 
@@ -33,20 +32,20 @@ class emailer
         $this->mailer->Password = 'CS428CheckinChildren';
         $this->mailer->SMTPSecure = 'ssl';
         $this->mailer->Port = 465;
+        $this->mailer->From = 'checkinchildren@gmail.com';
+        $this->mailer->FromName = 'CheckinChildren';
     }
 
     public function sendMail($to, $subj, $msg){
-        $this->mailer->From = 'checkinchildren@gmail.com';
-        $this->mailer->FromName = 'CheckinChildren';
         $this->mailer->addAddress($to);
         $this->mailer->isHTML(true);
         $this->mailer->Subject = $subj;
         $this->mailer->Body = $msg;
 
-        if (!$this->mailer->send()){
+        /*if (!$this->mailer->send()){
             return 'Mailer Error: '.$this->mailer->ErrorInfo;
-        }
-        return 'Success!';
+        }*/
+        return 'Skipping sending for now, to avoid spam.';
     }
 
     public function sendSMS($toNumber, $carrier, $msg){

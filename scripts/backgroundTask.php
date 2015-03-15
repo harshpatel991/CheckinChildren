@@ -12,6 +12,8 @@ require_once(dirname(__FILE__).'/models/carrierEnum.php');
 
 class backgroundTask
 {
+    private $emailer;
+
     private static $emailMessages = array(
         childStatus::here_due =>'Your child $name$ is ready to be picked up',
         childStatus::not_here_late =>'Your child $name$ has not arrived to daycare yet'
@@ -27,7 +29,17 @@ class backgroundTask
         childStatus::not_here_late =>'Your child $name$ has not arrived to daycare yet'
     );
 
-    public static function sendEmailsAndTexts(){
+    public function __construct($emailer = null){
+        if(!isset($emailer) || $emailer === null){
+            $emailer = new emailer();
+        }
+
+        $this->emailer = $emailer;
+    }
+
+
+
+    public function sendEmailsAndTexts(){
         $facilityDao = new FacilityDAO();
         $facilityIds = $facilityDao->findAllFacilityIds();
         $childDao = new childDAO();
@@ -36,7 +48,7 @@ class backgroundTask
         }
     }
 
-    private static function sendEmailsToParents($children){
+    private function sendEmailsToParents($children){
         foreach($children as $child){
             $status = $child->getStatus();
             if (array_key_exists($status, self::$emailMessages)) {
@@ -46,40 +58,34 @@ class backgroundTask
         }
     }
 
-    private static function sendEmail($child, $status){
+    private function sendEmail($child, $status){
         $parentDao = new parentDAO();
         $parent = $parentDao->find($child->parent_id);
         $message = str_replace('$name$', $child->child_name, self::$emailMessages[$status]);
         $subject = str_replace('$name$', $child->child_name, self::$emailSubjects[$status]);
 
-
+        /*
         echo 'Email To: ' .$parent->email.', Subject: '.$subject;
         echo "\r\n";
         echo 'Message: '.$message;
-        echo "\r\n\r\n";
+        echo "\r\n\r\n";*/
 
         // Don't actally send until release or until test data is safe.
-        // $emailer = new emailer();
-        // $emailer->sendMail($parent->email, $subject, $message);
+        $this->emailer->sendMail($parent->email, $subject, $message);
     }
 
-    private static function sendSMS($child, $status){
+    private function sendSMS($child, $status){
         $parentDao = new parentDAO();
         $parent = $parentDao->find($child->parent_id);
-        $message = str_replace('$name$', $child->child_name, self::$emailMessages[$status]);
+        $message = str_replace('$name$', $child->child_name, self::$smsMessages[$status]);
 
-
+        /*
         echo 'SMS To: ' .$parent->phone_number.', Carrier: '.$parent->carrier;
         echo "\r\n";
         echo 'Message: '.$message;
-        echo "\r\n\r\n";
+        echo "\r\n\r\n";*/
 
         // Don't actally send until release or until test data is safe.
-        // $emailer = new emailer();
-        // $emailer->sendSMS($parent->phone_number, $parent->carrier, $message);
+        $this->emailer->sendSMS($parent->phone_number, $parent->carrier, $message);
     }
 }
-
-backgroundTask::sendEmailsAndTexts();
-$emailer = new emailer();
-echo $emailer->sendSMS(2023291703, carrier::verizon, 'hello');
