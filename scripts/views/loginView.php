@@ -1,16 +1,16 @@
-<form method="post" action="../scripts/controllers/loginController.php">
-
-    <div class="form-group">
-        <label for="email">Email: </label>
-        <input name="email" id="email" type="email" class="form-control">
-    </div>
-    <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="text" name="password" id="password" type="password" class="form-control" >
-    </div>
-
-    <input type="submit" name="submit" value="Login" class="btn btn-primary" id="submit">
-</form>
+<!--<form method="post" action="../scripts/controllers/loginController.php">-->
+<!---->
+<!--    <div class="form-group">-->
+<!--        <label for="email">Email: </label>-->
+<!--        <input name="email" id="email" class="form-control">-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--        <label for="password">Password:</label>-->
+<!--        <input type="text" name="password" id="password" class="form-control" >-->
+<!--    </div>-->
+<!---->
+<!--    <input type="submit" name="submit" value="Login" class="btn btn-primary" id="submit">-->
+<!--</form>-->
 
 
 <a class="btn btn-default" onclick="autoFillUser(0);">Company - bigcompany1@gmail.com</a><br>
@@ -26,7 +26,7 @@
 
     var emailBox=document.getElementById("email");
     var passwordBox=document.getElementById("password");
-    var submitBox=document.getElementById("submit");
+    var submitBox=document.getElementById("submit_login");
 
     function autoFillUser(index) {
         emailBox.value = emails[index];
