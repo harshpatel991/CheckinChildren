@@ -1,6 +1,7 @@
 <?php
 
 require_once dirname(__FILE__).'/../SeleniumTestBase.php';
+require_once dirname(__FILE__).'/../TestMacros.php';
 
 class CompanyTest extends SeleniumTestBase
 {
@@ -8,16 +9,12 @@ class CompanyTest extends SeleniumTestBase
         parent::setUp();
     }
 
-
-
     public function testViewFacility() {
-        $this->get_element("name=email")->send_keys("bigcompany1@gmail.com");
-        $this->get_element("name=password")->send_keys("password1");
-        $this->get_element("name=submit")->click();
+        testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
 
         $this->get_element("signed-in")->assert_text("Currently signed in as a company");
 
-        $this->get_element("link=View My Facilities")->click();
+        $this->get_element("name=view_facilities")->click();
         $page = $this->driver->get_source();
         $this->assertContains("My Facilities", $page);
         $this->assertContains("2 Facility Rd. Champaign IL 61820", $page);
@@ -32,11 +29,10 @@ class CompanyTest extends SeleniumTestBase
     }
 
     public function testCreateNewFacility() {
-        $this->get_element("name=email")->send_keys("bigcompany1@gmail.com");
-        $this->get_element("name=password")->send_keys("password1");
-        $this->get_element("name=submit")->click();
-        $this->get_element("link=View My Facilities")->click();
-        $this->get_element("link=Create a new facility")->click();
+        testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
+
+        $this->get_element("name=view_facilities")->click();
+        $this->get_element("name=new_facility")->click();
 
         $this->get_element("name=address")->send_keys("1091 Huntington Rd Carol Stream Il 60082");
         $this->get_element("name=phone_number")->send_keys("8472728096");
@@ -49,7 +45,7 @@ class CompanyTest extends SeleniumTestBase
         $this->assertContains("Phone: 8472728096", $page);
 
         //assert that the new facility is shown in the facilities list
-        $this->get_element("link=View all facilities")->click();
+        $this->get_element("name=view_facilities")->click();
         $page = $this->driver->get_source();
 
         $this->assertContains("1091 Huntington Rd Carol Stream Il 60082", $page);
@@ -57,15 +53,13 @@ class CompanyTest extends SeleniumTestBase
     }
 
     public function testViewManagers() {
-        $this->get_element("name=email")->send_keys("bigcompany1@gmail.com");
-        $this->get_element("name=password")->send_keys("password1");
-        $this->get_element("name=submit")->click();
+        testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
 
         $this->get_element("signed-in")->assert_text("Currently signed in as a company");
 
-        $this->get_element("link=View My Managers")->click();
+        $this->get_element("name=view_managers")->click();
         $page = $this->driver->get_source();
-        $this->assertContains("Created Managers", $page);
+        $this->assertContains("Managers", $page);
         $this->assertContains("Bob Dude", $page);
         $this->assertContains("Rick Grimes", $page);
         $this->assertContains("1", $page);
@@ -73,11 +67,10 @@ class CompanyTest extends SeleniumTestBase
     }
 
     public function testCreateNewManager() {
-        $this->get_element("name=email")->send_keys("bigcompany1@gmail.com");
-        $this->get_element("name=password")->send_keys("password1");
-        $this->get_element("name=submit")->click();
-        $this->get_element("link=View My Managers")->click();
-        $this->get_element("link=Create A New Manager")->click();
+        testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
+
+        $this->get_element("name=view_managers")->click();
+        $this->get_element("name=create_manager")->click();
 
         $this->get_element("name=name")->send_keys("Test Man");
         $this->get_element("name=facility_id")->send_keys("1");
@@ -93,10 +86,9 @@ class CompanyTest extends SeleniumTestBase
     }
 
     public function testCreateNewInvalidManager() {
-        $this->get_element("name=email")->send_keys("bigcompany1@gmail.com");
-        $this->get_element("name=password")->send_keys("password1");
-        $this->get_element("name=submit")->click();
-        $this->get_element("link=View My Managers")->click();
+        testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
+
+        $this->get_element("name=view_managers")->click();
         $this->get_element("link=Create A New Manager")->click();
 
         $this->get_element("name=name")->send_keys("Test Man");
@@ -108,7 +100,7 @@ class CompanyTest extends SeleniumTestBase
         $page = $this->driver->get_source();
 
         //assert that the single facility page is shown
-        $this->assertContains("Invalid information", $page);
+        $this->assertContains("Invalid Information", $page);
     }
 
     public function tearDown(){

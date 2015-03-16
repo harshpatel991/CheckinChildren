@@ -1,3 +1,4 @@
 .idea
 tests/httptests/SeleniumTestBase.php
 config.php
+tests/httptests/screenshots/*.png

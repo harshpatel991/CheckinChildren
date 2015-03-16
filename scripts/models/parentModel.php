@@ -7,8 +7,10 @@ class parentModel extends userModel{
     public $address;
     public $phone_number;
     public $carrier;
+    public $contact_pref;
 
     public function __construct( $parent_name="", $password="", $email="", $role="", $phone_number="",$carrier="", $address="", $id=0)
+    public function __construct( $parent_name="", $password="", $email="", $role="", $phone_number="", $address="", $contact_pref="", $id=0)
     {
         $this->id=$id;
         $this->parent_name=$parent_name;
@@ -18,6 +20,7 @@ class parentModel extends userModel{
         $this->address=$address;
         $this->phone_number=$phone_number;
         $this->carrier= $carrier;
+        $this->contact_pref=$contact_pref;
     }
 
     public function isValid() {
