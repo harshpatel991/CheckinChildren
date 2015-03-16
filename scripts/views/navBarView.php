@@ -4,7 +4,7 @@ require_once(dirname(__FILE__).'/../cookieManager.php');
 
 <div class="container-fluid">
 <div class="row">
-  <div class="col-sm-12 col-lg-8 col-lg-offset-2">
+  <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
