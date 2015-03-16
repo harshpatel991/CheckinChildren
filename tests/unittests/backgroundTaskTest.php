@@ -4,7 +4,7 @@ require_once(dirname(__FILE__).'/../../scripts/emailer.php');
 require_once(dirname(__FILE__).'/../../scripts/models/carrierEnum.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
 
-class childDAOTest extends unitTestBase {
+class backgroundTaskTest extends unitTestBase {
     public function testBackgroundEmails(){
 
         $mockMailer = $this->getMock('emailer', array('sendMail','sendSMS'));

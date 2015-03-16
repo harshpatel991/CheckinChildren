@@ -56,10 +56,8 @@ INSERT INTO employee(id, emp_name, facility_id) VALUES (13, 'Saul Goodman', 5);
 INSERT INTO employee(id, emp_name, facility_id) VALUES (14, 'Sterling Archer', 6);
 
 #Insert parents
-INSERT INTO parent(id, parent_name, address, phone_number, carrier) VALUES (8, 'Big Daddy', '123 Fake Ave Champaign IL 61820', '1234563456', 'Verizon Wireless');
-INSERT INTO parent(id, parent_name, address, phone_number, carrier) VALUES (19, 'Momma Jamma', '456 Real Ave Urbana IL 61820', '6786546789', 'Boost Mobile');
-INSERT INTO parent(id, parent_name, address, phone_number, contact_pref) VALUES (8, 'Big Daddy', '123 Fake Ave Champaign IL 61820', '1234563456', 'text');
-INSERT INTO parent(id, parent_name, address, phone_number, contact_pref) VALUES (19, 'Momma Jamma', '456 Real Ave Urbana IL 61820', '6786546789', 'email');
+INSERT INTO parent(id, parent_name, address, phone_number, contact_pref, carrier) VALUES (8, 'Big Daddy', '123 Fake Ave Champaign IL 61820', '1234563456', 'text', 'Verizon Wireless');
+INSERT INTO parent(id, parent_name, address, phone_number, contact_pref, carrier) VALUES (19, 'Momma Jamma', '456 Real Ave Urbana IL 61820', '6786546789', 'email', 'Boost Mobile');
 
 #Insert children
 INSERT INTO child(child_id, parent_id, child_name, allergies, trusted_parties, facility_id) VALUES (2, 8, 'Mark Zuckerberg', 'Peanut Butter', 'Chmiel', 1);

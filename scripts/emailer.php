@@ -7,6 +7,8 @@
  */
 require_once(dirname(__FILE__).'/../lib/PHPMailer-master/PHPMailerAutoload.php');
 require_once(dirname(__FILE__).'/models/carrierEnum.php');
+require_once(dirname(__FILE__).'/../config.php');
+
 
 
 class emailer
