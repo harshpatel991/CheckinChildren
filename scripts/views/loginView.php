@@ -2,11 +2,11 @@
 
     <div class="form-group">
         <label for="email">Email: </label>
-        <input name="email" id="email" type="email" class="form-control">
+        <input name="email" id="email" class="form-control">
     </div>
     <div class="form-group">
         <label for="password">Password:</label>
-        <input type="text" name="password" id="password" type="password" class="form-control" >
+        <input name="password" id="password" class="form-control" >
     </div>
 
     <input type="submit" name="submit" value="Login" class="btn btn-primary" id="submit">
