@@ -37,7 +37,14 @@ require_once(dirname(__FILE__).'/../cookieManager.php');
               </li>
 
             <?php } else { ?>
-              <li><button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#myModal" name="login">Login</button></li>
+              <form class="navbar-form navbar-left" method="post" action="../scripts/controllers/loginController.php">
+                <div class="form-group">
+                  <label for="email">Email: </label> <input id="email" name="email" class="form-control">
+                  <label for="password">Password:</label> <input type="text" name="password" id="password" class="form-control" >
+                </div>
+                <button type="submit" id="submit_login" class="btn btn-default">Submit</button>
+              </form>
+              <li><button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#myModal">Quick Login</button></li>
               <li><button onclick="location.href='createCompany.php'" class="btn btn-default navbar-btn" name="signup">Sign Up</button></li>
             <?php } ?>
 
