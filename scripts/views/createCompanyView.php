@@ -18,12 +18,12 @@
 
   <div class="form-group">
     <label for="email">Company Email</label>
-    <input type="text" name="email" id="email" class="form-control">
+    <input type="text" name="create_email" id="create_email" class="form-control">
   </div>
 
   <div class="form-group">
     <label for="password">Company Password</label>
-    <input type="text" name="password" id="password" class="form-control">
+    <input type="text" name="create_password" id="create_password" class="form-control">
   </div>
 
   <input type="hidden" name="role" value="company">

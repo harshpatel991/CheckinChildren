@@ -19,8 +19,8 @@ class testMacros
         $driver->get_element("name=company_name")->send_keys($name);
         $driver->get_element("name=address")->send_keys($address);
         $driver->get_element("name=phone_number")->send_keys($phone);
-        $driver->get_element("name=email")->send_keys($email);
-        $driver->get_element("name=password")->send_keys($password);
+        $driver->get_element("name=create_email")->send_keys($email);
+        $driver->get_element("name=create_password")->send_keys($password);
         $driver->get_element("name=submit")->click();
     }
 }
