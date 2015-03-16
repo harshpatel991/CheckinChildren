@@ -6,11 +6,10 @@ class testMacros
 {
     public static function login(WebDriver_Driver $driver, $email, $password)
     {
-        $driver->get_element("name=login")->click();
         //sleep(1);
         $driver->get_element("name=email")->send_keys($email);
         $driver->get_element("name=password")->send_keys($password);
-        $driver->get_element("name=submit")->click();
+        $driver->get_element("id=submit_login")->click();
 
     }
 
