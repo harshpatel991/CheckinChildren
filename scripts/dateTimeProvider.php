@@ -52,7 +52,7 @@ class dateTimeProvider
         $hrs = $time['hours'];
         $ap = 'am';
         if ($hrs > 12){
-            $hrs -= 11;
+            $hrs -= 12;
             $ap = 'pm';
         }
 

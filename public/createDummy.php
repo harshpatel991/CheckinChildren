@@ -5,7 +5,7 @@
 
 //include '../scripts/navbar.php';
 //include '../scripts/login.php';
-//include '../scripts/footer.php';
+//include '../scripts/footerView.php';
 
 //This way we can have reuseable components on our page
 

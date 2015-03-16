@@ -14,9 +14,15 @@ $children=$childDAO->findChildrenWithParent($_COOKIE[cookieManager::$userId]);
 $childList="";
 
 foreach ($children as $child) {
-    $childList = $childList . '<a href="displayChild.php?child_id='. $child->child_id . '">' . ($child->child_name). "</a><br>";
+    $childList = $childList . '<li class="list-group-item"><a href="displayChild.php?child_id='. $child->child_id . '">' . ($child->child_name). "</a></li>";
 }
+?>
 
-echo $childList;
+<h1>My Children</h1>
+<ul class="list-group">
+    <?php echo $childList; ?>
+</ul>
 
-echo '<br><a href="index.php">Back to Home</a>';
+<br>
+
+<a class="btn btn-primary" id="home" href="index.php"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Home</a>

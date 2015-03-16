@@ -46,14 +46,16 @@ function displayAllFacilities($errorMessage = '') {
     }
     ?>
 
-    <p style="color:red"><?php $errorMessage; ?></p> <br>
-
     <h1 id="title">My Facilities</h1>
 
         <?php echo $facilityList; ?>
 
-    <h3><a href="createFacility.php">Create a new facility</a></h3>
-    <h3><a  id="home" href="index.php">Back to home</a></h3>
+    <br>
+    <a class="btn btn-success" href="createFacility.php" name="new_facility"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Facility</a>
+    <hr>
+    <a id="home" name="home" href="index.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Home</a>
+
+
 
 <?php
 }

@@ -18,12 +18,28 @@ class parentDAO {
 
         $stmt->execute();
 
-        $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'parentModel'); //MAY NEED FETCH_PROPS_LATE FLAG. see below
+        $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'parentModel');
         $parent=$stmt->fetch();
         $connection=null;
 
         return $parent;
     }
+
+    public function findAll(){
+        $connection = DbConnectionFactory::create();
+        $query = "SELECT * FROM parent NATURAL JOIN users";
+
+        $stmt=$connection->prepare($query);
+
+        $stmt->execute();
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'parentModel');
+        $parents=$stmt->fetchAll();
+        $connection=null;
+
+        return $parents;
+    }
+
 
     public function create_parent($parent){
         $newParent=new userModel($parent->email, $parent->password, $parent->role);
@@ -32,13 +48,16 @@ class parentDAO {
         $id=$userDAO->insert($newParent);
 
         $this->insert($parent->parent_name, $parent->address, $parent->phone_number,$parent->carrier, $id);
+        $this->insert($parent->parent_name, $parent->address, $parent->phone_number, $id, $parent->contact_pref);
 
         return $id;
     }
 
     private function insert( $parent_name, $address, $phone_number,$carrier, $id){
+    private function insert( $parent_name, $address, $phone_number, $id, $contact_pref){
         $connection = DbConnectionFactory::create();
 
+        $query = "INSERT INTO parent (parent_name, address, phone_number, id, contact_pref) VALUES ( :parent_name, :address, :phone_number, :id, :contact_pref)";
         $query = "INSERT INTO parent (parent_name, address, phone_number,carrier, id) VALUES ( :parent_name, :address, :phone_number, :carrier, :id)";
         $stmt=$connection->prepare($query);
 
@@ -47,6 +66,7 @@ class parentDAO {
         $stmt->bindParam(":id", $id);
         $stmt->bindParam(":phone_number", $phone_number);
         $stmt->bindParam(":carrier", $carrier);
+        $stmt->bindParam(":contact_pref", $contact_pref);
 
 
         $stmt->execute();
@@ -64,6 +84,7 @@ class parentDAO {
         $this->updateField($parent->id, 'parent_name', $parent->parent_name);
         $this->updateField($parent->id, 'address', $parent->address);
         $this->updateField($parent->id, 'phone_number', $parent->phone_number);
+        $this->updateField($parent->id, 'contact_pref', $parent->contact_pref);
         $this->updateField($parent->id, 'carrier', $parent->carrier);
 
     }

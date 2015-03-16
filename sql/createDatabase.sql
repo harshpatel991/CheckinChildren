@@ -31,7 +31,8 @@ CREATE TABLE parent (
   parent_name varchar(30),
   address varchar(50),
   phone_number varchar(10),
-  carrier varchar(20)
+  carrier varchar(20),
+  contact_pref varchar(30)
 );
 
 CREATE TABLE child (
@@ -40,6 +41,7 @@ CREATE TABLE child (
   facility_id INT,
   child_name varchar(30),
   allergies varchar(50),
+  trusted_parties varchar(100),
   last_checkin DATETIME DEFAULT 0,
   last_checkout DATETIME DEFAULT 0,
   expect_checkin VARCHAR(50) DEFAULT '-1,-1,-1,-1,-1,-1,-1',

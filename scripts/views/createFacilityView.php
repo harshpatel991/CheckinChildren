@@ -1,29 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Create Day Care Facility</title>
-</head>
-<body>
-<p style="color:red">
-<?php
-    if(isset($_GET['error'])) {
-        if($_GET['error'] == 1) {
-            echo "Invalid Information";
-        }
-    }
-?>
-</p>
+<h1>Create Facility</h1>
 <form method="POST" action="../scripts/controllers/form_handlers/createFacilityFormHandler.php">
-    Facility address:
-    <input type="text" name="address"> <br>
-    Phone number:
-    <input type="text" name="phone_number"> <br>
 
-    <input type="submit" name="submit" value="Submit">
+    <div class="form-group">
+        <label for="address">Facility Address</label>
+        <input type="text" name="address" id="address" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="phone_number">Phone Number</label>
+        <input type="text" name="phone_number" id="phone_number" class="form-control">
+    </div>
+
+    <input type="submit" name="submit" value="Submit" class="btn btn-primary">
 </form>
 
-</body>
-</html>
 
 
