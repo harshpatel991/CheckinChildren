@@ -48,7 +48,7 @@ class parentDAOTest extends unitTestBase
     public function testUpdate() {
         $parentDAO = new parentDAO();
 
-        $parentUpdatedValues = new parentModel("New Name", "garbage", "new@email.com", "parent", "1231231234", "123 New Addr New York 61820", "email", 8);
+        $parentUpdatedValues = new parentModel("New Name", "garbage", "new@email.com", "parent", "1231231234", "123 New Addr New York 61820", "email", "Verizon", 8);
         $parentDAO->update($parentUpdatedValues);
 
         $parentUpdated = $parentDAO->find(8);
@@ -59,6 +59,7 @@ class parentDAOTest extends unitTestBase
         $this->assertEquals("1231231234", $parentUpdated->phone_number);
         $this->assertEquals("123 New Addr New York 61820", $parentUpdated->address);
         $this->assertEquals("email", $parentUpdated->contact_pref);
+        $this->assertEquals("Verizon", $parentUpdated->carrier);
 
         $this->assertNotEquals("garbage", $parentUpdated->password); //password should not change
     }

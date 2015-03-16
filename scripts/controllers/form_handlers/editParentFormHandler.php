@@ -6,7 +6,6 @@ require_once(dirname(__FILE__) . '/../../models/dao/parentDAO.php');
 //Read in POST data from form
 $parent_id = $_COOKIE[cookieManager::$userId];
 
-$parent = new parentModel($_POST["parent_name"],"", $_POST["email"], "parent", $_POST["phone_number"],$_POST['carrier'], $_POST["address"], $parent_id);
 //Store the contact preferences in a string
 $contact_string="";
 $texts=$_POST['texting'];
@@ -21,7 +20,7 @@ if (!empty($emails)){
     $contact_string.=$emails;
 }
 
-$parent = new parentModel($_POST["parent_name"],"", $_POST["email"], "parent", $_POST["phone_number"], $_POST["address"], $contact_string, $parent_id);
+$parent = new parentModel($_POST["parent_name"],"", $_POST["email"], "parent", $_POST["phone_number"], $_POST["address"], $contact_string, $_POST['carrier'], $parent_id);
 
 if ($parent->isUpdateValid()) {
     $parentDAO = new ParentDAO();

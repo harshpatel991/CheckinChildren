@@ -45,7 +45,7 @@ class childDAOTest extends unitTestBase {
     {
         $childDAO = new childDAO();
 
-        $childUpdates = new childModel(0, "New Name", "New Allergies", 0, 2); //the updates to make, id and facility id are not updated
+        $childUpdates = new childModel(0, "New Name", "New Allergies", "", 0, 2); //the updates to make, id and facility id are not updated
         $childUpdates->expect_checkin=array(20,20,20,20,20,20,20);
         $childUpdates->expect_checkout=array(200,200,200,200,200,200,200);
         $childUpdates->last_checkin="2015-03-04 12:15:48";
