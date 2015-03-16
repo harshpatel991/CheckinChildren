@@ -15,6 +15,8 @@ require_once dirname(__FILE__).'/../../config.php';
 class SeleniumTestBase extends PHPUnit_Framework_TestCase {
   protected $driver;
   protected $dbConn;
+  protected $retries = 0;
+
   public static $baseUrl = "";
   public static $isWindows = false;
 
@@ -50,6 +52,33 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
     } else {
       throw new Exception("Tried to call nonexistent method $name with arguments:\n" . print_r($arguments, true));
     }
+  }
+
+  /*
+   * Override PHPUnit base functionality to implement retries and screenshots.
+   */
+  public function runBare(){
+    for($i = 0; $i < $this->retries + 1; $i++){
+      try {
+        parent::runBare();
+        return;
+      }
+      catch (Exception $e) {
+        // Run again
+      }
+    }
+
+    if (isset($e)){
+      $this->logError($e);
+      throw $e;
+    }
+  }
+
+  private function logError(Exception $e){
+    $time = time();
+    $imgData = $this->driver->get_screenshot();
+    file_put_contents('./logs/screenshot-'.$time.'.png', $imgData);
+    echo $time.$e->getMessage();
   }
 
   public function tearDown() {
