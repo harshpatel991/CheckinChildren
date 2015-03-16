@@ -114,7 +114,6 @@ class WebDriver_Driver {
       return $this->tryExecute($http_type, $relative_url, $payload);
     }
     catch (Exception $e){
-      echo "Retrying..." . $relative_url . " on ". json_encode($payload) . "\r\n";
       sleep($this->throttle_factor);
       return $this->tryExecute($http_type, $relative_url, $payload);
     }

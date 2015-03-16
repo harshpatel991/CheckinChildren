@@ -15,7 +15,7 @@ require_once dirname(__FILE__).'/../../config.php';
 class SeleniumTestBase extends PHPUnit_Framework_TestCase {
   protected $driver;
   protected $dbConn;
-  protected $retries = 0;
+  protected $retries = 1;
 
   public static $baseUrl = "";
   public static $isWindows = false;
@@ -58,7 +58,7 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
    * Override PHPUnit base functionality to implement retries and screenshots.
    */
   public function runBare(){
-    for($i = 0; $i < $this->retries + 1; $i++){
+    while($this->retries > -1){
       try {
         parent::runBare();
         return;
@@ -66,30 +66,34 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
       catch (Exception $e) {
         // Run again
       }
+      $this->retries--;
     }
 
     if (isset($e)){
-      $this->logError($e);
       throw $e;
     }
   }
 
-  private function logError(Exception $e){
+  private function logScreenshot(){
     $time = time();
+    $imgName = 'screenshots/screenshot-'.$time.'.png';
+    echo "\r\nScreenshot of failure: ".$imgName;
     $imgData = $this->driver->get_screenshot();
-    file_put_contents('./logs/screenshot-'.$time.'.png', $imgData);
-    echo $time.$e->getMessage();
+    $imgFile = fopen('../'.$imgName, 'w');
+    fwrite($imgFile, $imgData);
+    fclose($imgFile);
   }
 
   public function tearDown() {
-    if ($this->driver) {
+    if ($this->driver && $this->retries < 1) {
       if ($this->hasFailed()) {
+        $this->logScreenshot();
         $this->driver->set_sauce_context("passed", false);
       } else {
         $this->driver->set_sauce_context("passed", true);
       }
-      $this->driver->quit();
     }
+    $this->driver->quit();
     parent::tearDown();
   }
 }
