@@ -26,7 +26,13 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
       shell_exec(sprintf('%s > /dev/null 2>&1 &', 'java -jar ../WebDriver/selenium-server-standalone-2.45.0.jar'));
     }
 
+    $this->dbConn = DbConnectionFactory::create();
+    $sql = file_get_contents(dirname(__FILE__).'/../../sql/destroyTables.sql');
+    $sql .= file_get_contents(dirname(__FILE__).'/../../sql/createDatabase.sql');
+    $sql .= file_get_contents(dirname(__FILE__).'/../../sql/generateTestData.sql');
+    $this->dbConn->exec($sql);
     sleep(1);
+
     // If you want to set preferences in your Firefox profile
     $fp = new WebDriver_FirefoxProfile();
     $fp->set_preference("capability.policy.default.HTMLDocument.compatMode", "allAccess");
@@ -34,11 +40,7 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
     $this->driver->set_implicit_wait(5000);
     $this->driver->set_throttle_factor(1);
     $this->driver->load(self::$baseUrl . 'index.php');
-    $this->dbConn = DbConnectionFactory::create(true);
-    $sql = file_get_contents(dirname(__FILE__).'/../../sql/destroyTables.sql');
-    $sql .= file_get_contents(dirname(__FILE__).'/../../sql/createDatabase.sql');
-    $sql .= file_get_contents(dirname(__FILE__).'/../../sql/generateTestData.sql');
-    $this->dbConn->exec($sql);
+
   }
 
   // Forward calls to main driver 
