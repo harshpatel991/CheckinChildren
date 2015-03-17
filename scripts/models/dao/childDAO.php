@@ -95,6 +95,11 @@ class childDAO {
         $children = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'childModel');
         $connection=null;
 
+        foreach ($children as $child){
+            $child->expect_checkin = self::timesCsvToArray($child->expect_checkin);
+            $child->expect_checkout = self::timesCsvToArray($child->expect_checkout);
+        }
+
         return $children;
     }
 

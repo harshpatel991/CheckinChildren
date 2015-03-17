@@ -14,6 +14,7 @@ class childDAOTest extends unitTestBase {
         $this->assertEquals(8, $child->parent_id);
         $this->assertEquals("Mark Zuckerberg", $child->child_name);
         $this->assertEquals("Peanut Butter", $child->allergies);
+        $this->assertEquals("Chmiel", $child->trusted_parties);
         $this->assertEquals(1, $child->facility_id);
     }
 
@@ -21,7 +22,7 @@ class childDAOTest extends unitTestBase {
     {
         $childDAO = new ChildDAO();
 
-        $childTest = new childModel(8, "Red Ranger", "None", 1);
+        $childTest = new childModel(8, "Red Ranger", "None", "Tom", 1);
         $child_id = $childDAO->insert($childTest);
 
         $childFound=$childDAO->find($child_id);
@@ -30,6 +31,7 @@ class childDAOTest extends unitTestBase {
         $this->assertEquals(8, $childFound->parent_id);
         $this->assertEquals("Red Ranger", $childFound->child_name);
         $this->assertEquals("None", $childFound->allergies);
+        $this->assertEquals("Tom", $childFound->trusted_parties);
     }
 
     public function testFindBadID()
@@ -45,7 +47,7 @@ class childDAOTest extends unitTestBase {
     {
         $childDAO = new childDAO();
 
-        $childUpdates = new childModel(0, "New Name", "New Allergies", "", 0, 2); //the updates to make, id and facility id are not updated
+        $childUpdates = new childModel(0, "New Name", "New Allergies", "Tom", 0, 2); //the updates to make, id and facility id are not updated
         $childUpdates->expect_checkin=array(20,20,20,20,20,20,20);
         $childUpdates->expect_checkout=array(200,200,200,200,200,200,200);
         $childUpdates->last_checkin="2015-03-04 12:15:48";
@@ -58,6 +60,7 @@ class childDAOTest extends unitTestBase {
         $this->assertEquals(8, $childUpdated->parent_id); //parent does is not updated
         $this->assertEquals("New Name", $childUpdated->child_name);
         $this->assertEquals("New Allergies", $childUpdated->allergies);
+        $this->assertEquals("Tom", $childUpdated->trusted_parties);
         $this->assertEquals(1, $childUpdated->facility_id); //facility id is not updated
         $arr=[];
         $arr['u'] = $arr[0] = 20;

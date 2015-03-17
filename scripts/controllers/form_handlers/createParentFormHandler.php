@@ -20,17 +20,16 @@ $parent=new parentModel($_POST['name'], $hashedPassword, $_POST['email'], "paren
 
 //Store the contact preferences in a string
 $contact_string="";
-$texts=$_POST['texting'];
-$emails=$_POST['emailing'];
-if (!empty($texts)){
-    $contact_string.=$texts;
-    if (!empty($emails)){
+if (isset($_POST['texting'])){
+    $contact_string.=$_POST['texting'];
+    if (isset($_POST['emailing'])){
         $contact_string.=',';
     }
 }
-if (!empty($emails)){
-    $contact_string.=$emails;
+if (isset($_POST['emailing'])){
+    $contact_string.=$_POST['emailing'];
 }
+
 $parent=new parentModel($_POST['name'], $hashedPassword, $_POST['email'], "parent", $_POST['phone'], $_POST['addr'], $contact_string);
 
 

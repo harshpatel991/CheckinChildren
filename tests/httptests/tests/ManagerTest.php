@@ -22,7 +22,6 @@ class ManagerTest extends SeleniumTestBase {
 
         $page = $this->driver->get_source();
         $this->assertContains("Matt Wallick", $page);
-        $this->assertContains("Bob Dude", $page);
     }
 
     public function testMakeEmployee(){
@@ -46,6 +45,34 @@ class ManagerTest extends SeleniumTestBase {
         testMacros::login($this->driver, "testcase@gmail.com", "100pass");
 
         $this->get_element("id=signed-in")->assert_text("Currently signed in as a employee");
+
+    }
+
+    public function testPromoteEmployee(){
+        testMacros::login($this->driver, "manager6@gmail.com", "password6");
+
+        $this->get_element("name=view_employees")->click();
+        $this->get_element("id=2")->click();
+
+        $page=$this->driver->get_source();
+        $this->assertContains('<td id="emp_status">employee</td>', $page);
+
+        $this->get_element("id=promote_employee")->click();
+        $page=$this->driver->get_source();
+        $this->assertContains('<td id="emp_status">manager</td>', $page);
+    }
+
+    public function testViewEmployeeInfo(){
+        testMacros::login($this->driver, "manager6@gmail.com", "password6");
+
+        $this->get_element("name=view_employees")->click();
+        $this->get_element("id=2")->click();
+
+        $page=$this->driver->get_source();
+
+        $this->assertContains('<td id="emp_status">employee</td>', $page);
+        $this->assertContains('<td id="emp_name">Matt Wallick</td>', $page);
+        $this->assertContains('<td id="emp_email">baba_ganush2@gmail.com</td>', $page);
 
     }
 

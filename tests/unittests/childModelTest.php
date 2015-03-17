@@ -5,12 +5,12 @@ require_once(dirname(__FILE__).'/UnitTestBase.php');
 
 class childModelTest extends unitTestBase {
     public function testConstructor(){
-        $child = new childModel(18, "Blue Ranger", "Milk", "Trusty", 1, 99);
+        $child = new childModel(18, "Blue Ranger", "Milk", "Jon", 1, 99);
 
         $this->assertEquals(18, $child->parent_id);
         $this->assertEquals("Blue Ranger", $child->child_name);
         $this->assertEquals("Milk", $child->allergies);
-        $this->assertEquals("Trusty", $child->trusted_parties);
+        $this->assertEquals("Jon", $child->trusted_parties);
         $this->assertEquals(1, $child->facility_id);
         $this->assertEquals(99, $child->child_id);
     }
