@@ -14,7 +14,9 @@ $employees=$employeedao->getFacilityEmployees($manager->facility_id);
 $emplist="";
 
 foreach ($employees as $employee) {
-    $emplist=$emplist. '<li class="list-group-item">'.($employee->emp_name).'</li>';
+    if (!($_COOKIE[cookieManager::$userId] == $employee->id)) {
+        $emplist = $emplist . '<a id='. $employee->id .' class="list-group-item" href="displayEmployee.php?employee_id=' . $employee->id . '">' . ($employee->emp_name) . '</a>';
+    }
 }
 ?>
 
