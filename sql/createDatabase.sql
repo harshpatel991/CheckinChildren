@@ -45,5 +45,6 @@ CREATE TABLE child (
   last_checkin DATETIME DEFAULT 0,
   last_checkout DATETIME DEFAULT 0,
   expect_checkin VARCHAR(50) DEFAULT '-1,-1,-1,-1,-1,-1,-1',
-  expect_checkout VARCHAR(50) DEFAULT '-1,-1,-1,-1,-1,-1,-1'
+  expect_checkout VARCHAR(50) DEFAULT '-1,-1,-1,-1,-1,-1,-1',
+  last_message_status int default -1
 );

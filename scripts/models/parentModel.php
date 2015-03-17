@@ -8,10 +8,9 @@ class parentModel extends userModel{
     public $phone_number;
     public $carrier;
     public $contact_pref;
-    public $last_message_status;
 
     public function __construct( $parent_name="", $password="", $email="", $role="", $phone_number="",
-                                 $address="", $contact_pref="", $carrier="", $last_message_status=0, $id=0)
+                                 $address="", $contact_pref="", $carrier="", $id=0)
     {
         $this->id=$id;
         $this->parent_name=$parent_name;

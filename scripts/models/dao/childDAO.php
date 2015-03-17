@@ -106,6 +106,7 @@ class childDAO {
         $this->updateField($child->child_id, 'trusted_parties', $child->trusted_parties);
         $this->updateField($child->child_id, 'expect_checkin', self::timesArrayToCsv($child->expect_checkin));
         $this->updateField($child->child_id, 'expect_checkout', self::timesArrayToCsv($child->expect_checkout));
+        $this->updateField($child->child_id, 'last_message_status', $child->last_message_status);
     }
 
     public function updateField($child_id, $field, $value){

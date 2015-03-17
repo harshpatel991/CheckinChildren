@@ -34,34 +34,32 @@ class messageAdapter
             //Suppress messages by default
             $this->suppress = true;
         }
-
-        $this->mailer = new PHPMailer();
-        $this->mailer->isSMTP();
-        $this->mailer->Host = 'smtp.gmail.com';
-        $this->mailer->SMTPAuth = true;
-        $this->mailer->Username = 'checkinchildren@gmail.com';
-        $this->mailer->Password = 'CS428CheckinChildren';
-        $this->mailer->SMTPSecure = 'ssl';
-        $this->mailer->Port = 465;
-        $this->mailer->From = 'checkinchildren@gmail.com';
-        $this->mailer->FromName = 'CheckinChildren';
     }
 
     public function sendMail($to, $subj, $msg){
-        $this->mailer->addAddress($to);
-        $this->mailer->isHTML(true);
-        $this->mailer->Subject = $subj;
-        $this->mailer->Body = $msg;
         if (!$this->suppress){
-            echo 'sent';
-        }
-        else{
-            echo 'suppressed';
+            $mailer = new PHPMailer();
+            $mailer->isSMTP();
+            $mailer->Host = 'smtp.gmail.com';
+            $mailer->SMTPAuth = true;
+            $mailer->Username = 'checkinchildren@gmail.com';
+            $mailer->Password = 'CS428CheckinChildren';
+            $mailer->SMTPSecure = 'ssl';
+            $mailer->Port = 465;
+            $mailer->From = 'checkinchildren@gmail.com';
+            $mailer->FromName = 'CheckinChildren';
+            $mailer->addAddress($to);
+            $mailer->isHTML(true);
+            $mailer->Subject = $subj;
+            $mailer->Body = $msg;
+
+            if (!$mailer->send()){
+                return 'Mailer Error: '.$mailer->ErrorInfo;
+            }
+
+            return 'Success';
         }
 
-        /*if (!$this->mailer->send()){
-            return 'Mailer Error: '.$this->mailer->ErrorInfo;
-        }*/
         return 'Skipping sending for now, to avoid spam.';
     }
 

@@ -23,7 +23,7 @@ class backgroundTaskTest extends unitTestBase {
         parent::setUp();
     }
 
-    public function testBackgroundEmails(){
+    public function testBackgroundEmailsDefault(){
         $expectedEmailTos = array(
             'parent19@gmail.com',
             'parent19@gmail.com',
@@ -95,6 +95,58 @@ class backgroundTaskTest extends unitTestBase {
 
 
         $task = new backgroundTask($this->mockMessageFactory);
+        $task->sendEmailsAndTexts();
+        //$task->sendEmailsAndTexts();
+    }
+
+    public function testBackgroundMessagesCustom(){
+        $sql = file_get_contents(dirname(__FILE__).'/../../sql/generateMessageTestData.sql');
+        $dbConn = DbConnectionFactory::create();
+        $dbConn->exec($sql);
+
+        $expectedEmailTos = array(
+            'mwallic2@illinois.edu',
+            'mcwallick@gmail.com'
+        );
+
+        $expectedEmailSubjs = array(
+            'Urgent Message from CheckinChildren',
+            'Message from CheckinChildren'
+        );
+
+        $expectedEmailMsgs = array(
+            'Your child Late Wallick has not arrived to daycare yet',
+            'Your child Late Kennedy is ready to be picked up'
+        );
+
+        $expectedSmsTos = array(
+            '6163895565'
+        );
+
+        $expectedSmsCarriers = array(
+            carrier::sprint
+        );
+
+        $expectedSmsMsgs = array(
+            'Your child Late Wallick has not arrived to daycare yet'
+        );
+
+        $this->mockMailer->expects($this->exactly(2))
+            ->method('sendMail')
+            ->withConsecutive(
+                array($this->equalTo($expectedEmailTos[0]), $this->equalTo($expectedEmailSubjs[0]), $this->equalTo($expectedEmailMsgs[0])),
+                array($this->equalTo($expectedEmailTos[1]), $this->equalTo($expectedEmailSubjs[1]), $this->equalTo($expectedEmailMsgs[1]))
+            );
+
+        $this->mockMailer->expects($this->exactly(1))
+            ->method('sendSMS')
+            ->withConsecutive(
+                array($this->equalTo($expectedSmsTos[0]), $this->equalTo($expectedSmsCarriers[0]), $this->equalTo($expectedSmsMsgs[0]))
+            );
+
+
+        $task = new backgroundTask($this->mockMessageFactory);
+        $task->sendEmailsAndTexts();
         $task->sendEmailsAndTexts();
     }
 }
