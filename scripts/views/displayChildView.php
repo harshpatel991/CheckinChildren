@@ -3,6 +3,8 @@
 require_once(dirname(__FILE__).'/../cookieManager.php');
 require_once(dirname(__FILE__).'/../models/dao/childDAO.php');
 require_once(dirname(__FILE__).'/../models/childModel.php');
+require_once(dirname(__FILE__).'/../dateTimeProvider.php');
+require_once(dirname(__FILE__).'/../models/childStatusEnum.php');
 
 $childDAO = new childDAO();
 
@@ -27,6 +29,10 @@ if(isset($_GET['child_id'])) {
         <tr>
             <th>Trusted Parties</th>
             <td><?php echo $child->trusted_parties; ?></td>
+        </tr>
+        <tr>
+            <th>Child Status</th>
+            <td><?php echo '<img src="../images/childStatus/'.$child->getStatus().'.gif"> '.childStatus::getInfo($child->getStatus()); ?></td>
         </tr>
     </table>
 

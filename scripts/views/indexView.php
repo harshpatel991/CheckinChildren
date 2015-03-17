@@ -6,6 +6,33 @@
 <!--<div id="signed-in"><h3>Currently signed in as a --><?php //echo $_COOKIE[cookieManager::$userRole]?><!--</h3></div>-->
 
 <?php
+if ($_COOKIE[cookieManager::$userRole] == "parent") {
+    require_once(dirname(__FILE__) . '/../cookieManager.php');
+    require_once(dirname(__FILE__) . '/../models/dao/childDAO.php');
+    require_once(dirname(__FILE__) . '/../models/dao/parentDAO.php');
+    require_once(dirname(__FILE__) . '/../models/childModel.php');
+    require_once(dirname(__FILE__).'/../dateTimeProvider.php');
+
+    $childDAO = new childDAO();
+    $parentDAO = new parentDAO();
+
+    $children = $childDAO->findChildrenWithParent($_COOKIE[cookieManager::$userId]);
+
+    $childList = "";
+
+    foreach ($children as $child) {
+        $childList = $childList . '<li class="list-group-item"><img src="../images/childStatus/'.$child->getStatus().'.gif"> <a href="displayChild.php?child_id=' . $child->child_id . '">' . ($child->child_name) . "</a></li>";
+    }
+    ?>
+    <ul class="list-group">
+        <?php echo $childList; ?>
+    </ul>
+<?php
+}
+?>
+
+
+<?php
 //    if ($_COOKIE[cookieManager::$userRole]=='manager') {
 //        ?>
 <!--        <a id="display_employee" href="displayEmployees.php">View My Employees</a>-->
