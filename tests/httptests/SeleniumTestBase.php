@@ -41,7 +41,7 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
     $this->driver = WebDriver_Driver::InitAtLocal("4444", "firefox");
     $this->driver->set_implicit_wait(5000);
     $this->driver->set_throttle_factor(1);
-    $this->driver->load(self::$baseUrl . 'index.php');
+    $this->load(self::$baseUrl . 'index.php');
 
   }
 
@@ -93,7 +93,7 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
         $this->driver->set_sauce_context("passed", true);
       }
     }
-    $this->driver->quit();
+    $this->quit();
     parent::tearDown();
   }
 }
