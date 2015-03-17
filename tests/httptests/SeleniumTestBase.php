@@ -98,5 +98,5 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
   }
 }
 
-SeleniumTestBase::$baseUrl = $config['sitepath'];
-SeleniumTestBase::$isWindows = $config['isWindows'];
+SeleniumTestBase::$baseUrl = Config::$config['sitepath'];
+SeleniumTestBase::$isWindows = Config::$config['isWindows'];

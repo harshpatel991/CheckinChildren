@@ -1,14 +1,29 @@
 <?php
 require_once(dirname(__FILE__).'/../../scripts/backgroundTask.php');
-require_once(dirname(__FILE__).'/../../scripts/emailer.php');
+require_once(dirname(__FILE__).'/../../scripts/messageAdapter.php');
 require_once(dirname(__FILE__).'/../../scripts/models/carrierEnum.php');
+require_once(dirname(__FILE__).'/../../scripts/controllers/notificationMessageController.php');
+require_once(dirname(__FILE__).'/../../scripts/controllers/notificationMessageFactory.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
 
 class backgroundTaskTest extends unitTestBase {
+    private $mockMailer;
+    private $mockMessageFactory;
+
+    public function setUp(){
+        $this->mockMailer = $this->getMock('emailer', array('sendMail','sendSMS'));
+        $this->mockMessageFactory = $this->getMock('notificationMessageFactory', array('create'));
+
+        $this->mockMessageFactory->expects($this->any())->method('create')->will($this->returnCallback(
+            function($child, $messageStatus){
+                return new notificationMessageController($child, $messageStatus, $this->mockMailer);
+            }
+        ));
+
+        parent::setUp();
+    }
+
     public function testBackgroundEmails(){
-
-        $mockMailer = $this->getMock('emailer', array('sendMail','sendSMS'));
-
         $expectedEmailTos = array(
             'parent19@gmail.com',
             'parent19@gmail.com',
@@ -57,7 +72,7 @@ class backgroundTaskTest extends unitTestBase {
             'Your child Child Missing1 has not arrived to daycare yet'
         );
 
-        $mockMailer->expects($this->exactly(5))
+        $this->mockMailer->expects($this->exactly(5))
             ->method('sendMail')
             ->withConsecutive(
                 array($this->equalTo($expectedEmailTos[0]), $this->equalTo($expectedEmailSubjs[0]), $this->equalTo($expectedEmailMsgs[0])),
@@ -67,7 +82,7 @@ class backgroundTaskTest extends unitTestBase {
                 array($this->equalTo($expectedEmailTos[4]), $this->equalTo($expectedEmailSubjs[4]), $this->equalTo($expectedEmailMsgs[4]))
             );
 
-        $mockMailer->expects($this->exactly(5))
+        $this->mockMailer->expects($this->exactly(5))
             ->method('sendSMS')
             ->withConsecutive(
                 array($this->equalTo($expectedSmsTos[0]), $this->equalTo($expectedSmsCarriers[0]), $this->equalTo($expectedSmsMsgs[0])),
@@ -79,7 +94,7 @@ class backgroundTaskTest extends unitTestBase {
 
 
 
-        $task = new backgroundTask($mockMailer);
+        $task = new backgroundTask($this->mockMessageFactory);
         $task->sendEmailsAndTexts();
     }
 }

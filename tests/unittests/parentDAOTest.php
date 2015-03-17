@@ -23,7 +23,7 @@ class parentDAOTest extends unitTestBase
     {
         $parentDAO=new parentDAO();
 
-        $parentTest = new parentModel("Herbert", "pword", "test@test.com", "parent", "8008888989", "123 fake st", "", 999);
+        $parentTest = new parentModel("Herbert", "pword", "test@test.com", "parent", "8008888989", "123 fake st", "", "Verizon", 0, 999);
         $id = $parentDAO->create_parent($parentTest);
 
         $parent=$parentDAO->find($id);
@@ -48,7 +48,7 @@ class parentDAOTest extends unitTestBase
     public function testUpdate() {
         $parentDAO = new parentDAO();
 
-        $parentUpdatedValues = new parentModel("New Name", "garbage", "new@email.com", "parent", "1231231234", "123 New Addr New York 61820", "email", "Verizon", 8);
+        $parentUpdatedValues = new parentModel("New Name", "garbage", "new@email.com", "parent", "1231231234", "123 New Addr New York 61820", "email", "Verizon", 0, 8);
         $parentDAO->update($parentUpdatedValues);
 
         $parentUpdated = $parentDAO->find(8);

@@ -11,11 +11,12 @@ require_once(dirname(__FILE__).'/../config.php');
 
 
 
-class emailer
+class messageAdapter
 {
     private $mailer;
+    private $suppress;
 
-    private static $carriers = array(
+    private static $carrierRouters = array(
         carrier::att => 'txt.att.net',
         carrier::boost => 'myboostmobile.com',
         carrier::sprint => 'messaging.sprintpcs.com',
@@ -26,6 +27,14 @@ class emailer
     );
 
     public function __construct(){
+        if (isset(Config::$config['suppress_messages'])){
+            $this->suppress = Config::$config['suppress_messages'];
+        }
+        else{
+            //Suppress messages by default
+            $this->suppress = true;
+        }
+
         $this->mailer = new PHPMailer();
         $this->mailer->isSMTP();
         $this->mailer->Host = 'smtp.gmail.com';
@@ -43,6 +52,12 @@ class emailer
         $this->mailer->isHTML(true);
         $this->mailer->Subject = $subj;
         $this->mailer->Body = $msg;
+        if (!$this->suppress){
+            echo 'sent';
+        }
+        else{
+            echo 'suppressed';
+        }
 
         /*if (!$this->mailer->send()){
             return 'Mailer Error: '.$this->mailer->ErrorInfo;
@@ -51,6 +66,7 @@ class emailer
     }
 
     public function sendSMS($toNumber, $carrier, $msg){
-        return $this->sendMail($toNumber.'@'.self::$carriers[$carrier], '', $msg);
+        return $this->sendMail($toNumber.'@'.self::$carrierRouters[$carrier], '', $msg);
     }
+
 }

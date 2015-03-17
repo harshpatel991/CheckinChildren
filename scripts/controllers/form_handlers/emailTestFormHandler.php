@@ -16,5 +16,5 @@ var_dump($to);
 var_dump($subj);
 var_dump($msg);
 
-$mailer = new emailer();
+$mailer = new messageAdapter();
 echo $mailer->sendMail($to, $subj, $msg);
