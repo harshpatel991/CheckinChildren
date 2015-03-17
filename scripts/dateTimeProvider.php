@@ -1,5 +1,5 @@
 <?php
-require(dirname(__FILE__).'/../config.php');
+require_once(dirname(__FILE__).'/../config.php');
 class dateTimeProvider
 {
     public static function getCurrentDateTime(){
@@ -66,6 +66,6 @@ class dateTimeProvider
     }
 }
 session_start();
-if (isset($config['test_time'])){
-    dateTimeProvider::setTestDateTime($config['test_time']);
+if (isset(Config::$config['test_time'])){
+    dateTimeProvider::setTestDateTime(Config::$config['test_time']);
 }

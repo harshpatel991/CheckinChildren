@@ -14,3 +14,10 @@ class childStatus
     const not_here_due = 3;  //not here, will arrive later
     const not_here_ok = 4;   //not here, not coming
 }
+
+class messageStatus{
+    const child_late = 0;
+    const child_checked_in = 1;
+    const child_ready = 2;
+    const child_checked_out = 3;
+}
