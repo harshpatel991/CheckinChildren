@@ -38,6 +38,7 @@ class createChildTest extends SeleniumTestBase
         $this->get_element("name=name")->send_keys("Test Case1");
         $this->get_element("name=PID")->select2("Big Daddy (parent8@gmail.com)");
         $this->get_element("name=aller")->send_keys("many");
+        $this->get_element("name=trusted_parties")->send_keys("Anyone");
         $this->get_element("name=submit")->click();
 
         $this->get_element("id=signed-in")->assert_text("Currently signed in as a employee");
