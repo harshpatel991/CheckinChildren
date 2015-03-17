@@ -13,7 +13,8 @@ $children = $checkinController->getChildrenBuckets($_COOKIE[cookieManager::$user
 $time = dateTimeProvider::getCurrentDateTime();
 
 ?>
-<h1>Time: <?php echo dateTimeProvider::readableTime($time); ?></h1>
+<h1>Check In/Check Out Children</h1>
+<h4>Time: <?php echo dateTimeProvider::readableTime($time); ?></h4>
 <h2>Not Here</h2>
 <div class="panel-group" id="nothere-accordion">
     <?php

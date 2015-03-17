@@ -93,7 +93,7 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
         $this->driver->set_sauce_context("passed", true);
       }
     }
-    $this->driver->quit();
+    $this->quit();
     parent::tearDown();
   }
 }
