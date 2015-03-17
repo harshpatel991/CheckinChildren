@@ -28,7 +28,7 @@ class ParentTest extends SeleniumTestBase
 
         $this->get_element("id=phone_number")->clear();
         $this->get_element("id=phone_number")->send_keys("1231237890");
-
+        $this->get_element("name=carrier")->select_option("AT&T");
         $this->get_element("name=texting")->click();
 
         $this->get_element("name=submit")->click();
@@ -61,7 +61,7 @@ class ParentTest extends SeleniumTestBase
 
         $this->get_element("id=phone_number")->clear();
         $this->get_element("id=phone_number")->send_keys("12312378901");
-
+        $this->get_element("name=carrier")->select_option("AT&T");
         $this->get_element("name=submit")->click();
 
         $page = $this->driver->get_source();
