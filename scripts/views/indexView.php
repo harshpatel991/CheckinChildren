@@ -21,7 +21,9 @@ if ($_COOKIE[cookieManager::$userRole] == "parent") {
     $childList = "";
 
     foreach ($children as $child) {
-        $childList = $childList . '<li class="list-group-item"><img src="../images/childStatus/'.$child->getStatus().'.gif"> <a href="displayChild.php?child_id=' . $child->child_id . '">' . ($child->child_name) . "</a></li>";
+        if ($child->getStatus() == childStatus::here_due || $child->getStatus() == childStatus::not_here_late) {
+            $childList = $childList . '<li class="list-group-item"><img src="../images/childStatus/' . $child->getStatus() . '.gif"> <a href="displayChild.php?child_id=' . $child->child_id . '">' . ($child->child_name) . "</a></li>";
+        }
     }
     ?>
     <ul class="list-group">
