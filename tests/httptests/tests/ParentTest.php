@@ -130,6 +130,67 @@ class ParentTest extends SeleniumTestBase
         $this->assertContains("Invalid Information", $page);
     }
 
+    public function testChildStatusMissing()
+    {
+        //Login first
+        testMacros::login($this->driver, "parent19@gmail.com", "password19");
+
+        $this->get_element("id=view_my_children")->click();
+        $this->get_element("link=Child Missing1")->click();
+
+        $page = $this->driver->get_source();
+        $this->assertContains("LATE!", $page);
+    }
+
+    public function testChildStatusCheckedout()
+    {
+        //Login first
+        testMacros::login($this->driver, "parent19@gmail.com", "password19");
+
+        $this->get_element("id=view_my_children")->click();
+        $this->get_element("link=Child CheckedOut1")->click();
+
+        $page = $this->driver->get_source();
+        $this->assertContains("NOT COMING TODAY.", $page);
+    }
+
+    public function testChildStatusCheckedin()
+    {
+        //Login first
+        testMacros::login($this->driver, "parent19@gmail.com", "password19");
+
+        $this->get_element("id=view_my_children")->click();
+        $this->get_element("link=Child Pickup Later1")->click();
+
+        $page = $this->driver->get_source();
+        $this->assertContains("CHECKED IN. EXPECTING PARENT.", $page);
+    }
+
+    public function testChildStatusArriving()
+    {
+        //Login first
+        testMacros::login($this->driver, "parent19@gmail.com", "password19");
+
+        $this->get_element("id=view_my_children")->click();
+        $this->get_element("link=Child Expected Later2")->click();
+
+        $page = $this->driver->get_source();
+        $this->assertContains("ARRIVING.", $page);
+    }
+
+    public function testIndexPageAllMisingChilds()
+    {
+        //Login first
+        testMacros::login($this->driver, "parent19@gmail.com", "password19");
+
+        $page = $this->driver->get_source();
+        $this->assertContains("Child Missing1", $page);
+        $this->assertContains("Child Missing2", $page);
+        $this->assertContains("Late Parent1", $page);
+        $this->assertContains("Late Parent2", $page);
+        $this->assertContains("Ludvig Beethoven", $page);
+    }
+
     public function tearDown(){
         parent::tearDown();
     }
