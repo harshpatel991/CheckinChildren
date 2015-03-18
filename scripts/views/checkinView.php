@@ -89,7 +89,7 @@ $time = dateTimeProvider::getCurrentDateTime();
                     <form name="checkinForm" method="post" action="../scripts/controllers/form_handlers/checkChildInOutFormHandler.php" onsubmit="checkinSubmit();">
                         <p id="checkinInputs" class="hidden"></p>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button id="#modal-submit" type="submit" class="btn btn-primary">Save changes</button>
+                        <button id="modal-submit" type="submit" class="btn btn-primary">Save changes</button>
                     </form>
                 </div>
 
