@@ -19,7 +19,7 @@ class CheckChildInOutTest extends SeleniumTestBase{
         $this->get_element("id=co-0")->click();
         $this->get_element("id=Submit")->click();
 
-        $this->get_element("id=#modal-submit")->click();
+        $this->get_element("id=modal-submit")->clickByJs();
 
         #make sure the subjects switched lists!
 

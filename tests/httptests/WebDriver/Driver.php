@@ -200,7 +200,7 @@ class WebDriver_Driver {
   
   // See http://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/source
   public function get_source() {
-    sleep(1);
+    sleep(2);
     $response = $this->execute("GET", "/session/:sessionId/source");
     return WebDriver::GetJSONValue($response);
   }

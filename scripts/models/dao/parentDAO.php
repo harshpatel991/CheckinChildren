@@ -47,15 +47,15 @@ class parentDAO {
 
         $id=$userDAO->insert($newParent);
 
-        $this->insert($parent->parent_name, $parent->address, $parent->phone_number, $id, $parent->contact_pref);
+        $this->insert($parent->parent_name, $parent->address, $parent->phone_number, $id, $parent->contact_pref, $parent->carrier);
 
         return $id;
     }
 
-    private function insert( $parent_name, $address, $phone_number, $id, $contact_pref){
+    private function insert( $parent_name, $address, $phone_number, $id, $contact_pref, $carrier){
         $connection = DbConnectionFactory::create();
 
-        $query = "INSERT INTO parent (parent_name, address, phone_number, id, contact_pref) VALUES ( :parent_name, :address, :phone_number, :id, :contact_pref)";
+        $query = "INSERT INTO parent (parent_name, address, phone_number, id, contact_pref, carrier) VALUES ( :parent_name, :address, :phone_number, :id, :contact_pref, :carrier)";
         $stmt=$connection->prepare($query);
 
         $stmt->bindParam(":parent_name", $parent_name);
@@ -63,6 +63,8 @@ class parentDAO {
         $stmt->bindParam(":id", $id);
         $stmt->bindParam(":phone_number", $phone_number);
         $stmt->bindParam(":contact_pref", $contact_pref);
+        $stmt->bindParam(":carrier", $carrier);
+
 
         $stmt->execute();
 
@@ -80,6 +82,8 @@ class parentDAO {
         $this->updateField($parent->id, 'address', $parent->address);
         $this->updateField($parent->id, 'phone_number', $parent->phone_number);
         $this->updateField($parent->id, 'contact_pref', $parent->contact_pref);
+        $this->updateField($parent->id, 'carrier', $parent->carrier);
+
     }
 
     private function updateField($userId, $field, $value){

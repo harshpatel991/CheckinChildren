@@ -17,18 +17,18 @@ class ParentTest extends SeleniumTestBase
         $this->get_element("name=view_parent_profile")->click();
         $this->get_element("id=edit_parent")->click();
 
-        $this->get_element("name=parent_name")->clear(); //clear text input box
-        $this->get_element("name=parent_name")->send_keys("New Momma");
+        $this->get_element("id=parent_name")->clear(); //clear text input box
+        $this->get_element("id=parent_name")->send_keys("New Momma");
 
-        $this->get_element("name=email")->clear();
-        $this->get_element("name=email")->send_keys("newmom19@gmail.com");
+        $this->get_element("id=email")->clear();
+        $this->get_element("id=email")->send_keys("newmom19@gmail.com");
 
-        $this->get_element("name=address")->clear();
-        $this->get_element("name=address")->send_keys("123 New Mom Rd");
+        $this->get_element("id=address")->clear();
+        $this->get_element("id=address")->send_keys("123 New Mom Rd");
 
-        $this->get_element("name=phone_number")->clear();
-        $this->get_element("name=phone_number")->send_keys("1231237890");
-
+        $this->get_element("id=phone_number")->clear();
+        $this->get_element("id=phone_number")->send_keys("1231237890");
+        $this->get_element("name=carrier")->select_option("AT&T");
         $this->get_element("name=texting")->click();
 
         $this->get_element("name=submit")->click();
@@ -50,18 +50,18 @@ class ParentTest extends SeleniumTestBase
         $this->get_element("name=view_parent_profile")->click();
         $this->get_element("id=edit_parent")->click();
 
-        $this->get_element("name=parent_name")->clear(); //clear text input box
-        $this->get_element("name=parent_name")->send_keys("New Momma");
+        $this->get_element("id=parent_name")->clear(); //clear text input box
+        $this->get_element("id=parent_name")->send_keys("New Momma");
 
-        $this->get_element("name=email")->clear();
-        $this->get_element("name=email")->send_keys("newmom19@gmail.com");
+        $this->get_element("id=email")->clear();
+        $this->get_element("id=email")->send_keys("newmom19@gmail.com");
 
-        $this->get_element("name=address")->clear();
-        $this->get_element("name=address")->send_keys("123 New Mom Rd");
+        $this->get_element("id=address")->clear();
+        $this->get_element("id=address")->send_keys("123 New Mom Rd");
 
-        $this->get_element("name=phone_number")->clear();
-        $this->get_element("name=phone_number")->send_keys("12312378901");
-
+        $this->get_element("id=phone_number")->clear();
+        $this->get_element("id=phone_number")->send_keys("12312378901");
+        $this->get_element("name=carrier")->select_option("AT&T");
         $this->get_element("name=submit")->click();
 
         $page = $this->driver->get_source();
