@@ -13,7 +13,8 @@ $children = $checkinController->getChildrenBuckets($_COOKIE[cookieManager::$user
 $time = dateTimeProvider::getCurrentDateTime();
 
 ?>
-<h1>Time: <?php echo dateTimeProvider::readableTime($time); ?></h1>
+<h1>Check In/Check Out Children</h1>
+<h4>Time: <?php echo dateTimeProvider::readableTime($time); ?></h4>
 <h2>Not Here</h2>
 <div class="panel-group" id="nothere-accordion">
     <?php
@@ -48,7 +49,7 @@ $time = dateTimeProvider::getCurrentDateTime();
     ?>
 </div>
 
-<button type="button" id="Submit" class="btn btn-info confirm-submit" data-toggle="modal" data-target="#confirmModal">Submit</button>
+<button type="button" id="Submit" class="btn btn-primary confirm-submit" data-toggle="modal" data-target="#confirmModal">Submit</button>
 <br>
 <br><a href="index.php">Back to Home</a>
 
@@ -88,7 +89,7 @@ $time = dateTimeProvider::getCurrentDateTime();
                     <form name="checkinForm" method="post" action="../scripts/controllers/form_handlers/checkChildInOutFormHandler.php" onsubmit="checkinSubmit();">
                         <p id="checkinInputs" class="hidden"></p>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button id="#modal-submit" type="submit" class="btn btn-primary">Save changes</button>
+                        <button id="modal-submit" type="submit" class="btn btn-primary">Save changes</button>
                     </form>
                 </div>
 
@@ -132,7 +133,7 @@ function getAccordionDetails($child, $status){
         $details['cico'] = 'co';
         $details['infoText'] = 'Parent due at '.$child->getExpectedCheckout();
     }
-
+    $details['infoText'] = $details['infoText'] . '<br />' .'Trusted Parties: '.$child->getTrustedParties();
     return $details;
 }
 

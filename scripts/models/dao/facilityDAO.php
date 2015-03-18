@@ -49,4 +49,15 @@ class FacilityDAO {
 
         return $facilities;
     }
+
+    public function findAllFacilityIds(){
+        $connection = DbConnectionFactory::create();
+        $query = 'SELECT facility_id FROM facility';
+        $stmt = $connection->prepare($query);
+        $stmt->execute();
+        $facilities = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        $connection = null;
+
+        return $facilities;
+    }
 }

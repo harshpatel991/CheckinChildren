@@ -1,25 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-<?php
-if(isset($_GET['error'])) {
-    if($_GET['error'] == 1) {
-        echo "Invalid information";
-    }
-}
-?>
+<h1>Create Manager</h1>
 <form method="post" action="../scripts/controllers/form_handlers/createManagerFormHandler.php">
-    Name: <input type="text" name="name"><br>
-    Facility Id: <input type="text" name="facility_id"><br>
-    Email: <input type="text" name="email"><br>
-    Password: <input type="text" name="password"><br>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="facility_id">Facility Id</label>
+        <input type="text" name="facility_id" id="facility_id" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="text" name="password" id="password" class="form-control">
+    </div>
+
     <input type="hidden" name="role" value="manager">
-    <input type="submit" name="submit" value="Register">
+    <input type="submit" name="submit" value="Register" class="btn btn-primary">
 </form>
-<h3><a href="../public/index.php">Back to home</a></h3>
-</body>
-</html>

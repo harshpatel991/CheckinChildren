@@ -8,13 +8,14 @@ class childDAO {
     function insert($child){
         $connection = DbConnectionFactory::create();
 
-        $query = "INSERT INTO child (child_id, parent_id, child_name, allergies, facility_id) VALUES ( :child_id, :parent_id, :child_name, :allergies, :facility_id)";
+        $query = "INSERT INTO child (child_id, parent_id, child_name, allergies, trusted_parties, facility_id) VALUES ( :child_id, :parent_id, :child_name, :allergies, :trusted_parties, :facility_id)";
         $stmt=$connection->prepare($query);
 
         $stmt->bindParam(":child_id", $child->child_id);
         $stmt->bindParam(":parent_id", $child->parent_id);
         $stmt->bindParam(":child_name", $child->child_name);
         $stmt->bindParam(":allergies", $child->allergies);
+        $stmt->bindParam(":trusted_parties", $child->trusted_parties);
         $stmt->bindParam(":facility_id", $child->facility_id);
 
         $stmt->execute();
@@ -36,6 +37,7 @@ class childDAO {
 
         $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'childModel');
         $child=$stmt->fetch();
+        $connection=null;
         $connection=null;
         if ($child!=false) {
             $child->expect_checkin = self::timesCsvToArray($child->expect_checkin);
@@ -93,6 +95,11 @@ class childDAO {
         $children = $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'childModel');
         $connection=null;
 
+        foreach ($children as $child){
+            $child->expect_checkin = self::timesCsvToArray($child->expect_checkin);
+            $child->expect_checkout = self::timesCsvToArray($child->expect_checkout);
+        }
+
         return $children;
     }
 
@@ -101,8 +108,10 @@ class childDAO {
     public function update($child) {
         $this->updateField($child->child_id, 'child_name', $child->child_name);
         $this->updateField($child->child_id, 'allergies', $child->allergies);
+        $this->updateField($child->child_id, 'trusted_parties', $child->trusted_parties);
         $this->updateField($child->child_id, 'expect_checkin', self::timesArrayToCsv($child->expect_checkin));
         $this->updateField($child->child_id, 'expect_checkout', self::timesArrayToCsv($child->expect_checkout));
+        $this->updateField($child->child_id, 'last_message_status', $child->last_message_status);
     }
 
     public function updateField($child_id, $field, $value){
@@ -113,6 +122,24 @@ class childDAO {
         $stmt->bindParam(':id', $child_id);
         $stmt->execute();
         $connection = null;
+    }
+
+    public function getAllChildrenWithPotentialStatusUpdate(){
+        $connection = DbConnectionFactory::create();
+        $query = "SELECT * FROM child";
+        $stmt=$connection->prepare($query);
+        $stmt->bindParam(':id', $id);
+
+        $stmt->execute();
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'childModel');
+        $child=$stmt->fetch();
+        $connection=null;
+        if ($child!=false) {
+            $child->expect_checkin = self::timesCsvToArray($child->expect_checkin);
+            $child->expect_checkout = self::timesCsvToArray($child->expect_checkout);
+        }
+        return $child;
     }
 
 }

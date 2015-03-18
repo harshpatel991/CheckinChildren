@@ -1,25 +1,23 @@
-<head>
-    <title>Login</title>
-</head>
+<!--<form method="post" action="../scripts/controllers/loginController.php">-->
+<!---->
+<!--    <div class="form-group">-->
+<!--        <label for="email">Email: </label>-->
+<!--        <input name="email" id="email" class="form-control">-->
+<!--    </div>-->
+<!--    <div class="form-group">-->
+<!--        <label for="password">Password:</label>-->
+<!--        <input type="text" name="password" id="password" class="form-control" >-->
+<!--    </div>-->
+<!---->
+<!--    <input type="submit" name="submit" value="Login" class="btn btn-primary" id="submit">-->
+<!--</form>-->
 
 
-<h2>Login</h2>
-<form method="post" action="../scripts/controllers/loginController.php">
-
-    Email: <input type="text" name="email" id="email">
-    <br><br>
-    Password: <input type="text" name="password" id="password">
-    <br><br>
-    <input type="submit" name="submit" value="Login" id="submit">
-</form>
-<a id="createCompany" href="createCompany.php">Register New Company</a><br><br>
-
-------------LOGIN AS:------------<br>
-<a href="javascript:void(0)" onclick="autoFillUser(0);">Company - bigcompany1@gmail.com</a><br>
-<a href="javascript:void(0)" onclick="autoFillUser(1);">Manager - manager6@gmail.com</a><br>
-<a href="javascript:void(0)" onclick="autoFillUser(2);">Employee - baba_ganush2@gmail.com</a><br>
-<a href="javascript:void(0)" onclick="autoFillUser(3);">Employee - employee17@gmail.com</a><br>
-<a href="javascript:void(0)" onclick="autoFillUser(4);">Parent - parent19@gmail.com</a><br>
+<a class="btn btn-default" onclick="autoFillUser(0);">Company - bigcompany1@gmail.com</a><br>
+<a class="btn btn-default" onclick="autoFillUser(1);">Manager - manager6@gmail.com</a><br>
+<a class="btn btn-default" onclick="autoFillUser(2);">Employee - baba_ganush2@gmail.com</a><br>
+<a class="btn btn-default" onclick="autoFillUser(3);">Employee - employee17@gmail.com</a><br>
+<a class="btn btn-default" onclick="autoFillUser(4);">Parent - parent19@gmail.com</a><br>
 
 
 <script><!-- TODO: move this to js folder -->
@@ -28,7 +26,7 @@
 
     var emailBox=document.getElementById("email");
     var passwordBox=document.getElementById("password");
-    var submitBox=document.getElementById("submit");
+    var submitBox=document.getElementById("submit_login");
 
     function autoFillUser(index) {
         emailBox.value = emails[index];

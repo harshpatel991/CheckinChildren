@@ -8,18 +8,22 @@ class childModel {
     var $parent_id;
     var $child_name;
     var $allergies;
+    var $trusted_parties;
     var $facility_id;
     var $last_checkin;
     var $last_checkout;
     var $expect_checkin; //Stored as 'minutes from midnight'
     var $expect_checkout; //Stored as 'minutes from midnight'
+    var $last_message_status;
 
-    function __construct($parent_id=0, $child_name="", $allergies="", $facility_id=0, $child_id=0) {
+    function __construct($parent_id=0, $child_name="", $allergies="", $trusted_parties="", $facility_id=0, $child_id=0, $last_message_status=-1) {
         $this->parent_id = $parent_id;
         $this->child_name = $child_name;
         $this->allergies = $allergies;
+        $this->trusted_parties = $trusted_parties;
         $this->facility_id = $facility_id;
         $this->child_id = $child_id;
+        $this->last_message_status = $last_message_status;
     }
 
     public function isValid() {
@@ -36,7 +40,7 @@ class childModel {
     }
 
     public function isUpdateValid() {
-        if (strlen($this->child_name) > 30 ||  strlen($this->child_name) <= 0 || strlen($this->allergies) > 50) {
+        if (strlen($this->child_name) > 30 ||  strlen($this->child_name) <= 0 || strlen($this->allergies) > 50 || strlen($this->trusted_parties) > 50) {
             return false;
         }
         return true;
@@ -78,6 +82,9 @@ class childModel {
         return self::getExpected($this->expect_checkin, $dayOfWeek, $readable);
     }
 
+    public function getTrustedParties(){
+        return $this->trusted_parties;
+    }
     public function getExpectedCheckout($dayOfWeek = -1, $readable = true){
         return self::getExpected($this->expect_checkout, $dayOfWeek, $readable);
     }

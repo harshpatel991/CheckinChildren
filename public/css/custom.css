@@ -1,0 +1,80 @@
+/*
+Icons from http://designmodo.github.io/Flat-UI/
+*/
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
+
+h1 {
+    margin-top: 0px;
+}
+
+/*Styles for the login page */
+.classroom {
+    background-image: url("../../images/header.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    /*background-position: left top;*/
+    background-attachment: fixed;
+    padding: 25px;
+    color: #ffffff;
+}
+
+.classroom h1 {
+    font-size: 8vmax;
+    color: #ffffff;
+    font-weight: 700;
+
+}
+
+.classroom-explanation {
+    padding: 20px;
+    font-size: 1.5em;
+    text-align: center;
+    font-weight: 700;
+}
+
+.classroom-icons-wrapper {
+    padding: 40px 0px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.businesses {
+    text-align: center;
+    padding: 100px 0px;
+
+    background-image: url("../../images/bussiness-background.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #ffffff;
+}
+
+.businesses h3 {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.bussiness-explanation {
+    padding: 50px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.bussiness-icons-wrapper {
+    padding: 80px 0px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+/*Footer*/
+.custom-footer {
+    margin-top: 10px;
+    background-color: #f1f1f1;
+    padding: 40px;
+    text-align: center;
+    color: #aeaeae;
+}

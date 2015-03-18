@@ -15,6 +15,8 @@ require_once dirname(__FILE__).'/../../config.php';
 class SeleniumTestBase extends PHPUnit_Framework_TestCase {
   protected $driver;
   protected $dbConn;
+  protected $retries = 1;
+
   public static $baseUrl = "";
   public static $isWindows = false;
 
@@ -26,18 +28,21 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
       shell_exec(sprintf('%s > /dev/null 2>&1 &', 'java -jar ../WebDriver/selenium-server-standalone-2.45.0.jar'));
     }
 
-    sleep(1);
-    // If you want to set preferences in your Firefox profile
-    $fp = new WebDriver_FirefoxProfile();
-    $fp->set_preference("capability.policy.default.HTMLDocument.compatMode", "allAccess");
-    $this->driver = WebDriver_Driver::InitAtLocal("4444", "firefox");
-    $this->set_implicit_wait(5000);
-    $this->load(self::$baseUrl . 'index.php');
-    $this->dbConn = DbConnectionFactory::create(true);
+    $this->dbConn = DbConnectionFactory::create();
     $sql = file_get_contents(dirname(__FILE__).'/../../sql/destroyTables.sql');
     $sql .= file_get_contents(dirname(__FILE__).'/../../sql/createDatabase.sql');
     $sql .= file_get_contents(dirname(__FILE__).'/../../sql/generateTestData.sql');
     $this->dbConn->exec($sql);
+    sleep(1);
+
+    // If you want to set preferences in your Firefox profile
+    $fp = new WebDriver_FirefoxProfile();
+    $fp->set_preference("capability.policy.default.HTMLDocument.compatMode", "allAccess");
+    $this->driver = WebDriver_Driver::InitAtLocal("4444", "firefox");
+    $this->driver->set_implicit_wait(5000);
+    $this->driver->set_throttle_factor(1);
+    $this->load(self::$baseUrl . 'index.php');
+
   }
 
   // Forward calls to main driver 
@@ -49,18 +54,49 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
     }
   }
 
+  /*
+   * Override PHPUnit base functionality to implement retries and screenshots.
+   */
+  public function runBare(){
+    while($this->retries > -1){
+      try {
+        parent::runBare();
+        return;
+      }
+      catch (Exception $e) {
+        // Run again
+      }
+      $this->retries--;
+    }
+
+    if (isset($e)){
+      throw $e;
+    }
+  }
+
+  private function logScreenshot(){
+    $time = time();
+    $imgName = 'screenshots/screenshot-'.$time.'.png';
+    echo "\r\nScreenshot of failure: ".$imgName;
+    $imgData = $this->driver->get_screenshot();
+    $imgFile = fopen('../'.$imgName, 'w');
+    fwrite($imgFile, $imgData);
+    fclose($imgFile);
+  }
+
   public function tearDown() {
-    if ($this->driver) {
+    if ($this->driver && $this->retries < 1) {
       if ($this->hasFailed()) {
+        $this->logScreenshot();
         $this->driver->set_sauce_context("passed", false);
       } else {
         $this->driver->set_sauce_context("passed", true);
       }
-      $this->driver->quit();
     }
+    $this->quit();
     parent::tearDown();
   }
 }
 
-SeleniumTestBase::$baseUrl = $config['sitepath'];
-SeleniumTestBase::$isWindows = $config['isWindows'];
+SeleniumTestBase::$baseUrl = Config::$config['sitepath'];
+SeleniumTestBase::$isWindows = Config::$config['isWindows'];

@@ -7,6 +7,7 @@
  */
 
 require_once dirname(__FILE__).'/../SeleniumTestBase.php';
+require_once dirname(__FILE__).'/../TestMacros.php';
 
 class ManagerTest extends SeleniumTestBase {
 
@@ -16,25 +17,18 @@ class ManagerTest extends SeleniumTestBase {
     }
 
     public function testEmployeeList() {
-        $this->get_element("name=email")->send_keys("manager6@gmail.com");
-        $this->get_element("name=password")->send_keys("password6");
-        $this->get_element("name=submit")->click();
+        testMacros::login($this->driver, "manager6@gmail.com", "password6");
+        $this->get_element("name=view_employees")->click();
 
-        $this->get_element("id=display_employee")->click();
-
-        $this->get_element("employees")->assert_text("Bob Dude\nMatt Wallick");
-        //$page=$this->driver->get_source();
-        //$this->assertContains("Balh blah blah", $page);
+        $page = $this->driver->get_source();
+        $this->assertContains("Matt Wallick", $page);
     }
 
     public function testMakeEmployee(){
-        $this->get_element("name=email")->send_keys("manager6@gmail.com");
-        $this->get_element("name=password")->send_keys("password6");
-        $this->get_element("name=submit")->click();
+        testMacros::login($this->driver, "manager6@gmail.com", "password6");
 
-        $this->get_element("id=display_employee")->click();
-        $this->get_element("link=Create A New Employee")->click();
-
+        $this->get_element("name=view_employees")->click();
+        $this->get_element("name=create_employee")->click();
 
         $this->get_element("name=name")->send_keys("Test Case");
         $this->get_element("name=email")->send_keys("testcase@gmail.com");
@@ -42,16 +36,43 @@ class ManagerTest extends SeleniumTestBase {
 
         $this->get_element("name=submit")->click();
 
-        $this->get_element("link=Back to home")->click();
+        $this->get_element("name=back_home")->click();
 
-        $this->get_element("name=submit")->click();
+        $this->get_element("name=profile")->click();
+        $this->get_element("name=logout")->click(); //click logout
 
         //Now to sign is as our new employee
-        $this->get_element("name=email")->send_keys("testcase@gmail.com");
-        $this->get_element("name=password")->send_keys("100pass");
-        $this->get_element("name=submit")->click();
+        testMacros::login($this->driver, "testcase@gmail.com", "100pass");
 
         $this->get_element("id=signed-in")->assert_text("Currently signed in as a employee");
+
+    }
+
+    public function testPromoteEmployee(){
+        testMacros::login($this->driver, "manager6@gmail.com", "password6");
+
+        $this->get_element("name=view_employees")->click();
+        $this->get_element("id=2")->click();
+
+        $page=$this->driver->get_source();
+        $this->assertContains('<td id="emp_status">employee</td>', $page);
+
+        $this->get_element("id=promote_employee")->click();
+        $page=$this->driver->get_source();
+        $this->assertContains('<td id="emp_status">manager</td>', $page);
+    }
+
+    public function testViewEmployeeInfo(){
+        testMacros::login($this->driver, "manager6@gmail.com", "password6");
+
+        $this->get_element("name=view_employees")->click();
+        $this->get_element("id=2")->click();
+
+        $page=$this->driver->get_source();
+
+        $this->assertContains('<td id="emp_status">employee</td>', $page);
+        $this->assertContains('<td id="emp_name">Matt Wallick</td>', $page);
+        $this->assertContains('<td id="emp_email">baba_ganush2@gmail.com</td>', $page);
 
     }
 

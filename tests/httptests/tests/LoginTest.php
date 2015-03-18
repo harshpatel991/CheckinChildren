@@ -15,7 +15,7 @@ class LoginTest extends SeleniumTestBase
         parent::setUp();
     }
 
-    public function test() {
+    public function testLogin() {
         //I am redirected to login page
         $this->assert_title("Login");
 
@@ -28,8 +28,8 @@ class LoginTest extends SeleniumTestBase
         $this->assert_title("CheckinChildren");
 
         //Logout
-        $this->get_element("name=submit")->click();
-        $this->assert_title("Login");
+        $this->get_element("name=profile")->click();
+        $this->get_element("name=logout")->click();
     }
 
     public function tearDown(){
