@@ -8,29 +8,42 @@ ini_set("display_errors",1);
 
     $parentDAO=new parentDAO();
     $parent=$parentDAO->find($_COOKIE[cookieManager::$userId]);
-
 ?>
 
-<h3>Account Profile</h3>
-<table id="parent_info_table" border="1">
+<h1>Account Profile</h1>
+<table id="parent_info_table" class="table">
     <tr>
-        <td>Name</td>
+        <th>Name</th>
         <td><?php echo $parent->parent_name; ?></td>
     </tr>
     <tr>
-        <td>Address</td>
+        <th>Address</th>
         <td><?php echo $parent->address; ?></td>
     </tr>
     <tr>
-        <td>Email</td>
+        <th>Email</th>
         <td><?php echo $parent->email; ?></td>
     </tr>
     <tr>
-        <td>Phone Number</td>
+        <th>Phone Number</th>
         <td><?php echo $parent->phone_number; ?></td>
     </tr>
+    <tr>
+        <th>Carrier</th>
+        <td><?php echo $parent->carrier; ?></td>
+    </tr>
+    <tr>
+        <th>Contact Preferences</th>
+        <td><?php echo $parent->contact_pref; ?></td>
+    </tr>
 </table>
-<a id="edit_parent" href="editParent.php">Edit Information</a><br>
-<a id="update_password" href="updatePassword.php">Change Password</a><br>
-<a id="update_password" href="index.php">Back to Home</a>
+
+<br>
+<a class="btn btn-success" id="edit_parent" href="editParent.php"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit Information</a>
+<a class="btn btn-success" id="update_password" href="updatePassword.php"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Change Password</a>
+
+<hr>
+
+<a id="update_password" href="index.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Home</a>
+
 

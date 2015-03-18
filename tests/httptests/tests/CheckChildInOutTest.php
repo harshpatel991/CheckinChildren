@@ -1,12 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: alex
- * Date: 3/4/15
- * Time: 10:36 PM
- */
 
 require_once dirname(__FILE__).'/../SeleniumTestBase.php';
+require_once dirname(__FILE__).'/../TestMacros.php';
 
 class CheckChildInOutTest extends SeleniumTestBase{
 
@@ -15,17 +10,16 @@ class CheckChildInOutTest extends SeleniumTestBase{
     }
 
     public function testCheckChildIn(){
-        $this->get_element("name=email")->send_keys("employee17@gmail.com");
-        $this->get_element("name=password")->send_keys("password17");
-        $this->get_element("name=submit")->click();
 
-        $this->get_element("id=checkin_children")->click();
+        testMacros::login($this->driver, "employee17@gmail.com", "password17");
+
+        $this->get_element("name=view_children")->click();
 
         $this->get_element("id=ci-0")->click();
         $this->get_element("id=co-0")->click();
         $this->get_element("id=Submit")->click();
 
-        $this->get_element("id=#modal-submit")->click();
+        $this->get_element("id=modal-submit")->clickByJs();
 
         #make sure the subjects switched lists!
 

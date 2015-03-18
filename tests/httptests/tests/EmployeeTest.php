@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: alex
- * Date: 2/18/15
- * Time: 8:34 PM
- */
-
 require_once dirname(__FILE__).'/../SeleniumTestBase.php';
+require_once dirname(__FILE__).'/../TestMacros.php';
 
 class EmployeeTest extends SeleniumTestBase {
 
@@ -16,9 +10,7 @@ class EmployeeTest extends SeleniumTestBase {
     }
 
     public function testEmployeeLogin() {
-        $this->get_element("name=email")->send_keys("baba_ganush2@gmail.com");
-        $this->get_element("name=password")->send_keys("password2");
-        $this->get_element("name=submit")->click();
+        testMacros::login($this->driver, "baba_ganush2@gmail.com", "password2");
 
         $this->get_element("id=signed-in")->assert_text("Currently signed in as a employee");
     }

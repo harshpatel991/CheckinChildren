@@ -4,6 +4,7 @@ class WebDriver_Driver {
   protected $session_id;
   protected $server_url;
   protected $browser;
+  protected $throttle_factor;
   
   // See http://code.google.com/p/selenium/wiki/JsonWireProtocol#Response_Status_Codes
   private static $status_codes = array(
@@ -37,6 +38,7 @@ class WebDriver_Driver {
   protected function __construct($server_url, $capabilities) {
     $this->server_url = $server_url;
     $this->browser = $capabilities['browserName'];
+    $this->throttle_factor = 0;
     
     $payload = array("desiredCapabilities" => $capabilities);
     $response = $this->execute("POST", "/session", $payload);
@@ -106,8 +108,19 @@ class WebDriver_Driver {
       return false;
     }
   }
-  
+
   public function execute($http_type, $relative_url, $payload = null) {
+    try{
+      return $this->tryExecute($http_type, $relative_url, $payload);
+    }
+    catch (Exception $e){
+      sleep($this->throttle_factor);
+      return $this->tryExecute($http_type, $relative_url, $payload);
+    }
+
+  }
+  
+  public function tryExecute($http_type, $relative_url, $payload ) {
     if ($payload !== null) {
       $payload = json_encode($payload);
     }
@@ -187,6 +200,7 @@ class WebDriver_Driver {
   
   // See http://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/source
   public function get_source() {
+    sleep(2);
     $response = $this->execute("GET", "/session/:sessionId/source");
     return WebDriver::GetJSONValue($response);
   }
@@ -387,6 +401,10 @@ class WebDriver_Driver {
     WebDriver::$ImplicitWaitMS = $milliseconds;
     $payload = array("ms" => $milliseconds);
     $this->execute("POST", "/session/:sessionId/timeouts/implicit_wait", $payload);
+  }
+
+  public function set_throttle_factor($seconds){
+    $this->throttle_factor = $seconds;
   }
 
   // See http://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/url

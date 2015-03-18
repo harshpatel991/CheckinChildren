@@ -205,6 +205,11 @@ class WebDriver_WebElement {
   public function click() {
     $this->execute("POST", "/click");
   }
+
+  public function clickByJs(){
+    $js = '$("['.$this->locator.']")[0].click()';
+    $this->driver->execute_js_sync($js);
+  }
   
   // See http://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/submit
   public function submit() {
@@ -226,6 +231,16 @@ class WebDriver_WebElement {
     $this->click(); // POST /session/:sessionId/element/:id/selected is deprecated as of Selenium 2.0.0
   }
 
+  public function select2($option_text){
+    $js = 'val=$("['.$this->locator.'] option").filter(function() {return ($(this).text().indexOf("'.$option_text.'")>-1);}).first().val();';
+    $js .= '$("['.$this->locator.']").select2("val", val);';
+    $this->driver->execute_js_sync($js);
+  }
+  public function select_option($option_text){
+    $js = 'val=$("['.$this->locator.'] option").filter(function() {return ($(this).text().indexOf("'.$option_text.'")>-1);}).first().val();';
+    $js .= '$("['.$this->locator.']").val(val);';
+    $this->driver->execute_js_sync($js);
+  }
   // See http://code.google.com/p/selenium/wiki/JsonWireProtocol#/session/:sessionId/element/:id/value
   public function send_keys($keys) {
     $payload = array("value" => preg_split('//u', $keys, -1, PREG_SPLIT_NO_EMPTY));
