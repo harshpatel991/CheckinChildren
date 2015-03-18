@@ -6,11 +6,20 @@ require_once(dirname(__FILE__).'/../../scripts/controllers/notificationMessageCo
 require_once(dirname(__FILE__).'/../../scripts/controllers/notificationMessageFactory.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
 
+/**
+ * Class backgroundTaskTest
+ *
+ * Integration test for the backgroundTask class.
+ */
 class backgroundTaskTest extends unitTestBase {
     private $mockMailer;
     private $mockMessageFactory;
 
+    /**
+     * Setup
+     */
     public function setUp(){
+        //Construct a mock mailer object and factory for dependency injection.
         $this->mockMailer = $this->getMock('emailer', array('sendMail','sendSMS'));
         $this->mockMessageFactory = $this->getMock('notificationMessageFactory', array('create'));
 
@@ -23,6 +32,9 @@ class backgroundTaskTest extends unitTestBase {
         parent::setUp();
     }
 
+    /**
+     * Tests the backgroundTask using default test database.
+     */
     public function testBackgroundEmailsDefault(){
         $expectedEmailTos = array(
             'parent19@gmail.com',
@@ -96,9 +108,14 @@ class backgroundTaskTest extends unitTestBase {
 
         $task = new backgroundTask($this->mockMessageFactory);
         $task->sendEmailsAndTexts();
-        //$task->sendEmailsAndTexts();
+
+        //Multiple send calls only send each message once.
+        $task->sendEmailsAndTexts();
     }
 
+    /**
+     * Tests the backgroundTask using custom test database.
+     */
     public function testBackgroundMessagesCustom(){
         $sql = file_get_contents(dirname(__FILE__).'/../../sql/generateMessageTestData.sql');
         $dbConn = DbConnectionFactory::create();
