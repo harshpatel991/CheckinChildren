@@ -35,3 +35,10 @@ class childStatus
         }
     }
 }
+
+class messageStatus{
+    const child_late = 0;
+    const child_checked_in = 1;
+    const child_ready = 2;
+    const child_checked_out = 3;
+}

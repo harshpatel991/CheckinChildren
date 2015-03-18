@@ -13,4 +13,4 @@ class DbCredentials
     public static $password = "";
 }
 
-DbCredentials::$dbName='mysql:host='.$config["dbhost"].';dbname='.$config['dbname'];
+DbCredentials::$dbName='mysql:host='.Config::$config["dbhost"].';dbname='.Config::$config['dbname'];

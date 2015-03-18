@@ -29,8 +29,12 @@ ini_set("display_errors",1);
         <td><?php echo $parent->phone_number; ?></td>
     </tr>
     <tr>
+        <th>Carrier</th>
+        <td><?php echo $parent->carrier; ?></td>
+    </tr>
+    <tr>
         <th>Contact Preferences</th>
-        <td><?php echo $parent->contact_pref?></td>
+        <td><?php echo $parent->contact_pref; ?></td>
     </tr>
 </table>
 

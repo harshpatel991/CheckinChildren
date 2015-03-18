@@ -18,7 +18,7 @@ if (isset($_POST['emailing'])){
     $contact_string.=$_POST['emailing'];
 }
 
-$parent = new parentModel($_POST["parent_name"],"", $_POST["email"], "parent", $_POST["phone_number"], $_POST["address"], $contact_string, $parent_id);
+$parent = new parentModel($_POST["parent_name"],"", $_POST["email"], "parent", $_POST["phone_number"], $_POST["address"], $contact_string, $_POST['carrier'], $parent_id);
 
 if ($parent->isUpdateValid()) {
     $parentDAO = new ParentDAO();

@@ -17,13 +17,14 @@ class parentDAOTest extends unitTestBase
         $this->assertEquals($parent->email, "parent8@gmail.com");
         $this->assertEquals($parent->password, "a8dbbfa41cec833f8dd42be4d1fa9a13142c85c2");
         $this->assertequals($parent->contact_pref, "text");
+        $this->assertEquals($parent->carrier, "Verizon Wireless");
     }
 
     public function testCreate_Parent()
     {
         $parentDAO=new parentDAO();
 
-        $parentTest = new parentModel("Herbert", "pword", "test@test.com", "parent", "8008888989", "123 fake st", "", 999);
+        $parentTest = new parentModel("Herbert", "pword", "test@test.com", "parent", "8008888989", "123 fake st", "", "Verizon Wireless", 999);
         $id = $parentDAO->create_parent($parentTest);
 
         $parent=$parentDAO->find($id);
@@ -31,6 +32,7 @@ class parentDAOTest extends unitTestBase
         $this->assertEquals("Herbert", $parent->parent_name);
         $this->assertEquals("8008888989", $parent->phone_number);
         $this->assertEquals("test@test.com", $parent->email);
+        $this->assertEquals("Verizon Wireless", $parent->carrier);
         $this->assertEquals("parent", $parent->role);
         $this->assertEquals($id, $parent->id);
     }
@@ -48,7 +50,7 @@ class parentDAOTest extends unitTestBase
     public function testUpdate() {
         $parentDAO = new parentDAO();
 
-        $parentUpdatedValues = new parentModel("New Name", "garbage", "new@email.com", "parent", "1231231234", "123 New Addr New York 61820", "email", 8);
+        $parentUpdatedValues = new parentModel("New Name", "garbage", "new@email.com", "parent", "1231231234", "123 New Addr New York 61820", "email", "Boost Mobile", 8);
         $parentDAO->update($parentUpdatedValues);
 
         $parentUpdated = $parentDAO->find(8);
@@ -59,6 +61,7 @@ class parentDAOTest extends unitTestBase
         $this->assertEquals("1231231234", $parentUpdated->phone_number);
         $this->assertEquals("123 New Addr New York 61820", $parentUpdated->address);
         $this->assertEquals("email", $parentUpdated->contact_pref);
+        $this->assertEquals("Boost Mobile", $parentUpdated->carrier);
 
         $this->assertNotEquals("garbage", $parentUpdated->password); //password should not change
     }
