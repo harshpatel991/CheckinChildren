@@ -1,9 +1,7 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: alex
- * Date: 3/16/15
- * Time: 11:07 PM
+ * The form handler when a manager submits form to promote an employee
+ * Promotes the employee and redirects to the employees information page
  */
 
 require_once(dirname(__FILE__).'/../authController.php');
