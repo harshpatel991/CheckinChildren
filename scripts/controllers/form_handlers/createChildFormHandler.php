@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: alex
- * Date: 2/15/15
- * Time: 8:15 PM
+ * The form handler when a employee/manager submits form to create a child
+ * Determines if submitted child is valid and adds to childDAO
+ * If child is not valid, redirects to createChild page with error
  */
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
@@ -23,22 +22,19 @@ for ($i=0; $i<7; $i++){
 }
 
 if ($child->isValid()) {
-    $childDAO=new childDAO();
-    $childId=$childDAO->insert($child);
-    $child->child_id=$childId;
+    $childDAO = new childDAO();
+    $childId = $childDAO->insert($child);
+    $child->child_id = $childId;
     $childDAO->update($child);
     header("Location: ../../../public/index.php");
     exit();
-}
-
-else{
-
+} else {
     header("Location: ../../../public/createChild.php?error=1");
-
 }
 
 /*
- * $time is a string of format '2:30 am'
+ * Determines the minutes from midnight of a given time
+ * $time string of format '2:30 am'
  *
  * returns minutes-from-midnight
  */

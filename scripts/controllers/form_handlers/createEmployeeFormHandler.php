@@ -1,6 +1,9 @@
 <?php
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
+/**
+ * The form handler when a employee submits form to create a new employee account
+ * Determines if submitted employee is valid and adds to employeeDAO and redirects to displayEmployees page
+ * If employee account is not valid, redirects to createEmployee page with error
+ */
 
 require_once(dirname(__FILE__) . '/../../models/dao/employeeDAO.php');
 require_once(dirname(__FILE__) . '/../../models/employeeModel.php');
@@ -11,7 +14,7 @@ $manCon=new managerController();
 $facility_id=$manCon->getFacilityID($_COOKIE[cookieManager::$userId]);
 $hashedPassword = employeeModel::genHashPassword($_POST['password']);
 
-$employee=new employeeModel($_POST['name'], $hashedPassword, $facility_id, $_POST['email'], $_POST['role']);
+$employee=new employeeModel($_POST['name'], $hashedPassword, $facility_id, $_POST['email'], $_POST['role']); //retreieve submitted POST data
 
 if ($employee->isValid()) {
     $employeeDAO=new employeeDAO();
