@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: alex
- * Date: 3/4/15
- * Time: 9:05 PM
+ * The form handler when a employee/manager submits form to check in/ check out children from the facility
+ * Sets last_checkout/last_checkin values of children and sends appropriate notifications
+ * Once completed, redirects to checkinChildren page
  */
 
 require_once(dirname(__FILE__) . '/../../models/dao/childDAO.php');
@@ -14,7 +13,6 @@ require_once(dirname(__FILE__) . '/../notificationMessageController.php');
 
 $checkinArray=$_POST["checkinIds"];
 $checkoutArray=$_POST["checkoutIds"];
-
 
 $curTime= dateTimeProvider::getCurrentDateTime();
 dateTimeProvider::testTimeTick();
