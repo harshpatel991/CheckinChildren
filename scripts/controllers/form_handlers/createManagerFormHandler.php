@@ -1,12 +1,14 @@
 <?php
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
+/**
+ * The form handler when a company submits form to create a new manager account
+ * Determines if submitted manager is valid and adds to managerDAO and redirects to displayManagers page
+ * If manager information is not valid, redirects to createManager page with error
+ */
 
 require_once(dirname(__FILE__) . '/../../models/dao/managerDAO.php');
 require_once(dirname(__FILE__) . '/../../models/dao/facilityDAO.php');
 require_once(dirname(__FILE__) . '/../../models/managerModel.php');
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
-
 
 $hashedPassword = managerModel::genHashPassword($_POST['password']);
 
