@@ -1,4 +1,9 @@
 <?php
+/**
+ * The form handler when a parent submits form to edit a child account
+ * Determines if submitted child is valid and updates record in childDAO and redirects to displayChild page
+ * If child information is not valid, redirects to editChild page with error
+ */
 
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../../models/dao/childDAO.php');
@@ -24,9 +29,9 @@ if ($child->isUpdateValid()) {
     exit();
 }
 
-
 /*
- * $time is a string of format '2:30 am'
+ * Determines the minutes from midnight of a given time
+ * $time string of format '2:30 am'
  *
  * returns minutes-from-midnight
  */
