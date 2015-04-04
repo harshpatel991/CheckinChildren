@@ -9,14 +9,14 @@ class logDAO
     public static $transLogin = 'Login';
     public static $transLogout = 'Logout';
 
-    public function findForFacility($facilityID){
+    public function findForFacility($facilityID, $orderedby){
 
         $connection = DbConnectionFactory::create();
 
-        $query="SELECT * FROM logs WHERE facility_id = :facilityid";
+        $query="SELECT * FROM logs WHERE facility_id = :facilityid ORDER BY :orderedby";
         $stmt=$connection->prepare($query);
         $stmt->bindParam(':facility_id', $facilityID);
-
+        $stmt->bindParam(':orderedby', $orderedby);
         $stmt->execute();
 
         $result= $stmt->fetchAll();
