@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: alex
- * Date: 4/4/15
- * Time: 12:16 AM
- */
-
 require_once dirname(__FILE__).'/../SeleniumTestBase.php';
 require_once dirname(__FILE__).'/../TestMacros.php';
 
@@ -105,11 +98,47 @@ class LoggingTest extends SeleniumTestBase {
     }
 
     public function testPromoteEmployeeLog(){
+        testMacros::login($this->driver, "manager6@gmail.com", "password6");
 
+        $this->get_element("name=view_employees")->click();
+        $this->get_element("id=2")->click();
+        $this->get_element("id=promote_employee")->click();
+
+        $this->get_element("name=display_logs")->click();
+
+        $page = $this->driver->get_source();
+        $this->assertContains("Employee Promoted", $page);
+        $this->assertContains("Bob Dude", $page);
+        $this->assertContains("Matt Wallick", $page);
     }
 
-    public function testCheckInCheckOutLog(){
+    public function testCheckInCheckOutLog() {
+        testMacros::login($this->driver, "manager6@gmail.com", "password6");
 
+        $this->get_element("name=view_children")->click();
+
+        $this->get_element("id=ci-0")->click();
+        $this->get_element("id=Submit")->click();
+        $this->get_element("id=modal-submit")->clickByJs();
+
+        $this->get_element("name=display_logs")->click();
+
+        $page = $this->driver->get_source();
+        $this->assertContains("Child Checked In", $page);
+        $this->assertContains("Bob Dude", $page);
+        $this->assertContains("Mark Zuckerberg", $page);
+
+        $this->get_element("name=view_children")->click();
+        $this->get_element("id=co-0")->click();
+        $this->get_element("id=Submit")->click();
+        $this->get_element("id=modal-submit")->clickByJs();
+
+        $this->get_element("name=display_logs")->click();
+
+        $page = $this->driver->get_source();
+        $this->assertContains("Child Checked Out", $page);
+        $this->assertContains("Bob Dude", $page);
+        $this->assertContains("Mark Zuckerberg", $page);
     }
 
     public function tearDown()
