@@ -51,12 +51,12 @@ CREATE TABLE child (
 
 CREATE TABLE logs (
   primary_id INT,
-  seondary_id INT,
+  secondary_id INT,
   primary_name varchar(30),
   secondary_name varchar(30),
   facility_id INT,
   transaction_type varchar(100),
   additional_info varchar(100),
-  time_created DATETIME default NOW(),
+  time_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   transaction_id INT auto_increment unique KEY
 );
