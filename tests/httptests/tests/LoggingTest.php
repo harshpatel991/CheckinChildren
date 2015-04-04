@@ -36,10 +36,44 @@ class LoggingTest extends SeleniumTestBase {
 
     public function testCreateParentLog(){
 
+        testMacros::login($this->driver, "manager6@gmail.com", "password6");
+
+        $this->get_element("name=create_parent")->click();
+
+        $this->get_element("name=name")->send_keys("Test Case1");
+        $this->get_element("name=email")->send_keys("testcase1@gmail.com");
+        $this->get_element("name=password")->send_keys("password1");
+        $this->get_element("name=phone")->send_keys("8008881111");
+        $this->get_element("name=addr")->send_keys("1 fake addr");
+        $this->get_element("name=carrier")->select_option("Verizon Wireless");
+        $this->get_element("name=submit")->click();
+
+        $this->get_element("name=display_logs")->click();
+
+        $page=$this->driver->get_source();
+
+        $this->assertContains("Test Case1", $page);
+        $this->assertContains("Parent Created", $page);
     }
 
     public function testCreateEmployeeLog(){
+        testMacros::login($this->driver, "manager6@gmail.com", "password6");
 
+        $this->get_element("name=view_employees")->click();
+        $this->get_element("name=create_employee")->click();
+
+        $this->get_element("name=name")->send_keys("Test Case");
+        $this->get_element("name=email")->send_keys("testcase@gmail.com");
+        $this->get_element("name=password")->send_keys("100pass");
+
+        $this->get_element("name=submit")->click();
+
+        $this->get_element("name=display_logs")->click();
+
+        $page=$this->driver->get_source();
+
+        $this->assertContains("Test Case", $page);
+        $this->assertContains("Employee Created", $page);
     }
 
     public function testEditEmployeeLog(){
