@@ -73,10 +73,12 @@ class employeeDAO {
 
     }
 
+    /**
+     *
+     * @param $employee
+     * // **** ONLY UPDATES EMAIL AND NAME! ****
+     */
     public function update($employee){
-
-        var_dump($employee);
-
         $connection=DbConnectionFactory::create();
 
         $query = 'UPDATE employee SET emp_name=:emp_name WHERE id=:id';
@@ -96,6 +98,5 @@ class employeeDAO {
         $stmt->execute();
 
         $connection=null;
-
     }
 }
