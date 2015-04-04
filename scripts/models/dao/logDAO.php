@@ -4,8 +4,12 @@ require_once(dirname(__FILE__).'/../db/dbConnectionFactory.php');
 require_once(dirname(__FILE__).'/../employeeModel.php');
 require_once(dirname(__FILE__).'/employeeDAO.php');
 
+/**
+ * Class logDAO This class access the logging database, allowing for inserting new log entries and loading facility-specific ones.
+ */
 class logDAO
 {
+    //These are all of the phrases for the logs
     public static $transLogin = 'Login';
     public static $transLogout = 'Logout';
     public static $childCheckIn = "Child Checked In";
@@ -15,6 +19,11 @@ class logDAO
     public static $parentCreated = "Parent Created";
     public static $employeePromotion = "Employee Promoted";
 
+    /**
+     * @param int $facilityID The facility to load the logs for.
+     * @param string $orderedby The column to alphabetize the output by.
+     * @return array All of the logs for the given facility in double array form.
+     */
     public function findForFacility($facilityID, $orderedby){
         $connection = DbConnectionFactory::create();
         $query="SELECT * FROM logs WHERE facility_id = :facilityid ORDER BY $orderedby";
@@ -29,6 +38,13 @@ class logDAO
     }
 
 
+    /**
+     * @param int $primaryID The employee who did this action
+     * @param int $secondaryID The entity affected by this action
+     * @param string $secondaryName The name of the entity affected
+     * @param string $transactionType What transaction has occurred
+     * @param string $additionalInfo Used for reporting errors or failures on a transaction attempt
+     */
     public function insert($primaryID, $secondaryID, $secondaryName, $transactionType, $additionalInfo="N/A") {
         /*
          * Should insert into logs table: facilityID (query for this), primaryID, secondaryID, transactionType, addionalInfo, dateTime
