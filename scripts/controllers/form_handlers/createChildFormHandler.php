@@ -22,13 +22,15 @@ for ($i=0; $i<7; $i++){
     $child->expect_checkout[$i] = minutesFromMidnight($_POST['co-'.$i]);
 }
 
+$lDAO= new logDAO();
 if ($child->isValid()) {
     $childDAO = new childDAO();
     $childId = $childDAO->insert($child);
     $child->child_id = $childId;
     $childDAO->update($child);
-    header("Location: ../../../public/index.php");
     $lDAO->insert($_COOKIE[cookieManager::$userId], $child->child_id, $child->child_name, logDAO::$childCreated);
+    header("Location: ../../../public/index.php");
+
     exit();
 } else {
     $lDAO->insert($_COOKIE[cookieManager::$userId], $child->child_id, $child->child_name, logDAO::$childCreated, "Failure");
