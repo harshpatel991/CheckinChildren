@@ -74,9 +74,12 @@ class employeeDAO {
     }
 
     public function update($employee){
+
+        var_dump($employee);
+
         $connection=DbConnectionFactory::create();
 
-        $query = "UPDATE employee SET emp_name=:emp_name WHERE id=:id";
+        $query = 'UPDATE employee SET emp_name=:emp_name WHERE id=:id';
         $stmt=$connection->prepare($query);
 
         $stmt->bindParam(":emp_name", $employee->emp_name);
@@ -91,5 +94,8 @@ class employeeDAO {
         $stmt->bindParam(":id", $employee->id);
 
         $stmt->execute();
+
+        $connection=null;
+
     }
 }
