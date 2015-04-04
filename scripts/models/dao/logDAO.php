@@ -11,6 +11,18 @@ class logDAO
 
     public function findForFacility($facilityID){
 
+        $connection = DbConnectionFactory::create();
+
+        $query="SELECT * FROM logs WHERE facility_id = :facilityid";
+        $stmt=$connection->prepare($query);
+        $stmt->bindParam(':facility_id', $facilityID);
+
+        $stmt->execute();
+
+        $result= $stmt->fetchAll();
+        $connection=null;
+
+        return $result;
     }
 
 
@@ -26,6 +38,7 @@ class logDAO
         $facid=$emp->facility_id;
         $query = 'INSERT INTO logs (primary_id, secondary_id, primary_name, secondary_name, facility_id, transaction_type, additional_info)
             VALUES (:primaryID, :secondaryID, :primaryName, :secondaryName, :facilityid, :transactionType, :additionalInfo)';
+
         $stmt = $connection->prepare($query);
         $stmt->bindParam(':primaryID', $primaryID);
         $stmt->bindParam(':secondaryID', $secondaryID);
