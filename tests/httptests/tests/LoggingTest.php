@@ -13,6 +13,7 @@ class LoggingTest extends SeleniumTestBase {
 
     public function setUp(){
         parent::setUp();
+
     }
 
     public function testCreateChildLog(){
