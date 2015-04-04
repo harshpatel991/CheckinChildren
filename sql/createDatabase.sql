@@ -48,3 +48,13 @@ CREATE TABLE child (
   expect_checkout VARCHAR(50) DEFAULT '-1,-1,-1,-1,-1,-1,-1',
   last_message_status int default -1
 );
+
+CREATE TABLE logs (
+  primary_id INT,
+  seondary_id INT,
+  facility_id INT,
+  transaction_type varchar(100),
+  additional_info varchar(100),
+  time_created DATETIME default NOW(),
+  transaction_id INT auto_increment unique KEY
+);
