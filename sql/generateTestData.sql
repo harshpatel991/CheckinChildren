@@ -95,3 +95,6 @@ VALUES (8, 19, 'Child Pickup Later2', 'Dogs', 'Grandpa Joe', 5, '2015-03-04 14:2
 
 INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, additional_info)
 VALUES(9, null, "Rick Grimes", null, 2, "Create Parent", "Failed With Error 1");
+
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, additional_info)
+VALUES(6, 10, "Bob Dude", 'Dogs', 2, "Checkin Child", "N/A");
