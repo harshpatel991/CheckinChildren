@@ -7,7 +7,6 @@
  */
 require_once dirname(__FILE__).'/../scripts/models/db/dbConnectionFactory.php';
 
-
 $dbConn = DbConnectionFactory::create();
 $sql = file_get_contents(dirname(__FILE__).'/destroyTables.sql');
 $sql .= file_get_contents(dirname(__FILE__).'/createDatabase.sql');

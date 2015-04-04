@@ -13,13 +13,10 @@ class logDAO
     public static $childCreated = "Child Created";
 
     public function findForFacility($facilityID, $orderedby){
-
         $connection = DbConnectionFactory::create();
-
-        $query="SELECT * FROM logs WHERE facility_id = :facilityid ORDER BY :orderedby";
+        $query="SELECT * FROM logs WHERE facility_id = :facilityid ORDER BY $orderedby";
         $stmt=$connection->prepare($query);
         $stmt->bindParam(':facilityid', $facilityID);
-        $stmt->bindParam(':orderedby', $orderedby);
         $stmt->execute();
 
         $result= $stmt->fetchAll();
