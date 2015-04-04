@@ -8,6 +8,9 @@ class logDAO
 {
     public static $transLogin = 'Login';
     public static $transLogout = 'Logout';
+    public static $childCheckIn = "Child Checked In";
+    public static $childCheckOut = "Child Checked Out";
+    public static $childCreated = "Child Created";
 
     public function findForFacility($facilityID, $orderedby){
 
@@ -15,7 +18,7 @@ class logDAO
 
         $query="SELECT * FROM logs WHERE facility_id = :facilityid ORDER BY :orderedby";
         $stmt=$connection->prepare($query);
-        $stmt->bindParam(':facility_id', $facilityID);
+        $stmt->bindParam(':facilityid', $facilityID);
         $stmt->bindParam(':orderedby', $orderedby);
         $stmt->execute();
 
@@ -26,7 +29,7 @@ class logDAO
     }
 
 
-    public function insert($primaryID, $secondaryID, $primaryName, $secondaryName, $transactionType, $additionalInfo) {
+    public function insert($primaryID, $secondaryID, $secondaryName, $transactionType, $additionalInfo="N/A") {
         /*
          * Should insert into logs table: facilityID (query for this), primaryID, secondaryID, transactionType, addionalInfo, dateTime
          */
@@ -35,6 +38,7 @@ class logDAO
         $connection = DbConnectionFactory::create();
         $empDAO=new employeeDAO();
         $emp= $empDAO->find($primaryID);
+        $primaryName=$emp->emp_name;
         $facid=$emp->facility_id;
         $query = 'INSERT INTO logs (primary_id, secondary_id, primary_name, secondary_name, facility_id, transaction_type, additional_info)
             VALUES (:primaryID, :secondaryID, :primaryName, :secondaryName, :facilityid, :transactionType, :additionalInfo)';
