@@ -18,6 +18,7 @@ class logDAO
     public static $employeeCreated = "Employee Created";
     public static $parentCreated = "Parent Created";
     public static $employeePromotion = "Employee Promoted";
+    public static $employeeEdited = "Employee Edited";
 
     /**
      * @param int $facilityID The facility to load the logs for.
@@ -49,7 +50,6 @@ class logDAO
         /*
          * Should insert into logs table: facilityID (query for this), primaryID, secondaryID, transactionType, addionalInfo, dateTime
          */
-
 
         $connection = DbConnectionFactory::create();
         $empDAO=new employeeDAO();
