@@ -31,6 +31,7 @@ if ($child->isValid()) {
     $lDAO->insert($_COOKIE[cookieManager::$userId], $child->child_id, $child->child_name, logDAO::$childCreated);
     exit();
 } else {
+    $lDAO->insert($_COOKIE[cookieManager::$userId], $child->child_id, $child->child_name, logDAO::$childCreated, "Failure");
     header("Location: ../../../public/createChild.php?error=1");
 }
 

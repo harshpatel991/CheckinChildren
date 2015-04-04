@@ -11,6 +11,9 @@ class logDAO
     public static $childCheckIn = "Child Checked In";
     public static $childCheckOut = "Child Checked Out";
     public static $childCreated = "Child Created";
+    public static $employeeCreated = "Employee Created";
+    public static $parentCreated = "Parent Created";
+    public static $employeePromotion = "Employee Promoted";
 
     public function findForFacility($facilityID, $orderedby){
 
