@@ -78,6 +78,29 @@ class LoggingTest extends SeleniumTestBase {
     }
 
     public function testEditEmployeeLog(){
+        testMacros::login($this->driver, "baba_ganush2@gmail.com", "password2");
+
+        $this->get_element("id=edit_employee")->click();
+
+        $this->get_element("id=employee_name")->clear(); //clear text input box
+        $this->get_element("id=employee_name")->send_keys("Pierce Hawthorn");
+
+        $this->get_element("id=email")->clear();
+        $this->get_element("id=email")->send_keys("pHawthorn@gmail.com");
+
+        $this->get_element("name=submit")->click();
+
+        $this->get_element("name=profile")->click();
+        $this->get_element("name=logout")->click();
+
+        testMacros::login($this->driver, "manager6@gmail.com", "password6");
+
+        $this->get_element("name=display_logs")->click();
+
+        $page=$this->driver->get_source();
+
+        $this->assertContains("Pierce Hawthorn", $page);
+        $this->assertContains("Employee Edited", $page);
 
     }
 
