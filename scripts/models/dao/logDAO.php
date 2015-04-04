@@ -25,7 +25,7 @@ class logDAO
      * @param string $orderedby The column to alphabetize the output by.
      * @return array All of the logs for the given facility in double array form.
      */
-    public function findForFacility($facilityID, $orderedby){
+    public function findForFacility($facilityID, $orderedby="time_created"){
         $connection = DbConnectionFactory::create();
         $query="SELECT * FROM logs WHERE facility_id = :facilityid ORDER BY $orderedby";
         $stmt=$connection->prepare($query);
