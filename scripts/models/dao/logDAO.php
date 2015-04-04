@@ -1,6 +1,8 @@
 <?php
 //require_once(dirname(__FILE__).'/../userModel.php');
 require_once(dirname(__FILE__).'/../db/dbConnectionFactory.php');
+require_once(dirname(__FILE__).'/../employeeModel.php');
+require_once(dirname(__FILE__).'/employeeDAO.php');
 
 class logDAO
 {
@@ -12,23 +14,29 @@ class logDAO
     }
 
 
-    public function insert($primaryID, $secondaryID, $transactionType, $additionalInfo) {
+    public function insert($primaryID, $secondaryID, $primaryName, $secondaryName, $transactionType, $additionalInfo) {
         /*
          * Should insert into logs table: facilityID (query for this), primaryID, secondaryID, transactionType, addionalInfo, dateTime
          */
 
 
         $connection = DbConnectionFactory::create();
-        $query = 'INSERT INTO users (email, password, role) VALUES (:email, :password, :role)';
+        $empDAO=new employeeDAO();
+        $emp= $empDAO->find($primaryID);
+        $facid=$emp->facility_id;
+        $query = 'INSERT INTO logs (primary_id, secondary_id, primary_name, secondary_name, facility_id, transaction_type, additional_info)
+            VALUES (:primaryID, :secondaryID, :primaryName, :secondaryName, :facilityid, :transactionType, :additionalInfo)';
         $stmt = $connection->prepare($query);
-        $stmt->bindParam(':email', $user->email);
-        $stmt->bindParam(':password', $user->password);
-        $stmt->bindParam(':role', $user->role);
+        $stmt->bindParam(':primaryID', $primaryID);
+        $stmt->bindParam(':secondaryID', $secondaryID);
+        $stmt->bindParam(':facilityid', $facid);
+        $stmt->bindParam(':primaryName', $primaryName);
+        $stmt->bindParam(':secondaryName', $secondaryName);
+        $stmt->bindParam(':transactionType', $transactionType);
+        $stmt->bindParam(':additionalInfo', $additionalInfo);
         $stmt->execute();
-        $id = $connection->lastInsertId();
-        $connection = null;
-        return $id;
 
+        $connection=null;
     }
 
 }
