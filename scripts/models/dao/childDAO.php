@@ -103,7 +103,7 @@ class childDAO {
         return $children;
     }
 
-    // Updates a child's name and allergies
+    // Updates a child's name, allergies, trusted parties, expected check in/ expected checkout, and last message status
     // *** DOES NOT UPDATE ANY OTHER VALUES OF THE CHILD! ***
     public function update($child) {
         $this->updateField($child->child_id, 'child_name', $child->child_name);
