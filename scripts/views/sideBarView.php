@@ -27,4 +27,5 @@ function employeeSideBar() { ?>
     <a href="checkinChildren.php" name="view_children" class="list-group-item"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> View Children</a>
     <a href="createParent.php" name="create_parent" class="list-group-item"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Create Parent</a>
     <a href="createChild.php" name="create_child" class="list-group-item"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Create Child</a>
+    <a href="editEmployee.php" name="create_child" class="list-group-item"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit Profile</a>
 <?php } ?>
