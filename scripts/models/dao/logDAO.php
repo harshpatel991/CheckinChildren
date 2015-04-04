@@ -18,16 +18,16 @@ class logDAO
          */
 
 
-//        $connection = DbConnectionFactory::create();
-//        $query = 'INSERT INTO users (email, password, role) VALUES (:email, :password, :role)';
-//        $stmt = $connection->prepare($query);
-//        $stmt->bindParam(':email', $user->email);
-//        $stmt->bindParam(':password', $user->password);
-//        $stmt->bindParam(':role', $user->role);
-//        $stmt->execute();
-//        $id = $connection->lastInsertId();
-//        $connection = null;
-//        return $id;
+        $connection = DbConnectionFactory::create();
+        $query = 'INSERT INTO users (email, password, role) VALUES (:email, :password, :role)';
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':email', $user->email);
+        $stmt->bindParam(':password', $user->password);
+        $stmt->bindParam(':role', $user->role);
+        $stmt->execute();
+        $id = $connection->lastInsertId();
+        $connection = null;
+        return $id;
 
     }
 
