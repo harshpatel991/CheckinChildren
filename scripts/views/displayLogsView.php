@@ -44,7 +44,7 @@ $logs = $logDAO->findForFacility($facilityID, $orderBy);
     <?php foreach ($logs as $log) { ?>
         <tr>
             <td><?php echo $log['time_created']; ?></td>
-            <td><?php echo $log['transaction_id']; ?></td>
+            <td><?php echo $log['transaction_type']; ?></td>
             <td><?php echo $log['primary_name']; ?></td>
             <td><?php echo $log['secondary_name']; ?></td>
             <td><?php echo $log['additional_info']; ?></td>
