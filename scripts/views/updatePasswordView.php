@@ -33,6 +33,6 @@
 } else if ($_COOKIE[cookieManager::$userRole]=='parent') { ?>
     <a href="displayParentInfo.php" class="btn btn-success"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Account Profile</a>
 } else { ?>
-    <a href="displayParentInfo.php" class="btn btn-success"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true">></span> Back to Account Profile</a>
+    <a href="displayParentInfo.php" class="btn btn-success"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Account Profile</a>
     <?php } ?>
 
