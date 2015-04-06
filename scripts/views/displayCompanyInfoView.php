@@ -21,13 +21,17 @@ $company=$companyDAO->find($_COOKIE[cookieManager::$userId]);
         <td><?php echo $company->address; ?></td>
     </tr>
     <tr>
+        <th>Email</th>
+        <td><?php echo $company->email; ?></td>
+    </tr>
+    <tr>
         <th>Phone Number</th>
         <td><?php echo $company->phone; ?></td>
     </tr>
 </table>
 
 <br>
-<a class="btn btn-success" id="edit_parent" href="editCompany.php"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit Information</a>
+<a class="btn btn-success" id="edit_company" href="editCompany.php"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit Information</a>
 <a class="btn btn-success" id="update_password" href="updatePassword.php"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Change Password</a>
 
 <hr>

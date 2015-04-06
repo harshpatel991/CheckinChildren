@@ -46,4 +46,23 @@ class CompanyDAO {
         $connection = null;
         return $company;
     }
+    // Updates the email, parent_name, address, phone_number of a parent
+    // **** DOES NOT UPDATE PASSWORD or ID OF PARENT! ****
+    public function update($company) {
+        $userDAO=new userDAO();
+
+        $userDAO->updateField($company->id, 'email', $company->email);
+        $this->updateField($company->id, 'company_name', $company->company_name);
+        $this->updateField($company->id, 'address', $company->address);
+        $this->updateField($company->id, 'phone', $company->phone);
+    }
+    private function updateField($userId, $field, $value){
+        $connection = DbConnectionFactory::create();
+        $query = 'UPDATE company SET '.$field.'=:value WHERE id=:id';
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':value', $value);
+        $stmt->bindParam(':id', $userId);
+        $stmt->execute();
+        $connection = null;
+    }
 }
