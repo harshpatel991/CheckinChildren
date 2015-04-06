@@ -1,5 +1,6 @@
 <?php
 //require_once(dirname(__FILE__).'/../controllers/authController.php');
+  require_once(dirname(__FILE__).'/../cookieManager.php');
 ?>
 
 <h1>Change Password</h1>
@@ -26,6 +27,12 @@
 
 <hr>
 
-<a id="home" href="displayParentInfo.php" class="btn btn-danger"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Account Profile</a>
-
+<?php if ($_COOKIE[cookieManager::$userRole]=='company') { ?>
+    <a href="displayCompanyInfo.php" class="btn btn-success"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Account Profile</a>
+<?php
+} else if ($_COOKIE[cookieManager::$userRole]=='parent') { ?>
+    <a href="displayParentInfo.php" class="btn btn-success"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Account Profile</a>
+} else { ?>
+    <a href="displayParentInfo.php" class="btn btn-success"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true">></span> Back to Account Profile</a>
+    <?php } ?>
 
