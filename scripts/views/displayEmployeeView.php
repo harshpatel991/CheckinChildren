@@ -35,7 +35,11 @@ $employee=$employeeDAO->find($_GET['employee_id']);
 <br>
 <?php if ($employee->role=="employee") {?>
     <a class="btn btn-success" id ="promote_employee" href = "../scripts/controllers/form_handlers/promoteEmployeeFormHandler.php?employee_id=<?php echo $employee->id;?>" <span class="glyphicon glyphicon-edit" aria-hidden="true"></span > Promote Employee </a >
+   <?php }
+    else if ($employee->role=="manager") {?>
+        <a class="btn btn-success" id ="demote_employee" href = "../scripts/controllers/form_handlers/demoteManagerFormHandler.php?employee_id=<?php echo $employee->id;?>" <span class="glyphicon glyphicon-edit" aria-hidden="true"></span > Demote Manager </a >
    <?php }  ?>
+
 <hr>
 
 <a id="home" href="index.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Home</a>
