@@ -14,8 +14,8 @@ $facility=$facilityDAO->find($_GET['facility_id']);
     </div>
 
     <div class="form-group">
-        <label for="allergies">Phone</label>
-        <input type="text" name="allergies" id="allergies" value="<?php echo $facility->phone; ?>" class="form-control">
+        <label for="phone">Phone</label>
+        <input type="text" name="phone" id="phone" value="<?php echo $facility->phone; ?>" class="form-control">
     </div>
     <input type="hidden" name="company_id" id="company_id" value="<?php echo $facility->company_id; ?>">
     <input type="hidden" name="facility_id" id="facility_id" value="<?php echo $_GET['facility_id']; ?>">
@@ -26,11 +26,4 @@ $facility=$facilityDAO->find($_GET['facility_id']);
 
 <hr>
 
-<a id="home" href="displayChild.php?child_id=<?php echo $_GET['child_id']; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Child Info</a>
-
-
-<script>
-    $(document).ready(function(){
-        $('.time-picker').combodate();
-    });
-</script>
+<a id="home" href="displayFacilities.php?facility_id=<?php echo $_GET['facility_id']; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Facility Info</a>
