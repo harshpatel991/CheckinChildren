@@ -27,7 +27,8 @@ function displaySingleFacility($facility) {
         Company ID: <?php echo $facility->company_id; ?> <br>
         Address: <?php echo $facility->address; ?> <br>
         Phone: <?php echo $facility->phone; ?> <br>
-        <a href="displayFacilities.php">View all facilities</a>
+        <a href="displayFacilities.php">View all facilities</a><br>
+        <a href="displayFacilityEmployees.php?facility_id=<?=$facility->facility_id;?>">View all employees</a>
     </p>
 <?php
 
