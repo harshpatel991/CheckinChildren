@@ -8,14 +8,12 @@ require_once(dirname(__FILE__).'/../cookieManager.php');
 $managerDAO=new managerDAO();
 $managers=$managerDAO->getCompanyManagers($_COOKIE[cookieManager::$userId]);
 
-$emplist='<table class="table">';
-$emplist.="<tr><th>Manager Name</th><th>Facility ID</th></tr>";
+$emplist='';
 
 foreach ($managers as $manager) {
-    $emplist.="<tr><td>$manager->emp_name</td><td>$manager->facility_id</td></tr>";
+    $emplist.='<a id='. $manager->id .' class="list-group-item" href="displayEmployee.php?employee_id=' . $manager->id . '">' . ($manager->emp_name) . '</a>';
 }
 
-$emplist=$emplist."</table>";
 ?>
 
 <h1 id="title">Managers</h1>
