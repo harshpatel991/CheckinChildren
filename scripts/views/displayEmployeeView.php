@@ -40,7 +40,7 @@ $employee=$employeeDAO->find($_GET['employee_id']);
         <a class="btn btn-success" id ="demote_employee" href = "../scripts/controllers/form_handlers/demoteManagerFormHandler.php?employee_id=<?php echo $employee->id;?>" <span class="glyphicon glyphicon-edit" aria-hidden="true"></span > Demote Manager </a >
    <?php }
     if ($_COOKIE[cookieManager::$userRole]=="company"){
-        ?><a class="btn btn-success" id ="delete_employee" href = "../scripts/controllers/form_handlers/demoteManagerFormHandler.php?employee_id=<?php echo $employee->id;?>" <span class="glyphicon glyphicon-edit" aria-hidden="true"></span > Delete Employee </a ><?php
+        ?><a class="btn btn-success" id ="delete_employee" href = "../scripts/controllers/form_handlers/deleteEmployeeFormHandler.php?employee_id=<?php echo $employee->id;?>" <span class="glyphicon glyphicon-edit" aria-hidden="true"></span > Delete Employee </a ><?php
     }
     ?>
 
