@@ -8,7 +8,7 @@ class childDAO {
     function insert($child){
         $connection = DbConnectionFactory::create();
 
-        $query = "INSERT INTO child (child_id, parent_id, child_name, allergies, trusted_parties, facility_id) VALUES ( :child_id, :parent_id, :child_name, :allergies, :trusted_parties, :facility_id)";
+        $query = "INSERT INTO child (child_id, parent_id, child_name, allergies, trusted_parties, facility_id, expect_checkin, expect_checkout) VALUES ( :child_id, :parent_id, :child_name, :allergies, :trusted_parties, :facility_id, :expect_checkin, :expect_checkout)";
         $stmt=$connection->prepare($query);
 
         $stmt->bindParam(":child_id", $child->child_id);
@@ -17,6 +17,8 @@ class childDAO {
         $stmt->bindParam(":allergies", $child->allergies);
         $stmt->bindParam(":trusted_parties", $child->trusted_parties);
         $stmt->bindParam(":facility_id", $child->facility_id);
+        $stmt->bindParam(":expect_checkin", self::timesArrayToCsv($child->expect_checkin));
+        $stmt->bindParam(':expect_checkout', self::timesArrayToCsv($child->expect_checkout));
 
         $stmt->execute();
         $child_id = $connection->lastInsertId();

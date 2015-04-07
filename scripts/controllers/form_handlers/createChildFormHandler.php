@@ -27,8 +27,8 @@ $lDAO= new logDAO();
 if ($child->isValid()) {
     $childDAO = new childDAO();
     $childId = $childDAO->insert($child);
-    $child->child_id = $childId;
-    $childDAO->update($child);
+   // $child->child_id = $childId;
+   // $childDAO->update($child);
     $lDAO->insert($_COOKIE[cookieManager::$userId], $child->child_id, $child->child_name, logDAO::$childCreated);
     header("Location: ../../../public/index.php");
 
