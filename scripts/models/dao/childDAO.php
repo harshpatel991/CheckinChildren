@@ -142,7 +142,7 @@ class childDAO {
         return $child;
     }
 
-    public function deleteAllChildrenFacility($facility_id){
+    public function deleteAllChildrenInFacility($facility_id){
         $connection = DbConnectionFactory::create();
         $query = "DELETE FROM child WHERE facility_id=:id";
         $stmt = $connection->prepare($query);
