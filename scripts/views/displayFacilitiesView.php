@@ -29,13 +29,14 @@ function displaySingleFacility($facility) {
         Company ID: <?php echo $facility->company_id; ?> <br>
         Address: <?php echo $facility->address; ?> <br>
         Phone: <?php echo $facility->phone; ?> <br>
-
         <br>
         <a class="btn btn-success" name="edit_facility" id="edit_facility" href="editFacility.php?facility_id=<?php echo $_GET['facility_id']; ?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit Information</a>
         <a class="btn btn-danger confirm-submit" data-toggle="modal" data-target="#confirmModal"id="delete_facility"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Remove Facility</a>
 
         <hr>
         <a href="displayFacilities.php" class="btn btn-success"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> View all facilities</a>
+        <a href="displayFacilityEmployees.php?facility_id=<?=$facility->facility_id;?>">View all employees</a>
+
     </p>
 <!-- Modal -->
 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
