@@ -94,4 +94,14 @@ class childDAOTest extends unitTestBase {
 
     }
 
+    public function testDeleteAllChildrenInFacility(){
+        $childDAO = new ChildDAO();
+        $children = $childDAO->findChildrenInFacility(5);
+        $this->assertEquals(10,count($children));
+
+        $childDAO->deleteAllChildrenInFacility(5);
+        $children = $childDAO->findChildrenInFacility(5);
+        $this->assertEquals(0,count($children));
+    }
+
 }

@@ -55,7 +55,46 @@ class UpdatePasswordTest extends SeleniumTestBase
         $this->assertContains("parent", $page);
 
     }
+    public function testCompany() {
+        //I am redirected to login page
+        $this->assert_title("Login");
 
+        //Login
+        testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
+        $this->assert_title("CheckinChildren");
+        //Click View Profile
+        $this->get_element("name=view_company_profile")->click();
+        //Click Update Password
+        $this->get_element("id=update_password")->click();
+
+        //Bad old password
+        $this->get_element("name=old_password")->send_keys("password21");
+        $this->get_element("name=new_password")->send_keys("password19");
+        $this->get_element("name=con_password")->send_keys("password19");
+        $this->get_element("name=submit")->click();
+        $page = $this->driver->get_source();
+        $this->assertContains("Old Password is Incorrect", $page);
+        //Bad confirm password
+        $this->get_element("name=old_password")->send_keys("password1");
+        $this->get_element("name=new_password")->send_keys("test19");
+        $this->get_element("name=con_password")->send_keys("password19");
+        $this->get_element("name=submit")->click();
+        $page = $this->driver->get_source();
+        $this->assertContains("New Password and Confirmation Don't Match", $page);
+        //Good update password
+        $this->get_element("name=old_password")->send_keys("password1");
+        $this->get_element("name=new_password")->send_keys("pass1");
+        $this->get_element("name=con_password")->send_keys("pass1");
+        $this->get_element("name=submit")->click();
+
+        $this->get_element("name=profile")->click();
+        $this->get_element("name=logout")->click(); //click logout
+
+        testMacros::login($this->driver, "bigcompany1@gmail.com", "pass1");
+        $page = $this->driver->get_source();
+        $this->assertContains("company", $page);
+
+    }
     public function tearDown(){
         //Any additional teardown goes here.
         parent::tearDown();

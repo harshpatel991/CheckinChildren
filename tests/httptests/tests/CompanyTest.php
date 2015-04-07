@@ -51,7 +51,102 @@ class CompanyTest extends SeleniumTestBase
         $this->assertContains("1091 Huntington Rd Carol Stream Il 60082", $page);
 
     }
+    public function testEditFacility() {
+        testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
 
+        $this->get_element("signed-in")->assert_text("Currently signed in as a company");
+
+        $this->get_element("name=view_facilities")->click();
+        $page = $this->driver->get_source();
+        $this->assertContains("My Facilities", $page);
+        $this->assertContains("2 Facility Rd. Champaign IL 61820", $page);
+
+        $this->get_element("link=2 Facility Rd. Champaign IL 61820")->click();
+
+        $page = $this->driver->get_source();
+        $this->assertContains("Facility ID: 2", $page);
+        $this->assertContains("Company ID: 1", $page);
+        $this->assertContains("Address: 2 Facility Rd. Champaign IL 61820", $page);
+        $this->assertContains("Phone: 1235933945", $page);
+
+        $this->get_element("name=edit_facility")->click();
+        $this->get_element("id=address")->clear();
+        $this->get_element("id=address")->send_keys("22 EditFacility Rd. Champaign IL 61820");
+
+        $this->get_element("id=phone")->clear();
+        $this->get_element("id=phone")->send_keys("1231237890");
+        $this->get_element("name=submit")->click();
+
+        $page = $this->driver->get_source();
+        $this->assertContains("Facility ID: 2", $page);
+        $this->assertContains("Company ID: 1", $page);
+        $this->assertContains("Address: 22 EditFacility Rd. Champaign IL 61820", $page);
+        $this->assertContains("Phone: 1231237890", $page);
+    }
+    public function testEditFacilityInvalid() {
+        testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
+
+        $this->get_element("signed-in")->assert_text("Currently signed in as a company");
+
+        $this->get_element("name=view_facilities")->click();
+        $page = $this->driver->get_source();
+        $this->assertContains("My Facilities", $page);
+        $this->assertContains("1 Facility Rd. Champaign IL 61820", $page);
+
+        $this->get_element("link=1 Facility Rd. Champaign IL 61820")->click();
+
+        $page = $this->driver->get_source();
+        $this->assertContains("Facility ID: 1", $page);
+        $this->assertContains("Company ID: 1", $page);
+        $this->assertContains("Address: 1 Facility Rd. Champaign IL 61820", $page);
+        $this->assertContains("Phone: 1235933945", $page);
+
+        $this->get_element("name=edit_facility")->click();
+
+
+        $this->get_element("id=address")->clear();
+        $this->get_element("name=submit")->click();
+
+        $page = $this->driver->get_source();
+        $this->assertContains("Invalid Information", $page);
+
+        $this->get_element("id=phone")->clear();
+        $this->get_element("name=submit")->click();
+
+        $page = $this->driver->get_source();
+        $this->assertContains("Invalid Information", $page);
+
+        $this->get_element("id=phone")->clear();
+        $this->get_element("id=phone")->send_keys("1231237890565");
+        $this->get_element("name=submit")->click();
+        $page = $this->driver->get_source();
+        $this->assertContains("Invalid Information", $page);
+    }
+    public function testDeleteFacility() {
+        testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
+
+        $this->get_element("signed-in")->assert_text("Currently signed in as a company");
+
+        $this->get_element("name=view_facilities")->click();
+        $page = $this->driver->get_source();
+        $this->assertContains("My Facilities", $page);
+        $this->assertContains("1 Facility Rd. Champaign IL 61820", $page);
+
+        $this->get_element("link=1 Facility Rd. Champaign IL 61820")->click();
+
+        $page = $this->driver->get_source();
+        $this->assertContains("Facility ID: 1", $page);
+        $this->assertContains("Company ID: 1", $page);
+        $this->assertContains("Address: 1 Facility Rd. Champaign IL 61820", $page);
+        $this->assertContains("Phone: 1235933945", $page);
+
+        $this->get_element("id=delete_facility")->click();
+
+        $this->get_element("id=modal-submit")->click();
+        $this->assertContains("My Facilities", $page);
+        $this->assertNOtContains("1 Facility Rd. Champaign IL 61820", $page); //@TODO How do I check that it was removed?
+
+    }
     public function testViewManagers() {
         testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
 
