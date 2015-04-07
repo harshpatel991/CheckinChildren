@@ -1,4 +1,7 @@
 <?php
+/**
+ * This class displays the parent's information to be edited.
+ */
 require_once(dirname(__FILE__).'/../controllers/authController.php');
 require_once(dirname(__FILE__).'/../models/dao/parentDAO.php');
 require_once(dirname(__FILE__).'/../models/parentModel.php');
