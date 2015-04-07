@@ -1,4 +1,8 @@
-<?php require_once(dirname(__FILE__).'/../cookieManager.php'); ?>
+<?php
+/**
+ * This class determines what gets shown on the side bar based on the user's role.
+ */
+ require_once(dirname(__FILE__).'/../cookieManager.php'); ?>
 
 <ul class="list-group">
     <a href="index.php" class="list-group-item"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>

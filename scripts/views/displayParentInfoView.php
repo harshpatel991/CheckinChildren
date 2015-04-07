@@ -1,4 +1,7 @@
 <?php
+/**
+ * This class displays the information of a parent to the (parent) user.
+ */
 error_reporting(E_ALL);
 ini_set("display_errors",1);
 
