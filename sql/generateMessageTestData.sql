@@ -64,7 +64,7 @@ INSERT INTO users(id, email, password, role) VALUES (2, 'company2@checkinchildre
 INSERT INTO users(id, email, password, role) VALUES (3, 'manager1@checkinchildren.com', 'e38ad214943daad1d64c102faec29de4afe9da3d', 'manager'); #password: 'password1'
 INSERT INTO users(id, email, password, role) VALUES (4, 'manager2@checkinchildren.com', 'e38ad214943daad1d64c102faec29de4afe9da3d', 'manager'); #password: 'password1'
 INSERT INTO users(id, email, password, role) VALUES (5, 'mwallic2@illinois.edu', 'e38ad214943daad1d64c102faec29de4afe9da3d', 'parent'); #password: 'password1'
-INSERT INTO users(id, email, password, role) VALUES (6, 'mcwallick@gmail.com', 'e38ad214943daad1d64c102faec29de4afe9da3d', 'parent'); #password: 'password1'
+INSERT INTO users(id, email, password, role) VALUES (6, 'kenned45@illinois.edu', 'e38ad214943daad1d64c102faec29de4afe9da3d', 'parent'); #password: 'password1'
 
 #Add sample facilities
 INSERT INTO facility(facility_id, company_id, address, phone) VALUES (1, 1, '1 Facility Rd. Champaign IL 61820', '1235933945');
@@ -79,8 +79,8 @@ INSERT INTO employee(id, emp_name, facility_id) VALUES (3, 'Saul Goodman', 1);
 INSERT INTO employee(id, emp_name, facility_id) VALUES (4, 'Rick Grimes', 2);
 
 #Insert parents
-INSERT INTO parent(id, parent_name, address, phone_number, contact_pref, carrier) VALUES (5, 'Natt Wallick', '123 Fake Ave Champaign IL 61820', '6163895565', 'email,text', 'Sprint');
-INSERT INTO parent(id, parent_name, address, phone_number, contact_pref, carrier) VALUES (6, 'Elzabad Kennedy', '456 Real Ave Urbana IL 61820', '6786546789', 'email', 'Boost Mobile');
+INSERT INTO parent(id, parent_name, address, phone_number, contact_pref, carrier) VALUES (5, 'Natt Wallick', '123 Fake Ave Champaign IL 61820', '6163895565', 'email', 'Sprint');
+INSERT INTO parent(id, parent_name, address, phone_number, contact_pref, carrier) VALUES (6, 'Elzabad Kennedy', '456 Real Ave Urbana IL 61820', '2023291703', 'email', 'Boost Mobile');
 
 #Insert children, it has to be 3:00 PM on March 4th (900 minutes)
 INSERT INTO child(child_id, parent_id, child_name, allergies, trusted_parties, facility_id, last_checkin, last_checkout, expect_checkin, expect_checkout)

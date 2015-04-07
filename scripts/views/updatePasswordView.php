@@ -1,4 +1,7 @@
 <?php
+/**
+ * This class displays the necessary components to change one's password
+ */
 //require_once(dirname(__FILE__).'/../controllers/authController.php');
   require_once(dirname(__FILE__).'/../cookieManager.php');
 ?>

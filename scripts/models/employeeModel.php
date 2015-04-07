@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: alex
- * Date: 2/15/15
- * Time: 2:11 PM
- */
-
 require_once(dirname(__FILE__).'/userModel.php');
 
 class employeeModel extends userModel{
@@ -23,11 +16,16 @@ class employeeModel extends userModel{
     }
 
     public function isValid() {
-        if (strlen($this->emp_name)>30 || strlen($this->emp_name)<=0) {
+
+        return $this->isUpdateValid() && parent::isValid();
+    }
+
+    public function isUpdateValid() {
+        if (strlen($this->emp_name) > 30 || strlen($this->emp_name)<=0) {
             return false;
         }
 
-        return parent::isValid();
+        return parent::isUpdateValid();
     }
 
 }
