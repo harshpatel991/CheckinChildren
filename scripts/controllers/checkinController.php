@@ -1,4 +1,7 @@
 <?php
+/**
+ *
+ */
 require_once((dirname(__FILE__).'/../models/dao/employeeDAO.php'));
 require_once((dirname(__FILE__).'/../models/employeeModel.php'));
 require_once((dirname(__FILE__).'/../models/dao/childDAO.php'));
@@ -7,6 +10,10 @@ require_once((dirname(__FILE__).'/../models/childModel.php'));
 require_once((dirname(__FILE__).'/../dateTimeProvider.php'));
 class checkinController {
 
+    /**
+     * @param int $empId The employee's id
+     * @return childModel[] The children "sorted" into different buckets
+     */
     public function getChildrenBuckets($empId){
         $children = $this->getChildrenInFacility($empId);
         $buckets = array(

@@ -1,4 +1,9 @@
 <?php
+/**
+ * The form handler when a parent submits form to edit their account
+ * Determines if submitted parent is valid and updates record in parentDAO and redirects to displayParentInfo page
+ * If parent information is not valid, redirects to editParent page with error
+ */
 
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../../models/dao/parentDAO.php');
@@ -26,8 +31,7 @@ if ($parent->isUpdateValid()) {
 
     header("Location: ../../../public/displayParentInfo.php"); //send browser to the page for newly created facility
     exit();
-
-} else { //redirect to employee creation page with error message
-    header("Location: ../../../public/editParent.php?error=1");
+} else {
+    header("Location: ../../../public/editParent.php?error=1"); //redirect to employee creation page with error message
     exit();
 }

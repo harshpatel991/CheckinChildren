@@ -59,6 +59,24 @@ class dateTimeProvider
         return sprintf('%02d:%02d:%02d %s', $hrs, $time['minutes'], $time['seconds'], $ap);
     }
 
+    /*
+     * Determines the minutes from midnight of a given time
+     * $time string of format '2:30 am'
+     *
+     * returns minutes-from-midnight
+     */
+    public static function minutesFromMidnight($time){
+        if(!isset($time) || $time==='' || $time==null) {
+            return -1;
+        }
+        $hmap = preg_split("/[\s:]+/", $time);
+        $hmap[0] %= 12;
+        if ($hmap[2] === 'pm'){
+            $hmap[0] += 12;
+        }
+        return $hmap[1] + $hmap[0] * 60;
+    }
+
     public static function readableTimeOfDay($minutesFromMidnight){
         $readable = sprintf("%02d", $minutesFromMidnight / 60);
         $readable .= ':'.sprintf("%02d", $minutesFromMidnight % 60);
