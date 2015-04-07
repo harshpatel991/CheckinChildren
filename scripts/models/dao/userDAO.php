@@ -36,6 +36,15 @@ class UserDAO
         return $id;
     }
 
+    public  function delete($id){
+        $connection = DbConnectionFactory::create();
+        $query = 'DELETE FROM users WHERE id =:id';
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $connection = null;
+    }
+
     public function updateField($userId, $field, $value){
         $connection = DbConnectionFactory::create();
         $query = 'UPDATE users SET '.$field.'=:value WHERE id=:id';
