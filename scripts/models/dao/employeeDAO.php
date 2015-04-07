@@ -73,7 +73,7 @@ class employeeDAO {
 
     }
 
-    public function deleteAllEmployeesFacility($facility_id){
+    public function deleteAllEmployeesInFacility($facility_id){
         $connection = DbConnectionFactory::create();
         $query = "DELETE FROM employee WHERE facility_id=:id";
         $stmt = $connection->prepare($query);
