@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * This class displays a child's information for editing purposes. It includes text fields as well as a table for picking times.
+ */
+
 require_once(dirname(__FILE__).'/../models/dao/childDAO.php');
 require_once(dirname(__FILE__).'/../models/childModel.php');
 
