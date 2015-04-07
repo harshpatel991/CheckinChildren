@@ -75,4 +75,12 @@ class FacilityDAO {
         $stmt->execute();
         $connection = null;
     }
+    public function delete($facility_id){
+        $connection = DbConnectionFactory::create();
+        $query = "DELETE FROM facility WHERE facility_id=:id";
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':id', $facility_id);
+        $stmt->execute();
+        $connection = null;
+    }
 }

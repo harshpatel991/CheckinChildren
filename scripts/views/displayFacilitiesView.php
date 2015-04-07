@@ -67,8 +67,8 @@ function displaySingleFacility($facility) {
                 </ul>
             </div>
             <div class="modal-footer">
-                <form name="deleteFacilityForm" method="post" action="../scripts/controllers/form_handlers/deleteFacilityFormHandler.php">
-                    <input id="facility_id" value="<?php $facility->facility_id; ?>" type="hidden">
+                <form name="deleteFacilityForm" method="post" action="../scripts/controllers/form_handlers/deleteFacilityFormHandler.php?facility_id=<?php echo $_GET['facility_id']; ?>">
+                    <input id="facility_id" value="<?php $facility->facility_id; ?>" type="hidden"><!--@TODO should I make the facility a part of the header or have it in a hidden field-->
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button id="modal-submit" type="submit" class="btn btn-primary">Confirm Removal</button>
                 </form>
