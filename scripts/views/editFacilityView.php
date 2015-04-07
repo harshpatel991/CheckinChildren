@@ -9,8 +9,8 @@ $facility=$facilityDAO->find($_GET['facility_id']);
 
 <form method="post" action="../scripts/controllers/form_handlers/editFacilityFormHandler.php">
     <div class="form-group">
-        <label for="addresss">Address</label>
-        <input type="text" name="address" id="facility_name" value="<?php echo $facility->address; ?>" class="form-control">
+        <label for="address">Address</label>
+        <input type="text" name="address" id="address" value="<?php echo $facility->address; ?>" class="form-control">
     </div>
 
     <div class="form-group">
