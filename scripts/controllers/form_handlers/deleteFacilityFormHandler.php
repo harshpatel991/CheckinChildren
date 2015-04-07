@@ -7,13 +7,18 @@
 require_once(dirname(__FILE__) . '/../../models/dao/facilityDAO.php');
 require_once(dirname(__FILE__) . '/../../models/dao/childDAO.php');
 require_once(dirname(__FILE__) . '/../../models/dao/employeeDAO.php');
+require_once(dirname(__FILE__) . '/../../models/dao/userDAO.php');
 
 $childDao = new childDAO();
 $employeeDao = new employeeDAO();
 $facilityDAO = new facilityDAO();
-//$children = $childDao->findChildrenInFacility($facility->facility_id);
-//$employees = $employeeDao->getFacilityEmployees($facility->facility_id);
-//$facility = new facilityModel($_POST["company_id"], $_POST["address"],$_POST["phone"], $_POST["facility_id"]);
+$userDAO = new userDAO();
+$employees = $employeeDao->getFacilityEmployees($_GET["facility_id"]);
+
+foreach($employees as $employee)
+{
+    $userDAO->delete($employee->id);
+}
 
 $childDao->deleteAllChildrenInFacility($_GET["facility_id"]);
 $employeeDao->deleteAllEmployeesInFacility($_GET["facility_id"]);
