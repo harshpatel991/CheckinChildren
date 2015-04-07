@@ -17,7 +17,8 @@ for ($i=0; $i<7; $i++){
     $child->expect_checkout[$i] = minutesFromMidnight($_POST['co-'.$i]);
 }
 
-if ($child->isUpdateValid()) {
+$error_code = $child->isUpdateValid();
+if ($error_code === 0) {
     $childDAO = new ChildDAO();
     $childDAO->update($child);
 
@@ -25,7 +26,7 @@ if ($child->isUpdateValid()) {
     exit();
 
 } else { //redirect to edit child page with error message
-    header("Location: ../../../public/editChild.php?child_id=".$child_id. "&error=1");
+    header("Location: ../../../public/editChild.php?child_id=".$child_id. "&error=".$error_code);
     exit();
 }
 

@@ -127,7 +127,7 @@ class ParentTest extends SeleniumTestBase
         $this->get_element("name=submit")->click();
 
         $page = $this->driver->get_source();
-        $this->assertContains("Invalid Information", $page);
+        $this->assertContains("Invalid Name", $page);
     }
 
     public function testChildStatusMissing()
