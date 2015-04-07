@@ -21,7 +21,8 @@ for ($i=0; $i<7; $i++){
     $child->expect_checkout[$i] = minutesFromMidnight($_POST['co-'.$i]);
 }
 
-if ($child->isValid()) {
+$error_code = $child->isValid();
+if ($error_code === 0) {
     $childDAO = new childDAO();
     $childId = $childDAO->insert($child);
     $child->child_id = $childId;
@@ -29,7 +30,7 @@ if ($child->isValid()) {
     header("Location: ../../../public/index.php");
     exit();
 } else {
-    header("Location: ../../../public/createChild.php?error=1");
+    header("Location: ../../../public/createChild.php?error=".$error_code);
 }
 
 /*

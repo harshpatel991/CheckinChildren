@@ -10,15 +10,19 @@ class errorManager {
      * To add a new error message, add key-value pair below and redirect appropriate page to ?error=key
      */
     private static $errorMessages = array(
-        1 => "Invalid Information",
-        2 => "Old Password is Incorrect",
-        3 => "New Password and Confirmation Don't Match",
-        4 => "Invalid Email Address",
-        6 => "Invalid Name",
-        8 => "Invalid Phone Number (must be 10 digits)",
-        10 => "Invalid Address",
-        12 => "Invalid Passowrd",
-        14 => "If you want to receive text alerts, you must add a mobile carrier",
+        errorEnum::invalid_information => "Invalid Information",
+        errorEnum::password_incorrect => "Old Password is Incorrect",
+        errorEnum::password_mismatch => "New Password and Confirmation Don't Match",
+        errorEnum::invalid_email => "Invalid Email Address",
+        errorEnum::invalid_name => "Invalid Name",
+        errorEnum::invalid_phone => "Invalid Phone Number (must be 10 digits)",
+        errorEnum::invalid_address => "Invalid Address",
+        errorEnum::invalid_password => "Invalid Passowrd",
+        errorEnum::missing_carrier => "If you want to receive text alerts, you must add a mobile carrier",
+        errorEnum::invalid_allergies => "Invalid Allergies",
+        errorEnum::invalid_trusted_parties => "Invalid Trusted Parties",
+        errorEnum::parent_not_found => "Parent not found in system",
+        errorEnum::facility_not_found => "Facility not found in system",
     );
 
     /**
@@ -38,10 +42,17 @@ class errorManager {
 
 class errorEnum {
     const no_errors = 0;
+    const invalid_information = 1;
+    const password_incorrect = 2;
+    const password_mismatch = 3;
     const invalid_email = 4;
     const invalid_name = 6;
     const invalid_phone = 8;
     const invalid_address = 10;
     const invalid_password = 12;
     const missing_carrier = 14;
+    const invalid_allergies = 16;
+    const invalid_trusted_parties = 18;
+    const parent_not_found = 20;
+    const facility_not_found = 22;
 }

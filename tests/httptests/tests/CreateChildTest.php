@@ -53,7 +53,7 @@ class createChildTest extends SeleniumTestBase
         $page = $this->driver->get_source();
 
         //assert that the single facility page is shown
-        $this->assertContains("Invalid Information", $page);
+        $this->assertContains("Parent not found", $page);
 
     }
 
