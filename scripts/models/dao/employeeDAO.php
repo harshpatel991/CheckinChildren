@@ -73,7 +73,35 @@ class employeeDAO {
 
     }
 
-    public function deleteAllEmployeesInFacility($facility_id){
+    /**
+     *
+     * @param $employee
+     * // **** ONLY UPDATES EMAIL AND NAME! ****
+     */
+    public function update($employee){
+        $connection=DbConnectionFactory::create();
+
+        $query = 'UPDATE employee SET emp_name=:emp_name WHERE id=:id';
+        $stmt=$connection->prepare($query);
+
+        $stmt->bindParam(":emp_name", $employee->emp_name);
+        $stmt->bindParam(":id", $employee->id);
+
+        $stmt->execute();
+
+        $query="UPDATE users SET email=:email WHERE id=:id";
+        $stmt=$connection->prepare($query);
+
+        $stmt->bindParam(":email", $employee->email);
+        $stmt->bindParam(":id", $employee->id);
+
+        $stmt->execute();
+
+        $connection=null;
+    }
+
+    public function deleteAllEmployeesInFacility($facility_id)
+    {
         $connection = DbConnectionFactory::create();
         $query = "DELETE FROM employee WHERE facility_id=:id";
         $stmt = $connection->prepare($query);

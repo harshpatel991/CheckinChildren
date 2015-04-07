@@ -16,7 +16,7 @@ $facilityDao = new facilityDAO();
 $facility = $facilityDao->find($_POST['facility_id']);
 $valid = !($facility == false || $facility->company_id != $_COOKIE[cookieManager::$userId]);
 
-$manager=new managerModel($_POST['name'], $hashedPassword, $_POST['facility_id'], $_COOKIE[cookieManager::$userId], $_POST['email'], $_POST['role']);
+$manager=new managerModel($_POST['name'], $hashedPassword, $_POST['facility_id'], $_COOKIE[cookieManager::$userId], $_POST['email']);
 
 if ($manager->isValid() && $valid) {
     $managerDAO=new managerDAO();
