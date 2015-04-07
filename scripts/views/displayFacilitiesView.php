@@ -31,7 +31,7 @@ function displaySingleFacility($facility) {
         Phone: <?php echo $facility->phone; ?> <br>
 
         <br>
-        <a class="btn btn-success" id="edit_parent" href="editFacility.php?facility_id=<?php echo $_GET['facility_id']; ?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit Information</a>
+        <a class="btn btn-success" name="edit_facility" id="edit_facility" href="editFacility.php?facility_id=<?php echo $_GET['facility_id']; ?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit Information</a>
         <a class="btn btn-danger confirm-submit" data-toggle="modal" data-target="#confirmModal"id="delete_facility"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Remove Facility</a>
 
         <hr>
