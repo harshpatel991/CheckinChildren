@@ -6,10 +6,12 @@
  */
 
 require_once(dirname(__FILE__) . '/../../models/dao/childDAO.php');
+require_once(dirname(__FILE__) . '/../../models/dao/logDAO.php');
 require_once(dirname(__FILE__) . '/../../models/childModel.php');
 require_once(dirname(__FILE__) . '/../../dateTimeProvider.php');
 require_once(dirname(__FILE__) . '/../notificationMessageFactory.php');
 require_once(dirname(__FILE__) . '/../notificationMessageController.php');
+require_once(dirname(__FILE__) . '/../../cookieManager.php');
 
 $checkinArray=$_POST["checkinIds"];
 $checkoutArray=$_POST["checkoutIds"];
@@ -23,12 +25,15 @@ $timeString= sprintf($timeFill,$curTime["year"], $curTime["mon"], $curTime["mday
     , $curTime["seconds"]);
 
 $cDAO=new childDAO();
+$lDAO=new logDAO();
+$empId=$_COOKIE[cookieManager::$userId];
 
 foreach ($checkoutArray as $id){
     $cDAO->updateField($id, 'last_checkout', $timeString);
     $child = $cDAO->find($id);
     $notificationController = (new notificationMessageFactory())->create($child, messageStatus::child_checked_out);
     $notificationController->sendStatusNotification();
+    $lDAO->insert($empId, $child->child_id, $child->child_name, logDAO::$childCheckOut);
 }
 
 foreach ($checkinArray as $id){
@@ -36,6 +41,7 @@ foreach ($checkinArray as $id){
     $child = $cDAO->find($id);
     $notificationController = (new notificationMessageFactory())->create($child, messageStatus::child_checked_in);
     $notificationController->sendStatusNotification();
+    $lDAO->insert($empId, $child->child_id, $child->child_name, logDAO::$childCheckIn);
 }
 
 header("Location: ../../../public/checkinChildren.php");
