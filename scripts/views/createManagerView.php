@@ -20,6 +20,5 @@
         <input type="text" name="password" id="password" class="form-control">
     </div>
 
-    <input type="hidden" name="role" value="manager">
     <input type="submit" name="submit" value="Register" class="btn btn-primary">
 </form>
