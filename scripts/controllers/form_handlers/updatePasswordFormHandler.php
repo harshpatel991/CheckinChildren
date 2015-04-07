@@ -30,4 +30,5 @@ if($oldPassword != $user->password) { //user is not authorized to perform action
     $userDAO->updateField($user->id, "auth_token", $user->auth_token);
     cookieManager::setAuthCookies($user);
     header("Location: ../../../public/index.php");
+    exit();
 }

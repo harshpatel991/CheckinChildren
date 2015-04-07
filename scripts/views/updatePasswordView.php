@@ -37,6 +37,6 @@
     <a href="displayParentInfo.php" class="btn btn-success"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Account Profile</a>
 <?php
 } else { ?>
-    <a href="displayEmployeeInfo.php" class="btn btn-success"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Account Profile</a>
+    <a href="index.php" class="btn btn-success"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to Home</a>
 <?php } ?>
 
