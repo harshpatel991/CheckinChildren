@@ -11,4 +11,4 @@ $userDAO=new userDAO();
 $empid=$_GET['employee_id'];
 $userDAO->updateField($empid, "role", "employee");
 
-header("Location: ../../../public/displayManagers.php");
+header("Location: ../../../public/displayEmployee.php?employee_id=$empid");

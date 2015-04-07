@@ -34,9 +34,8 @@ function displaySingleFacility($facility) {
         <a class="btn btn-danger confirm-submit" data-toggle="modal" data-target="#confirmModal"id="delete_facility"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Remove Facility</a>
 
         <hr>
+        <a href="displayFacilityEmployees.php?facility_id=<?=$facility->facility_id;?>" class="btn btn-success"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> View all employees</a>
         <a href="displayFacilities.php" class="btn btn-success"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> View all facilities</a>
-        <a href="displayFacilityEmployees.php?facility_id=<?=$facility->facility_id;?>">View all employees</a>
-
     </p>
 <!-- Modal -->
 <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
