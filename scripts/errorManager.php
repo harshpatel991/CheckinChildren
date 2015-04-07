@@ -12,7 +12,13 @@ class errorManager {
     private static $errorMessages = array(
         1 => "Invalid Information",
         2 => "Old Password is Incorrect",
-        3 => "New Password and Confirmation Don't Match"
+        3 => "New Password and Confirmation Don't Match",
+        4 => "Invalid Email Address",
+        6 => "Invalid Name",
+        8 => "Invalid Phone Number (must be 10 digits)",
+        10 => "Invalid Address",
+        12 => "Invalid Passowrd",
+        14 => "If you want to receive text alerts, you must add a mobile carrier",
     );
 
     /**
@@ -28,5 +34,14 @@ class errorManager {
             return "";
         }
     }
+}
 
+class errorEnum {
+    const no_errors = 0;
+    const invalid_email = 4;
+    const invalid_name = 6;
+    const invalid_phone = 8;
+    const invalid_address = 10;
+    const invalid_password = 12;
+    const missing_carrier = 14;
 }
