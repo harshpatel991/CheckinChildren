@@ -92,3 +92,10 @@ INSERT INTO child(child_id, parent_id, child_name, allergies, trusted_parties, f
 VALUES (14, 19, 'Child Pickup Later1', 'Dogs', 'Happy Guy',5, '2015-03-04 14:28:48', '2014-03-03 16:49:30', '870,870,870,870,870,870,870', '1020,1020,1020,1020,1020,1020,1020');
 INSERT INTO child(child_id, parent_id, child_name, allergies, trusted_parties, facility_id, last_checkin, last_checkout, expect_checkin, expect_checkout)
 VALUES (8, 19, 'Child Pickup Later2', 'Dogs', 'Grandpa Joe', 5, '2015-03-04 14:28:48', '2014-03-03 16:49:30', '870,870,870,870,870,870,870', '1020,1020,1020,1020,1020,1020,1020');
+
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, additional_info)
+VALUES(9, null, "Rick Grimes", null, 2, "Parent Created", "Failed With Error 1");
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, additional_info)
+VALUES(6, 10, "Bob Dude", 'Dogs', 2, "Child Checked In", "N/A");
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, additional_info)
+VALUES(10, 10, "Bob Dude", 'Dogs', 3, "Child Checked Out", "N/A");

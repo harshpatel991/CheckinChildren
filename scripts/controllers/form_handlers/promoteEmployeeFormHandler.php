@@ -6,9 +6,16 @@
 
 require_once(dirname(__FILE__).'/../authController.php');
 require_once(dirname(__FILE__).'/../../models/dao/userDAO.php');
+require_once(dirname(__FILE__) . '/../../models/dao/logDAO.php');
+
 
 $userDAO=new userDAO();
 $empid=$_GET['employee_id'];
+$empname=$_GET['employee_name'];
 $userDAO->updateField($empid, "role", "manager");
+
+$lDAO=new logDAO();
+$lDAO->insert($_COOKIE[cookieManager::$userId], $empid, $empname, logDAO::$employeePromotion);
+
 
 header("Location: ../../../public/displayEmployee.php?employee_id=" . $empid);
