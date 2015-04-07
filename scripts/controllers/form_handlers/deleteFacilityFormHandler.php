@@ -16,7 +16,7 @@ $facilityDAO = new facilityDAO();
 //$facility = new facilityModel($_POST["company_id"], $_POST["address"],$_POST["phone"], $_POST["facility_id"]);
 
 $childDao->deleteAllChildrenInFacility($_GET["facility_id"]);
-$employeeDao->deleteAllEmployeesFacility($_GET["facility_id"]);
+$employeeDao->deleteAllEmployeesInFacility($_GET["facility_id"]);
 $facilityDAO->delete($_GET["facility_id"]);
 header("Location: ../../../public/displayFacilities.php"); //send browser to the page for newly created facility
 exit();
