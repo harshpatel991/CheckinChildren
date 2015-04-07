@@ -59,4 +59,19 @@ class employeeDAOTest extends unitTestBase {
             $this->assertTrue(in_array($employee->emp_name, $names));
         }
     }
+    public function testDeleteAllEmployeesInFacility(){
+
+        $employeeDAO = new employeeDAO();
+        $employees = $employeeDAO->getFacilityEmployees(5);
+        $this->assertEquals(2,count($employees));
+
+        $employeeDAO->deleteAllEmployeesInFacility(5);
+
+        $employees = $employeeDAO->getFacilityEmployees(5);
+        $this->assertEquals(0,count($employees));
+
+
+        ;
+    }
+
 }
