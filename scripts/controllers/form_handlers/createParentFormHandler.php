@@ -31,13 +31,14 @@ if (isset($_POST['emailing'])){
 //Retreive POST data from form submit
 $parent=new parentModel($_POST['name'], $hashedPassword, $_POST['email'], "parent", $_POST['phone'], $_POST['addr'], $contact_string);
 
-if ($parent->isValid()) {
+$error_code = $parent->isValid();
+if ($error_code===0) {
     $parentDAO=new parentDAO();
     $parentDAO->create_parent($parent);
 
     header("Location: ../../../public/index.php"); //redirect to the index page
     exit();
 } else {
-    header("Location: ../../../public/createParent.php?error=1"); //redirect back to the createParent page with appropriate error
+    header("Location: ../../../public/createParent.php?error=".$error_code); //redirect back to the createParent page with appropriate error
     exit();
 }
