@@ -58,6 +58,19 @@ class childModel {
         if(strlen($this->trusted_parties) > 50){
             return errorEnum::invalid_trusted_parties;
         }
+
+        for ($i = 0; $i < 7; $i++){
+            if ($this->expect_checkout[$i] > -1 && $this->expect_checkin[$i] < 0){
+                return errorEnum::checkin_time_missing;
+            }
+            if ($this->expect_checkin[$i] > -1 && $this->expect_checkout[$i] < 0){
+                return errorEnum::checkout_time_missing;
+            }
+            if ($this->expect_checkin[$i] > $this->expect_checkout[$i]){
+                return errorEnum::checkout_less_than_checkin;
+            }
+        }
+
         return errorEnum::no_errors;
     }
 

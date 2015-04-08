@@ -23,11 +23,15 @@ class errorManager {
         errorEnum::invalid_trusted_parties => "Invalid Trusted Parties",
         errorEnum::parent_not_found => "Parent not found in system",
         errorEnum::facility_not_found => "Facility not found in system",
+        errorEnum::checkin_time_missing => "Checkin time missing where checkout time set",
+        errorEnum::checkout_time_missing=> "Checkout time missing where checking time set",
+        errorEnum::checkout_less_than_checkin => "Checkout time earlier than checkin time",
+        errorEnum::permission_error => "Permissions Error. You do not have permission to perform this action.",
     );
 
     /**
      * Retrieves the plain English form of an errorId
-     * @param $errorId The id of the error whose message will be returned
+     * @param $errorId int id of the error whose message will be returned
      * @return string The plain English form of the error
      */
     public static function getErrorMessage($errorId) {
@@ -55,4 +59,8 @@ class errorEnum {
     const invalid_trusted_parties = 18;
     const parent_not_found = 20;
     const facility_not_found = 22;
+    const checkin_time_missing = 24;
+    const checkout_time_missing = 26;
+    const checkout_less_than_checkin = 28;
+    const permission_error = 30;
 }
