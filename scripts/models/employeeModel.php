@@ -7,6 +7,7 @@
  */
 
 require_once(dirname(__FILE__).'/userModel.php');
+require_once(dirname(__FILE__).'/../errorManager.php');
 
 class employeeModel extends userModel{
     public $emp_name;
@@ -23,8 +24,14 @@ class employeeModel extends userModel{
     }
 
     public function isValid() {
-        if (strlen($this->emp_name)>30 || strlen($this->emp_name)<=0) {
-            return false;
+        if (strlen($this->emp_name)>30 || strlen($this->emp_name)<=0){
+            return errorEnum::invalid_name;
+        }
+        if (strlen($this->email)>30 || strlen($this->email)<=0){
+            return errorEnum::invalid_email;
+        }
+        if (strlen($this->password)>40 || strlen($this->password)<=0){
+            return errorEnum::invalid_password;
         }
 
         return parent::isValid();
