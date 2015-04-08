@@ -22,13 +22,19 @@ $hashedPassword = employeeModel::genHashPassword($_POST['password']);
 
 $employee=new employeeModel($_POST['name'], $hashedPassword, $facility_id, $_POST['email'], $_POST['role']); //retreieve submitted POST data
 
-if ($employee->isValid()) {
+$error_code = 0;
+echo "a";
+$error_code = $employee->isValid();
+echo $error_code;
+if ($error_code===0) {
     $employeeDAO=new employeeDAO();
     $employeeDAO->create_DCP($employee);
-
+    echo "b";
     header("Location: ../../../public/displayEmployees.php");
     exit();
 } else {
-    header("Location: ../../../public/createEmployee.php?error=1");
+    echo "c";
+    header("Location: ../../../public/createEmployee.php?error=".$error_code);
     exit();
 }
+echo "d";

@@ -17,7 +17,7 @@ class errorManager {
         errorEnum::invalid_name => "Invalid Name",
         errorEnum::invalid_phone => "Invalid Phone Number (must be 10 digits)",
         errorEnum::invalid_address => "Invalid Address",
-        errorEnum::invalid_password => "Invalid Passowrd",
+        errorEnum::invalid_password => "Invalid Password",
         errorEnum::missing_carrier => "If you want to receive text alerts, you must add a mobile carrier",
         errorEnum::invalid_allergies => "Invalid Allergies",
         errorEnum::invalid_trusted_parties => "Invalid Trusted Parties",
