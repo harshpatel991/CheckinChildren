@@ -8,6 +8,7 @@
 
 require_once(dirname(__FILE__).'/../../scripts/models/dao/companyDAO.php');
 require_once(dirname(__FILE__).'/../../scripts/models/companyModel.php');
+require_once(dirname(__FILE__).'/UnitTestBase.php');
 
 class companyDAOTest extends unitTestBase {
 //Tests inserting into facility database

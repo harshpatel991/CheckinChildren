@@ -100,7 +100,7 @@ class CompanyTest extends SeleniumTestBase
         $page = $this->driver->get_source();
 
         //assert that the single facility page is shown
-        $this->assertContains("Invalid Information", $page);
+        $this->assertContains("Facility not found", $page);
     }
 
     public function tearDown(){
