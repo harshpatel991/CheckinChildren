@@ -4,7 +4,6 @@
  * Determines if submitted company is valid and adds to companyDAO
  * If company account is not valid, redirects to createCompany page with error
  */
-
 require_once(dirname(__FILE__) . '/../../models/dao/companyDAO.php');
 
 //Read in POST data from form

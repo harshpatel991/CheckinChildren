@@ -4,12 +4,18 @@
  * Determines if submitted child is valid and updates record in childDAO and redirects to displayChild page
  * If child information is not valid, redirects to editChild page with error
  */
-
+require_once(dirname(__FILE__) . '/../authController.php');
+require_once(dirname(__FILE__) . '/../../errorManager.php');
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../../models/dao/childDAO.php');
 
 //Read in POST data from form
 $child_id = $_POST['child_id'];
+
+if($_COOKIE[cookieManager::$userRole] != 'manager' && $_COOKIE[cookieManager::$userRole] != 'employee' && $_COOKIE[cookieManager::$userRole] != 'parent'){
+    header("Location: ../../../public/editChild.php?child_id=".$child_id. "&error=".errorEnum::permission_error);
+    exit();
+}
 
 $child = new childModel($_COOKIE[cookieManager::$userId], $_POST["child_name"], $_POST["allergies"],  $_POST["trusted_parties"], 0, $child_id); // set 0 for values that cannot be changed
 for ($i=0; $i<7; $i++){

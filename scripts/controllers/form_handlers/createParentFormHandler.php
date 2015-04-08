@@ -5,11 +5,17 @@
  * Determines if submitted parent is valid and adds to parentDAO and redirects to index page
  * If parent information is not valid, redirects to createParent page with error
  */
-
+require_once(dirname(__FILE__) . '/../authController.php');
+require_once(dirname(__FILE__) . '/../../errorManager.php');
 require_once(dirname(__FILE__) . '/../../models/dao/parentDAO.php');
 require_once(dirname(__FILE__) . '/../../models/parentModel.php');
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../managerController.php');
+
+if($_COOKIE[cookieManager::$userRole] != 'manager' && $_COOKIE[cookieManager::$userRole] != 'employee'){
+    header("Location: ../../../public/createParent.php?error=".errorEnum::permission_error);
+    exit();
+}
 
 $manCon=new managerController();
 
