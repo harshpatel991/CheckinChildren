@@ -6,11 +6,17 @@
  */
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-
+require_once(dirname(__FILE__) . '/../authController.php');
+require_once(dirname(__FILE__) . '/../../errorManager.php');
 require_once(dirname(__FILE__) . '/../../models/dao/childDAO.php');
 require_once(dirname(__FILE__) . '/../../models/childModel.php');
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../managerController.php');
+
+if($_COOKIE[cookieManager::$userRole] != 'employee' && $_COOKIE[cookieManager::$userRole] != 'manager'){
+    header("Location: ../../../public/createChild.php?error=".errorEnum::permission_error);
+    exit();
+}
 
 $manCon=new managerController();
 $facility_id=$manCon->getFacilityID($_COOKIE[cookieManager::$userId]);

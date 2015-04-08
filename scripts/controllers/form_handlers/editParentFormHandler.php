@@ -4,9 +4,15 @@
  * Determines if submitted parent is valid and updates record in parentDAO and redirects to displayParentInfo page
  * If parent information is not valid, redirects to editParent page with error
  */
-
+require_once(dirname(__FILE__) . '/../authController.php');
+require_once(dirname(__FILE__) . '/../../errorManager.php');
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../../models/dao/parentDAO.php');
+
+if ($_COOKIE[cookieManager::$userRole] != 'parent'){
+    header("Location: ../../../public/editParent.php?error=".errorEnum::permission_error);
+    exit();
+}
 
 //Read in POST data from form
 $parent_id = $_COOKIE[cookieManager::$userId];
