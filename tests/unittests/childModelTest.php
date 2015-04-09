@@ -27,17 +27,36 @@ class childModelTest extends unitTestBase {
     }
 
     public function testInvalidAllergiesLong(){
-        $child = new childModel(18, "Blue Ranger", "AllergyAllergyAllergyAllergyAllergyAllergyAllergyAllergy", 1, 99);
+        $child = new childModel(8, "Blue Ranger", "AllergyAllergyAllergyAllergyAllergyAllergyAllergyAllergy", 1, 99);
         $this->assertEquals($child->isValid(), errorEnum::invalid_allergies);
     }
 
     public function testInvalidAllergiesShort(){
-        $child = new childModel(18, "Blue Ranger", "", 1, 99);
+        $child = new childModel(8, "Blue Ranger", "", 1, 99);
         $this->assertEquals($child->isValid(), errorEnum::invalid_allergies);
     }
 
     public function testInvalidParentId() {
         $child = new childModel(99999, "Blue Ranger", "Milk", 1, 99);
         $this->assertEquals($child->isValid(), errorEnum::parent_not_found);
+    }
+
+    public function testInvalidCheckinOutTimes(){
+        $child = new childModel(8, "Blue Ranger", "Milk", "Jon", 1, 99);
+        $child->expect_checkin = [1,1,1,1,1,1,1];
+        $child->expect_checkout = [2,2,2,2,2,2,-1];
+        $this->assertEquals($child->isValid(), errorEnum::checkout_time_missing);
+
+        $child->expect_checkin = [1,1,1,1,-1,1,1];
+        $child->expect_checkout = [2,2,2,2,2,2,2];
+        $this->assertEquals($child->isValid(), errorEnum::checkin_time_missing);
+
+        $child->expect_checkin = [1,1,1,1,2,1,1];
+        $child->expect_checkout = [2,2,2,2,1,2,2];
+        $this->assertEquals($child->isValid(), errorEnum::checkout_less_than_checkin);
+
+        $child->expect_checkin = [-1,1,1,1,-1,1,1];
+        $child->expect_checkout = [-1,2,2,2,-1,2,2];
+        $this->assertEquals($child->isValid(), errorEnum::no_errors);
     }
 }

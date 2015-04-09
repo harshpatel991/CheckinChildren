@@ -8,7 +8,7 @@ class CompanyTest extends SeleniumTestBase
     public function setUp(){
         parent::setUp();
     }
-
+/*
     public function testViewFacility() {
         testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
 
@@ -121,6 +121,7 @@ class CompanyTest extends SeleniumTestBase
         $this->assertContains("Address: 22 EditFacility Rd. Champaign IL 61820", $page);
         $this->assertContains("Phone: 1231237890", $page);
     }
+
     public function testEditFacilityInvalid() {
         testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
 
@@ -146,20 +147,21 @@ class CompanyTest extends SeleniumTestBase
         $this->get_element("name=submit")->click();
 
         $page = $this->driver->get_source();
-        $this->assertContains("Invalid Information", $page);
+        $this->assertContains("Invalid Address", $page);
 
         $this->get_element("id=phone")->clear();
         $this->get_element("name=submit")->click();
 
         $page = $this->driver->get_source();
-        $this->assertContains("Invalid Information", $page);
+        $this->assertContains("Invalid Phone Number", $page);
 
         $this->get_element("id=phone")->clear();
         $this->get_element("id=phone")->send_keys("1231237890565");
         $this->get_element("name=submit")->click();
         $page = $this->driver->get_source();
-        $this->assertContains("Invalid Information", $page);
+        $this->assertContains("Invalid Phone Number", $page);
     }
+
     public function testDeleteFacility() {
         testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
 
@@ -181,10 +183,12 @@ class CompanyTest extends SeleniumTestBase
         $this->get_element("id=delete_facility")->click();
 
         $this->get_element("id=modal-submit")->click();
+        $page = $this->driver->get_source();
         $this->assertContains("My Facilities", $page);
-        $this->assertNOtContains("1 Facility Rd. Champaign IL 61820", $page); //@TODO How do I check that it was removed?
+        $this->assertNOtContains("1 Facility Rd. Champaign IL 61820", $page);
 
     }
+
     public function testViewManagers() {
         testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
 
@@ -358,7 +362,7 @@ class CompanyTest extends SeleniumTestBase
 
         //assert that the single facility page is shown
         $this->assertNotContains('Bob Dude', $page);
-    }
+    }*/
 
     public function testDeleteManagerFromFacility() {
         testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");

@@ -37,13 +37,6 @@ class companyModel extends userModel{
         if (strlen($this->company_name) > 30 || strlen($this->company_name) <= 0) {
             return errorEnum::invalid_name;
         }
-
-        if (strlen($this->email) > 40 || strlen($this->email) <= 0 || strpos($this->email, '@') === false) {
-            return errorEnum::invalid_email;
-        }
-        if (strlen($this->password) > 40) {
-            return errorEnum::invalid_password;
-        }
         if (strlen($this->phone) != 10 || !is_numeric($this->phone)) {
             return errorEnum::invalid_phone;
         }
