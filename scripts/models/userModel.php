@@ -30,9 +30,6 @@ class userModel
         if (strlen($this->email)>40 || strlen($this->email)<=0 || strpos($this->email, '@')===false) {
             return errorEnum::invalid_email;
         }
-        if (strlen($this->password)>40 ){
-            return errorEnum::invalid_password;
-        }
 
         return 0;
     }

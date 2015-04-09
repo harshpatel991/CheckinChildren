@@ -15,14 +15,14 @@ $company_id = $_COOKIE[cookieManager::$userId];
 
 
 $company = new companyModel($_POST["company_name"], $_POST["address"], $_POST["phone_number"], $_POST["email"],"", "company", $company_id);
-
-if ($company->isValid()) {
+$error_code = $company->isUpdateValid();
+if ($error_code == 0) {
     $companyDAO = new CompanyDAO();
     $companyDAO->update($company);
 
     header("Location: ../../../public/displayCompanyInfo.php"); //send browser to the page for newly created facility
     exit();
 } else {
-    header("Location: ../../../public/editCompany.php?error=1"); //redirect to employee creation page with error message
+    header("Location: ../../../public/editCompany.php?error=".$error_code); //redirect to employee creation page with error message
     exit();
 }
