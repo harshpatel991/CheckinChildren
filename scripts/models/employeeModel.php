@@ -24,17 +24,26 @@ class employeeModel extends userModel{
     }
 
     public function isValid() {
+        $error_code = $this->isUpdateValid();
+        if ($error_code > 0){
+            return $error_code;
+        }
+        return 0;//employee::isValid();
+    }
+
+    public function isUpdateValid() {
         if (strlen($this->emp_name)>30 || strlen($this->emp_name)<=0){
             return errorEnum::invalid_name;
         }
-        if (strlen($this->email)>30 || strlen($this->email)<=0){
+
+        if (strlen($this->email)>40 || strlen($this->email)<=0 || strpos($this->email, '@')===false) {
             return errorEnum::invalid_email;
         }
-        if (strlen($this->password)>40 || strlen($this->password)<=0){
+        if (strlen($this->password)>40){
             return errorEnum::invalid_password;
         }
 
-        return parent::isValid();
+        return 0;//employee::isUpdateValid();
     }
 
 }
