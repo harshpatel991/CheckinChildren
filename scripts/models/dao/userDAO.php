@@ -46,4 +46,12 @@ class UserDAO
         $stmt->execute();
         $connection = null;
     }
+    public function delete($userId){
+        $connection = DbConnectionFactory::create();
+        $query = "DELETE FROM users WHERE id=:id";
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':id', $userId);
+        $stmt->execute();
+        $connection = null;
+    }
 }
