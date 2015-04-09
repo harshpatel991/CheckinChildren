@@ -18,13 +18,14 @@ if($_COOKIE[cookieManager::$userRole] != 'company'){
 $company_id = $_COOKIE[cookieManager::$userId];
 $facility = new facilityModel($company_id, $_POST['address'], $_POST['phone_number']); //Read in POST data from form
 
-if ($facility->isValid()) {
+$error_code = $facility->isValid();
+if ($error_code === 0) {
     $facilityDAO = new FacilityDAO();
     $facility_id = $facilityDAO->insert($facility);
 
     header("Location: ../../../public/displayFacilities.php?facility_id=".$facility_id);  //send browser to the page for newly created facility
     exit();
 } else {
-    header("Location: ../../../public/createFacility.php?error=1"); //redirect to employee creation page with error message
+    header("Location: ../../../public/createFacility.php?error=".$error_code); //redirect to employee creation page with error message
     exit();
 }
