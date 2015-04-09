@@ -100,6 +100,24 @@ class CompanyTest extends SeleniumTestBase
         //assert that the single facility page is shown
         $error_msg = $this->get_element("id=error_message")->get_text();
         $this->assertContains("Facility not found", $error_msg);
+
+
+    }
+
+    public function testCreateNewFacilityInvalid() {
+        testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
+
+        $this->get_element("name=view_facilities")->click();
+        $this->get_element("name=new_facility")->click();
+
+        $this->get_element("name=address")->send_keys("");
+        $this->get_element("name=phone_number")->send_keys("8472728096");
+        $this->get_element("name=submit")->click();
+
+
+        $error_msg = $this->get_element("id=error_message")->get_text();
+        $this->assertContains("Invalid Address", $error_msg);
+
     }
 
     public function tearDown(){
