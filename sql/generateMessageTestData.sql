@@ -79,7 +79,7 @@ INSERT INTO employee(id, emp_name, facility_id) VALUES (3, 'Saul Goodman', 1);
 INSERT INTO employee(id, emp_name, facility_id) VALUES (4, 'Rick Grimes', 2);
 
 #Insert parents
-INSERT INTO parent(id, parent_name, address, phone_number, contact_pref, carrier) VALUES (5, 'Natt Wallick', '123 Fake Ave Champaign IL 61820', '6163895565', 'email', 'Sprint');
+INSERT INTO parent(id, parent_name, address, phone_number, contact_pref, carrier) VALUES (5, 'Natt Wallick', '123 Fake Ave Champaign IL 61820', '6163895565', 'email,text', 'Sprint');
 INSERT INTO parent(id, parent_name, address, phone_number, contact_pref, carrier) VALUES (6, 'Elzabad Kennedy', '456 Real Ave Urbana IL 61820', '2023291703', 'email', 'Boost Mobile');
 
 #Insert children, it has to be 3:00 PM on March 4th (900 minutes)
