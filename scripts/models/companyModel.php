@@ -6,6 +6,8 @@
  * Time: 1:45 AM
  */
 require_once(dirname(__FILE__).'/userModel.php');
+require_once(dirname(__FILE__).'/../errorManager.php');
+
 
 class companyModel extends userModel{
     var $company_name;
@@ -22,19 +24,33 @@ class companyModel extends userModel{
         $this->role=$role;
     }
 
-    //Determines if this object is valid to be inserted into the database
-    function isValid() {
-        if(strlen($this->address) <= 0 || strlen($this->address) > 50) { //Check that address is greater than 0 and <= 50 chars
-            return false;
+    public function isValid() {
+        $error_code = $this->isUpdateValid();
+        if ($error_code > 0){
+            return $error_code;
+        }
+        return 0;//employee::isValid();
+    }
+
+    public function isUpdateValid()
+    {
+        if (strlen($this->company_name) > 30 || strlen($this->company_name) <= 0) {
+            return errorEnum::invalid_name;
         }
 
-        if(strlen($this->phone) != 10) { //Check that phone is exactly 10 chars
-            return false;
+        if (strlen($this->email) > 40 || strlen($this->email) <= 0 || strpos($this->email, '@') === false) {
+            return errorEnum::invalid_email;
         }
-        if(strlen($this->company_name) <= 0 || strlen($this->company_name) > 50) { //Check that the company name is greater than 0 and <= 50 chars
-            return false;
+        if (strlen($this->password) > 40) {
+            return errorEnum::invalid_password;
         }
-        return true; //otherwise it is valid
+        if (strlen($this->phone) != 10 || !is_numeric($this->phone)) {
+            return errorEnum::invalid_phone;
+        }
+        if (strlen($this->address) == 0 || strlen($this->address) > 50) {
+            return errorEnum::invalid_address;
+        }
+        return 0;
     }
 
 }
