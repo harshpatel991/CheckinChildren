@@ -7,6 +7,7 @@
 require_once(dirname(__FILE__) . '/../authController.php');
 require_once(dirname(__FILE__) . '/../../errorManager.php');
 require_once(dirname(__FILE__) . '/../../models/dao/employeeDAO.php');
+require_once(dirname(__FILE__) . '/../../models/dao/logDAO.php');
 require_once(dirname(__FILE__) . '/../../models/employeeModel.php');
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../managerController.php');
@@ -21,20 +22,19 @@ $facility_id=$manCon->getFacilityID($_COOKIE[cookieManager::$userId]);
 $hashedPassword = employeeModel::genHashPassword($_POST['password']);
 
 $employee=new employeeModel($_POST['name'], $hashedPassword, $facility_id, $_POST['email'], $_POST['role']); //retreieve submitted POST data
+$lDAO=new logDAO();
 
 $error_code = 0;
-echo "a";
 $error_code = $employee->isValid();
 echo $error_code;
 if ($error_code===0) {
     $employeeDAO=new employeeDAO();
-    $employeeDAO->create_DCP($employee);
-    echo "b";
+    $empId=$employeeDAO->create_DCP($employee);
+    $lDAO->insert($_COOKIE[cookieManager::$userId], $empId, $employee->emp_name, logDAO::$employeeCreated);
     header("Location: ../../../public/displayEmployees.php");
     exit();
 } else {
-    echo "c";
+    $lDAO->insert($_COOKIE[cookieManager::$userId], null, $employee->emp_name, logDAO::$employeeCreated, "Failure");
     header("Location: ../../../public/createEmployee.php?error=".$error_code);
     exit();
 }
-echo "d";

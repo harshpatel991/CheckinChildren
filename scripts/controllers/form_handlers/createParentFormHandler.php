@@ -8,6 +8,7 @@
 require_once(dirname(__FILE__) . '/../authController.php');
 require_once(dirname(__FILE__) . '/../../errorManager.php');
 require_once(dirname(__FILE__) . '/../../models/dao/parentDAO.php');
+require_once(dirname(__FILE__) . '/../../models/dao/logDAO.php');
 require_once(dirname(__FILE__) . '/../../models/parentModel.php');
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../managerController.php');
@@ -36,15 +37,17 @@ if (isset($_POST['emailing'])){
 
 //Retreive POST data from form submit
 $parent=new parentModel($_POST['name'], $hashedPassword, $_POST['email'], "parent", $_POST['phone'], $_POST['addr'], $contact_string);
+$lDAO=new logDAO();
 
 $error_code = $parent->isValid();
 if ($error_code===0) {
     $parentDAO=new parentDAO();
-    $parentDAO->create_parent($parent);
-
+    $pid=$parentDAO->create_parent($parent);
+    $lDAO->insert($_COOKIE[cookieManager::$userId], $pid, $parent->parent_name, logDAO::$parentCreated);
     header("Location: ../../../public/index.php"); //redirect to the index page
     exit();
 } else {
+    $lDAO->insert($_COOKIE[cookieManager::$userId], null, $parent->parent_name, logDAO::$parentCreated, "Failure");
     header("Location: ../../../public/createParent.php?error=".$error_code); //redirect back to the createParent page with appropriate error
     exit();
 }
