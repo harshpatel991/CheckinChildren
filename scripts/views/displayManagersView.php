@@ -11,14 +11,15 @@ require_once(dirname(__FILE__).'/../cookieManager.php');
 $managerDAO=new managerDAO();
 $managers=$managerDAO->getCompanyManagers($_COOKIE[cookieManager::$userId]);//This loads the managers from the DAO
 
-$emplist='<table class="table">';
-$emplist.="<tr><th>Manager Name</th><th>Facility ID</th></tr>";
+$emplist='';
 
-foreach ($managers as $manager) { //Building the table for display
-    $emplist.="<tr><td>$manager->emp_name</td><td>$manager->facility_id</td></tr>";
+
+foreach ($managers as $manager) {
+    $emplist.='<a id='. $manager->id .' class="list-group-item" href="displayEmployee.php?employee_id=' . $manager->id . '">' . ($manager->emp_name) . '</a>';
+//foreach ($managers as $manager) { //Building the table for display
+//    $emplist.="<tr><td>$manager->emp_name</td><td>$manager->facility_id</td></tr>";
 }
 
-$emplist=$emplist."</table>";
 ?>
 
 <h1 id="title">Managers</h1>
