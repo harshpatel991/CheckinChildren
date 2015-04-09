@@ -8,7 +8,7 @@ class CompanyTest extends SeleniumTestBase
     public function setUp(){
         parent::setUp();
     }
-/*
+
     public function testViewFacility() {
         testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
 
@@ -362,7 +362,7 @@ class CompanyTest extends SeleniumTestBase
 
         //assert that the single facility page is shown
         $this->assertNotContains('Bob Dude', $page);
-    }*/
+    }
 
     public function testDeleteManagerFromFacility() {
         testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
