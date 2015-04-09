@@ -13,6 +13,7 @@ require_once(dirname(__FILE__). '/../../models/userModel.php');
 $userDAO=new userDAO();
 $user=$userDAO->find("id", $_COOKIE[cookieManager::$userId]);
 
+
 //Read in POST data
 $oldPassword = userModel::genHashPassword($_POST['old_password']);
 $newPassword = userModel::genHashPassword($_POST['new_password']);
@@ -20,6 +21,9 @@ $conPassword = userModel::genHashPassword($_POST['con_password']);
 
 if($oldPassword != $user->password) { //user is not authorized to perform action
     header("Location: ../../../public/updatePassword.php?error=2");
+    exit();
+} else if(strlen($_POST['new_password']) < 1) { //user mistyped the new password confirmation
+    header("Location: ../../../public/updatePassword.php?error=99");
     exit();
 } else if($newPassword != $conPassword) { //user mistyped the new password confirmation
     header("Location: ../../../public/updatePassword.php?error=3");
