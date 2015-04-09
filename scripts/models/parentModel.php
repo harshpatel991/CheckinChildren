@@ -1,6 +1,7 @@
 <?php
 
 require_once(dirname(__FILE__).'/userModel.php');
+require_once(dirname(__FILE__).'/../errorManager.php');
 
 class parentModel extends userModel{
     public $parent_name;
@@ -24,15 +25,25 @@ class parentModel extends userModel{
     }
 
     public function isValid() {
-        if ($this->isUpdateValid() && parent::isValid()) {
-            return true;
+        $error_code = $this->isUpdateValid();
+        if ($error_code > 0){
+            return $error_code;
         }
-        return false;
+        return parent::isValid();
     }
 
     public function isUpdateValid() {
-        if (strlen($this->parent_name)>30 || strlen($this->parent_name)<=0 || strlen($this->phone_number)!=10 || strlen($this->address)==0 || strlen($this->address)>50) {
-            return false;
+        if (strlen($this->parent_name)>30 || strlen($this->parent_name)<=0){
+            return errorEnum::invalid_name;
+        }
+        if (strlen($this->phone_number)!=10 || !is_numeric($this->phone_number)){
+            return errorEnum::invalid_phone;
+        }
+        if (strlen($this->address)==0 || strlen($this->address)>50){
+            return errorEnum::invalid_address;
+        }
+        if (strpos($this->contact_pref,'text')!==false && strlen($this->carrier)===0){
+            return errorEnum::missing_carrier;
         }
 
         return parent::isUpdateValid();

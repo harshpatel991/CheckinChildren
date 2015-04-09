@@ -5,6 +5,7 @@
  * Date: 2/15/15
  * Time: 4:49 PM
  */
+require_once(dirname(__FILE__).'/../errorManager.php');
 
 class facilityModel {
 
@@ -23,14 +24,14 @@ class facilityModel {
     //Determines if this object is valid to be inserted into the database
     function isValid() {
         if(strlen($this->address) <= 0 || strlen($this->address) > 50) { //Check that address is greater than 0 and <= 50 chars
-            return false;
+            return errorEnum::invalid_address;
         }
 
         if(strlen($this->phone) != 10 || !is_numeric ($this->phone)) { //Check that phone is exactly 10 numbers
-            return false;
+            return errorEnum::invalid_phone;
         }
 
-        return true; //otherwise it is valid
+        return 0; //otherwise it is valid
     }
 
 }

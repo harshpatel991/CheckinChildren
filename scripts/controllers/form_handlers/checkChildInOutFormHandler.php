@@ -5,11 +5,19 @@
  * Once completed, redirects to checkinChildren page
  */
 
+require_once(dirname(__FILE__) . '/../authController.php');
+require_once(dirname(__FILE__) . '/../../errorManager.php');
+require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../../models/dao/childDAO.php');
 require_once(dirname(__FILE__) . '/../../models/childModel.php');
 require_once(dirname(__FILE__) . '/../../dateTimeProvider.php');
 require_once(dirname(__FILE__) . '/../notificationMessageFactory.php');
 require_once(dirname(__FILE__) . '/../notificationMessageController.php');
+
+if($_COOKIE[cookieManager::$userRole] != 'employee' && $_COOKIE[cookieManager::$userRole] != 'manager'){
+    header("Location: ../../../public/checkinChildren.php?error=".errorEnum::permission_error);
+    exit();
+}
 
 $checkinArray=$_POST["checkinIds"];
 $checkoutArray=$_POST["checkoutIds"];

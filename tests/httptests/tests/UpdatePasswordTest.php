@@ -32,15 +32,17 @@ class UpdatePasswordTest extends SeleniumTestBase
         $this->get_element("name=new_password")->send_keys("password19");
         $this->get_element("name=con_password")->send_keys("password19");
         $this->get_element("name=submit")->click();
-        $page = $this->driver->get_source();
-        $this->assertContains("Old Password is Incorrect", $page);
+        $error_msg = $this->get_element("id=error_message")->get_text();
+        $this->assertContains("Old Password is Incorrect", $error_msg);
+
         //Bad confirm password
         $this->get_element("name=old_password")->send_keys("password19");
         $this->get_element("name=new_password")->send_keys("test19");
         $this->get_element("name=con_password")->send_keys("password19");
         $this->get_element("name=submit")->click();
-        $page = $this->driver->get_source();
-        $this->assertContains("New Password and Confirmation Don't Match", $page);
+        $error_msg = $this->get_element("id=error_message")->get_text();
+        $this->assertContains("New Password and Confirmation Don't Match", $error_msg);
+
         //Good update password
         $this->get_element("name=old_password")->send_keys("password19");
         $this->get_element("name=new_password")->send_keys("pass19");

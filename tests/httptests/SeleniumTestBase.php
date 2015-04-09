@@ -15,7 +15,7 @@ require_once dirname(__FILE__).'/../../config.php';
 class SeleniumTestBase extends PHPUnit_Framework_TestCase {
   protected $driver;
   protected $dbConn;
-  protected $retries = 1;
+  protected $retries = 0;
 
   public static $baseUrl = "";
   public static $isWindows = false;

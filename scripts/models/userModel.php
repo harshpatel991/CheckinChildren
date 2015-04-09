@@ -15,21 +15,26 @@ class userModel
     private static $privateKey = 'd@t$yuk';
 
     public function isValid(){
-        if($this->isUpdateValid()) {
-            if(strlen($this->password)<=0) { //in an update, password is allowed to be length 0
-                return false;
-            } else {
-                return true;
-            }
+        $errorCode = $this->isUpdateValid();
+        if($errorCode>0) {
+            return $errorCode;
         }
-        return false;
+        if(strlen($this->password)<=0) { //in an update, password is allowed to be length 0
+            return errorEnum::invalid_password;
+        }
+
+        return 0;
     }
 
     public function isUpdateValid() {
-        if (strlen($this->email)>40 || strlen($this->password)>40 || strlen($this->email)<=0) {
-            return false;
+        if (strlen($this->email)>40 || strlen($this->email)<=0 || strpos($this->email, '@')===false) {
+            return errorEnum::invalid_email;
         }
-        return true;
+        if (strlen($this->password)>40 ){
+            return errorEnum::invalid_password;
+        }
+
+        return 0;
     }
 
     public function __construct( $email="", $password="", $role="", $id=""){

@@ -6,11 +6,17 @@
  */
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-
+require_once(dirname(__FILE__) . '/../authController.php');
+require_once(dirname(__FILE__) . '/../../errorManager.php');
 require_once(dirname(__FILE__) . '/../../models/dao/childDAO.php');
 require_once(dirname(__FILE__) . '/../../models/childModel.php');
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../managerController.php');
+
+if($_COOKIE[cookieManager::$userRole] != 'employee' && $_COOKIE[cookieManager::$userRole] != 'manager'){
+    header("Location: ../../../public/createChild.php?error=".errorEnum::permission_error);
+    exit();
+}
 
 $manCon=new managerController();
 $facility_id=$manCon->getFacilityID($_COOKIE[cookieManager::$userId]);
@@ -21,7 +27,8 @@ for ($i=0; $i<7; $i++){
     $child->expect_checkout[$i] = minutesFromMidnight($_POST['co-'.$i]);
 }
 
-if ($child->isValid()) {
+$error_code = $child->isValid();
+if ($error_code === 0) {
     $childDAO = new childDAO();
     $childId = $childDAO->insert($child);
     $child->child_id = $childId;
@@ -29,7 +36,7 @@ if ($child->isValid()) {
     header("Location: ../../../public/index.php");
     exit();
 } else {
-    header("Location: ../../../public/createChild.php?error=1");
+    header("Location: ../../../public/createChild.php?error=".$error_code);
 }
 
 /*

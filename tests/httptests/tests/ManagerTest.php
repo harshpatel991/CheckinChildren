@@ -80,5 +80,20 @@ class ManagerTest extends SeleniumTestBase {
         //Any additional teardown goes here.
         parent::tearDown();
     }
+    public function testMakeEmployeeInvalid(){
+        testMacros::login($this->driver, "manager6@gmail.com", "password6");
 
+        $this->get_element("name=view_employees")->click();
+        $this->get_element("name=create_employee")->click();
+
+        $this->get_element("name=name")->send_keys("");
+        $this->get_element("name=email")->send_keys("testcase@gmail.com");
+        $this->get_element("name=password")->send_keys("100pass");
+
+        $this->get_element("name=submit")->click();
+
+        $error_msg = $this->get_element("id=error_message")->get_text();
+        $this->assertContains("Invalid Name", $error_msg);
+
+    }
 }
