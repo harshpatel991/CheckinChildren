@@ -99,3 +99,5 @@ INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_i
 VALUES(6, 10, "Bob Dude", 'Dogs', 2, "Child Checked In", "N/A");
 INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, additional_info)
 VALUES(10, 10, "Bob Dude", 'Dogs', 3, "Child Checked Out", "N/A");
+
+
