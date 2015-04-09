@@ -4,8 +4,8 @@ require_once(dirname(__FILE__).'/../cookieManager.php');
 require_once(dirname(__FILE__) . '/../controllers/facilityController.php');
 require_once(dirname(__FILE__).'/../models/facilityModel.php');
 require_once(dirname(__FILE__).'/../models/facilityModel.php');
-require_once(dirname(__FILE__).'/../models/dao/employeeDao.php');
-require_once(dirname(__FILE__).'/../models/dao/childDao.php');
+require_once(dirname(__FILE__).'/../models/dao/employeeDAO.php');
+require_once(dirname(__FILE__).'/../models/dao/childDAO.php');
 
 if(isset($_GET['facility_id'])) { //check if a GET has been set
 
