@@ -21,7 +21,7 @@ foreach($employees as $employee)
 }
 
 $childDao->deleteAllChildrenInFacility($_GET["facility_id"]);
-$employeeDao->deleteAllEmployeesInFacility($_GET["facility_id"]);
+$employeeDao->delete("facility_id",$_GET["facility_id"]);
 $facilityDAO->delete($_GET["facility_id"]);
 header("Location: ../../../public/displayFacilities.php"); //send browser to the page for newly created facility
 exit();

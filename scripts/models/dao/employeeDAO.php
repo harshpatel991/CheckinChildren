@@ -100,21 +100,11 @@ class employeeDAO {
         $connection=null;
     }
 
-    public function deleteAllEmployeesInFacility($facility_id)
-    {
+    public function delete($field, $value){
         $connection = DbConnectionFactory::create();
-        $query = "DELETE FROM employee WHERE facility_id=:id";
+        $query = "DELETE FROM employee WHERE ".$field."=:id";
         $stmt = $connection->prepare($query);
-        $stmt->bindParam(':id', $facility_id);
-        $stmt->execute();
-        $connection = null;
-    }
-
-    public function delete($id){
-        $connection = DbConnectionFactory::create();
-        $query = "DELETE FROM employee WHERE id=:id";
-        $stmt = $connection->prepare($query);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':id', $value);
         $stmt->execute();
         $connection = null;
     }

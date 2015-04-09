@@ -13,6 +13,6 @@ $employeeDAO=new employeeDAO();
 $empid=$_GET['employee_id'];
 
 $userDAO->delete($empid);
-$employeeDAO->delete($empid);
+$employeeDAO->delete("id", $empid);
 
 header("Location: ../../../public/index.php");
