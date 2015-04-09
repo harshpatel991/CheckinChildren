@@ -26,4 +26,18 @@ class CreateCompanyTest extends SeleniumTestBase
         $this->get_element("id=title")->assert_text("Managers");
 
     }
+    public function testCreateCompanyInvalid()
+    {
+        //I am redirected to login page
+        $this->assert_title("Login");
+
+        //Go to CreateCompany page
+        $this->get_element("name=signup")->click();
+
+        //Create a new company
+        testMacros::createCompany($this->driver, "Test Company 1", "", "1234567890", "newcompany@gmail.com", "password1");
+
+        $error_msg = $this->get_element("id=error_message")->get_text();
+        $this->assertContains("Invalid Address", $error_msg);
+    }
 }

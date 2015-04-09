@@ -36,6 +36,7 @@ class UserDAO
         return $id;
     }
 
+
     public function updateField($userId, $field, $value){
         $connection = DbConnectionFactory::create();
         $query = 'UPDATE users SET '.$field.'=:value WHERE id=:id';
@@ -45,4 +46,24 @@ class UserDAO
         $stmt->execute();
         $connection = null;
     }
+
+    public function delete($userId){
+        $connection = DbConnectionFactory::create();
+        $query = "DELETE FROM users WHERE id=:id";
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':id', $userId);
+        $stmt->execute();
+        $connection = null;
+    }
+
+    public function deleteUsersOfFacility($facilityID)
+    {
+        $connection = DbConnectionFactory::create();
+        $query = "DELETE FROM users WHERE EXISTS (SELECT * FROM employee WHERE facility_id = :id and employee.id = users.id)";
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':id', $facilityID);
+        $stmt->execute();
+        $connection = null;
+    }
+
 }

@@ -25,15 +25,15 @@ class employeeModelTest extends unitTestBase {
     public function testFilter(){
         $employee=new employeeModel("", "hello", 34, "test@test.com", "employee", 45);
 
-        $this->assertFalse($employee->isValid());
+        $this->assertEquals($employee->isValid(), errorEnum::invalid_name);
 
         $employee->emp_name="Herbert";
 
-        $this->assertTrue($employee->isValid());
+        $this->assertEquals($employee->isValid(), 0);
 
         $employee->emp_name="kadjflkfjsdklfjsdlfkjakslfjkdlasfjklajsdflkdjfklasdfjdskajlfkajsfdlfkjdaslfjlasdfkja";
 
-        $this->assertFalse($employee->isValid());
+        $this->assertEquals($employee->isValid(), errorEnum::invalid_name);
     }
 
 }

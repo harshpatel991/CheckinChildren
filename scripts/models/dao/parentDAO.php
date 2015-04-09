@@ -77,21 +77,17 @@ class parentDAO {
         $userDAO=new userDAO();
 
         $userDAO->updateField($parent->id, 'email', $parent->email);
+        $query = "UPDATE parent SET parent_name=:parent_name, address=:address, phone_number=:phone_number, carrier=:carrier, contact_pref=:contact_pref WHERE id=:id";
 
-        $this->updateField($parent->id, 'parent_name', $parent->parent_name);
-        $this->updateField($parent->id, 'address', $parent->address);
-        $this->updateField($parent->id, 'phone_number', $parent->phone_number);
-        $this->updateField($parent->id, 'contact_pref', $parent->contact_pref);
-        $this->updateField($parent->id, 'carrier', $parent->carrier);
-
-    }
-
-    private function updateField($userId, $field, $value){
         $connection = DbConnectionFactory::create();
-        $query = 'UPDATE parent SET '.$field.'=:value WHERE id=:id';
         $stmt = $connection->prepare($query);
-        $stmt->bindParam(':value', $value);
-        $stmt->bindParam(':id', $userId);
+        $stmt->bindParam(':parent_name', $parent->parent_name);
+        $stmt->bindParam(':address', $parent->address);
+        $stmt->bindParam(':phone_number', $parent->phone_number);
+        $stmt->bindParam(':carrier', $parent->carrier);
+        $stmt->bindParam(':contact_pref', $parent->contact_pref);
+        $stmt->bindParam(':id', $parent->id);
+
         $stmt->execute();
         $connection = null;
     }

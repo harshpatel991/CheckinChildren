@@ -123,7 +123,7 @@ class backgroundTaskTest extends unitTestBase {
 
         $expectedEmailTos = array(
             'mwallic2@illinois.edu',
-            'mcwallick@gmail.com'
+            'kenned45@illinois.edu'
         );
 
         $expectedEmailSubjs = array(

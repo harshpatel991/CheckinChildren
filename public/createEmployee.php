@@ -5,6 +5,8 @@ ini_set("display_errors", 1);
 require_once(dirname(__FILE__).'/../scripts/controllers/authController.php');
 ?>
 
+
+
 <!DOCTYPE html>
 <html>
     <head>

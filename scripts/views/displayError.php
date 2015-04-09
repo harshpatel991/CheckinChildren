@@ -4,7 +4,7 @@
 <?php if(isset($_GET['error'])) { ?>
     <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
-            <div class="alert alert-danger" role="alert">
+            <div class="alert alert-danger" id="error_message" role="alert">
                 <?php echo errorManager::getErrorMessage($_GET['error']); ?>
             </div>
         </div>

@@ -1,18 +1,31 @@
 <?php
-
+/**
+ * The form handler when a parent submits form to edit a child account
+ * Determines if submitted child is valid and updates record in childDAO and redirects to displayChild page
+ * If child information is not valid, redirects to editChild page with error
+ */
+require_once(dirname(__FILE__) . '/../authController.php');
+require_once(dirname(__FILE__) . '/../../errorManager.php');
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../../models/dao/childDAO.php');
+require_once(dirname(__FILE__) . '/../../dateTimeProvider.php');
 
 //Read in POST data from form
 $child_id = $_POST['child_id'];
 
-$child = new childModel($_COOKIE[cookieManager::$userId], $_POST["child_name"], $_POST["allergies"],  $_POST["trusted_parties"], 0, $child_id); // set 0 for values that cannot be changed
-for ($i=0; $i<7; $i++){
-    $child->expect_checkin[$i] = minutesFromMidnight($_POST['ci-'.$i]);
-    $child->expect_checkout[$i] = minutesFromMidnight($_POST['co-'.$i]);
+if($_COOKIE[cookieManager::$userRole] != 'manager' && $_COOKIE[cookieManager::$userRole] != 'employee' && $_COOKIE[cookieManager::$userRole] != 'parent'){
+    header("Location: ../../../public/editChild.php?child_id=".$child_id. "&error=".errorEnum::permission_error);
+    exit();
 }
 
-if ($child->isUpdateValid()) {
+$child = new childModel($_COOKIE[cookieManager::$userId], $_POST["child_name"], $_POST["allergies"],  $_POST["trusted_parties"], 0, $child_id); // set 0 for values that cannot be changed
+for ($i=0; $i<7; $i++){
+    $child->expect_checkin[$i] = dateTimeProvider::minutesFromMidnight($_POST['ci-'.$i]);
+    $child->expect_checkout[$i] = dateTimeProvider::minutesFromMidnight($_POST['co-'.$i]);
+}
+
+$error_code = $child->isUpdateValid();
+if ($error_code === 0) {
     $childDAO = new ChildDAO();
     $childDAO->update($child);
 
@@ -20,24 +33,6 @@ if ($child->isUpdateValid()) {
     exit();
 
 } else { //redirect to edit child page with error message
-    header("Location: ../../../public/editChild.php?child_id=".$child_id. "&error=1");
+    header("Location: ../../../public/editChild.php?child_id=".$child_id. "&error=".$error_code);
     exit();
-}
-
-
-/*
- * $time is a string of format '2:30 am'
- *
- * returns minutes-from-midnight
- */
-function minutesFromMidnight($time){
-    if(!isset($time) || $time==='' || $time==null) {
-        return -1;
-    }
-    $hmap = preg_split("/[\s:]+/", $time);
-    $hmap[0] %= 12;
-    if ($hmap[2] === 'pm'){
-        $hmap[0] += 12;
-    }
-    return $hmap[1] + $hmap[0] * 60;
 }
