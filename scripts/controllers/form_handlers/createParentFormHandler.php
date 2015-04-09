@@ -12,6 +12,7 @@ require_once(dirname(__FILE__) . '/../../models/dao/logDAO.php');
 require_once(dirname(__FILE__) . '/../../models/parentModel.php');
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../managerController.php');
+require_once(dirname(__FILE__) . '/../../models/dao/logDAO.php');
 
 if($_COOKIE[cookieManager::$userRole] != 'manager' && $_COOKIE[cookieManager::$userRole] != 'employee'){
     header("Location: ../../../public/createParent.php?error=".errorEnum::permission_error);
@@ -47,7 +48,7 @@ if ($error_code===0) {
     header("Location: ../../../public/index.php"); //redirect to the index page
     exit();
 } else {
-    $lDAO->insert($_COOKIE[cookieManager::$userId], null, $parent->parent_name, logDAO::$parentCreated, "Failure");
+    $lDAO->insert($_COOKIE[cookieManager::$userId], null, $parent->parent_name, logDAO::$parentCreated, "Error: ".errorManager::getErrorMessage($error_code));
     header("Location: ../../../public/createParent.php?error=".$error_code); //redirect back to the createParent page with appropriate error
     exit();
 }

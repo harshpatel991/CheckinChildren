@@ -8,6 +8,7 @@
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../../models/dao/employeeDAO.php');
 require_once(dirname(__FILE__) . '/../../models/dao/logDAO.php');
+require_once(dirname(__FILE__) . '/../../errorManager.php');
 
 //Read in POST data from form
 $employeeID = $_COOKIE[cookieManager::$userId];
@@ -17,7 +18,8 @@ $employee = new employeeModel($_POST["employee_name"],"", 0, $_POST["email"], ""
 
 $lDAO=new logDAO();
 
-if ($employee->isUpdateValid()) {
+$error_code = $employee->isUpdateValid();
+if ($error_code == 0) {
     $employeeDAO = new employeeDAO();
     $employeeDAO->update($employee);
 
@@ -26,7 +28,7 @@ if ($employee->isUpdateValid()) {
 
     exit();
 } else {
-    $lDAO->insert($_COOKIE[cookieManager::$userId], null, null, logDAO::$employeeEdited, "Error: Not Valid");
+    $lDAO->insert($_COOKIE[cookieManager::$userId], null, null, logDAO::$employeeEdited, "Error: ".errorManager::getErrorMessage($error_code));
     header("Location: ../../../public/editEmployee.php?error=1"); //redirect to employee creation page with error message
     exit();
 }

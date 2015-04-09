@@ -24,15 +24,15 @@ class companyModelTest extends unitTestBase {
     public function testFilter(){
         $company=new companyModel("", "509 E Stoughton", "2023457654", "test@test.com","testpassword", "company", 21);
 
-        $this->assertFalse($company->isValid());
+        $this->assertEquals($company->isValid(), errorEnum::invalid_name);
 
         $company->company_name="Family Daycare";
 
-        $this->assertTrue($company->isValid());
+        $this->assertEquals($company->isValid(), errorEnum::no_errors);
 
         $company->company_name="kadjflkfjsdklfjsdlfkjakslfjkdlasfjklajsdflkdjfklasdfjdskajlfkajsfdlfkjdaslfjlasdfkja";
 
-        $this->assertFalse($company->isValid());
+        $this->assertEquals($company->isValid(), errorEnum::invalid_name);
     }
 
 }

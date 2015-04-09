@@ -34,6 +34,33 @@ class parentModelTest extends unitTestBase {
         $this->assertEquals($parent->isValid(), errorEnum::invalid_name);
     }
 
+    public function testInvalidPhoneNumbers() {
+        $parent = new parentModel("", "pword", "test@test.com", "parent", "80088889890", "123 fake st", "email", "Verizon Wireless", 999);
+        $this->assertEquals($parent->isValid(), errorEnum::invalid_phone);
+
+        $parent = new parentModel("", "pword", "test@test.com", "parent", "800888898a", "123 fake st", "email", "Verizon Wireless", 999);
+        $this->assertEquals($parent->isValid(), errorEnum::invalid_phone);
+
+        $parent = new parentModel("", "pword", "test@test.com", "parent", "123456789", "123 fake st", "email", "Verizon Wireless", 999);
+        $this->assertEquals($parent->isValid(), errorEnum::invalid_phone);
+
+        $parent = new parentModel("", "pword", "test@test.com", "parent", "", "123 fake st", "email", "Verizon Wireless", 999);
+        $this->assertEquals($parent->isValid(), errorEnum::invalid_phone);
+    }
+
+    public function testInvalidEmail() {
+        $parent=new parentModel("Herbert", "", "notanemail", "parent", "8008888989", "123 fake st", "email", "Verizon Wireless", 999);
+        $this->assertEquals($parent->isValid(), errorEnum::invalid_email);
+
+        $parent=new parentModel("Herbert", "", "", "parent", "8008888989", "123 fake st", "email", "Verizon Wireless", 999);
+        $this->assertEquals($parent->isValid(), errorEnum::invalid_email);
+    }
+
+    public function testInvalidCarrier() {
+        $parent=new parentModel("Herbert", "", "notanemail", "parent", "8008888989", "123 fake st", "email", "", 999);
+        $this->assertEquals($parent->isValid(), errorEnum::missing_carrier);
+    }
+
     public function testInvalidShortPassword() {
         $parent=new parentModel("Herbert", "", "test@test.com", "parent", "8008888989", "123 fake st", "email", "Verizon Wireless", 999);
         $this->assertEquals($parent->isValid(), errorEnum::invalid_password);

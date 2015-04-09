@@ -34,7 +34,7 @@ if ($error_code===0) {
     header("Location: ../../../public/displayEmployees.php");
     exit();
 } else {
-    $lDAO->insert($_COOKIE[cookieManager::$userId], null, $employee->emp_name, logDAO::$employeeCreated, "Failure");
+    $lDAO->insert($_COOKIE[cookieManager::$userId], null, $employee->emp_name, logDAO::$employeeCreated, "Error: ".errorManager::getErrorMessage($error_code));
     header("Location: ../../../public/createEmployee.php?error=".$error_code);
     exit();
 }

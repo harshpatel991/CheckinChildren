@@ -29,7 +29,7 @@ class companyModel extends userModel{
         if ($error_code > 0){
             return $error_code;
         }
-        return 0;//employee::isValid();
+        return parent::isValid();
     }
 
     public function isUpdateValid()
@@ -50,7 +50,7 @@ class companyModel extends userModel{
         if (strlen($this->address) == 0 || strlen($this->address) > 50) {
             return errorEnum::invalid_address;
         }
-        return 0;
+        return parent::isUpdateValid();
     }
 
 }
