@@ -65,13 +65,10 @@ class employeeDAOTest extends unitTestBase {
         $employees = $employeeDAO->getFacilityEmployees(5);
         $this->assertEquals(2,count($employees));
 
-        $employeeDAO->deleteAllEmployeesInFacility(5);
+        $employeeDAO->delete("facility_id",5);
 
         $employees = $employeeDAO->getFacilityEmployees(5);
         $this->assertEquals(0,count($employees));
-
-
-        ;
     }
 
 }
