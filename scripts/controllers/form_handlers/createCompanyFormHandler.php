@@ -5,6 +5,7 @@
  * If company account is not valid, redirects to createCompany page with error
  */
 require_once(dirname(__FILE__) . '/../../models/dao/companyDAO.php');
+require_once(dirname(__FILE__) . '/../../models/dao/logDAO.php');
 
 //Read in POST data from form
 $hashedPassword = companyModel::genHashPassword($_POST['create_password']);

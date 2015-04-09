@@ -22,7 +22,6 @@ $error_code = $facility->isValid();
 if ($error_code === 0) {
     $facilityDAO = new FacilityDAO();
     $facility_id = $facilityDAO->insert($facility);
-
     header("Location: ../../../public/displayFacilities.php?facility_id=".$facility_id);  //send browser to the page for newly created facility
     exit();
 } else {

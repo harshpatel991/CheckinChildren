@@ -37,6 +37,6 @@ if ($error_code === 0) {
     header("Location: ../../../public/index.php");
     exit();
 } else {
-    $lDAO->insert($_COOKIE[cookieManager::$userId], $child->child_id, $child->child_name, logDAO::$childCreated, "Failure");
+    $lDAO->insert($_COOKIE[cookieManager::$userId], $child->child_id, $child->child_name, logDAO::$childCreated, 'Error: '.errorManager::getErrorMessage($error_code));
     header("Location: ../../../public/createChild.php?error=".$error_code);
 }

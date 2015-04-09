@@ -21,7 +21,7 @@ class employeeModel extends userModel{
         if ($error_code > 0){
             return $error_code;
         }
-        return 0;//employee::isValid();
+        return parent::isValid();
     }
 
     public function isUpdateValid() {
@@ -36,7 +36,7 @@ class employeeModel extends userModel{
             return errorEnum::invalid_password;
         }
 
-        return 0;//employee::isUpdateValid();
+        return parent::isUpdateValid();
     }
 
 }
