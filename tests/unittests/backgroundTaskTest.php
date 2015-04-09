@@ -84,7 +84,7 @@ class backgroundTaskTest extends unitTestBase {
             'Your child Child Missing1 has not arrived to daycare yet'
         );
 
-        /*$this->mockMailer->expects($this->exactly(5))
+        $this->mockMailer->expects($this->exactly(5))
             ->method('sendMail')
             ->withConsecutive(
                 array($this->equalTo($expectedEmailTos[0]), $this->equalTo($expectedEmailSubjs[0]), $this->equalTo($expectedEmailMsgs[0])),
@@ -110,7 +110,7 @@ class backgroundTaskTest extends unitTestBase {
         $task->sendEmailsAndTexts();
 
         //Multiple send calls only send each message once.
-        $task->sendEmailsAndTexts();*/
+        $task->sendEmailsAndTexts();
     }
 
     /**
@@ -123,7 +123,7 @@ class backgroundTaskTest extends unitTestBase {
 
         $expectedEmailTos = array(
             'mwallic2@illinois.edu',
-            'mcwallick@gmail.com'
+            'kenned45@illinois.edu'
         );
 
         $expectedEmailSubjs = array(
@@ -147,7 +147,7 @@ class backgroundTaskTest extends unitTestBase {
         $expectedSmsMsgs = array(
             'Your child Late Wallick has not arrived to daycare yet'
         );
-/*
+
         $this->mockMailer->expects($this->exactly(2))
             ->method('sendMail')
             ->withConsecutive(
@@ -164,6 +164,6 @@ class backgroundTaskTest extends unitTestBase {
 
         $task = new backgroundTask($this->mockMessageFactory);
         $task->sendEmailsAndTexts();
-        $task->sendEmailsAndTexts();*/
+        $task->sendEmailsAndTexts();
     }
 }
