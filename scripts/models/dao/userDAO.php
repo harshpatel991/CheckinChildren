@@ -61,7 +61,7 @@ class UserDAO
         $connection = DbConnectionFactory::create();
         $query = "DELETE FROM users WHERE EXISTS (SELECT * FROM employee WHERE facility_id = :id and employee.id = users.id)";
         $stmt = $connection->prepare($query);
-        $stmt->bindParam(':id', $facilityId);
+        $stmt->bindParam(':id', $facilityID);
         $stmt->execute();
         $connection = null;
     }

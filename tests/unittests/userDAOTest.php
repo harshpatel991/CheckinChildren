@@ -61,4 +61,13 @@ class userDAOTest extends unitTestBase
         $user=$userDAO->find("id",8);
         $this->assertFalse($user);
     }
+    public function testDeleteFromFacilityTest() {
+        $userDAO = new userDAO();
+        $userTest=$userDAO->find("id",4);
+        $this->assertEquals($userTest->email, "employee4@gmail.com");
+        $this->assertEquals($userTest->password, "a1d7584daaca4738d499ad7082886b01117275d8");
+        $userDAO->deleteUsersOfFacility(2);
+        $user=$userDAO->find("id",4);
+        $this->assertFalse($user);
+    }
 }
