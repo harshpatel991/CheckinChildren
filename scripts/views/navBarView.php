@@ -1,4 +1,7 @@
 <?php
+/**
+ *This class displays the stuff at the top of the page, i.e. "CheckinChildren", a role message, and the logout button.
+ */
 require_once(dirname(__FILE__).'/../cookieManager.php');
 ?>
 
@@ -15,7 +18,7 @@ require_once(dirname(__FILE__).'/../cookieManager.php');
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Checkin Children</a>
+          <a class="navbar-brand" href="index.php">Checkin Children</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

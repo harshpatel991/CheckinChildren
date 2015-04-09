@@ -1,34 +1,38 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Elzabad
- * Date: 2/26/2015
- * Time: 7:44 PM
+ * The form handler when a user submits to update their password
+ * Determines if submitted password is valid and updates record in userDAO and redirects to index page
+ * If user information is not valid, redirects to updatePassword page with error
  */
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
+require_once(dirname(__FILE__) . '/../authController.php');
+require_once(dirname(__FILE__) . '/../../errorManager.php');
 require_once(dirname(__FILE__).'/../../cookieManager.php');
-require_once(dirname(__FILE__).'/../../controllers/authController.php');
 require_once(dirname(__FILE__). '/../../models/dao/userDAO.php');
 require_once(dirname(__FILE__). '/../../models/userModel.php');
 
 $userDAO=new userDAO();
 $user=$userDAO->find("id", $_COOKIE[cookieManager::$userId]);
 
+
+//Read in POST data
 $oldPassword = userModel::genHashPassword($_POST['old_password']);
 $newPassword = userModel::genHashPassword($_POST['new_password']);
 $conPassword = userModel::genHashPassword($_POST['con_password']);
 
-if($oldPassword != $user->password) {
-    header("Location: ../../../public/updatePassword.php?error=2");
+if($oldPassword != $user->password) { //user is not authorized to perform action
+    header("Location: ../../../public/updatePassword.php?error=".errorEnum::password_incorrect);
     exit();
-} else if($newPassword != $conPassword) {
-    header("Location: ../../../public/updatePassword.php?error=3");
+} else if(strlen($_POST['new_password']) < 1) { //user mistyped the new password confirmation
+    header("Location: ../../../public/updatePassword.php?error=99");
     exit();
-} else {
+} else if($newPassword != $conPassword) { //user mistyped the new password confirmation
+    header("Location: ../../../public/updatePassword.php?error=".errorEnum::password_mismatch);
+    exit();
+} else { //successfully entered old password and matching new passwords
     $user->auth_token = $user->genAuthToken();
     $userDAO->updateField($user->id, "password", $newPassword);
     $userDAO->updateField($user->id, "auth_token", $user->auth_token);
     cookieManager::setAuthCookies($user);
     header("Location: ../../../public/index.php");
+    exit();
 }

@@ -1,5 +1,6 @@
 <?php
 require_once(dirname(__FILE__).'/dao/parentDAO.php');
+require_once(dirname(__FILE__).'/dao/facilityDAO.php');
 require_once(dirname(__FILE__).'/../dateTimeProvider.php');
 require_once(dirname(__FILE__).'/childStatusEnum.php');
 class childModel {
@@ -27,23 +28,50 @@ class childModel {
     }
 
     public function isValid() {
-        if($this->isUpdateValid()) {
-            $parentDAO = new parentDAO();
-            $parent = $parentDAO->find($this->parent_id);
-            if($parent == false) {
-                return false;
-            } else {
-                return true;
-            }
+        $error_code = $this->isUpdateValid();
+        if($error_code > 0) {
+            return $error_code;
         }
-        return false;
+
+        $parentDAO = new parentDAO();
+        $parent = $parentDAO->find($this->parent_id);
+        if($parent == false) {
+            return errorEnum::parent_not_found;
+        }
+
+        $facilityDao = new FacilityDAO();
+        $facility = $facilityDao->find($this->facility_id);
+        if($facility == false) {
+            return errorEnum::facility_not_found;
+        }
+
+        return errorEnum::no_errors;
     }
 
     public function isUpdateValid() {
-        if (strlen($this->child_name) > 30 ||  strlen($this->child_name) <= 0 || strlen($this->allergies) > 50 || strlen($this->trusted_parties) > 50) {
-            return false;
+        if (strlen($this->child_name) > 30 ||  strlen($this->child_name) <= 0){
+            return errorEnum::invalid_name;
         }
-        return true;
+        if(strlen($this->allergies) > 50 || strlen($this->allergies) === 0){
+            return errorEnum::invalid_allergies;
+        }
+        if(strlen($this->trusted_parties) > 50){
+            return errorEnum::invalid_trusted_parties;
+        }
+
+        for ($i = 0; $i < 7; $i++){
+            if ($this->expect_checkout[$i] > -1 && $this->expect_checkin[$i] < 0){
+                return errorEnum::checkin_time_missing;
+            }
+            if ($this->expect_checkin[$i] > -1 && $this->expect_checkout[$i] < 0){
+                return errorEnum::checkout_time_missing;
+            }
+            if ($this->expect_checkin[$i] > $this->expect_checkout[$i]){
+                return errorEnum::checkout_less_than_checkin;
+            }
+        }
+
+        return errorEnum::no_errors;
     }
 
     public function getStatus($currentTime = null){

@@ -1,11 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: matt
- * Date: 3/8/15
- * Time: 3:11 PM
+ * Form handler to test email notification sending
+ * Reads POST information and will send email through adapter
+ * Message will not be sent if adapter has suppress turned on
  */
-
+require_once(dirname(__FILE__) . '/../authController.php');
+require_once(dirname(__FILE__) . '/../../errorManager.php');
+require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../../emailer.php');
 
 $to = $_POST['to'];

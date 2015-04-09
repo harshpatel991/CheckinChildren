@@ -60,4 +60,27 @@ class FacilityDAO {
 
         return $facilities;
     }
+
+    public function update($facility) {
+        $this->updateField($facility->facility_id, 'address', $facility->address);
+        $this->updateField($facility->facility_id, 'phone', $facility->phone);
+    }
+
+    public function updateField($facility_id, $field, $value){
+        $connection = DbConnectionFactory::create();
+        $query = 'UPDATE facility SET '.$field.'=:value WHERE facility_id=:id';
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':value', $value);
+        $stmt->bindParam(':id', $facility_id);
+        $stmt->execute();
+        $connection = null;
+    }
+    public function delete($facility_id){
+        $connection = DbConnectionFactory::create();
+        $query = "DELETE FROM facility WHERE facility_id=:id";
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':id', $facility_id);
+        $stmt->execute();
+        $connection = null;
+    }
 }
