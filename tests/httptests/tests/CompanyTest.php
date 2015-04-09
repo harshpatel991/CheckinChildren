@@ -27,7 +27,45 @@ class CompanyTest extends SeleniumTestBase
         $this->assertContains("Address: 2 Facility Rd. Champaign IL 61820", $page);
         $this->assertContains("Phone: 1235933945", $page);
     }
+    public function testViewProfile() {
+        testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
 
+        $this->get_element("signed-in")->assert_text("Currently signed in as a company");
+
+        $this->get_element("name=view_company_profile")->click();
+
+        $page = $this->driver->get_source();
+        $this->assertContains("Company 1", $page);
+        $this->assertContains("1 Fake St.", $page);
+        $this->assertContains("Champaign IL 61820", $page);
+        $this->assertContains("bigcompany1@gmail.com", $page);
+        $this->assertContains("8471234567", $page);
+    }
+    public function testEditProfile() {
+        testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
+
+        $this->get_element("signed-in")->assert_text("Currently signed in as a company");
+
+        $this->get_element("name=view_company_profile")->click();
+
+        $this->get_element("id=edit_company")->click();
+
+        $this->get_element("id=company_name")->clear();
+        $this->get_element("id=company_name")->send_keys("Name Change");
+        $this->get_element("id=email")->clear();
+        $this->get_element("id=email")->send_keys("email@change.com");
+        $this->get_element("id=address")->clear();
+        $this->get_element("id=address")->send_keys("Change Address");
+        $this->get_element("id=phone_number")->clear();
+        $this->get_element("id=phone_number")->send_keys("7651237890");
+        $this->get_element("name=submit")->click();
+
+        $page = $this->driver->get_source();
+        $this->assertContains("Name Change", $page);
+        $this->assertContains("email@change.com", $page);
+        $this->assertContains("Change Address", $page);
+        $this->assertContains("7651237890", $page);
+    }
     public function testCreateNewFacility() {
         testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
 
