@@ -327,6 +327,66 @@ class CompanyTest extends SeleniumTestBase
         $this->assertNotContains('Test Man', $page);
     }
 
+
+    public function testDeleteManager() {
+        testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
+
+        $this->get_element("name=view_managers")->click();
+        $this->get_element("link=Bob Dude")->click();
+        $this->get_element("link=Delete Employee")->click();
+
+        $this->get_element("name=view_managers")->click();
+
+        $page = $this->driver->get_source();
+
+        //assert that the single facility page is shown
+        $this->assertNotContains('Bob Dude', $page);
+    }
+
+    public function testDeleteManagerFromFacility() {
+        testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
+
+        $this->get_element("name=view_facilities")->click();
+        $this->get_element("link=1 Facility Rd. Champaign IL 61820")->click();
+        $this->get_element("link=View all employees")->click();
+        $this->get_element("link=Bob Dude")->click();
+        $this->get_element("link=Delete Employee")->click();
+        $this->get_element("link=View My Managers")->click();
+
+        $page = $this->driver->get_source();
+
+        //assert that the single facility page is shown
+        $this->assertNotContains('Bob Dude', $page);
+    }
+
+    public function testCreateNewManagerAndDelete() {
+        testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
+
+        $this->get_element("name=view_managers")->click();
+        $this->get_element("name=create_manager")->click();
+
+        $this->get_element("name=name")->send_keys("Test Man");
+        $this->get_element("name=facility_id")->send_keys("1");
+        $this->get_element("name=email")->send_keys("test@mail.com");
+        $this->get_element("name=password")->send_keys("password1");
+        $this->get_element("name=submit")->click();
+
+        $this->get_element("name=view_managers")->click();
+        $this->get_element("link=Test Man")->click();
+        $this->get_element("link=Delete Employee")->click();
+
+        $this->get_element("name=profile")->click();
+        $this->get_element("name=logout")->click();
+
+        testMacros::login($this->driver, "test@mail.com", "password1");
+
+
+        $page = $this->driver->get_source();
+
+        //assert that the single facility page is shown
+        $this->assertNotContains('Currently signed in as', $page);
+    }
+
     public function tearDown(){
         parent::tearDown();
     }
