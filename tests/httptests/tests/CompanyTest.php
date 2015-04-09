@@ -97,10 +97,9 @@ class CompanyTest extends SeleniumTestBase
         $this->get_element("name=password")->send_keys("password1");
         $this->get_element("name=submit")->click();
 
-        $page = $this->driver->get_source();
-
         //assert that the single facility page is shown
-        $this->assertContains("Facility not found", $page);
+        $error_msg = $this->get_element("id=error_message")->get_text();
+        $this->assertContains("Facility not found", $error_msg);
     }
 
     public function tearDown(){
