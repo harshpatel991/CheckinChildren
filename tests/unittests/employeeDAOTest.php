@@ -11,7 +11,7 @@ require_once(dirname(__FILE__).'/../../scripts/models/dao/userDAO.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
 
 class employeeDAOTest extends unitTestBase {
-/*
+
     public function testFind(){
         $employeeDAO=new employeeDAO();
 
@@ -59,7 +59,7 @@ class employeeDAOTest extends unitTestBase {
 
             $this->assertTrue(in_array($employee->emp_name, $names));
         }
-    }*/
+    }
     public function testDeleteAllEmployeesInFacility(){
 
         $employeeDAO = new employeeDAO();
