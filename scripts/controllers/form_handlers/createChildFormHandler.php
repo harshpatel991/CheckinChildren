@@ -34,6 +34,7 @@ $error_code = $child->isValid();
 if ($error_code === 0) {
     $childDAO = new childDAO();
     $childId = $childDAO->insert($child);
+    $lDAO->insert($_COOKIE[cookieManager::$userId], $child->child_id, $child->child_name, logDAO::$childCreated);
     header("Location: ../../../public/index.php");
     exit();
 } else {

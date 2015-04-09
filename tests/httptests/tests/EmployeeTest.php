@@ -52,6 +52,7 @@ class EmployeeTest extends SeleniumTestBase {
         $page = $this->driver->get_source();
         $this->assertContains("Matt Wallick", $page);
         $this->assertContains("baba_ganush2@gmail.com", $page);
+        $this->assertContains("Invalid Name", $page);
     }
 
     public function testEmployeeEditProfileNoName() {
@@ -71,6 +72,7 @@ class EmployeeTest extends SeleniumTestBase {
         $page = $this->driver->get_source();
         $this->assertContains("Matt Wallick", $page);
         $this->assertContains("baba_ganush2@gmail.com", $page);
+        $this->assertContains("Invalid Name", $page);
     }
 
     public function testEmployeeEditProfileLongEmail() {
@@ -79,7 +81,7 @@ class EmployeeTest extends SeleniumTestBase {
         $this->get_element("id=edit_employee")->click();
 
         $this->get_element("id=employee_name")->clear(); //clear text input box
-        $this->get_element("id=employee_name")->send_keys("");
+        $this->get_element("id=employee_name")->send_keys("Name");
 
         $this->get_element("id=email")->clear();
         $this->get_element("id=email")->send_keys("pHawthornpHawthornpHawthornpHawthornpHawthornpHawthornpHawthornpHawthornpHawthorn@gmail.com");
@@ -90,6 +92,7 @@ class EmployeeTest extends SeleniumTestBase {
         $page = $this->driver->get_source();
         $this->assertContains("Matt Wallick", $page);
         $this->assertContains("baba_ganush2@gmail.com", $page);
+        $this->assertContains("Invalid Email", $page);
 
     }
 
@@ -99,7 +102,7 @@ class EmployeeTest extends SeleniumTestBase {
         $this->get_element("id=edit_employee")->click();
 
         $this->get_element("id=employee_name")->clear(); //clear text input box
-        $this->get_element("id=employee_name")->send_keys("");
+        $this->get_element("id=employee_name")->send_keys("Name");
 
         $this->get_element("id=email")->clear();
         $this->get_element("id=email")->send_keys("");
@@ -110,6 +113,7 @@ class EmployeeTest extends SeleniumTestBase {
         $page = $this->driver->get_source();
         $this->assertContains("Matt Wallick", $page);
         $this->assertContains("baba_ganush2@gmail.com", $page);
+        $this->assertContains("Invalid Email", $page);
     }
 
 
