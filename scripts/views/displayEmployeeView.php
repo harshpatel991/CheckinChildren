@@ -33,9 +33,17 @@ $employee=$employeeDAO->find($_GET['employee_id']);
 </table>
 
 <br>
-<?php if ($employee->role=="employee") {?>
-    <a class="btn btn-success" id ="promote_employee" href = "../scripts/controllers/form_handlers/promoteEmployeeFormHandler.php?employee_id=<?php echo $employee->id;?>&employee_name=<?php echo $employee->emp_name;?>" <span class="glyphicon glyphicon-edit" aria-hidden="true"></span > Promote Employee </a >
-   <?php }  ?>
+
+<?php if ($employee->role=="employee" and ($_COOKIE[cookieManager::$userRole]=="manager" or $_COOKIE[cookieManager::$userRole]=="company")) {?>
+    <a class="btn btn-success" id ="promote_employee" href = "../scripts/controllers/form_handlers/promoteEmployeeFormHandler.php?employee_id=<?php echo $employee->id;?>" <span class="glyphicon glyphicon-edit" aria-hidden="true"></span > Promote Employee </a >
+   <?php }
+    else if ($employee->role=="manager" and $_COOKIE[cookieManager::$userRole]=="company") {?>
+        <a class="btn btn-success" id ="demote_employee" href = "../scripts/controllers/form_handlers/demoteManagerFormHandler.php?employee_id=<?php echo $employee->id;?>" <span class="glyphicon glyphicon-edit" aria-hidden="true"></span > Demote Manager </a >
+   <?php }
+    if ($_COOKIE[cookieManager::$userRole]=="company"){
+        ?><a class="btn btn-success" id ="delete_employee" href = "../scripts/controllers/form_handlers/deleteEmployeeFormHandler.php?employee_id=<?php echo $employee->id;?>" <span class="glyphicon glyphicon-edit" aria-hidden="true"></span > Delete Employee </a ><?php
+    }
+    ?>
 <hr>
 
 <a id="home" href="index.php" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Home</a>

@@ -40,7 +40,7 @@ class companyDAOTest extends unitTestBase {
 
         $this->assertEquals($retrievedCompany->company_name, "Company 1");
         $this->assertEquals($retrievedCompany->address, "1 Fake St.\n Champaign IL 61820");
-        $this->assertEquals($retrievedCompany->phone, "847123456");
+        $this->assertEquals($retrievedCompany->phone, "8471234567");
         $this->assertEquals($retrievedCompany->id, $testId);
         $this->assertEquals($retrievedCompany->email, "bigcompany1@gmail.com");
         $this->assertEquals($retrievedCompany->password, sha1("password1"));

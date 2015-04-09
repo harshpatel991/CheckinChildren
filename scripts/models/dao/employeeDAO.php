@@ -99,4 +99,13 @@ class employeeDAO {
 
         $connection=null;
     }
+
+    public function delete($field, $value){
+        $connection = DbConnectionFactory::create();
+        $query = "DELETE FROM employee WHERE ".$field."=:id";
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':id', $value);
+        $stmt->execute();
+        $connection = null;
+    }
 }
