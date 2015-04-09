@@ -23,7 +23,7 @@ $facilityDao = new facilityDAO();
 $facility = $facilityDao->find($_POST['facility_id']);
 
 
-$manager=new managerModel($_POST['name'], $hashedPassword, $_POST['facility_id'], $_COOKIE[cookieManager::$userId], $_POST['email']);
+$manager=new managerModel($_POST['name'], $hashedPassword, $_POST['facility_id'], $_POST['email']);
 $error_code = 0;
 if ($facility == false){
     $error_code = errorEnum::facility_not_found;

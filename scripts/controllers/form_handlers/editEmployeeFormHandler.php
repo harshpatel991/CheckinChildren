@@ -29,6 +29,6 @@ if ($error_code == 0) {
     exit();
 } else {
     $lDAO->insert($_COOKIE[cookieManager::$userId], null, null, logDAO::$employeeEdited, "Error: ".errorManager::getErrorMessage($error_code));
-    header("Location: ../../../public/editEmployee.php?error=1"); //redirect to employee creation page with error message
+    header("Location: ../../../public/editEmployee.php?error=".$error_code); //redirect to employee creation page with error message
     exit();
 }

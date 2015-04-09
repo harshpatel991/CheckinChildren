@@ -4,7 +4,7 @@ require_once dirname(__FILE__).'/../SeleniumTestBase.php';
 require_once dirname(__FILE__).'/../TestMacros.php';
 require_once dirname(__FILE__).'/../../../scripts/cookieManager.php';
 
-class CheckChildInOutTest extends SeleniumTestBase{
+class PermissionsTest extends SeleniumTestBase{
 
     public function setUp(){
         parent::setUp();
