@@ -13,13 +13,17 @@ $childDao = new childDAO();
 $employeeDao = new employeeDAO();
 $facilityDAO = new facilityDAO();
 $userDAO = new userDAO();
+
+/**
 $employees = $employeeDao->getFacilityEmployees($_GET["facility_id"]);
+
 
 foreach($employees as $employee)
 {
     $userDAO->delete($employee->id);
 }
-
+**/
+$userDAO->deleteUsersOfFacility("facility_id");
 $childDao->deleteAllChildrenInFacility($_GET["facility_id"]);
 $employeeDao->delete("facility_id",$_GET["facility_id"]);
 $facilityDAO->delete($_GET["facility_id"]);
