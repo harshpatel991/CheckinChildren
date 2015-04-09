@@ -1,6 +1,7 @@
 <?php
 require_once(dirname(__FILE__).'/../../scripts/models/parentModel.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
+require_once(dirname(__FILE__).'/../../scripts/errorManager.php');
 
 class parentModelTest extends unitTestBase {
 
@@ -20,28 +21,28 @@ class parentModelTest extends unitTestBase {
 
     public function testValidName() {
         $parent = new parentModel("Herbert", "pword", "test@test.com", "parent", "8008888989", "123 fake st", "email", "Verizon Wireless", 999);
-        $this->assertTrue($parent->isValid());
+        $this->assertEquals($parent->isValid(), errorEnum::no_errors);
     }
 
     public function testInvalidNameLong() {
         $parent = new parentModel("kadjflkfjsdklfjsdlfkjakslfjkdlasfjklajsdflkdjfklasdfjdskajlfkajsfdlfkjdaslfjlasdfkja", "pword", "test@test.com", "parent", "8008888989", "123 fake st","email", "Verizon Wireless", 0, 999);
-        $this->assertFalse($parent->isValid());
+        $this->assertEquals($parent->isValid(), errorEnum::invalid_name);
     }
 
     public function testInvalidShortName() {
         $parent = new parentModel("", "pword", "test@test.com", "parent", "8008888989", "123 fake st", "email", "Verizon Wireless", 999);
-        $this->assertFalse($parent->isValid());
+        $this->assertEquals($parent->isValid(), errorEnum::invalid_name);
     }
 
     public function testInvalidShortPassword() {
         $parent=new parentModel("Herbert", "", "test@test.com", "parent", "8008888989", "123 fake st", "email", "Verizon Wireless", 999);
-        $this->assertFalse($parent->isValid());
+        $this->assertEquals($parent->isValid(), errorEnum::invalid_password);
     }
 
     //Short password is okay for an update
     public function testValidUpdatePassword() {
         $parent=new parentModel("Herbert", "n", "test@test.com", "parent", "8008888989", "123 fake st", "email", "Verizon Wireless", 999);
-        $this->assertTrue($parent->isUpdateValid());
+        $this->assertEquals($parent->isValid(), errorEnum::no_errors);
     }
 
 }
