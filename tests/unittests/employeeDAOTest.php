@@ -7,10 +7,11 @@
  */
 
 require_once(dirname(__FILE__).'/../../scripts/models/dao/employeeDAO.php');
+require_once(dirname(__FILE__).'/../../scripts/models/dao/userDAO.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
 
 class employeeDAOTest extends unitTestBase {
-
+/*
     public function testFind(){
         $employeeDAO=new employeeDAO();
 
@@ -58,7 +59,7 @@ class employeeDAOTest extends unitTestBase {
 
             $this->assertTrue(in_array($employee->emp_name, $names));
         }
-    }
+    }*/
     public function testDeleteAllEmployeesInFacility(){
 
         $employeeDAO = new employeeDAO();
@@ -69,6 +70,28 @@ class employeeDAOTest extends unitTestBase {
 
         $employees = $employeeDAO->getFacilityEmployees(5);
         $this->assertEquals(0,count($employees));
+    }
+
+    public function testDeleteExistingEmployee(){
+        $employeeDAO = new employeeDAO();
+        $userDAO = new userDAO();
+        $employeeDAO->delete("id", 2);
+        $userDAO->delete(2);
+
+        $employees = $employeeDAO->find(2);
+
+        $this->assertEquals(false, $employees);
+    }
+
+    public function testDeleteNonExistingEmployee(){
+        $employeeDAO = new employeeDAO();
+        $userDAO = new userDAO();
+        $employeeDAO->delete("id", 2123);
+        $userDAO->delete(2123);
+
+        $employees = $employeeDAO->find(2123);
+
+        $this->assertEquals(false, $employees);
     }
 
 }
