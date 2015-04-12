@@ -3,6 +3,19 @@ error_reporting(E_ALL); //turn on error reporting
 ini_set("display_errors", 1);
 
 require_once(dirname(__FILE__).'/../scripts/controllers/authController.php');
+
+$authController = new authController();
+if (false == $authController->verifyRole(['parent'])){
+    header("Location: index.php?error=".errorEnum::permission_view_error);
+    exit();
+}
+else if (!isset($_GET['child_id']) || false == $authController->verifyChildPermissions($_GET['child_id'])){
+    header("Location: displayChildren.php?error=".errorEnum::invalid_child);
+    exit();
+}
+else {
+    $authController->redirectPage();
+}
 ?>
 
 <!DOCTYPE html>

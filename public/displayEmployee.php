@@ -9,6 +9,25 @@ error_reporting(E_ALL); //turn on error reporting
 ini_set("display_errors", 1);
 
 require_once(dirname(__FILE__).'/../scripts/controllers/authController.php');
+
+$authController = new authController();
+if (false == $authController->verifyRole(['employee', 'manager', 'company'])){
+    header("Location: index.php?error=".errorEnum::permission_view_error);
+    exit();
+}
+else if (!isset($_GET['employee_id']) || false == $authController->verifyEmployeePermissions($_GET['employee_id'])){
+    if ($authController->userRole == 'company'){
+        header("Location: displayManagers.php?error=" . errorEnum::invalid_employee);
+        exit();
+    }
+    else {
+        header("Location: displayEmployees.php?error=" . errorEnum::invalid_employee);
+        exit();
+    }
+}
+else {
+    $authController->redirectPage();
+}
 ?>
 
 <!DOCTYPE html>
