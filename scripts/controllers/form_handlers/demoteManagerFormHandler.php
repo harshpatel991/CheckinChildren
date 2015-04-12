@@ -7,6 +7,11 @@
 require_once(dirname(__FILE__).'/../authController.php');
 require_once(dirname(__FILE__).'/../../models/dao/userDAO.php');
 
+$authController = new authController();
+$authController->verifyRole(['company','manager']);
+$authController->verifyEmployeePermissions($_GET['employee_id']);
+$authController->redirectPage();
+
 $userDAO=new userDAO();
 $empid=$_GET['employee_id'];
 $userDAO->updateField($empid, "role", "employee");

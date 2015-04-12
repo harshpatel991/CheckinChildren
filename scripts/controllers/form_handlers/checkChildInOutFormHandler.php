@@ -16,10 +16,9 @@ require_once(dirname(__FILE__) . '/../notificationMessageFactory.php');
 require_once(dirname(__FILE__) . '/../notificationMessageController.php');
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 
-if($_COOKIE[cookieManager::$userRole] != 'employee' && $_COOKIE[cookieManager::$userRole] != 'manager'){
-    header("Location: ../../../public/checkinChildren.php?error=".errorEnum::permission_error);
-    exit();
-}
+$authController = new authController();
+$authController->verifyRole(['employee','manager']);
+$authController->redirectPage();
 
 $checkinArray=$_POST["checkinIds"];
 $checkoutArray=$_POST["checkoutIds"];

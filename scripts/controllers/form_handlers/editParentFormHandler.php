@@ -9,10 +9,9 @@ require_once(dirname(__FILE__) . '/../../errorManager.php');
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../../models/dao/parentDAO.php');
 
-if ($_COOKIE[cookieManager::$userRole] != 'parent'){
-    header("Location: ../../../public/editParent.php?error=".errorEnum::permission_error);
-    exit();
-}
+$authController = new authController();
+$authController->verifyRole(['parent']);
+$authController->redirectPage();
 
 //Read in POST data from form
 $parent_id = $_COOKIE[cookieManager::$userId];

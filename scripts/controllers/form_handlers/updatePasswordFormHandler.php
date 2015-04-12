@@ -10,6 +10,9 @@ require_once(dirname(__FILE__).'/../../cookieManager.php');
 require_once(dirname(__FILE__). '/../../models/dao/userDAO.php');
 require_once(dirname(__FILE__). '/../../models/userModel.php');
 
+$authController = new authController();
+$authController->redirectPage();
+
 $userDAO=new userDAO();
 $user=$userDAO->find("id", $_COOKIE[cookieManager::$userId]);
 

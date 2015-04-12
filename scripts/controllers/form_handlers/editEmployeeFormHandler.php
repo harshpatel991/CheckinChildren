@@ -9,6 +9,11 @@ require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../../models/dao/employeeDAO.php');
 require_once(dirname(__FILE__) . '/../../models/dao/logDAO.php');
 require_once(dirname(__FILE__) . '/../../errorManager.php');
+require_once(dirname(__FILE__) . '/../authController.php');
+
+$authController = new authController();
+$authController->verifyRole(['employee','manager']);
+$authController->redirectPage();
 
 //Read in POST data from form
 $employeeID = $_COOKIE[cookieManager::$userId];
