@@ -22,7 +22,10 @@ $authController = new authController();
 $authController->verifyRole(['parent']);
 $authController->redirectPage();
 
-$child = new childModel($_COOKIE[cookieManager::$userId], $_POST["child_name"], $_POST["allergies"],  $_POST["trusted_parties"], 0, $child_id); // set 0 for values that cannot be changed
+$cookieManager = new cookieManager();
+$cookies = $cookieManager->getCookies();
+
+$child = new childModel($cookies[cookieManager::$userId], $_POST["child_name"], $_POST["allergies"],  $_POST["trusted_parties"], 0, $child_id); // set 0 for values that cannot be changed
 for ($i=0; $i<7; $i++){
     $child->expect_checkin[$i] = dateTimeProvider::minutesFromMidnight($_POST['ci-'.$i]);
     $child->expect_checkout[$i] = dateTimeProvider::minutesFromMidnight($_POST['co-'.$i]);

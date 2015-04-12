@@ -24,15 +24,23 @@ class authController
     public $userId;
     public $userRole;
 
-    public function __construct(){
-        if (!isset($_COOKIE[cookieManager::$authToken]) || !isset($_COOKIE[cookieManager::$userId]) || !isset($_COOKIE[cookieManager::$userRole])) {
+    private $cookieManager;
+
+    public function __construct($cookieManager = null){
+        $this->cookieManager = $cookieManager;
+        if ($cookieManager == null){
+            $this->cookieManager = new cookieManager();
+        }
+
+        $cookie = $this->cookieManager->getCookies();
+        if (!isset($cookie[cookieManager::$authToken]) || !isset($cookie[cookieManager::$userId]) || !isset($cookie[cookieManager::$userRole])) {
             $this->authStatus = authStatus::not_logged_in;
-            cookieManager::clearAuthCookies();
+            $this->cookieManager->clearAuthCookies();
         }
         else{
-            $this->authToken = $_COOKIE[cookieManager::$authToken];
-            $this->userId = $_COOKIE[cookieManager::$userId];
-            $this->userRole = $_COOKIE[cookieManager::$userRole];
+            $this->authToken = $cookie[cookieManager::$authToken];
+            $this->userId = $cookie[cookieManager::$userId];
+            $this->userRole = $cookie[cookieManager::$userRole];
             if (!isset($_SESSION)){
                 session_start();
             }
@@ -57,7 +65,7 @@ class authController
                 }
                 else {
                     $this->authStatus = authStatus::invalid_identity;
-                    cookieManager::clearAuthCookies();
+                    $this->cookieManager->clearAuthCookies();
                     unset($_SESSION['id']);
                     unset($_SESSION['token']);
                     unset($_SESSION['role']);
@@ -67,11 +75,14 @@ class authController
     }
 
     public function verifyRole($validRoles){
-        if ($this->authStatus == authStatus::valid && !in_array($this->userRole, $validRoles)){
-            $this->authStatus = authStatus::invalid_permissions;
-            return false;
+        if ($this->authStatus == authStatus::valid){
+            if (!in_array($this->userRole, $validRoles)){
+                $this->authStatus = authStatus::invalid_permissions;
+                return false;
+            }
+            return true;
         }
-        return true;
+        return false;
     }
 
     public function verifyChildPermissions($childId){

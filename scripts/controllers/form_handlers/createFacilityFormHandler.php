@@ -14,7 +14,9 @@ $authController = new authController();
 $authController->verifyRole(['company']);
 $authController->redirectPage();
 
-$company_id = $_COOKIE[cookieManager::$userId];
+$cookieManager = new cookieManager();
+$cookies = $cookieManager->getCookies();
+$company_id = $cookies[cookieManager::$userId];
 $facility = new facilityModel($company_id, $_POST['address'], $_POST['phone_number']); //Read in POST data from form
 
 $error_code = $facility->isValid();

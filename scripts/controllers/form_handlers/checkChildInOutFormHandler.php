@@ -33,7 +33,8 @@ $timeString= sprintf($timeFill,$curTime["year"], $curTime["mon"], $curTime["mday
 
 $cDAO=new childDAO();
 $lDAO=new logDAO();
-$empId=$_COOKIE[cookieManager::$userId];
+$cookieManager = new cookieManager();
+$empId=$cookieManager->getCookies()[cookieManager::$userId];
 
 foreach ($checkoutArray as $id){
     $cDAO->updateField($id, 'last_checkout', $timeString);
