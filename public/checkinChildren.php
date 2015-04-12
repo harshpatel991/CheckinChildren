@@ -7,6 +7,7 @@ require_once(dirname(__FILE__).'/../scripts/controllers/authController.php');
 $authController = new authController();
 $authController->verifyRole(['manager','employee']);
 $authController->redirectPage();
+
 ?>
 
 <!DOCTYPE html>

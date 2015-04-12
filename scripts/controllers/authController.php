@@ -10,7 +10,12 @@ require_once(dirname(__FILE__) . '/../models/dao/userDAO.php');
 require_once(dirname(__FILE__).'/../models/userModel.php');
 require_once(dirname(__FILE__) . '/../models/dao/childDAO.php');
 require_once(dirname(__FILE__).'/../models/childModel.php');
+require_once(dirname(__FILE__) . '/../models/dao/employeeDAO.php');
+require_once(dirname(__FILE__).'/../models/employeeModel.php');
+require_once(dirname(__FILE__) . '/../models/dao/facilityDAO.php');
+require_once(dirname(__FILE__).'/../models/facilityModel.php');
 require_once(dirname(__FILE__).'/../cookieManager.php');
+require_once(dirname(__FILE__).'/../errorManager.php');
 
 class authController
 {
@@ -67,7 +72,9 @@ class authController
     public function verifyRole($validRoles){
         if ($this->authStatus == authStatus::valid && !in_array($this->userRole, $validRoles)){
             $this->authStatus = authStatus::invalid_permissions;
+            return false;
         }
+        return true;
     }
 
     public function verifyChildPermissions($childId){
@@ -76,6 +83,7 @@ class authController
             $child = $childDao->find($childId);
             if ($child == false || !isset($child) || $child == null){
                 $this->authStatus = authStatus::invalid_permissions;
+                return false;
             }
             else if ($this->userRole == 'manager' || $this->userRole == 'employee'){
                 $employeeDao = new employeeDAO();
@@ -83,25 +91,32 @@ class authController
                 if ($employee == false || !isset($employee) || $employee == null
                     || $employee->facility_id != $child->facility_id){
                     $this->authStatus = authStatus::invalid_permissions;
+                    return false;
                 }
+                return true;
             }
             else if ($this->userRole == 'parent'){
                 if ($child->parent_id != $this->userId){
                     $this->authStatus = authStatus::invalid_permissions;
+                    return false;
                 }
+                return true;
             }
             else{
                 $this->authStatus = authStatus::invalid_permissions;
+                return false;
             }
         }
+        return false;
     }
 
     public function verifyEmployeePermissions($empId){
         if ($this->authStatus == authStatus::valid) {
-            $employeeDao = new childDAO();
+            $employeeDao = new employeeDAO();
             $employee = $employeeDao->find($empId);
             if ($employee == false || !isset($employee) || $employee == null) {
                 $this->authStatus = authStatus::invalid_permissions;
+                return false;
             }
             else if ($this->userRole == 'manager') {
                 $manager = $employeeDao->find($this->userId);
@@ -109,15 +124,19 @@ class authController
                     || $employee->facility_id != $manager->facility_id
                 ){
                     $this->authStatus = authStatus::invalid_permissions;
+                    return false;
                 }
+                return true;
             }
             else if ($this->userRole == 'company'){
-                $this->verifyFacilityPermissions($employee->facility_id);
+                return $this->verifyFacilityPermissions($employee->facility_id);
             }
             else {
                 $this->authStatus = authStatus::invalid_permissions;
+                return false;
             }
         }
+        return false;
     }
 
     public function verifyFacilityPermissions($facilityId){
@@ -126,11 +145,15 @@ class authController
             $facility = $facilityDao->find($facilityId);
             if ($facility == false || !isset($facility) || $facility == null){
                 $this->authStatus = authStatus::invalid_permissions;
+                return false;
             }
             else if ($facility->company_id != $this->userId){
                 $this->authStatus = authStatus::invalid_permissions;
+                return false;
             }
+            return true;
         }
+        return false;
     }
 
     public function redirectPage(){
@@ -141,12 +164,12 @@ class authController
         }
         else if ($this->authStatus == authStatus::invalid_identity){
             //Problem with auth, redirect to error page
-            header("Location: authError.php");
+            header("Location: login.php?error=".errorEnum::invalid_authentication);
             exit();
         }
         else if ($this->authStatus == authStatus::invalid_permissions){
             //Problem with permissions, redirect to index page
-            header("Location: index.php");
+            header("Location: index.php?error=".errorEnum::permission_view_error);
             exit();
         }
     }

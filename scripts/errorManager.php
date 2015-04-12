@@ -27,6 +27,10 @@ class errorManager {
         errorEnum::checkout_time_missing=> "Checkout time missing where checking time set",
         errorEnum::checkout_less_than_checkin => "Checkout time earlier than checkin time",
         errorEnum::permission_error => "Permissions Error. You do not have permission to perform this action.",
+        errorEnum::permission_view_error => "Permissions Error. You do not have permission to view this page.",
+        errorEnum::invalid_authentication => "Invalid Authentication. Pleaase try logging in again.",
+        errorEnum::invalid_child => "Invalid Child.",
+        errorEnum::invalid_employee => "Invalid Employee.",
     );
 
     /**
@@ -63,4 +67,8 @@ class errorEnum {
     const checkout_time_missing = 26;
     const checkout_less_than_checkin = 28;
     const permission_error = 30;
+    const permission_view_error = 31;
+    const invalid_authentication = 32;
+    const invalid_child = 33;
+    const invalid_employee = 34;
 }
