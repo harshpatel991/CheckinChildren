@@ -20,7 +20,9 @@ $authController->verifyRole(['employee','manager']);
 $authController->redirectPage();
 
 $manCon=new managerController();
-$facility_id=$manCon->getFacilityID($_COOKIE[cookieManager::$userId]);
+$cookieManager = new cookieManager();
+$cookies = $cookieManager->getCookies();
+$facility_id=$manCon->getFacilityID($cookies[cookieManager::$userId]);
 
 $child=new childModel($_POST['PID'], $_POST['name'],  $_POST['aller'], $_POST['trusted_parties'], $facility_id);
 for ($i=0; $i<7; $i++){
@@ -33,10 +35,10 @@ $error_code = $child->isValid();
 if ($error_code === 0) {
     $childDAO = new childDAO();
     $childId = $childDAO->insert($child);
-    $lDAO->insert($_COOKIE[cookieManager::$userId], $child->child_id, $child->child_name, logDAO::$childCreated);
+    $lDAO->insert($cookies[cookieManager::$userId], $child->child_id, $child->child_name, logDAO::$childCreated);
     header("Location: ../../../public/index.php");
     exit();
 } else {
-    $lDAO->insert($_COOKIE[cookieManager::$userId], $child->child_id, $child->child_name, logDAO::$childCreated, 'Error: '.errorManager::getErrorMessage($error_code));
+    $lDAO->insert($cookies[cookieManager::$userId], $child->child_id, $child->child_name, logDAO::$childCreated, 'Error: '.errorManager::getErrorMessage($error_code));
     header("Location: ../../../public/createChild.php?error=".$error_code);
 }

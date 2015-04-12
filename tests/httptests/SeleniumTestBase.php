@@ -19,12 +19,16 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
 
   public static $baseUrl = "";
   public static $isWindows = false;
+  public static $headless = false; //only tested on Matt's machine, talk to him if you want to get it working
 
   public function setUp() {
     if (self::$isWindows){
       exec('start java -jar ../WebDriver/selenium-server-standalone-2.45.0.jar');
     }
-    else {
+    else if (self::$headless){
+      shell_exec(sprintf('%s > /dev/null 2>&1 &', 'export DISPLAY=:10 && java -jar ../WebDriver/selenium-server-standalone-2.45.0.jar'));
+    }
+    else{
       shell_exec(sprintf('%s > /dev/null 2>&1 &', 'java -jar ../WebDriver/selenium-server-standalone-2.45.0.jar'));
     }
 
@@ -100,3 +104,4 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
 
 SeleniumTestBase::$baseUrl = Config::$config['sitepath'];
 SeleniumTestBase::$isWindows = Config::$config['isWindows'];
+SeleniumTestBase::$headless = isset(Config::$config['headless']) && Config::$config['headless']==true;

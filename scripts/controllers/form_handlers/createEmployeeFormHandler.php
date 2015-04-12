@@ -17,7 +17,10 @@ $authController->verifyRole(['employee','manager']);
 $authController->redirectPage();
 
 $manCon=new managerController();
-$facility_id=$manCon->getFacilityID($_COOKIE[cookieManager::$userId]);
+$cookieManager = new cookieManager();
+$cookies = $cookieManager->getCookies();
+
+$facility_id=$manCon->getFacilityID($cookies[cookieManager::$userId]);
 $hashedPassword = employeeModel::genHashPassword($_POST['password']);
 
 $employee=new employeeModel($_POST['name'], $hashedPassword, $facility_id, $_POST['email'], $_POST['role']); //retreieve submitted POST data
@@ -29,11 +32,11 @@ echo $error_code;
 if ($error_code===0) {
     $employeeDAO=new employeeDAO();
     $empId=$employeeDAO->create_DCP($employee);
-    $lDAO->insert($_COOKIE[cookieManager::$userId], $empId, $employee->emp_name, logDAO::$employeeCreated);
+    $lDAO->insert($cookies[cookieManager::$userId], $empId, $employee->emp_name, logDAO::$employeeCreated);
     header("Location: ../../../public/displayEmployees.php");
     exit();
 } else {
-    $lDAO->insert($_COOKIE[cookieManager::$userId], null, $employee->emp_name, logDAO::$employeeCreated, "Error: ".errorManager::getErrorMessage($error_code));
+    $lDAO->insert($cookies[cookieManager::$userId], null, $employee->emp_name, logDAO::$employeeCreated, "Error: ".errorManager::getErrorMessage($error_code));
     header("Location: ../../../public/createEmployee.php?error=".$error_code);
     exit();
 }

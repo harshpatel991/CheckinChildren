@@ -18,6 +18,9 @@ $authController = new authController();
 $authController->verifyRole(['employee','manager']);
 $authController->redirectPage();
 
+$cookieManager = new cookieManager();
+$cookies = $cookieManager->getCookies();
+
 $manCon=new managerController();
 
 $hashedPassword = employeeModel::genHashPassword($_POST['password']);
@@ -43,11 +46,11 @@ $error_code = $parent->isValid();
 if ($error_code===0) {
     $parentDAO=new parentDAO();
     $pid=$parentDAO->create_parent($parent);
-    $lDAO->insert($_COOKIE[cookieManager::$userId], $pid, $parent->parent_name, logDAO::$parentCreated);
+    $lDAO->insert($cookies[cookieManager::$userId], $pid, $parent->parent_name, logDAO::$parentCreated);
     header("Location: ../../../public/index.php"); //redirect to the index page
     exit();
 } else {
-    $lDAO->insert($_COOKIE[cookieManager::$userId], null, $parent->parent_name, logDAO::$parentCreated, "Error: ".errorManager::getErrorMessage($error_code));
+    $lDAO->insert($cookies[cookieManager::$userId], null, $parent->parent_name, logDAO::$parentCreated, "Error: ".errorManager::getErrorMessage($error_code));
     header("Location: ../../../public/createParent.php?error=".$error_code); //redirect back to the createParent page with appropriate error
     exit();
 }
