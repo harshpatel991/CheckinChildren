@@ -44,7 +44,7 @@ class dateTimeProvider
         return getdate($timestamp);
     }
 
-    public static function readableTime($time = null){
+    public static function readableTime($time = null, $includeSeconds = true){
         if ($time === null){
             $time = self::getCurrentDateTime();
         }
@@ -56,7 +56,18 @@ class dateTimeProvider
             $ap = 'pm';
         }
 
-        return sprintf('%02d:%02d:%02d %s', $hrs, $time['minutes'], $time['seconds'], $ap);
+        if ($includeSeconds==true) {
+            return sprintf('%02d:%02d:%02d %s', $hrs, $time['minutes'], $time['seconds'], $ap);
+        }
+        return sprintf('%02d:%02d %s', $hrs, $time['minutes'], $ap);
+    }
+
+    public static function readableDate($time = null){
+        if ($time === null){
+            $time = self::getCurrentDateTime();
+        }
+
+        return sprintf('%02d/%02d/%02d', $time['mon'], $time['mday'], $time['year']);
     }
 
     /*
