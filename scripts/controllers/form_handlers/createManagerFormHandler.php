@@ -12,10 +12,9 @@ require_once(dirname(__FILE__) . '/../../models/managerModel.php');
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../../errorManager.php');
 
-if($_COOKIE[cookieManager::$userRole] != 'company'){
-    header("Location: ../../../public/createManager.php?error=".errorEnum::permission_error);
-    exit();
-}
+$authController = new authController();
+$authController->verifyRole(['company']);
+$authController->redirectPage();
 
 $hashedPassword = managerModel::genHashPassword($_POST['password']);
 

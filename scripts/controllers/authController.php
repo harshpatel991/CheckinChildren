@@ -66,9 +66,6 @@ class authController
         }
     }
 
-    /**
-     * @param $validRoles string[] the roles that are valid
-     */
     public function verifyRole($validRoles){
         if ($this->authStatus == authStatus::valid && !in_array($this->userRole, $validRoles)){
             $this->authStatus = authStatus::invalid_permissions;

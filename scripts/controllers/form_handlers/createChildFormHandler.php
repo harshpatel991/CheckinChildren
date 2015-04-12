@@ -15,10 +15,9 @@ require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../../dateTimeProvider.php');
 require_once(dirname(__FILE__) . '/../managerController.php');
 
-if($_COOKIE[cookieManager::$userRole] != 'employee' && $_COOKIE[cookieManager::$userRole] != 'manager'){
-    header("Location: ../../../public/createChild.php?error=".errorEnum::permission_error);
-    exit();
-}
+$authController = new authController();
+$authController->verifyRole(['employee','manager']);
+$authController->redirectPage();
 
 $manCon=new managerController();
 $facility_id=$manCon->getFacilityID($_COOKIE[cookieManager::$userId]);
