@@ -9,7 +9,7 @@ class LoggingTest extends SeleniumTestBase {
 
     }
 
-    public function testCreateAllLogs() {
+    public function testFilterAllLogs() {
         //Edit employee log
         testMacros::login($this->driver, "baba_ganush2@gmail.com", "password2");
         $this->get_element("id=edit_employee")->click();

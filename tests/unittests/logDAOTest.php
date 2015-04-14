@@ -48,7 +48,6 @@ class logDAOTest extends unitTestBase {
         $this->assertEquals(13, $myLog['primary_id']);
         $this->assertEquals(57, $myLog['secondary_id']);
         $this->assertEquals("Employee Created", $myLog['transaction_type']);
-
     }
 
     public function testDoubleInsert(){
@@ -71,5 +70,108 @@ class logDAOTest extends unitTestBase {
         $this->assertEquals(13, $myLog['primary_id']);
         $this->assertEquals(64, $myLog['secondary_id']);
         $this->assertEquals("Child Created", $myLog['transaction_type']);
+    }
+
+    public function testFindForFacilityFilterCheckedIn() {
+        $lDAO = new logDAO();
+        $logs = $lDAO->findForFacility(6, 'time_created', "Child Checked In");
+
+        var_dump($logs);
+        $this->assertEquals(1, count($logs));
+        $this->assertEquals("Child Checked In", $logs[0]['transaction_type']);
+    }
+
+    public function testFindForFacilityFilterCheckedOut() {
+        $lDAO = new logDAO();
+        $logs = $lDAO->findForFacility(6, 'time_created', "Child Checked Out");
+
+        $this->assertEquals(1, count($logs));
+        $this->assertEquals("Child Checked Out", $logs[0]['transaction_type']);
+    }
+
+    public function testFindForFacilityFilterEmployeeCreated() {
+        $lDAO = new logDAO();
+        $logs = $lDAO->findForFacility(6, 'time_created', "Employee Created");
+
+        $this->assertEquals(1, count($logs));
+        $this->assertEquals("Employee Created", $logs[0]['transaction_type']);
+    }
+
+    public function testFindForFacilityFilterParentCreated(){
+        $lDAO = new logDAO();
+        $logs = $lDAO->findForFacility(7, 'time_created', "Parent Created");
+
+        $this->assertEquals(1, count($logs));
+        $this->assertEquals("Parent Created", $logs[0]['transaction_type']);
+    }
+
+    public function testFindForFacilityFilterChildCreated() {
+        $lDAO = new logDAO();
+        $logs = $lDAO->findForFacility(7, 'time_created', "Child Created");
+
+        $this->assertEquals(1, count($logs));
+        $this->assertEquals("Child Created", $logs[0]['transaction_type']);
+    }
+
+    public function testFindForFacilityFilterEmployeePromoted() {
+        $lDAO = new logDAO();
+        $logs = $lDAO->findForFacility(7, 'time_created', "Employee Promoted");
+
+        $this->assertEquals(1, count($logs));
+        $this->assertEquals("Employee Promoted", $logs[0]['transaction_type']);
+    }
+
+    public function testFindForFacilityFilterEmployeeEdited() {
+        $lDAO = new logDAO();
+        $logs = $lDAO->findForFacility(7, 'time_created', "Employee Edited");
+
+        $this->assertEquals(1, count($logs));
+        $this->assertEquals("Employee Edited", $logs[0]['transaction_type']);
+    }
+
+    public function testFindForCompany() {
+        $lDAO = new logDAO();
+        $logs = $lDAO->findForCompany(5, 'time_created');
+
+        $this->assertEquals(7, count($logs));
+    }
+
+    public function testFindForCompanyOrderByPrimaryName() {
+        $lDAO = new logDAO();
+        $logs = $lDAO->findForCompany(5, 'transaction_type');
+
+        $this->assertEquals(7, count($logs));
+
+        $this->assertEquals("Child Checked In", $logs[0]['transaction_type']);
+        $this->assertEquals("Child Checked Out", $logs[1]['transaction_type']);
+        $this->assertEquals("Child Created", $logs[2]['transaction_type']);
+        $this->assertEquals("Employee Created", $logs[3]['transaction_type']);
+        $this->assertEquals("Employee Edited", $logs[4]['transaction_type']);
+        $this->assertEquals("Employee Promoted", $logs[5]['transaction_type']);
+        $this->assertEquals("Parent Created", $logs[6]['transaction_type']);
+    }
+
+    public function testFindForCompanyFilterEmployeeCreated() {
+        $lDAO = new logDAO();
+        $logs = $lDAO->findForCompany(5, 'transaction_type', "Employee Created");
+
+        $this->assertEquals(1, count($logs));
+        $this->assertEquals("Employee Created", $logs[0]['transaction_type']);
+    }
+
+    public function testFindForCompanyFilterParentCreated() {
+        $lDAO = new logDAO();
+        $logs = $lDAO->findForCompany(5, 'transaction_type', "Parent Created");
+
+        $this->assertEquals(1, count($logs));
+        $this->assertEquals("Parent Created", $logs[0]['transaction_type']);
+    }
+
+    public function testFindForCompanyFilterChildCheckedIn() {
+        $lDAO = new logDAO();
+        $logs = $lDAO->findForCompany(5, 'transaction_type', "Child Checked In");
+
+        $this->assertEquals(1, count($logs));
+        $this->assertEquals("Child Checked In", $logs[0]['transaction_type']);
     }
 }

@@ -4,12 +4,6 @@ require_once(dirname(__FILE__).'/../models/dao/managerDAO.php');
 require_once(dirname(__FILE__).'/../models/dao/logDAO.php');
 require_once(dirname(__FILE__).'/../cookieManager.php');
 
-//Find the facilityID of the manager
-$managerDAO = new managerDAO();
-
-$manager = $managerDAO->find($_COOKIE[cookieManager::$userId]);
-$facilityID = $manager['facility_id'];
-
 $orderBy = 'time_created'; //default order by
 $filterBy = '%'; //default filter;
 
@@ -24,7 +18,17 @@ if(isset($_GET['filterBy']) && !empty($_GET['filterBy'])) {
 }
 
 $logDAO = new logDAO();
-$logs = $logDAO->findForFacility($facilityID, $orderBy, $filterBy);
+
+if($_COOKIE[cookieManager::$userRole] == 'manager') {
+    $managerDAO = new managerDAO(); //Find the facilityID of the manager
+    $manager = $managerDAO->find($_COOKIE[cookieManager::$userId]);
+    $facilityID = $manager['facility_id'];
+
+    $logs = $logDAO->findForFacility($facilityID, $orderBy, $filterBy);
+} else if($_COOKIE[cookieManager::$userRole] == 'company') {
+    $companyID = $_COOKIE[cookieManager::$userId];
+    $logs = $logDAO->findForCompany($companyID, $orderBy, $filterBy);
+}
 ?>
 
 <h1 id="title">Facility Log</h1>
@@ -57,19 +61,16 @@ $logs = $logDAO->findForFacility($facilityID, $orderBy, $filterBy);
 
 </form>
 
-
-
-
-
 <br><br>
 
 <table class="table table-striped">
-    <tr><th>Date</th><th>Transaction Type</th><th>Primary Actor</th><th>Secondary Actor</th><th>Additional Info</th></tr>
+    <tr><th>Date</th><th>Transaction Type</th><th>Facility ID</th><th>Primary Actor</th><th>Secondary Actor</th><th>Additional Info</th></tr>
 
     <?php foreach ($logs as $log) { ?>
         <tr>
             <td><?php echo $log['time_created']; ?></td>
             <td><?php echo $log['transaction_type']; ?></td>
+            <td><?php echo $log['facility_id']; ?></td>
             <td><?php echo $log['primary_name']; ?></td>
             <td><?php echo $log['secondary_name']; ?></td>
             <td><?php echo $log['additional_info']; ?></td>

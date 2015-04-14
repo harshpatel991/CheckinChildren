@@ -3,6 +3,7 @@
 require_once(dirname(__FILE__).'/../db/dbConnectionFactory.php');
 require_once(dirname(__FILE__).'/../employeeModel.php');
 require_once(dirname(__FILE__).'/employeeDAO.php');
+require_once(dirname(__FILE__).'/facilityDAO.php');
 
 /**
  * Class logDAO This class access the logging database, allowing for inserting new log entries and loading facility-specific ones.
@@ -21,6 +22,7 @@ class logDAO
     public static $employeeEdited = "Employee Edited";
 
     /**
+     * Finds the logs for the specified facility
      * @param int $facilityID The facility to load the logs for.
      * @param string $orderedby The column to alphabetize the output by.
      * @return array All of the logs for the given facility in double array form.
@@ -39,8 +41,40 @@ class logDAO
         return $result;
     }
 
+    /**
+     * Finds all logs for all facilities in the specified company
+     * @param int $companyID The companyID of the company whose logs will be retrieved
+     * @param string $orderedby The column name by which the logs should be ordered
+     * @param string $filterTransactionType The transaction type that should be shown
+     * @return array of logs that fit the specified criteria
+     */
+    public function findForCompany($companyID, $orderedby="time_created", $filterTransactionType="%"){
+        $facilityDAO = new FacilityDAO();
+        $facilities = $facilityDAO->findFacilitiesInCompany($companyID);
+
+        $facilityIDs = array();
+        foreach($facilities as $facility) {
+            array_push($facilityIDs, intval($facility->facility_id));
+        }
+
+        $facilityIDs = join(',', $facilityIDs);
+        var_dump( $facilityIDs);
+
+        $connection = DbConnectionFactory::create();
+        $query="SELECT * FROM logs WHERE facility_id IN ($facilityIDs) AND transaction_type LIKE :trasactiontype ORDER BY $orderedby";
+        $stmt=$connection->prepare($query);
+        $stmt->bindParam(':trasactiontype', $filterTransactionType);
+        $stmt->execute();
+
+        $result= $stmt->fetchAll();
+        $connection=null;
+
+        return $result;
+    }
+
 
     /**
+     * Inserts a record into the logs
      * @param int $primaryID The employee who did this action
      * @param int $secondaryID The entity affected by this action
      * @param string $secondaryName The name of the entity affected
