@@ -25,14 +25,11 @@ if(isset($_GET['filterBy']) && !empty($_GET['filterBy'])) {
 
 $logDAO = new logDAO();
 $logs = $logDAO->findForFacility($facilityID, $orderBy, $filterBy);
-
 ?>
 
 <h1 id="title">Facility Log</h1>
 
-
 <form method="GET" action="displayLogs.php" class="form-inline pull-right">
-
 
     <label for="filterBy">Filter By</label>
     <select class="form-control" name="filterBy">
@@ -56,7 +53,7 @@ $logs = $logDAO->findForFacility($facilityID, $orderBy, $filterBy);
         <option value="additional_info">Additional Info</option>
     </select>
 
-    <input class="btn btn-primary" type="submit"/>
+    <input class="btn btn-default" type="submit" name="submit"/>
 
 </form>
 
