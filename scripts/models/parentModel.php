@@ -42,7 +42,7 @@ class parentModel extends userModel{
         if (strlen($this->address)==0 || strlen($this->address)>50){
             return errorEnum::invalid_address;
         }
-        if (strpos($this->contact_pref,'text')!==false && strlen($this->carrier)===0){
+        if (strpos($this->contact_pref,'text')!=false && strlen($this->carrier)==0){
             return errorEnum::missing_carrier;
         }
 
