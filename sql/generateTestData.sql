@@ -100,4 +100,20 @@ VALUES(6, 10, "Bob Dude", 'Dogs', 2, "Child Checked In", "N/A");
 INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, additional_info)
 VALUES(10, 10, "Bob Dude", 'Dogs', 3, "Child Checked Out", "N/A");
 
+# Add logs to facilities of company id 5
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, additional_info)
+VALUES(9, null, "Frank Underwood", null, 6, "Child Checked In", "Failed With Error 1");
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, additional_info)
+VALUES(9, null, "Doug", null, 6, "Child Checked Out", "Failed With Error 1");
 
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, additional_info)
+VALUES(9, null, "Daredevil", null, 6, "Employee Created", "Failed With Error 1");
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, additional_info)
+VALUES(9, null, "T-Dog", null, 7, "Parent Created", "Failed With Error 1");
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, additional_info)
+VALUES(9, null, "Johnny Bravo", null, 7, "Child Created", "Failed With Error 2");
+
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, additional_info)
+VALUES(9, null, "Dexter", null, 7, "Employee Promoted", "N/A");
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, additional_info)
+VALUES(9, null, "Rick Grimes", null, 7, "Employee Edited", "Failed With Error 1");
