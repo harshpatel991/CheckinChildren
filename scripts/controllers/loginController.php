@@ -18,10 +18,11 @@ $password = $_POST['password'];
 
 $userDao = new UserDAO();
 $dbUser = $userDao->find('email', $email);
+$cookieManager = new cookieManager();
 
 if (!isset($dbUser) || !$dbUser){ //If it's not a valid user...
     //Failure: user does not exist..
-    cookieManager::clearAuthCookies();
+    $cookieManager->clearAuthCookies();
     header("Location: ../../public/login.php"); //get outta here!
     exit;
 }
@@ -29,7 +30,7 @@ if (!isset($dbUser) || !$dbUser){ //If it's not a valid user...
 $hashPass = userModel::genHashPassword($password);
 if ($hashPass !== $dbUser->password){ //If the password is wrong...
     //Failure: incorrect password..
-    cookieManager::clearAuthCookies();
+    $cookieManager->clearAuthCookies();
     header("Location: ../../public/login.php"); //get outta here
     exit;
 }
@@ -38,7 +39,7 @@ $token = $dbUser->genAuthToken();
 $userDao->updateField($dbUser->id, 'auth_token', $token);
 $dbUser->auth_token = $token;
 
-cookieManager::setAuthCookies($dbUser); //set the cookie before moving on
+$cookieManager->setAuthCookies($dbUser); //set the cookie before moving on
 
 //Success: redirect
 header("Location: ../../public/index.php");

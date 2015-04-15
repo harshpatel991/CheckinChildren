@@ -8,6 +8,12 @@ require_once(dirname(__FILE__) . '/../../models/dao/facilityDAO.php');
 require_once(dirname(__FILE__) . '/../../models/dao/childDAO.php');
 require_once(dirname(__FILE__) . '/../../models/dao/employeeDAO.php');
 require_once(dirname(__FILE__) . '/../../models/dao/userDAO.php');
+require_once(dirname(__FILE__) . '/../authController.php');
+
+$authController = new authController();
+$authController->verifyRole(['company']);
+$authController->verifyFacilityPermissions($_GET["facility_id"]);
+$authController->redirectPage('../../../public/');
 
 $childDao = new childDAO();
 $employeeDao = new employeeDAO();
