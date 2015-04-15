@@ -18,7 +18,7 @@ require_once(dirname(__FILE__) . '/../../cookieManager.php');
 
 $authController = new authController();
 $authController->verifyRole(['employee','manager']);
-$authController->redirectPage();
+$authController->redirectPage('../../../public/');
 
 $checkinArray=$_POST["checkinIds"];
 $checkoutArray=$_POST["checkoutIds"];

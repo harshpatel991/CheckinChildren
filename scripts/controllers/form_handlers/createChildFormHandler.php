@@ -17,7 +17,7 @@ require_once(dirname(__FILE__) . '/../managerController.php');
 
 $authController = new authController();
 $authController->verifyRole(['employee','manager']);
-$authController->redirectPage();
+$authController->redirectPage('../../../public/');
 
 $manCon=new managerController();
 $cookieManager = new cookieManager();

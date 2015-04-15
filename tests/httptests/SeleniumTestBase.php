@@ -13,20 +13,23 @@ require_once dirname(__FILE__).'/../../scripts/models/db/dbConnectionFactory.php
 require_once dirname(__FILE__).'/../../config.php';
 
 class SeleniumTestBase extends PHPUnit_Framework_TestCase {
+  /**
+   * @var WebDriver_Driver
+   */
   protected $driver;
   protected $dbConn;
-  protected $retries = 1;
+  protected $retries = 0;
 
   public static $baseUrl = "";
   public static $isWindows = false;
-  public static $headless = false; //only tested on Matt's machine, talk to him if you want to get it working
+  public static $headless = true; //only tested on Matt's machine, talk to him if you want to get it working
 
   public function setUp() {
     if (self::$isWindows){
       exec('start java -jar ../WebDriver/selenium-server-standalone-2.45.0.jar');
     }
     else if (self::$headless){
-      shell_exec(sprintf('%s > /dev/null 2>&1 &', 'export DISPLAY=:10 && java -jar ../WebDriver/selenium-server-standalone-2.45.0.jar'));
+      shell_exec(sprintf('%s > /dev/null 2>&1 &', 'export DISPLAY=:99 && java -jar ../WebDriver/selenium-server-standalone-2.45.0.jar'));
     }
     else{
       shell_exec(sprintf('%s > /dev/null 2>&1 &', 'java -jar ../WebDriver/selenium-server-standalone-2.45.0.jar'));
@@ -45,7 +48,7 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
     $this->driver = WebDriver_Driver::InitAtLocal("4444", "firefox");
     $this->driver->set_implicit_wait(5000);
     $this->driver->set_throttle_factor(1);
-    $this->load(self::$baseUrl . 'index.php');
+    $this->driver->load(self::$baseUrl . 'index.php');
 
   }
 
@@ -86,6 +89,10 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
     $imgFile = fopen('../'.$imgName, 'w');
     fwrite($imgFile, $imgData);
     fclose($imgFile);
+  }
+
+  protected function gotoPage($pageName){
+    $this->driver->load(self::$baseUrl.$pageName);
   }
 
   public function tearDown() {

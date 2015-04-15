@@ -11,7 +11,7 @@ require_once(dirname(__FILE__). '/../../models/dao/userDAO.php');
 require_once(dirname(__FILE__). '/../../models/userModel.php');
 
 $authController = new authController();
-$authController->redirectPage();
+$authController->redirectPage('../../../public/');
 
 $cookieManager = new cookieManager();
 $cookies = $cookieManager->getCookies();

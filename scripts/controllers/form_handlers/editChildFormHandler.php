@@ -12,15 +12,11 @@ require_once(dirname(__FILE__) . '/../../dateTimeProvider.php');
 
 $authController = new authController();
 $authController->verifyRole(['parent']);
-$authController->verifyChildPermissions($_GET['child_id']);
-$authController->redirectPage();
+$authController->verifyChildPermissions($_POST['child_id']);
+$authController->redirectPage('../../../public/');
 
 //Read in POST data from form
 $child_id = $_POST['child_id'];
-
-$authController = new authController();
-$authController->verifyRole(['parent']);
-$authController->redirectPage();
 
 $cookieManager = new cookieManager();
 $cookies = $cookieManager->getCookies();

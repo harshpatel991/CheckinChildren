@@ -12,7 +12,7 @@ require_once(dirname(__FILE__) . '/../../models/dao/facilityDAO.php');
 
 $authController = new authController();
 $authController->verifyRole(['company']);
-$authController->redirectPage();
+$authController->redirectPage('../../../public/');
 
 $cookieManager = new cookieManager();
 $cookies = $cookieManager->getCookies();
