@@ -14,7 +14,7 @@ require_once(dirname(__FILE__) . '/../../errorManager.php');
 
 $authController = new authController();
 $authController->verifyRole(['company']);
-$authController->redirectPage();
+$authController->redirectPage('../../../public/');
 
 $hashedPassword = managerModel::genHashPassword($_POST['password']);
 

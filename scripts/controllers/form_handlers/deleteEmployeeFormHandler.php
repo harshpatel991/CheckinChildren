@@ -11,7 +11,7 @@ require_once(dirname(__FILE__).'/../../models/dao/employeeDAO.php');
 $authController = new authController();
 $authController->verifyRole(['manager','company']);
 $authController->verifyEmployeePermissions($_GET['employee_id']);
-$authController->redirectPage();
+$authController->redirectPage('../../../public/');
 
 $userDAO=new userDAO();
 $employeeDAO=new employeeDAO();

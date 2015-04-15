@@ -12,7 +12,7 @@ require_once(dirname(__FILE__) . '/../authController.php');
 $authController = new authController();
 $authController->verifyRole(['company']);
 $authController->verifyFacilityPermissions($_POST["facility_id"]);
-$authController->redirectPage();
+$authController->redirectPage('../../../public/');
 
 $facility = new facilityModel($_POST["company_id"], $_POST["address"],$_POST["phone"], $_POST["facility_id"]);
 $error_code = $facility->isValid();

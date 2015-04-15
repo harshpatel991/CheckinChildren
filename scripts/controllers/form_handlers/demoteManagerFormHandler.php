@@ -10,7 +10,7 @@ require_once(dirname(__FILE__).'/../../models/dao/userDAO.php');
 $authController = new authController();
 $authController->verifyRole(['company','manager']);
 $authController->verifyEmployeePermissions($_GET['employee_id']);
-$authController->redirectPage();
+$authController->redirectPage('../../../public/');
 
 $userDAO=new userDAO();
 $empid=$_GET['employee_id'];

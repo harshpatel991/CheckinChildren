@@ -164,20 +164,20 @@ class authController
         return false;
     }
 
-    public function redirectPage(){
+    public function redirectPage($pathToPublic = ''){
         if ($this->authStatus == authStatus::not_logged_in){
             //Not logged in, reditect to login page
-            header("Location: login.php");
+            header("Location: ".$pathToPublic."login.php");
             exit();
         }
         else if ($this->authStatus == authStatus::invalid_identity){
             //Problem with auth, redirect to error page
-            header("Location: login.php?error=".errorEnum::invalid_authentication);
+            header("Location: ".$pathToPublic."login.php?error=".errorEnum::invalid_authentication);
             exit();
         }
         else if ($this->authStatus == authStatus::invalid_permissions){
             //Problem with permissions, redirect to index page
-            header("Location: index.php?error=".errorEnum::permission_view_error);
+            header("Location: ".$pathToPublic."index.php?error=".errorEnum::permission_view_error);
             exit();
         }
     }

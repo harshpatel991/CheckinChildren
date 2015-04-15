@@ -12,7 +12,7 @@ require_once(dirname(__FILE__).'/../../models/companyModel.php');
 
 $authController = new authController();
 $authController->verifyRole(['company']);
-$authController->redirectPage();
+$authController->redirectPage('../../../public/');
 
 //Read in POST data from form
 $company_id = $_COOKIE[cookieManager::$userId];

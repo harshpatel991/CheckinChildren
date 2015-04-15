@@ -13,7 +13,7 @@ require_once(dirname(__FILE__) . '/../authController.php');
 
 $authController = new authController();
 $authController->verifyRole(['employee','manager']);
-$authController->redirectPage();
+$authController->redirectPage('../../../public/');
 
 //Read in POST data from form
 $employeeID = $_COOKIE[cookieManager::$userId];

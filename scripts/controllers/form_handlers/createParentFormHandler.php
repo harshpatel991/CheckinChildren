@@ -16,7 +16,7 @@ require_once(dirname(__FILE__) . '/../../models/dao/logDAO.php');
 
 $authController = new authController();
 $authController->verifyRole(['employee','manager']);
-$authController->redirectPage();
+$authController->redirectPage('../../../public/');
 
 $cookieManager = new cookieManager();
 $cookies = $cookieManager->getCookies();

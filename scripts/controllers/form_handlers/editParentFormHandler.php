@@ -11,7 +11,7 @@ require_once(dirname(__FILE__) . '/../../models/dao/parentDAO.php');
 
 $authController = new authController();
 $authController->verifyRole(['parent']);
-$authController->redirectPage();
+$authController->redirectPage('../../../public/');
 
 //Read in POST data from form
 $parent_id = $_COOKIE[cookieManager::$userId];
