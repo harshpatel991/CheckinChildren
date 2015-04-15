@@ -76,7 +76,6 @@ class logDAOTest extends unitTestBase {
         $lDAO = new logDAO();
         $logs = $lDAO->findForFacility(6, 'time_created', "Child Checked In");
 
-        var_dump($logs);
         $this->assertEquals(1, count($logs));
         $this->assertEquals("Child Checked In", $logs[0]['transaction_type']);
     }
