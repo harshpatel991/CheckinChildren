@@ -83,7 +83,7 @@ if(isset($_GET['child_id'])) {
                     <th>Time</th>
                     <th>Event</th>
                     <th>Employee</th>
-                    <th>Other</th>
+                    <th>Care Of</th>
                 </tr>
                 </thead>
                 <tbody>

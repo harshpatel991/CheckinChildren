@@ -17,7 +17,10 @@ class CheckChildInOutTest extends SeleniumTestBase{
 
         $this->get_element("id=ci-0")->click();
         $this->get_element("id=co-0")->click();
-        $this->get_element("id=Submit")->click();
+        $this->get_element("id=saveButton")->click();
+
+        $this->get_all_elements("name=checkinActor[]")[0]->send_keys('Test Guardian1');
+        $this->get_all_elements("name=checkoutActor[]")[0]->send_keys('Test Guardian2');
 
         $this->get_element("id=modal-submit")->clickByJs();
 
