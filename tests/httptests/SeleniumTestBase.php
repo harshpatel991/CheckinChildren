@@ -18,11 +18,11 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
    */
   protected $driver;
   protected $dbConn;
-  protected $retries = 0;
+  protected $retries = 1;
 
   public static $baseUrl = "";
   public static $isWindows = false;
-  public static $headless = true; //only tested on Matt's machine, talk to him if you want to get it working
+  public static $headless = false; //only tested on Matt's machine, talk to him if you want to get it working
 
   public function setUp() {
     if (self::$isWindows){
