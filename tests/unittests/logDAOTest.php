@@ -23,8 +23,11 @@ class logDAOTest extends unitTestBase {
         $lDAO = new logDAO();
         $logs = $lDAO->findForFacility(3, 'time_created');
 
-        $this->assertEquals(1, count($logs));
-        $this->assertEquals("Bob Dude", $logs[0]["primary_name"]);
+        $this->assertEquals(12, count($logs));
+        for ($i=0; $i<11; $i++) {
+            $this->assertEquals("Elzabad Kennedy", $logs[$i]["primary_name"]);
+        }
+        $this->assertEquals("Bob Dude", $logs[11]["primary_name"]);
     }
 
     public function testFindForFacilityOrderedByPrimaryName() {
