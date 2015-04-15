@@ -12,12 +12,14 @@ require_once(dirname(__FILE__) . '/../../models/managerModel.php');
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../../errorManager.php');
 
-if($_COOKIE[cookieManager::$userRole] != 'company'){
-    header("Location: ../../../public/createManager.php?error=".errorEnum::permission_error);
-    exit();
-}
+$authController = new authController();
+$authController->verifyRole(['company']);
+$authController->redirectPage('../../../public/');
 
 $hashedPassword = managerModel::genHashPassword($_POST['password']);
+
+$cookieManager = new cookieManager();
+$cookies = $cookieManager->getCookies();
 
 $facilityDao = new facilityDAO();
 $facility = $facilityDao->find($_POST['facility_id']);
@@ -28,7 +30,7 @@ $error_code = 0;
 if ($facility == false){
     $error_code = errorEnum::facility_not_found;
 }
-else if ($facility->company_id != $_COOKIE[cookieManager::$userId]){
+else if ($facility->company_id != $cookies[cookieManager::$userId]){
     $permission =
     $error_code = errorEnum::permission_error;
 }

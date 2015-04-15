@@ -28,6 +28,10 @@ class childDAO {
         return $child_id;
     }
 
+    /**
+     * @param $id
+     * @return childModel
+     */
     public function find($id){
         $connection = DbConnectionFactory::create();
         $query = "SELECT * FROM child WHERE child_id=:id";
@@ -39,7 +43,6 @@ class childDAO {
 
         $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'childModel');
         $child=$stmt->fetch();
-        $connection=null;
         $connection=null;
         if ($child!=false) {
             $child->expect_checkin = self::timesCsvToArray($child->expect_checkin);

@@ -10,12 +10,13 @@ require_once(dirname(__FILE__) . '/../../errorManager.php');
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../../models/dao/facilityDAO.php');
 
-if($_COOKIE[cookieManager::$userRole] != 'company'){
-    header("Location: ../../../public/createFacility.php?error=".errorEnum::permission_error);
-    exit();
-}
+$authController = new authController();
+$authController->verifyRole(['company']);
+$authController->redirectPage('../../../public/');
 
-$company_id = $_COOKIE[cookieManager::$userId];
+$cookieManager = new cookieManager();
+$cookies = $cookieManager->getCookies();
+$company_id = $cookies[cookieManager::$userId];
 $facility = new facilityModel($company_id, $_POST['address'], $_POST['phone_number']); //Read in POST data from form
 
 $error_code = $facility->isValid();

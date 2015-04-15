@@ -16,10 +16,9 @@ require_once(dirname(__FILE__) . '/../notificationMessageFactory.php');
 require_once(dirname(__FILE__) . '/../notificationMessageController.php');
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 
-if($_COOKIE[cookieManager::$userRole] != 'employee' && $_COOKIE[cookieManager::$userRole] != 'manager'){
-    header("Location: ../../../public/checkinChildren.php?error=".errorEnum::permission_error);
-    exit();
-}
+$authController = new authController();
+$authController->verifyRole(['employee','manager']);
+$authController->redirectPage('../../../public/');
 
 $checkinArray=$_POST["checkinIds"];
 $checkoutArray=$_POST["checkoutIds"];
@@ -34,7 +33,8 @@ $timeString= sprintf($timeFill,$curTime["year"], $curTime["mon"], $curTime["mday
 
 $cDAO=new childDAO();
 $lDAO=new logDAO();
-$empId=$_COOKIE[cookieManager::$userId];
+$cookieManager = new cookieManager();
+$empId=$cookieManager->getCookies()[cookieManager::$userId];
 
 foreach ($checkoutArray as $id){
     $cDAO->updateField($id, 'last_checkout', $timeString);
