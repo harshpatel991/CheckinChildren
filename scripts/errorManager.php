@@ -27,6 +27,8 @@ class errorManager {
         errorEnum::checkout_time_missing=> "Checkout time missing where checking time set",
         errorEnum::checkout_less_than_checkin => "Checkout time earlier than checkin time",
         errorEnum::permission_error => "Permissions Error. You do not have permission to perform this action.",
+        errorEnum::data_error => "Unspecified Data Error.",
+        errorEnum::missing_child_actor => "One or more child actor fields not filled out.",
     );
 
     /**
@@ -63,4 +65,6 @@ class errorEnum {
     const checkout_time_missing = 26;
     const checkout_less_than_checkin = 28;
     const permission_error = 30;
+    const data_error = 35;
+    const missing_child_actor = 36;
 }
