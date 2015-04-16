@@ -58,7 +58,6 @@ class logDAO
         }
 
         $facilityIDs = join(',', $facilityIDs);
-        var_dump( $facilityIDs);
 
         $connection = DbConnectionFactory::create();
         $query="SELECT * FROM logs WHERE facility_id IN ($facilityIDs) AND transaction_type LIKE :trasactiontype ORDER BY $orderedby";
