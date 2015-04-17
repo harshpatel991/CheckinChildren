@@ -5,7 +5,7 @@ ini_set("display_errors", 1);
 require_once(dirname(__FILE__).'/../scripts/controllers/authController.php');
 
 $authController = new authController();
-if (false == $authController->verifyRole(['parent'])){
+if (false == $authController->verifyRole(['parent', 'company'])){
     header("Location: index.php?error=".errorEnum::permission_view_error);
     exit();
 }
