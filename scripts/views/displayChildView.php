@@ -80,6 +80,7 @@ if(isset($_GET['child_id'])) {
             <option value=90>90</option>
         </select>
         minutes late to pick up my child today only.
+        <input type="hidden" name="child_id" id="child_id" value=<?php echo $child->child_id;?>>
         <input type="submit" value="Confirm" name="submit" class="btn btn-primary">
     </form>
     <hr>
