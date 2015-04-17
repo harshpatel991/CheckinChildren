@@ -16,6 +16,7 @@ class childModel {
     var $expect_checkin; //Stored as 'minutes from midnight'
     var $expect_checkout; //Stored as 'minutes from midnight'
     var $last_message_status;
+    var $parent_late_minutes;
 
     function __construct($parent_id=0, $child_name="", $allergies="", $trusted_parties="", $facility_id=0, $child_id=0, $last_message_status=-1) {
         $this->parent_id = $parent_id;
