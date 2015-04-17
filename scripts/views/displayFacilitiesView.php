@@ -35,6 +35,7 @@ function displaySingleFacility($facility) {
 
         <hr>
         <a href="displayFacilityEmployees.php?facility_id=<?=$facility->facility_id;?>" class="btn btn-success"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> View all employees</a>
+        <a href="displayFacilityChildren.php?facility_id=<?=$facility->facility_id;?>" class="btn btn-success"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> View all Childrens</a>
         <a href="displayFacilities.php" class="btn btn-success"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> View all facilities</a>
     </p>
 <!-- Modal -->
