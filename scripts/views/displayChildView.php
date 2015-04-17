@@ -62,7 +62,26 @@ if(isset($_GET['child_id'])) {
         </tbody>
     </table>
 
+    <?php
+    $minutes=$child->parent_late_minutes;
+    ?>
     <a class="btn btn-success" name="edit_child" href="editChild.php?child_id=<?php echo $_GET['child_id']; ?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit This Child</a>
+    <br><br>
+    <form method="post" action="../scripts/controllers/form_handlers/lateMinutesFormHandler.php">
+        I will be
+        <select name="minutes" id="minutes">
+            <option value=<?php echo $minutes;?>><?php echo $minutes;?></option>
+            <option value=0>0</option>
+            <option value=15>15</option>
+            <option value=30>30</option>
+            <option value=45>45</option>
+            <option value=60>60</option>
+            <option value=75>75</option>
+            <option value=90>90</option>
+        </select>
+        minutes late to pick up my child today only.
+        <input type="submit" value="Confirm" name="submit" class="btn btn-primary">
+    </form>
     <hr>
     <a class="btn btn-primary" id="my_children" href="displayChildren.php"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back to My Children</a>
 
