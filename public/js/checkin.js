@@ -2,7 +2,8 @@
  * Created by matt on 3/1/15.
  */
 $(document).ready(function(){
-    //$('.panel-heading').css('min-height', 40);
+    var $confirmModal = $('#confirmModal');
+    var $saveButton = $('#saveButton');
 
     $('.btn-primary').click(function(){
         if($(this).is('.btn-success')){
@@ -13,75 +14,49 @@ $(document).ready(function(){
         }
     });
 
-    $('#confirmModal').on('show.bs.modal', function(){
-        $('#ci-list').find('li').addClass('hidden');
-        $('#co-list').find('li').addClass('hidden');
-
+    $confirmModal.on('show.bs.modal', function(){
         var selection = getSelection();
-        var checkinIds = selection[0];
-        var checkoutIds = selection[1];
+        var checkinChildren = selection[0];
+        var checkoutChildren = selection[1];
 
-        $('#modal-ci-number').html('You are about to check-in '+checkinIds.length+' children:');
-        $('#modal-co-number').html('You are about to check-out '+checkoutIds.length+' children:');
+        var $checkinTable = $('#checkin-table').find('tbody');
+        var rowHtml = '';
+        for (var i=0; i<checkinChildren.length; i++){
+            var id = checkinChildren[i][0];
+            var name = checkinChildren[i][1];
+            rowHtml += '<tr><td>'+name+'</td><input type="hidden" name="checkinChildId[]" value="'+id+'">';
+            rowHtml += '<td><input type="text" name="checkinActor[]"></td></tr>';
+        }
+        $checkinTable.html(rowHtml);
 
-        checkinIds.map(function(id) {
-            $('#modal-ci-' + id).removeClass('hidden');
-        });
-        checkoutIds.map(function(id) {
-            $('#modal-co-' + id).removeClass('hidden');
-        });
+        var $checkoutTable = $('#checkout-table').find('tbody');
+        rowHtml = '';
+        for (i=0; i<checkoutChildren.length; i++){
+            id = checkoutChildren[i][0];
+            name = checkoutChildren[i][1];
+            rowHtml += '<tr><td>'+name+'</td><input type="hidden" name="checkoutChildId[]" value="'+id+'">';
+            rowHtml += '<td><input type="text" name="checkoutActor[]"></td></tr>';
+        }
+        $checkoutTable.html(rowHtml);
+
+        $('#modal-ci-number').html('You are about to check-in '+checkinChildren.length+' children:');
+        $('#modal-co-number').html('You are about to check-out '+checkoutChildren.length+' children:');
+    });
+
+    $confirmModal.on('hidden.bs.modal', function(){
+        $saveButton.removeClass('btn-success');
     });
 });
 
-
-function checkinSubmit(){
-    var inputs = getInputs();
-    var selectedCheckinIds = inputs[0];
-    var selectedCheckoutIds = inputs[1];
-
-    var para = document.getElementById('checkinInputs');
-    for (var i=0; i<selectedCheckinIds.length; i++){
-        addHiddenInput(para, 'checkinIds[]', selectedCheckinIds[i]);
-    }
-    for (var i=0; i<selectedCheckoutIds.length; i++){
-        addHiddenInput(para, 'checkoutIds[]', selectedCheckoutIds[i]);
-    }
-
-    return true;
-}
-
-function addHiddenInput(para, name, value){
-    var hiddenInput = document.createElement('input');
-    hiddenInput.type = 'hidden';
-    hiddenInput.name = name;
-    hiddenInput.value = value;
-    para.appendChild(hiddenInput);
-    var br = document.createElement('br');
-    para.appendChild(br);
-}
-
 function getSelection(){
-    var checkinIds = [];
-    var checkoutIds = [];
+    var checkinChildren = [];
+    var checkoutChildren = [];
     $('.btn-ci.active').each(function(){
-        checkinIds.push(this.value);
+        checkinChildren.push(this.value.split(","));
     });
     $('.btn-co.active').each(function(){
-        checkoutIds.push(this.value);
+        checkoutChildren.push(this.value.split(","));
     });
 
-    return [checkinIds,checkoutIds];
-}
-
-function getInputs(){
-    var checkinIds = [];
-    var checkoutIds = [];
-    $('.ci-input').not('.hidden').each(function(){
-        checkinIds.push(this.value);
-    });
-    $('.co-input').not('.hidden').each(function(){
-        checkoutIds.push(this.value);
-    });
-
-    return [checkinIds,checkoutIds];
+    return [checkinChildren,checkoutChildren];
 }
