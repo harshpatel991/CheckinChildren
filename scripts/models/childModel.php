@@ -85,7 +85,7 @@ class childModel {
         $coStamp = strtotime($this->last_checkout);
         if ($ciStamp > $coStamp){
             //here
-            $co_expect = $this->expect_checkout[$currentTime['wday']];
+            $co_expect = $this->expect_checkout[$currentTime['wday']]+$this->parent_late_minutes;
             if (0 <= $co_expect && $co_expect < $mfm){
                 return childStatus::here_due;
             }
