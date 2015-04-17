@@ -63,7 +63,8 @@ INSERT INTO parent(id, parent_name, address, phone_number, contact_pref, carrier
 INSERT INTO child(child_id, parent_id, child_name, allergies, trusted_parties, facility_id) VALUES (2, 8, 'Mark Zuckerberg', 'Peanut Butter', 'Chmiel', 1);
 INSERT INTO child(child_id, parent_id, child_name, allergies, trusted_parties, facility_id) VALUES (3, 8, 'Dawn Summers', 'Vampires', 'Leftlisa74', 2);
 
-INSERT INTO child(child_id, parent_id, child_name, allergies, trusted_parties, facility_id) VALUES (0, 19, 'Peter Parker', '', 'Stormin Schwermin', 3);
+INSERT INTO child(child_id, parent_id, child_name, allergies, trusted_parties, facility_id, last_checkin, last_checkout, expect_checkin, expect_checkout)
+VALUES (0, 19, 'Peter Parker', '', 'Stormin Schwermin', 3, '2015-02-25 8:34:00', '2015-02-25 14:22:12', '930,930,930,930,930,930,930', '1200,1200,1200,1200,1200,1200,1200');
 INSERT INTO child(child_id, parent_id, child_name, allergies, trusted_parties, facility_id, last_checkin, last_checkout, expect_checkin, expect_checkout)
 VALUES (1, 19, 'Ludvig Beethoven', 'Dogs', 'Stocky', 4, '2013-03-02 11:32:48', '2013-03-02 15:49:30', '15,15,15,15,15,15,15', '30,30,30,30,30,30,30');
 
@@ -100,4 +101,25 @@ VALUES(6, 10, "Bob Dude", 'Dogs', 2, "Child Checked In", "N/A");
 INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, additional_info)
 VALUES(10, 10, "Bob Dude", 'Dogs', 3, "Child Checked Out", "N/A");
 
-
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, time_created, additional_info)
+VALUES(15, 4, "Elzabad Kennedy", "Peter Parker", 3, "Child Created", '2015-02-20 13:28:48', "Momma Jamma");
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, time_created, additional_info)
+VALUES(15, 4, "Elzabad Kennedy", "Peter Parker", 3, "Child Checked In", '2015-02-21 8:34:00', "Momma Jamma");
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, time_created, additional_info)
+VALUES(15, 4, "Elzabad Kennedy", "Peter Parker", 3, "Child Checked Out", '2015-02-21 14:22:12', "Momma Jamma");
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, time_created, additional_info)
+VALUES(15, 4, "Elzabad Kennedy", "Peter Parker", 3, "Child Checked In", '2015-02-22 8:34:00', "Momma Jamma");
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, time_created, additional_info)
+VALUES(15, 4, "Elzabad Kennedy", "Peter Parker", 3, "Child Checked Out", '2015-02-22 14:22:12', "Momma Jamma");
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, time_created, additional_info)
+VALUES(15, 4, "Elzabad Kennedy", "Peter Parker", 3, "Child Checked In", '2015-02-23 8:34:00', "Momma Jamma");
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, time_created, additional_info)
+VALUES(15, 4, "Elzabad Kennedy", "Peter Parker", 3, "Child Checked Out", '2015-02-23 14:22:12', "Momma Jamma");
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, time_created, additional_info)
+VALUES(15, 4, "Elzabad Kennedy", "Peter Parker", 3, "Child Checked In", '2015-02-24 8:34:00', "Momma Jamma");
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, time_created, additional_info)
+VALUES(15, 4, "Elzabad Kennedy", "Peter Parker", 3, "Child Checked Out", '2015-02-24 14:22:12', "Momma Jamma");
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, time_created, additional_info)
+VALUES(15, 4, "Elzabad Kennedy", "Peter Parker", 3, "Child Checked In", '2015-02-25 8:34:00', "Momma Jamma");
+INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, time_created, additional_info)
+VALUES(15, 4, "Elzabad Kennedy", "Peter Parker", 3, "Child Checked Out", '2015-02-25 14:22:12', "Momma Jamma");
