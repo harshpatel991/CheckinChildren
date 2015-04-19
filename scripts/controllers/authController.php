@@ -110,6 +110,9 @@ class authController
                 }
                 return true;
             }
+            else if ($this->userRole == 'company'){
+                return $this->verifyFacilityPermissions($child->facility_id);
+            }
             else{
                 $this->authStatus = authStatus::invalid_permissions;
                 return false;
