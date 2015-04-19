@@ -21,6 +21,6 @@ $cookies = $cookieManager->getCookies();
 
 $employDAO = new employeeDAO();
 $employDAO->updateField($_GET['employee_id'], "facility_id",$_POST['facility_id'] );
-header("Location: ../../../public/displayEmployee.php?employee_id".$_GET['employee_id']); //send browser to the page for newly created facility
+header("Location: ../../../public/displayEmployee.php?employee_id=".$_GET['employee_id']); //send browser to the page for newly created facility
 exit();
 
