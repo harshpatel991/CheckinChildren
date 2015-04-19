@@ -100,9 +100,9 @@ if(isset($_GET['child_id'])) {
                         </table>
                 </div>
                 <div class="modal-footer">
-                    <form method="post" action="../scripts/controllers/form_handlers/moveChildFormHandler.php">
+                    <form method="post" action="../scripts/controllers/form_handlers/moveChildFormHandler.php?child_id=<?php echo $_GET['child_id']; ?>">
                         <div class="form-group" align="left">
-                            <select  id="facility" name="facility">
+                            <select  id="facility_id" name="facility_id">
                                 <?php
                                 $facilityController = new facilityController();
                                 $companyId = $_COOKIE[cookieManager::$userId];
