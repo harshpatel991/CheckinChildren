@@ -1,3 +1,11 @@
+<?php
+/**
+ * The view that contains the html one sees when creating a facility
+ * It contains a form for inputs needed to construct a valid facility model
+ * The form submits to the createFacilityFormHandler
+ */
+?>
+
 <h1>Create Facility</h1>
 <form method="POST" action="../scripts/controllers/form_handlers/createFacilityFormHandler.php">
 

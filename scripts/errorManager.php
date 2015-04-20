@@ -31,6 +31,8 @@ class errorManager {
         errorEnum::invalid_authentication => "Invalid Authentication. Pleaase try logging in again.",
         errorEnum::invalid_child => "Invalid Child.",
         errorEnum::invalid_employee => "Invalid Employee.",
+        errorEnum::data_error => "Unspecified Data Error.",
+        errorEnum::missing_child_actor => "One or more child actor fields not filled out.",
     );
 
     /**
@@ -71,4 +73,6 @@ class errorEnum {
     const invalid_authentication = 32;
     const invalid_child = 33;
     const invalid_employee = 34;
+    const data_error = 35;
+    const missing_child_actor = 36;
 }

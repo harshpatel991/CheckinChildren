@@ -1,4 +1,10 @@
 <?php
+/**
+ * The view that contains the html one sees when creating a child
+ * It contains a form for inputs needed to construct a valid child model
+ * The form submits to the createChildFormHandler
+ */
+
 require_once(dirname(__FILE__).'/../controllers/authController.php');
 require_once(dirname(__FILE__).'/../models/dao/parentDAO.php');
 require_once(dirname(__FILE__).'/../models/parentModel.php');

@@ -1,3 +1,11 @@
+<?php
+/**
+ * The view that contains the html one sees when creating a manager
+ * It contains a form for inputs needed to construct a valid employee model
+ * The form submits to the createManagerFormHandler
+ */
+?>
+
 <h1>Create Manager</h1>
 <form method="post" action="../scripts/controllers/form_handlers/createManagerFormHandler.php">
     <div class="form-group">
