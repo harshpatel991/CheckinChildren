@@ -1,8 +1,7 @@
 <?php
 /**
- * The form handler when a parent submits form to edit a child account
- * Determines if submitted child is valid and updates record in childDAO and redirects to displayChild page
- * If child information is not valid, redirects to editChild page with error
+ * The form handler when a company submits form to move an employee to a different facility
+ * Updates the employee's facility_id in the database using the employeeDAO and redirects to displayEmployee page
  */
 require_once(dirname(__FILE__) . '/../authController.php');
 require_once(dirname(__FILE__) . '/../../errorManager.php');
