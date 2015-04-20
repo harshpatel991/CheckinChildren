@@ -68,7 +68,7 @@ if(isset($_GET['child_id'])) {
     <?php
     $minutes=$child->parent_late_minutes;
     ?>
-    <?php if ($_COOKIE[cookieManager::$userRole]=='Parent') { ?>
+    <?php if ($_COOKIE[cookieManager::$userRole]=='parent') { ?>
     <a class="btn btn-success" name="edit_child" href="editChild.php?child_id=<?php echo $_GET['child_id']; ?>"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit This Child</a>
     <br><br>
     <form method="post" action="../scripts/controllers/form_handlers/lateMinutesFormHandler.php">
