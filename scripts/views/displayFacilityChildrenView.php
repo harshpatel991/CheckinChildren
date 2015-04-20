@@ -1,4 +1,8 @@
 <?php
+/**
+ * The view that contains the html a company see when looking at a particular facility's children
+ * It creates a list of links to the children's individual profiles
+ */
 require_once(dirname(__FILE__).'/../controllers/managerController.php');
 require_once(dirname(__FILE__).'/../models/dao/childDAO.php');
 require_once(dirname(__FILE__).'/../models/childModel.php');
