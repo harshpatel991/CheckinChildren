@@ -3,6 +3,7 @@
 require_once(dirname(__FILE__).'/../db/dbConnectionFactory.php');
 require_once(dirname(__FILE__).'/../employeeModel.php');
 require_once(dirname(__FILE__).'/employeeDAO.php');
+require_once(dirname(__FILE__).'/../logModel.php');
 
 /**
  * Class logDAO This class access the logging database, allowing for inserting new log entries and loading facility-specific ones.
@@ -70,6 +71,25 @@ class logDAO
         $stmt->execute();
 
         $connection=null;
+    }
+
+    public function getChildHistory($childId, $limit){
+        $childEvents = array(self::$childCheckIn, self::$childCheckOut, self::$childCreated);
+        $connection = DbConnectionFactory::create();
+        $query="SELECT * FROM logs WHERE secondary_id = :childId AND ( ";
+        for ($i=0; $i<sizeof($childEvents)-1; $i++){
+            $query.="transaction_type='".$childEvents[$i]."' OR ";
+        }
+        $query.="transaction_type='".$childEvents[sizeof($childEvents)-1]."') ";
+        $query.="ORDER BY time_created desc LIMIT ".$limit;
+        $stmt=$connection->prepare($query);
+        $stmt->bindParam(':childId', $childId);
+        $stmt->execute();
+
+        $result= $stmt->fetchAll(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'logModel');
+        $connection=null;
+
+        return $result;
     }
 
 }

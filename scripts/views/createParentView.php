@@ -1,3 +1,12 @@
+<?php
+/**
+* The view that contains the html one sees when creating a parent
+* It contains a form for inputs needed to construct a valid parent model
+* The form submits to the createParentFormHandler
+*/
+?>
+
+
 <h1>Create Parent</h1>
 
 

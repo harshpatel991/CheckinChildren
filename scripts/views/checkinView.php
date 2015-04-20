@@ -49,7 +49,7 @@ $time = dateTimeProvider::getCurrentDateTime();
     ?>
 </div>
 
-<button type="button" id="Submit" class="btn btn-primary confirm-submit" data-toggle="modal" data-target="#confirmModal">Submit</button>
+<button type="button" id="saveButton" class="btn btn-primary confirm-submit" data-toggle="modal" data-target="#confirmModal">Submit</button>
 <br>
 <br><a href="index.php">Back to Home</a>
 
@@ -62,36 +62,36 @@ $time = dateTimeProvider::getCurrentDateTime();
                             aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="confirmModalLabel">Confirm Changes</h4>
                 </div>
+                <form name="checkinForm" method="post" action="../scripts/controllers/form_handlers/checkChildInOutFormHandler.php">
                 <div class="modal-body">
-                    <?php
-                    $childrenHere = array_merge($children[childStatus::here_due], $children[childStatus::here_ok]);
-                    $childrenNotHere = array_merge($children[childStatus::not_here_late], $children[childStatus::not_here_due], $children[childStatus::not_here_ok]);
-                    ?>
-                    <p id="modal-ci-number">You are about to check-in # children:</p>
-                        <ul id="ci-list">
-                            <?php
-                            foreach($childrenNotHere as $i=>$child){
-                                echo '<li id="modal-ci-'.$i.'" class="ci-input hidden" value="'.$child->child_id.'">'.$child->child_name.'</li>';
-                            }
-                            ?>
-                        </ul>
-                        <p id="modal-co-number">You are about to check-out # children:</p>
-                        <ul id="co-list">
-                            <?php
-                            foreach($childrenHere as $i=>$child){
-                                echo '<li id="modal-co-'.$i.'" class="co-input hidden" value="'.$child->child_id.'">'.$child->child_name.'</li>';
-                            }
-                            ?>
-                        </ul>
+                    <h4 id="modal-ci-number">You are about to check-in # children:</h4>
+                        <table class="table" id="checkin-table">
+                            <thead>
+                            <tr>
+                                <th>Child</th>
+                                <th>Checked In By</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                        </table>
+
+                    <h4 id="modal-co-number">You are about to check-out # children:</h4>
+                        <table class="table" id="checkout-table">
+                            <thead>
+                            <tr>
+                                <th>Child</th>
+                                <th>Checked Out By</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                        </table>
                 </div>
 
                 <div class="modal-footer">
-                    <form name="checkinForm" method="post" action="../scripts/controllers/form_handlers/checkChildInOutFormHandler.php" onsubmit="checkinSubmit();">
-                        <p id="checkinInputs" class="hidden"></p>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button id="modal-submit" type="submit" class="btn btn-primary">Save changes</button>
-                    </form>
                 </div>
+                </form>
 
             </div>
         </div>
@@ -145,7 +145,7 @@ function accordionElement($i, $child, $status){
     $offer_html .= '<div class="panel-heading">';
     $offer_html .= '<h4 class="panel-title">';
     $offer_html .= '<a data-toggle="collapse" data-parent="#accordion" href="#'.$details['hereText'].'-collapse-'.$i.'">'.$child->child_name.'</a>';
-    $offer_html .= '<button type="button" id="'.$details['cico'].'-'.$i.'" class="btn btn-primary btn-'.$details['cico'].' btn-sm pull-right" value="'.$i.'" data-toggle="button">'.$details['buttonText'].'</button>';
+    $offer_html .= '<button type="button" id="'.$details['cico'].'-'.$i.'" class="btn btn-primary btn-'.$details['cico'].' btn-sm pull-right" value="'.$child->child_id.','.$child->child_name.'" data-toggle="button">'.$details['buttonText'].'</button>';
     $offer_html .= '</h4>';
     $offer_html .= '</div>';
     $offer_html .= '<div id="'.$details['hereText'].'-collapse-'.$i.'" class="panel-collapse collapse">';

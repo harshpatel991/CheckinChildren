@@ -36,6 +36,8 @@ class authControllerTest extends unitTestBase
                 $this->mockCookies[cookieManager::$userRole] = '';
             }
         ));
+
+        parent::setUp();
     }
 
     /**
