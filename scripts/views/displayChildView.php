@@ -71,7 +71,7 @@ if(isset($_GET['child_id'])) {
 
     <?php
     } else { ?>
-        <a class="btn btn-success confirm-submit" data-toggle="modal" data-target="#confirmModal"id="delete_facility"><span class="glyphicon glyphicon-move" aria-hidden="true"></span>Move</a>
+        <a class="btn btn-success confirm-submit" data-toggle="modal" data-target="#confirmModal"id="move_child"><span class="glyphicon glyphicon-move" aria-hidden="true"></span>Move</a>
         <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -116,7 +116,7 @@ if(isset($_GET['child_id'])) {
                             </select><br>
                         </div>
                         <div class="form-group" align="left">
-                        <input type="submit" value="Submit" name="submit" class="btn btn-primary">
+                        <input type="submit" value="Submit" name="move_modal_submit" class="btn btn-primary">
                         </div>
                     </form>
                 </div>
