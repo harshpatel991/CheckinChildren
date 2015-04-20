@@ -1,9 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: alex
- * Date: 3/16/15
- * Time: 10:08 PM
+ * The view that contains the html that one sees when viewing a particular employee's profile
+ * Depending on the user, it contains links to edit or delete the employee's profile,
+ * move the employee to a different facility, and promote/demote an employee to/from a manager
  */
 error_reporting(E_ALL);
 ini_set("display_errors",1);

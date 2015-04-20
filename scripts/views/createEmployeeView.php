@@ -1,3 +1,10 @@
+<?php
+/**
+ * The view that contains the html one sees when creating a employee
+ * It contains a form for inputs needed to construct a valid employee model
+ * The form submits to the createEmployeeFormHandler
+ */
+?>
 <h1>Create Employee</h1>
 <form method="post" action="../scripts/controllers/form_handlers/createEmployeeFormHandler.php">
     <div class="form-group">
