@@ -74,14 +74,13 @@ if(isset($_GET['child_id'])) {
     <form method="post" action="../scripts/controllers/form_handlers/lateMinutesFormHandler.php">
         I will be
         <select name="minutes" id="minutes">
-            <option value=<?php echo $minutes;?>><?php echo $minutes;?></option>
-            <option value=0>0</option>
-            <option value=15>15</option>
-            <option value=30>30</option>
-            <option value=45>45</option>
-            <option value=60>60</option>
-            <option value=75>75</option>
-            <option value=90>90</option>
+            <option value=0 <?php if($minutes ==0) echo 'selected';?>>0</option>
+            <option value=15 <?php if($minutes ==15) echo 'selected';?>>15</option>
+            <option value=30 <?php if($minutes ==30) echo 'selected';?>>30</option>
+            <option value=45 <?php if($minutes ==45) echo 'selected';?>>45</option>
+            <option value=60 <?php if($minutes ==60) echo 'selected';?>>60</option>
+            <option value=75 <?php if($minutes ==75) echo 'selected';?>>75</option>
+            <option value=90 <?php if($minutes ==90) echo 'selected';?>>90</option>
         </select>
         minutes late to pick up my child today only.
         <input type="hidden" name="child_id" id="child_id" value=<?php echo $child->child_id;?>>
