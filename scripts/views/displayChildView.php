@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * The view that contains the html that one sees when viewing a particular child's profile
+ * Depending on the user, it contains links to edit or delete the child's profile
+ * and move the child to a different facility
+ */
 require_once(dirname(__FILE__).'/../cookieManager.php');
 require_once(dirname(__FILE__).'/../models/dao/childDAO.php');
 require_once(dirname(__FILE__).'/../models/dao/logDAO.php');
