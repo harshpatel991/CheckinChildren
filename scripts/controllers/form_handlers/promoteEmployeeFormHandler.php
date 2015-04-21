@@ -24,7 +24,7 @@ $userDAO=new userDAO();
 $userDAO->updateField($empid, "role", "manager");
 
 $lDAO=new logDAO();
-$lDAO->insert($_COOKIE[cookieManager::$userId], $empid, $empname, logDAO::$employeePromotion);
+$lDAO->companyInsert(false, $_COOKIE[cookieManager::$userId], $empid, $empname, logDAO::$employeePromotion);
 
 
 header("Location: ../../../public/displayEmployee.php?employee_id=" . $empid);

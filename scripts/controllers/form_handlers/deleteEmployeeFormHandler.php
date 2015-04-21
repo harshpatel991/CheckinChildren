@@ -18,7 +18,7 @@ $employeeDAO=new employeeDAO();
 $employee=$employeeDAO->find($empid);
 
 
-$lDAO->insert($_COOKIE[cookieManager::$userId], $empid, $employee->emp_name,logDAO::$deleteEmployee);
+$lDAO->companyInsert(false, $_COOKIE[cookieManager::$userId], $empid, $employee->emp_name,logDAO::$deleteEmployee);
 $userDAO->delete($empid);
 $employeeDAO->delete("id", $empid);
 
