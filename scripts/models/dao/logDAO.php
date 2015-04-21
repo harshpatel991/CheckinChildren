@@ -4,6 +4,7 @@ require_once(dirname(__FILE__).'/../db/dbConnectionFactory.php');
 require_once(dirname(__FILE__).'/../employeeModel.php');
 require_once(dirname(__FILE__).'/employeeDAO.php');
 require_once(dirname(__FILE__).'/facilityDAO.php');
+require_once(dirname(__FILE__).'/companyDAO.php');
 
 /**
  * Class logDAO This class access the logging database, allowing for inserting new log entries and loading facility-specific ones.
@@ -105,6 +106,44 @@ class logDAO
         $stmt->bindParam(':transactionType', $transactionType);
         $stmt->bindParam(':additionalInfo', $additionalInfo);
         $stmt->execute();
+
+        $connection=null;
+    }
+    public function companyInsert($isFacilityEdit, $primaryID, $secondaryID, $secondaryName, $transactionType, $additionalInfo="N/A") {
+        /*
+         * Should insert into logs table: facilityID (query for this), primaryID, secondaryID, transactionType, addionalInfo, dateTime
+         */
+
+        $connection = DbConnectionFactory::create();
+
+        $compDAO=new companyDAO();
+
+        $comp= $compDAO->find($primaryID);
+
+        $primaryName=$comp->company_name;
+
+        $empDAO=new employeeDAO();
+        $emp= $empDAO->find($secondaryID);
+        $facid =$emp->facility_id;
+        if ($isFacilityEdit)
+        {
+            $facid = $secondaryID;
+        }
+
+
+        $query = 'INSERT INTO logs (primary_id, secondary_id, primary_name, secondary_name, facility_id, transaction_type, additional_info)
+            VALUES (:primaryID, :secondaryID, :primaryName, :secondaryName, :facilityid, :transactionType, :additionalInfo)';
+
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':primaryID', $primaryID);
+        $stmt->bindParam(':secondaryID', $secondaryID);
+        $stmt->bindParam(':facilityid', $facid);
+        $stmt->bindParam(':primaryName', $primaryName);
+        $stmt->bindParam(':secondaryName', $secondaryName);
+        $stmt->bindParam(':transactionType', $transactionType);
+        $stmt->bindParam(':additionalInfo', $additionalInfo);
+        $stmt->execute();
+
 
         $connection=null;
     }

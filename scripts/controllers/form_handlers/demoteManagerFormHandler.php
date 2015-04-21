@@ -18,6 +18,6 @@ $employeeDAO=new employeeDAO();
 $employee=$employeeDAO->find($empid);
 
 
-$lDAO->insert($_COOKIE[cookieManager::$userId], $empid, $employee->emp_name,logDAO::$demoteManager);
+$lDAO->companyInsert(false, $_COOKIE[cookieManager::$userId], $empid, $employee->emp_name,logDAO::$demoteManager);
 header("Location: ../../../public/displayEmployee.php?employee_id=$empid");
 
