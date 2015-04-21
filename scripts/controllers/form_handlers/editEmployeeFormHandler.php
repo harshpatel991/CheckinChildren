@@ -23,12 +23,12 @@ if ($error_code == 0) {
     $employeeDAO = new employeeDAO();
     $employeeDAO->update($employee);
 
-    $lDAO->insert($_COOKIE[cookieManager::$userId], null, null, logDAO::$employeeEdited);
+    $lDAO->insert($_COOKIE[cookieManager::$userId],  $employeeID, $employee->emp_name, logDAO::$employeeEdited);
     header("Location: ../../../public/index.php"); //send browser to the page for newly created facility
 
     exit();
 } else {
-    $lDAO->insert($_COOKIE[cookieManager::$userId], null, null, logDAO::$employeeEdited, "Error: ".errorManager::getErrorMessage($error_code));
+    $lDAO->insert($_COOKIE[cookieManager::$userId],  $employeeID, $employee->emp_name, logDAO::$employeeEdited, "Error: ".errorManager::getErrorMessage($error_code));
     header("Location: ../../../public/editEmployee.php?error=".$error_code); //redirect to employee creation page with error message
     exit();
 }
