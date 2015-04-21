@@ -115,17 +115,17 @@ class childModel {
         return $this->trusted_parties;
     }
     public function getExpectedCheckout($dayOfWeek = -1, $readable = true){
-        return self::getExpected($this->expect_checkout, $dayOfWeek, $readable);
+        return self::getExpected($this->expect_checkout, $dayOfWeek, $readable, $this->parent_late_minutes);
     }
 
-    private static function getExpected($arr, $dayOfWeek, $readable){
+    private static function getExpected($arr, $dayOfWeek, $readable, $mins = 0){
         if ($dayOfWeek === -1){
             $dayOfWeek = dateTimeProvider::getCurrentDateTime()['wday'];
         }
         if ($readable === true){
-            return self::readable($arr[$dayOfWeek]);
+            return self::readable($arr[$dayOfWeek]+$mins);
         }
-        return $arr[$dayOfWeek];
+        return $arr[$dayOfWeek]+$mins;
     }
 
    public function expectCheckinReadable(){
