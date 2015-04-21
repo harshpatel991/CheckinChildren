@@ -10,15 +10,21 @@
  */
 
 require_once(dirname(__FILE__).'/../authController.php');
-require_once(dirname(__FILE__) . '/../../errorManager.php');
 require_once(dirname(__FILE__) .'/../../cookieManager.php');
 require_once(dirname(__FILE__).'/../../models/dao/childDAO.php');
-
+require_once(dirname(__FILE__).'/../../models/childModel.php');
 $cdao=new childDAO();
 $cid=$_POST['child_id'];
 $cminutes=$_POST['minutes'];
 
-$cdao->updateField($cid, "parent_late_minutes", $cminutes);
+if (childModel::checkMinutes($cminutes)) {
 
-header("Location:../../../public/displayChild.php?child_id=".$cid);
+    $cdao->updateField($cid, "parent_late_minutes", $cminutes);
+
+    header("Location:../../../public/displayChild.php?child_id=" . $cid);
+}
+
+else{
+    header("Location:../../../public/displayChild.php?child_id=" . $cid."&error=47");
+}
 exit();

@@ -157,4 +157,13 @@ class childModel {
        }
        return sprintf("%02d:%02d %s", $hrs, $min, $ap);
     }
+
+    public static function checkMinutes($minutes){
+        for ($i=0; $i<7; $i++){
+            if ($minutes==15*$i){
+                return true;
+            }
+        }
+        return false;
+    }
 }
