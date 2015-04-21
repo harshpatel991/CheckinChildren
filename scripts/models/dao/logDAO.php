@@ -20,6 +20,9 @@ class logDAO
     public static $parentCreated = "Parent Created";
     public static $employeePromotion = "Employee Promoted";
     public static $employeeEdited = "Employee Edited";
+    public static $facilityEdited = "Facility Edited";
+    public static $demoteManager = "Manger Demoted";
+    public static $deleteEmployee = "Employee Deleted";
 
     /**
      * Finds the logs for the specified facility

@@ -7,17 +7,20 @@
 
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../../models/dao/facilityDAO.php');
+require_once(dirname(__FILE__) . '/../../models/dao/logDAO.php');
 
+$lDAO=new logDAO();
 
 $facility = new facilityModel($_POST["company_id"], $_POST["address"],$_POST["phone"], $_POST["facility_id"]);
 $error_code = $facility->isValid();
 if ($error_code == 0) {
     $facilityDAO = new FacilityDAO();
     $facilityDAO->update($facility);
-
+    $lDAO->insert($_COOKIE[cookieManager::$userId],  $_POST["facility_id"], $_POST["address"], logDAO::$facilityEdited);
     header("Location: ../../../public/displayFacilities.php?facility_id=".$_POST["facility_id"]); //send browser to the page for newly created facility
     exit();
 } else {
+    $lDAO->insert($_COOKIE[cookieManager::$userId],  $_POST["facility_id"], $_POST["address"], logDAO::$facilityEdited);
     header("Location: ../../../public/editFacility.php?facility_id=".$_POST["facility_id"]."&error=".$error_code); //redirect to employee creation page with error message
     exit();
 }
