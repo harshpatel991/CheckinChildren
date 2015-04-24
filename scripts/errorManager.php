@@ -28,9 +28,12 @@ class errorManager {
         errorEnum::checkout_less_than_checkin => "Checkout time earlier than checkin time",
         errorEnum::permission_error => "Permissions Error. You do not have permission to perform this action.",
         errorEnum::permission_view_error => "Permissions Error. You do not have permission to view this page.",
-        errorEnum::invalid_authentication => "Invalid Authentication. Pleaase try logging in again.",
+        errorEnum::invalid_authentication => "Invalid Authentication. Please try logging in again.",
         errorEnum::invalid_child => "Invalid Child.",
         errorEnum::invalid_employee => "Invalid Employee.",
+        errorEnum::data_error => "Unspecified Data Error.",
+        errorEnum::invalid_minutes_update => "We're sorry. Your request for more time to pick up your child failed. Please try again.",
+        errorEnum::missing_child_actor => "One or more child actor fields not filled out.",
     );
 
     /**
@@ -71,4 +74,7 @@ class errorEnum {
     const invalid_authentication = 32;
     const invalid_child = 33;
     const invalid_employee = 34;
+    const data_error = 35;
+    const missing_child_actor = 36;
+    const invalid_minutes_update = 47;
 }

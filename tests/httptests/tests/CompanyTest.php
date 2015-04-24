@@ -177,8 +177,15 @@ class CompanyTest extends SeleniumTestBase
         $page = $this->driver->get_source();
         $this->assertContains("Facility ID: 1", $page);
         $this->assertContains("Company ID: 1", $page);
+        $this->assertContains("Address: 1 Facility Rd. Champaign IL 61820", $page);
+        $this->assertContains("Phone: 1235933945", $page);
+        $this->get_element("id=delete_facility")->click();
+
+        $this->get_element("id=modal-submit")->click();
+
+        $page = $this->driver->get_source();
         $this->assertContains("My Facilities", $page);
-        $this->assertNOtContains("1 Facility Rd. Champaign IL 61820", $page);
+        $this->assertNotContains("1 Facility Rd. Champaign IL 61820", $page);
 
     }
 
@@ -188,19 +195,11 @@ class CompanyTest extends SeleniumTestBase
         $this->get_element("signed-in")->assert_text("Currently signed in as a company");
 
         $this->get_element("name=view_managers")->click();
-        $this->assertContains("Address: 1 Facility Rd. Champaign IL 61820", $page);
-        $this->assertContains("Phone: 1235933945", $page);
+        $page=$this->driver->get_source();
 
-        $this->get_element("id=delete_facility")->click();
-
-        $this->get_element("id=modal-submit")->click();
-        $page = $this->driver->get_source();
-        $page = $this->driver->get_source();
         $this->assertContains("Managers", $page);
         $this->assertContains("Bob Dude", $page);
         $this->assertContains("Rick Grimes", $page);
-        $this->assertContains("1", $page);
-        $this->assertContains("2", $page);
     }
 
     public function testCreateNewManager() {
