@@ -96,9 +96,9 @@ VALUES (8, 19, 'Child Pickup Later2', 'Dogs', 'Grandpa Joe', 5, '2015-03-04 14:2
 INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, additional_info)
 VALUES(9, null, "Rick Grimes", null, 2, "Parent Created", "Failed With Error 1");
 INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, additional_info)
-VALUES(6, 10, "Bob Dude", 'Dogs', 2, "Child Checked In", "N/A");
+VALUES(6, 10, "A Dude", 'Dogs', 2, "Child Checked In", "N/A");
 INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, additional_info)
-VALUES(10, 10, "Bob Dude", 'Dogs', 3, "Child Checked Out", "N/A");
+VALUES(10, 10, "Other Dude", 'Dogs', 3, "Child Checked Out", "N/A");
 
 # Add logs to facilities of company id 5
 INSERT INTO logs(primary_id,secondary_id,primary_name, secondary_name,facility_id,transaction_type, additional_info)

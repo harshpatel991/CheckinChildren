@@ -44,7 +44,10 @@ if($_COOKIE[cookieManager::$userRole] == 'manager') {
         <option>Employee Created</option>
         <option>Parent Created</option>
         <option>Employee Promoted</option>
+        <option>Manager Demoted</option>
+        <option>Employee Deleted</option>
         <option>Employee Edited</option>
+        <option>Facility Edited</option>
     </select>
 
     <label for="orderBy"> Order By</label>

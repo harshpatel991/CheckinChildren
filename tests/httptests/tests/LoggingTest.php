@@ -246,7 +246,6 @@ class LoggingTest extends SeleniumTestBase {
 
         $page = $this->driver->get_source();
         $this->assertContains("Employee Promoted", $page);
-        $this->assertContains("Bob Dude", $page);
         $this->assertContains("Matt Wallick", $page);
     }
 

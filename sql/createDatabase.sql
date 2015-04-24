@@ -53,7 +53,7 @@ CREATE TABLE logs (
   primary_id INT,
   secondary_id INT,
   primary_name varchar(30),
-  secondary_name varchar(30),
+  secondary_name varchar(50),
   facility_id INT,
   transaction_type varchar(100),
   additional_info varchar(100),
