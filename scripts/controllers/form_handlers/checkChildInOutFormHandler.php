@@ -31,6 +31,17 @@ if (count($checkinIdArray) != count($checkinActorArray) || count($checkoutIdArra
     exit();
 }
 
+if($checkinIdArray == null || $checkinActorArray == null) {
+    $checkinIdArray = [];
+    $checkinActorArray = [];
+}
+
+if($checkoutIdArray == null || $checkoutActorArray == null) {
+    $checkoutIdArray = [];
+    $checkoutActorArray = [];
+}
+
+
 foreach ($checkinActorArray as $actorName){
     if (empty($actorName)){
         header("Location: ../../../public/checkinChildren.php?error=".errorEnum::missing_child_actor);
