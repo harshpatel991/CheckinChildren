@@ -120,4 +120,13 @@ class employeeDAO {
         $stmt->execute();
         $connection = null;
     }
+    public function updateField($id, $field, $value){
+        $connection = DbConnectionFactory::create();
+        $query = 'UPDATE employee SET '.$field.'=:value WHERE id=:id';
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':value', $value);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $connection = null;
+    }
 }
