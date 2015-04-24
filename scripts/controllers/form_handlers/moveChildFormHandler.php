@@ -11,6 +11,7 @@ require_once(dirname(__FILE__) . '/../../models/dao/childDAO.php');
 $authController = new authController();
 $authController->verifyRole(['company']);
 $authController->verifyChildPermissions($_GET['child_id']);
+$authController->verifyFacilityPermissions($_POST['facility_id']);
 $authController->redirectPage('../../../public/');
 
 //Read in POST data from form
