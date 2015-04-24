@@ -23,7 +23,9 @@ CREATE TABLE facility (
 CREATE TABLE employee (
   id INT unique key,
   emp_name VARCHAR(31),
-  facility_id INT
+  facility_id INT,
+  address varchar(50),
+  phone_number varchar(10)
 );
 
 CREATE TABLE parent (
