@@ -52,16 +52,14 @@ class CompanyDAO {
         $userDAO=new userDAO();
 
         $userDAO->updateField($company->id, 'email', $company->email);
-        $this->updateField($company->id, 'company_name', $company->company_name);
-        $this->updateField($company->id, 'address', $company->address);
-        $this->updateField($company->id, 'phone', $company->phone);
-    }
-    private function updateField($userId, $field, $value){
+
         $connection = DbConnectionFactory::create();
-        $query = 'UPDATE company SET '.$field.'=:value WHERE id=:id';
+        $query = 'UPDATE company SET company_name=:company_name,address=:address, phone=:phone  WHERE id=:id';
         $stmt = $connection->prepare($query);
-        $stmt->bindParam(':value', $value);
-        $stmt->bindParam(':id', $userId);
+        $stmt->bindParam(':company_name', $company->company_name);
+        $stmt->bindParam(':address', $company->address);
+        $stmt->bindParam(':phone', $company->phone);
+        $stmt->bindParam(':id', $company->id);
         $stmt->execute();
         $connection = null;
     }
