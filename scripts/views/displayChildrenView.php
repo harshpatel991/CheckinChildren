@@ -1,4 +1,8 @@
 <?php
+/**
+ * The view that contains the html that a parent sees when viewing all of their children
+ * It creates a list of links to the children's individual profile
+ */
 
 require_once(dirname(__FILE__).'/../cookieManager.php');
 require_once(dirname(__FILE__).'/../models/dao/childDAO.php');

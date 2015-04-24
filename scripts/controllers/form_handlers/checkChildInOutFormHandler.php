@@ -20,8 +20,41 @@ $authController = new authController();
 $authController->verifyRole(['employee','manager']);
 $authController->redirectPage('../../../public/');
 
-$checkinArray=$_POST["checkinIds"];
-$checkoutArray=$_POST["checkoutIds"];
+$checkinIdArray=$_POST["checkinChildId"];
+$checkinActorArray=$_POST["checkinActor"];
+$checkoutIdArray=$_POST["checkoutChildId"];
+$checkoutActorArray=$_POST["checkoutActor"];
+
+
+if (count($checkinIdArray) != count($checkinActorArray) || count($checkoutIdArray) != count($checkoutActorArray)){
+    header("Location: ../../../public/checkinChildren.php?error=".errorEnum::data_error);
+    exit();
+}
+
+foreach ($checkinActorArray as $actorName){
+    if (empty($actorName)){
+        header("Location: ../../../public/checkinChildren.php?error=".errorEnum::missing_child_actor);
+        exit();
+    }
+}
+foreach ($checkoutActorArray as $actorName){
+    if (empty($actorName)){
+        header("Location: ../../../public/checkinChildren.php?error=".errorEnum::missing_child_actor);
+        exit();
+    }
+}
+foreach ($checkinIdArray as $id){
+    if (empty($id)){
+        header("Location: ../../../public/checkinChildren.php?error=".errorEnum::data_error);
+        exit();
+    }
+}
+foreach ($checkoutIdArray as $id){
+    if (empty($id)){
+        header("Location: ../../../public/checkinChildren.php?error=".errorEnum::data_error);
+        exit();
+    }
+}
 
 $curTime= dateTimeProvider::getCurrentDateTime();
 dateTimeProvider::testTimeTick();
@@ -36,20 +69,22 @@ $lDAO=new logDAO();
 $cookieManager = new cookieManager();
 $empId=$cookieManager->getCookies()[cookieManager::$userId];
 
-foreach ($checkoutArray as $id){
+for ($i=0; $i<count($checkoutIdArray); $i++){
+    $id = $checkoutIdArray[$i];
     $cDAO->updateField($id, 'last_checkout', $timeString);
     $child = $cDAO->find($id);
     $notificationController = (new notificationMessageFactory())->create($child, messageStatus::child_checked_out);
     $notificationController->sendStatusNotification();
-    $lDAO->insert($empId, $child->child_id, $child->child_name, logDAO::$childCheckOut);
+    $lDAO->insert($empId, $child->child_id, $child->child_name, logDAO::$childCheckOut, $checkoutActorArray[$i]);
 }
 
-foreach ($checkinArray as $id){
+for ($i=0; $i<count($checkinIdArray); $i++){
+    $id = $checkinIdArray[$i];
     $cDAO->updateField($id, 'last_checkin', $timeString);
     $child = $cDAO->find($id);
     $notificationController = (new notificationMessageFactory())->create($child, messageStatus::child_checked_in);
     $notificationController->sendStatusNotification();
-    $lDAO->insert($empId, $child->child_id, $child->child_name, logDAO::$childCheckIn);
+    $lDAO->insert($empId, $child->child_id, $child->child_name, logDAO::$childCheckIn, $checkinActorArray[$i]);
 }
 
 header("Location: ../../../public/checkinChildren.php");

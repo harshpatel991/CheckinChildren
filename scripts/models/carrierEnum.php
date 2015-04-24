@@ -1,9 +1,8 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: Elzabad
- * Date: 3/13/2015
- * Time: 8:07 PM
+ * Class carrier
+ * Const values for the given mobile phone carriers
  */
 
 class carrier {

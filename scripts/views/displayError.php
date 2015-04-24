@@ -1,3 +1,8 @@
+<?php
+/**
+ * Takes the error code for a particular page and displays the actual error
+ */
+?>
 <?php require_once(dirname(__FILE__).'/../errorManager.php'); ?>
 
 

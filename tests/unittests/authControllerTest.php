@@ -36,6 +36,8 @@ class authControllerTest extends unitTestBase
                 $this->mockCookies[cookieManager::$userRole] = '';
             }
         ));
+
+        parent::setUp();
     }
 
     /**
@@ -159,7 +161,7 @@ class authControllerTest extends unitTestBase
             array(8, 1, false),
             array(8, 1, false),
             array(1, 1, false),
-            array(1, 2, false),
+            array(1, 2, true),
             array(1, 999, false),
         );
     }

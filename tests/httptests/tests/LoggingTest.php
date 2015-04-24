@@ -118,7 +118,8 @@ class LoggingTest extends SeleniumTestBase {
         $this->get_element("name=view_children")->click();
 
         $this->get_element("id=ci-0")->click();
-        $this->get_element("id=Submit")->click();
+        $this->get_element("id=saveButton")->click();
+        $this->driver->get_all_elements("name=checkinActor[]")[0]->send_keys('Test Guardian1');
         $this->get_element("id=modal-submit")->clickByJs();
 
         $this->get_element("name=display_logs")->click();
@@ -127,10 +128,12 @@ class LoggingTest extends SeleniumTestBase {
         $this->assertContains("Child Checked In", $page);
         $this->assertContains("Bob Dude", $page);
         $this->assertContains("Mark Zuckerberg", $page);
+        $this->assertContains("Test Guardian1", $page);
 
         $this->get_element("name=view_children")->click();
         $this->get_element("id=co-0")->click();
-        $this->get_element("id=Submit")->click();
+        $this->get_element("id=saveButton")->click();
+        $this->driver->get_all_elements("name=checkoutActor[]")[0]->send_keys('Test Guardian2');
         $this->get_element("id=modal-submit")->clickByJs();
 
         $this->get_element("name=display_logs")->click();
@@ -139,6 +142,7 @@ class LoggingTest extends SeleniumTestBase {
         $this->assertContains("Child Checked Out", $page);
         $this->assertContains("Bob Dude", $page);
         $this->assertContains("Mark Zuckerberg", $page);
+        $this->assertContains("Test Guardian2", $page);
     }
 
     public function tearDown()

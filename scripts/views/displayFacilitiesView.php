@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * The view that contains the html a company see when looking at all of its facilities
+ * It creates a list to links to facility profiles
+ * Given a facility_id:
+ * This view contain the html a company see when look at a particular facilities profile
+ * It contain links to edit and delete the facility's profile, view all of the children linked to the facility,
+ * and view all of the employees linked to the facility
+ */
 require_once(dirname(__FILE__).'/../cookieManager.php');
 require_once(dirname(__FILE__) . '/../controllers/facilityController.php');
 require_once(dirname(__FILE__).'/../models/facilityModel.php');
