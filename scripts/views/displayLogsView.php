@@ -4,47 +4,76 @@ require_once(dirname(__FILE__).'/../models/dao/managerDAO.php');
 require_once(dirname(__FILE__).'/../models/dao/logDAO.php');
 require_once(dirname(__FILE__).'/../cookieManager.php');
 
-//Find the facilityID of the manager
-$managerDAO = new managerDAO();
-
-$manager = $managerDAO->find($_COOKIE[cookieManager::$userId]);
-$facilityID = $manager['facility_id'];
-
 $orderBy = 'time_created'; //default order by
+$filterBy = '%'; //default filter;
 
 //retrieve order by GET parameter, if specified
 if(isset($_GET['orderBy']) && !empty($_GET['orderBy'])) {
     $orderBy = $_GET['orderBy'];
 }
 
-$logDAO = new logDAO();
-$logs = $logDAO->findForFacility($facilityID, $orderBy);
+//retrieve order by GET parameter, if specified
+if(isset($_GET['filterBy']) && !empty($_GET['filterBy'])) {
+    $filterBy = $_GET['filterBy'];
+}
 
-//echo $orderBy;
+$logDAO = new logDAO();
+
+if($_COOKIE[cookieManager::$userRole] == 'manager') {
+    $managerDAO = new managerDAO(); //Find the facilityID of the manager
+    $manager = $managerDAO->find($_COOKIE[cookieManager::$userId]);
+    $facilityID = $manager['facility_id'];
+
+    $logs = $logDAO->findForFacility($facilityID, $orderBy, $filterBy);
+} else if($_COOKIE[cookieManager::$userRole] == 'company') {
+    $companyID = $_COOKIE[cookieManager::$userId];
+    $logs = $logDAO->findForCompany($companyID, $orderBy, $filterBy);
+}
 ?>
 
 <h1 id="title">Facility Log</h1>
 
-<!-- Single button -->
-<div class="btn-group pull-right">
-    <button type="button" class="btn btn-info dropdown-toggle pull-right " data-toggle="dropdown" aria-expanded="false">Sort By <span class="caret"></span></button>
-    <ul class="dropdown-menu " role="menu">
-        <li><a href="displayLogs.php?orderBy=time_created">Date</a></li>
-        <li><a href="displayLogs.php?orderBy=transaction_type">Transaction Type</a></li>
-        <li><a href="displayLogs.php?orderBy=primary_name">Primary Actor Name</a></li>
-        <li><a href="displayLogs.php?orderBy=secondary_name">Secondary Actor Name</a></li>
-        <li><a href="displayLogs.php?orderBy=additional_info">Additional Info</a></li>
-    </ul>
-</div>
+<form method="GET" action="displayLogs.php" class="form-inline pull-right">
+
+    <label for="filterBy">Filter By</label>
+    <select class="form-control" name="filterBy">
+        <option selected="selected" value="">None</option>
+        <option>Child Checked In</option>
+        <option>Child Checked Out</option>
+        <option>Child Created</option>
+        <option>Employee Created</option>
+        <option>Parent Created</option>
+        <option>Employee Promoted</option>
+        <option>Manager Demoted</option>
+        <option>Employee Deleted</option>
+        <option>Employee Edited</option>
+        <option>Facility Edited</option>
+    </select>
+
+    <label for="orderBy"> Order By</label>
+    <select class="form-control" name="orderBy">
+        <option selected="selected" value="">None</option>
+        <option value="time_created">Date</option>
+        <option value="transaction_type">Transaction Type</option>
+        <option value="primary_name">Primary Actor Name</option>
+        <option value="secondary_name">Secondary Actor Name</option>
+        <option value="additional_info">Additional Info</option>
+    </select>
+
+    <input class="btn btn-default" type="submit" name="submit"/>
+
+</form>
+
 <br><br>
 
 <table class="table table-striped">
-    <tr><th>Date</th><th>Transaction Type</th><th>Primary Actor</th><th>Secondary Actor</th><th>Additional Info</th></tr>
+    <tr><th>Date</th><th>Transaction Type</th><th>Facility ID</th><th>Primary Actor</th><th>Secondary Actor</th><th>Additional Info</th></tr>
 
     <?php foreach ($logs as $log) { ?>
         <tr>
             <td><?php echo $log['time_created']; ?></td>
             <td><?php echo $log['transaction_type']; ?></td>
+            <td><?php echo $log['facility_id']; ?></td>
             <td><?php echo $log['primary_name']; ?></td>
             <td><?php echo $log['secondary_name']; ?></td>
             <td><?php echo $log['additional_info']; ?></td>
