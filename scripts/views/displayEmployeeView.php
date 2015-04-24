@@ -26,6 +26,14 @@ $employee=$employeeDAO->find($_GET['employee_id']);
         <td id="emp_email"><?php echo $employee->email; ?></td>
     </tr>
     <tr >
+        <th>Phone Number</th>
+        <td id="phone_number"><?php echo $employee->phone_number; ?></td>
+    </tr>
+    <tr >
+        <th>Address</th>
+        <td id="address"><?php echo $employee->address; ?></td>
+    </tr>
+    <tr >
         <th>Status</th>
         <td id="emp_status"><?php echo $employee->role; ?></td>
     </tr>
