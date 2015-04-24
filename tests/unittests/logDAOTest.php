@@ -173,4 +173,41 @@ class logDAOTest extends unitTestBase {
         $this->assertEquals(1, count($logs));
         $this->assertEquals("Child Checked In", $logs[0]['transaction_type']);
     }
+
+    public function testCompanyInsertFacility(){
+        $lDAO = new logDAO();
+        $lDAO->companyInsert(true, 1,  2, "Test Address", logDAO::$facilityEdited);
+
+
+        $connection = DbConnectionFactory::create();
+        $query = "SELECT * FROM logs WHERE primary_id = 1 ORDER BY transaction_type";
+        $stmt=$connection->prepare($query);
+        $stmt->execute();
+
+        $result= $stmt->fetchAll();
+
+        $this->assertEquals(1, count($result));
+        $this->assertEquals("Facility Edited", $result[0]['transaction_type']);
+
+    }
+    public function testCompanyInsertNotFacility(){
+        $lDAO = new logDAO();
+
+
+        $lDAO->companyInsert(false, 1, 10, "steve",logDAO::$demoteManager);
+        $lDAO->companyInsert(false, 1, 10, "steve", logDAO::$employeePromotion);
+
+
+        $connection = DbConnectionFactory::create();
+        $query = "SELECT * FROM logs WHERE primary_id = 1 ORDER BY transaction_type";
+        $stmt=$connection->prepare($query);
+        $stmt->execute();
+
+        $result= $stmt->fetchAll();
+
+        $this->assertEquals(2, count($result));
+        $this->assertEquals("Employee Promoted", $result[0]['transaction_type']);
+        $this->assertEquals("Manager Demoted", $result[1]['transaction_type']);
+
+    }
 }
