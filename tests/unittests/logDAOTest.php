@@ -16,7 +16,7 @@ class logDAOTest extends unitTestBase {
 
         $this->assertEquals(2, count($logs));
         $this->assertEquals("Rick Grimes", $logs[0]["primary_name"]);
-        $this->assertEquals("Bob Dude", $logs[1]["primary_name"]);
+        $this->assertEquals("A Dude", $logs[1]["primary_name"]);
     }
 
     public function testFindForFacilityID3() {
@@ -24,7 +24,7 @@ class logDAOTest extends unitTestBase {
         $logs = $lDAO->findForFacility(3, 'time_created');
 
         $this->assertEquals(1, count($logs));
-        $this->assertEquals("Bob Dude", $logs[0]["primary_name"]);
+        $this->assertEquals("Other Dude", $logs[0]["primary_name"]);
     }
 
     public function testFindForFacilityOrderedByPrimaryName() {
@@ -32,7 +32,7 @@ class logDAOTest extends unitTestBase {
         $logs = $lDAO->findForFacility(2, 'primary_name');
 
         $this->assertEquals(2, count($logs));
-        $this->assertEquals("Bob Dude", $logs[0]["primary_name"]);
+        $this->assertEquals("A Dude", $logs[0]["primary_name"]);
         $this->assertEquals("Rick Grimes", $logs[1]["primary_name"]);
     }
 
