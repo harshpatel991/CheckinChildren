@@ -48,7 +48,8 @@ CREATE TABLE child (
   last_checkout DATETIME DEFAULT 0,
   expect_checkin VARCHAR(50) DEFAULT '-1,-1,-1,-1,-1,-1,-1',
   expect_checkout VARCHAR(50) DEFAULT '-1,-1,-1,-1,-1,-1,-1',
-  last_message_status int default -1
+  last_message_status int default -1,
+  parent_late_minutes int default 0
 );
 
 CREATE TABLE logs (

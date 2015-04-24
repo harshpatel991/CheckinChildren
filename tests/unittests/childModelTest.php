@@ -59,4 +59,25 @@ class childModelTest extends unitTestBase {
         $child->expect_checkout = [-1,2,2,2,-1,2,2];
         $this->assertEquals($child->isValid(), errorEnum::no_errors);
     }
+
+    public function testValidMinutes(){
+        $this->assertTrue(childModel::checkMinutes(30));
+        $this->assertTrue(childModel::checkMinutes(0));
+        $this->assertTrue(childModel::checkMinutes(90));
+    }
+
+    public function testNegativeMinutes(){
+        $this->assertFalse(childModel::checkMinutes(-30));
+        $this->assertFalse(childModel::checkMinutes(-800));
+    }
+
+    public function testTooLargeMinutes(){
+        $this->assertFalse(childModel::checkMinutes(900));
+        $this->assertFalse(childModel::checkMinutes(91));
+    }
+
+    public function testPositiveInvalidMinutes(){
+       $this->assertFalse(childModel::checkMinutes(55));
+       $this->assertFalse(childModel::checkMinutes(14));
+    }
 }
