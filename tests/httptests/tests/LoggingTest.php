@@ -54,11 +54,13 @@ class LoggingTest extends SeleniumTestBase {
         //Check in/checkout log
         $this->get_element("name=view_children")->click();
         $this->get_element("id=ci-0")->click();
-        $this->get_element("id=Submit")->click();
+        $this->get_element("id=saveButton")->click();
+        $this->driver->get_all_elements("name=checkinActor[]")[0]->send_keys('Test Guardian1');
         $this->get_element("id=modal-submit")->clickByJs();
         $this->get_element("name=view_children")->click();
         $this->get_element("id=co-0")->click();
-        $this->get_element("id=Submit")->click();
+        $this->get_element("id=saveButton")->click();
+        $this->driver->get_all_elements("name=checkoutActor[]")[0]->send_keys('Test Guardian2');
         $this->get_element("id=modal-submit")->clickByJs();
 
         $this->get_element("name=display_logs")->click(); //go to logs
