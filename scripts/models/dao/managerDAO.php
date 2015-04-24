@@ -30,20 +30,22 @@ class managerDAO {
 
         $id=$userDAO->insert($newManager);
 
-        $this->insert($manager->emp_name, $manager->facility_id, $id);
+        $this->insert($manager->emp_name, $manager->facility_id, $id, $manager->phone_number, $manager->address);
 
         return $id;
     }
 
-    private function insert( $emp_name, $facility_id, $id){
+    private function insert( $emp_name, $facility_id, $id, $phone_number, $address){
         $connection = DbConnectionFactory::create();
 
-        $query = "INSERT INTO employee (emp_name, facility_id, id) VALUES ( :emp_name, :facility_id, :id)";
+        $query = "INSERT INTO employee (emp_name, facility_id, id, address, phone_number) VALUES ( :emp_name, :facility_id, :id, :address, :phone_number)";
         $stmt=$connection->prepare($query);
 
         $stmt->bindParam(":facility_id", $facility_id);
         $stmt->bindParam(":emp_name", $emp_name);
         $stmt->bindParam(":id", $id);
+        $stmt->bindParam(":address", $address);
+        $stmt->bindParam(":phone_number", $phone_number);
 
         $stmt->execute();
 

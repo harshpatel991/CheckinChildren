@@ -25,7 +25,7 @@ $facilityDao = new facilityDAO();
 $facility = $facilityDao->find($_POST['facility_id']);
 
 
-$manager=new managerModel($_POST['name'], $hashedPassword, $_POST['facility_id'], $_POST['email']);
+$manager=new managerModel($_POST['name'], $hashedPassword, $_POST['facility_id'], $_POST['email'], 0, $_POST['phone_number'], $_POST['address']);
 $error_code = 0;
 if ($facility == false){
     $error_code = errorEnum::facility_not_found;

@@ -21,6 +21,16 @@ $employee=$employeeDAO->find($_COOKIE[cookieManager::$userId]);
         <input type="text" name="email" id="email" value="<?php echo $employee->email; ?>" class="form-control">
     </div>
 
+    <div class="form-group">
+        <label for="phone_number">Phone number</label>
+        <input type="text" name="phone_number" id="phone_number" value="<?php echo $employee->phone_number; ?>" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" name="address" id="address" value="<?php echo $employee->address; ?>" class="form-control">
+    </div>
+
     <input type="submit" value="Submit" name="submit" class="btn btn-primary">
 </form>
 

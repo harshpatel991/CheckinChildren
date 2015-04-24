@@ -6,7 +6,7 @@ class employeeModel extends userModel{
     public $emp_name;
     public $facility_id;
 
-    public function __construct( $emp_name="", $password="", $facility_id=0, $email="", $role="", $id=0)
+    public function __construct( $emp_name="", $password="", $facility_id=0, $email="", $role="", $id=0, $phone_number="", $address="")
     {
         $this->id=$id;
         $this->emp_name=$emp_name;
@@ -14,6 +14,8 @@ class employeeModel extends userModel{
         $this->password=$password;
         $this->email=$email;
         $this->role=$role;
+        $this->phone_number=$phone_number;
+        $this->address=$address;
     }
 
     public function isValid() {
