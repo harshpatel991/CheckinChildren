@@ -22,7 +22,7 @@ class logDAO
     public static $employeePromotion = "Employee Promoted";
     public static $employeeEdited = "Employee Edited";
     public static $facilityEdited = "Facility Edited";
-    public static $demoteManager = "Manger Demoted";
+    public static $demoteManager = "Manager Demoted";
     public static $deleteEmployee = "Employee Deleted";
 
     /**
