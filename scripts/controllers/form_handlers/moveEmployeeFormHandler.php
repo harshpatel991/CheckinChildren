@@ -12,6 +12,7 @@ require_once(dirname(__FILE__) . '/../../models/dao/employeeDAO.php');
 $authController = new authController();
 $authController->verifyRole(['company']);
 $authController->verifyEmployeePermissions($_GET['employee_id']);
+$authController->verifyFacilityPermissions($_POST['facility_id']);
 $authController->redirectPage('../../../public/');
 
 //Read in POST data from form
