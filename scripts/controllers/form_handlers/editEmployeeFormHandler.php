@@ -11,6 +11,7 @@ require_once(dirname(__FILE__) . '/../../models/dao/logDAO.php');
 require_once(dirname(__FILE__) . '/../../errorManager.php');
 require_once(dirname(__FILE__) . '/../authController.php');
 
+
 $authController = new authController();
 $authController->verifyRole(['employee','manager']);
 $authController->redirectPage('../../../public/');
@@ -19,7 +20,7 @@ $authController->redirectPage('../../../public/');
 $employeeID = $_COOKIE[cookieManager::$userId];
 
 //Store the contact preferences in a string
-$employee = new employeeModel($_POST["employee_name"],"", 0, $_POST["email"], "", $employeeID);
+$employee = new employeeModel($_POST["employee_name"],"", 0, $_POST["email"], "", $employeeID, $_POST["phone_number"], $_POST["address"]);
 
 $lDAO=new logDAO();
 

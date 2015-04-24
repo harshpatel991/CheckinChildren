@@ -23,7 +23,7 @@ $cookies = $cookieManager->getCookies();
 $facility_id=$manCon->getFacilityID($cookies[cookieManager::$userId]);
 $hashedPassword = employeeModel::genHashPassword($_POST['password']);
 
-$employee=new employeeModel($_POST['name'], $hashedPassword, $facility_id, $_POST['email'], $_POST['role']); //retreieve submitted POST data
+$employee=new employeeModel($_POST['name'], $hashedPassword, $facility_id, $_POST['email'], $_POST['role'], 0,  $_POST['phone_number'], $_POST["address"]); //retreieve submitted POST data
 $lDAO=new logDAO();
 
 $error_code = 0;

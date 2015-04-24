@@ -18,6 +18,17 @@
     </div>
 
     <div class="form-group">
+        <label for="phone_number">Phone Number </label>
+        <input type="text" name="phone_number" id="phone_number" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="address">Address </label>
+        <input type="text" name="address" id="address" class="form-control">
+    </div>
+
+
+    <div class="form-group">
         <label for="password">Employee Password</label>
         <input type="text" name="password" id="password" class="form-control">
     </div>
