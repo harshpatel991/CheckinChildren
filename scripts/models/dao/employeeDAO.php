@@ -36,20 +36,22 @@ class employeeDAO {
 
         $id=$userDAO->insert($newEmployee);
 
-        $this->insert($employee->emp_name, $employee->facility_id, $id);
+        $this->insert($employee->emp_name, $employee->facility_id, $id, $employee->phone_number, $employee->address);
 
         return $id;
     }
 
-    private function insert( $emp_name, $facility_id, $id){
+    private function insert( $emp_name, $facility_id, $id, $phone_number, $address){
         $connection = DbConnectionFactory::create();
 
-        $query = "INSERT INTO employee (emp_name, facility_id, id) VALUES ( :emp_name, :facility_id, :id)";
+        $query = "INSERT INTO employee (emp_name, facility_id, id, phone_number, address) VALUES ( :emp_name, :facility_id, :id, :phone_number, :address)";
         $stmt=$connection->prepare($query);
 
         $stmt->bindParam(":facility_id", $facility_id);
         $stmt->bindParam(":emp_name", $emp_name);
         $stmt->bindParam(":id", $id);
+        $stmt->bindParam(":phone_number", $phone_number);
+        $stmt->bindParam(":address", $address);
 
         $stmt->execute();
 
@@ -97,6 +99,16 @@ class employeeDAO {
 
         $stmt->execute();
 
+        $query="UPDATE employee SET phone_number=:phone_number, address=:address WHERE id=:id";
+        $stmt=$connection->prepare($query);
+
+        $stmt->bindParam(":phone_number", $employee->phone_number);
+        $stmt->bindParam(":address", $employee->address);
+        $stmt->bindParam(":id", $employee->id);
+
+        $stmt->execute();
+
+
         $connection=null;
     }
 
@@ -105,6 +117,15 @@ class employeeDAO {
         $query = "DELETE FROM employee WHERE ".$field."=:id";
         $stmt = $connection->prepare($query);
         $stmt->bindParam(':id', $value);
+        $stmt->execute();
+        $connection = null;
+    }
+    public function updateField($id, $field, $value){
+        $connection = DbConnectionFactory::create();
+        $query = 'UPDATE employee SET '.$field.'=:value WHERE id=:id';
+        $stmt = $connection->prepare($query);
+        $stmt->bindParam(':value', $value);
+        $stmt->bindParam(':id', $id);
         $stmt->execute();
         $connection = null;
     }

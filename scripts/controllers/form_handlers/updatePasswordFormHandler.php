@@ -10,8 +10,14 @@ require_once(dirname(__FILE__).'/../../cookieManager.php');
 require_once(dirname(__FILE__). '/../../models/dao/userDAO.php');
 require_once(dirname(__FILE__). '/../../models/userModel.php');
 
+$authController = new authController();
+$authController->redirectPage('../../../public/');
+
+$cookieManager = new cookieManager();
+$cookies = $cookieManager->getCookies();
+
 $userDAO=new userDAO();
-$user=$userDAO->find("id", $_COOKIE[cookieManager::$userId]);
+$user=$userDAO->find("id", $cookies[cookieManager::$userId]);
 
 
 //Read in POST data
@@ -32,7 +38,7 @@ if($oldPassword != $user->password) { //user is not authorized to perform action
     $user->auth_token = $user->genAuthToken();
     $userDAO->updateField($user->id, "password", $newPassword);
     $userDAO->updateField($user->id, "auth_token", $user->auth_token);
-    cookieManager::setAuthCookies($user);
+    $cookieManager->setAuthCookies($user);
     header("Location: ../../../public/index.php");
     exit();
 }

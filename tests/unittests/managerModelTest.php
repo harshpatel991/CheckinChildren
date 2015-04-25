@@ -33,28 +33,28 @@ class managerModelTest extends unitTestBase {
         $this->assertEquals(0, $manager->id);
     }
 
-    public function checkIsValidEmptyName(){
+    public function testCheckIsValidEmptyName(){
         $manager = new managerModel("", $this->password, $this->facilityId, $this->email, $this->id);
-        $this->assertFalse($manager->isValid());
+        $this->assertNotEquals(0, $manager->isValid());
     }
 
-    public function checkIsValidEmptyPassword(){
+    public function testCheckIsValidEmptyPassword(){
         $manager = new managerModel($this->name, "", $this->facilityId, $this->email, $this->id);
-        $this->assertFalse($manager->isValid());
+        $this->assertNotEquals(0, $manager->isValid());
     }
 
-    public function checkIsValidLongName(){
+    public function testCheckIsValidLongName(){
         $manager = new managerModel("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", $this->password, $this->facilityId, $this->email, $this->id);
-        $this->assertFalse($manager->isValid());
+        $this->assertNotEquals(0, $manager->isValid());
     }
 
-    public function checkIsValidLongEmail(){
+    public function testCheckIsValidLongEmail(){
         $manager = new managerModel($this->name, $this->password, $this->facilityId, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", $this->id);
-        $this->assertFalse($manager->isValid());
+        $this->assertNotEquals(0, $manager->isValid());
     }
 
-    public function checkIsValidLongPassword(){
-        $manager = new managerModel($this->name, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", $this->facilityId, $this->email, $this->id);
-        $this->assertFalse($manager->isValid());
+    public function testCheckIsValidLongPassword(){
+        $manager = new managerModel($this->name, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", $this->facilityId, $this->email, $this->id);
+        $this->assertNotEquals(0, $manager->isValid());
     }
 }

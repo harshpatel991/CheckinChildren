@@ -1,4 +1,10 @@
 <?php
+/**
+ * The view that contains the html that a manager sees when viewing
+ * all of its employees for a particular facility
+ * It creates a list of links to the employees's individual profile
+ * It also has a link to create a new employee
+ */
 require_once(dirname(__FILE__).'/../controllers/managerController.php');
 require_once(dirname(__FILE__).'/../models/dao/employeeDAO.php');
 require_once(dirname(__FILE__).'/../models/employeeModel.php');

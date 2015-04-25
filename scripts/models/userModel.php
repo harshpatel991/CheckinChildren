@@ -11,6 +11,8 @@ class userModel
     public $password;
     public $role;
     public $auth_token;
+    public $address;
+    public $phone_number;
 
     private static $privateKey = 'd@t$yuk';
 
@@ -29,6 +31,13 @@ class userModel
     public function isUpdateValid() {
         if (strlen($this->email)>40 || strlen($this->email)<=0 || strpos($this->email, '@')===false) {
             return errorEnum::invalid_email;
+        }
+
+        if ((strlen($this->phone_number) > 0) && (strlen($this->phone_number)!=10 || !is_numeric($this->phone_number))){
+            return errorEnum::invalid_phone;
+        }
+        if (strlen($this->address)>50){
+            return errorEnum::invalid_address;
         }
 
         return 0;
