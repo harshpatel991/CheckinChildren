@@ -3,6 +3,7 @@ error_reporting(E_ALL); //turn on error reporting
 ini_set("display_errors", 1);
 
 require_once(dirname(__FILE__).'/../scripts/controllers/authController.php');
+
 $authController = new authController();
 $authController->verifyRole(['company']);
 $authController->redirectPage();
@@ -25,12 +26,13 @@ $authController->redirectPage();
             <?php require_once(dirname(__FILE__) . '/../scripts/views/sideBarView.php'); ?>
         </div>
         <div class="col-sm-6">
-            <?php require_once(dirname(__FILE__).'/../scripts/views/editCompanyView.php'); ?>
+            <?php require_once(dirname(__FILE__).'/../scripts/views/displayFacilityChildrenView.php'); ?>
         </div>
     </div>
 </div>
 
 <?php require_once(dirname(__FILE__) . '/../scripts/views/footerView.php'); ?>
 </body>
+
 </html>
 

@@ -5,10 +5,14 @@
  * If parent information is not valid, redirects to editParent page with error
  */
 
+require_once(dirname(__FILE__) . '/../authController.php');
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 require_once(dirname(__FILE__) . '/../../models/dao/companyDAO.php');
 require_once(dirname(__FILE__).'/../../models/companyModel.php');
 
+$authController = new authController();
+$authController->verifyRole(['company']);
+$authController->redirectPage('../../../public/');
 
 //Read in POST data from form
 $company_id = $_COOKIE[cookieManager::$userId];

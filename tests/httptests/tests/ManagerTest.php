@@ -96,4 +96,53 @@ class ManagerTest extends SeleniumTestBase {
         $this->assertContains("Invalid Name", $error_msg);
 
     }
+
+    public function testMakeEmployeeWithPhoneAndAddress(){
+        testMacros::login($this->driver, "manager6@gmail.com", "password6");
+
+        $this->get_element("name=view_employees")->click();
+        $this->get_element("name=create_employee")->click();
+
+        $this->get_element("name=name")->send_keys("Test Case");
+        $this->get_element("name=email")->send_keys("testcase@gmail.com");
+        $this->get_element("name=password")->send_keys("100pass");
+        $this->get_element("name=phone_number")->send_keys("0123456789");
+        $this->get_element("name=address")->send_keys("123 fake street");
+
+        $this->get_element("name=submit")->click();
+
+        $this->get_element("name=back_home")->click();
+
+        $this->get_element("name=profile")->click();
+        $this->get_element("name=logout")->click(); //click logout
+
+        //Now to sign is as our new employee
+        testMacros::login($this->driver, "testcase@gmail.com", "100pass");
+
+        $this->get_element("id=signed-in")->assert_text("Currently signed in as a employee");
+        $this->get_element("id=edit_employee")->click();
+
+        $page = $this->driver->get_source();
+        $this->assertContains("0123456789", $page);
+        $this->assertContains("123 fake street", $page);
+    }
+
+    public function testMakeEmployeeWithInvalidPhone(){
+        testMacros::login($this->driver, "manager6@gmail.com", "password6");
+
+        $this->get_element("name=view_employees")->click();
+        $this->get_element("name=create_employee")->click();
+
+        $this->get_element("name=name")->send_keys("Test Case");
+        $this->get_element("name=email")->send_keys("testcase@gmail.com");
+        $this->get_element("name=password")->send_keys("100pass");
+        $this->get_element("name=phone_number")->send_keys("012345678");
+        $this->get_element("name=address")->send_keys("123 fake street");
+
+        $this->get_element("name=submit")->click();
+
+
+        $page = $this->driver->get_source();
+        $this->assertContains("Invalid Phone Number (must be 10 digits)", $page);
+    }
 }

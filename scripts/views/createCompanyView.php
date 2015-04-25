@@ -1,4 +1,10 @@
-
+<?php
+/**
+ * The view that contains the html one sees when creating a parent
+ * It contains a form for inputs needed to construct a valid company model
+ * The form submits to the createCompanyFormHandler
+ */
+?>
 <form method="post" action="../scripts/controllers/form_handlers/createCompanyFormHandler.php">
 
   <div class="form-group">

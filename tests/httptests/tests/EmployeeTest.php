@@ -116,6 +116,59 @@ class EmployeeTest extends SeleniumTestBase {
         $this->assertContains("Invalid Email", $page);
     }
 
+    public function testEmployeeEditPhoneInvalid() {
+        testMacros::login($this->driver, "baba_ganush2@gmail.com", "password2");
+
+        $this->get_element("id=edit_employee")->click();
+
+        $this->get_element("id=phone_number")->clear(); //clear text input box
+        $this->get_element("id=phone_number")->send_keys("123");
+
+        $this->get_element("id=address")->clear();
+        $this->get_element("id=address")->send_keys("123 fake street");
+
+        $this->get_element("name=submit")->click();
+
+        $page = $this->driver->get_source();
+        $this->assertContains("Invalid Phone Number (must be 10 digits)", $page);
+    }
+
+    public function testEmployeeEditPhoneValid() {
+        testMacros::login($this->driver, "baba_ganush2@gmail.com", "password2");
+
+        $this->get_element("id=edit_employee")->click();
+
+        $this->get_element("id=phone_number")->clear(); //clear text input box
+        $this->get_element("id=phone_number")->send_keys("0123456789");
+
+        $this->get_element("id=address")->clear();
+        $this->get_element("id=address")->send_keys("123 fake street");
+
+        $this->get_element("name=submit")->click();
+
+        $this->get_element("id=edit_employee")->click();
+
+        $page = $this->driver->get_source();
+        $this->assertContains("0123456789", $page);
+        $this->assertContains("123 fake street", $page);
+    }
+
+    public function testEmployeeEditAddressInValid() {
+        testMacros::login($this->driver, "baba_ganush2@gmail.com", "password2");
+
+        $this->get_element("id=edit_employee")->click();
+
+        $this->get_element("id=phone_number")->clear(); //clear text input box
+        $this->get_element("id=phone_number")->send_keys("0123456789");
+
+        $this->get_element("id=address")->clear();
+        $this->get_element("id=address")->send_keys("123 fake street123 fake street123 fake street123 fake street123 fake street123 fake street123 fake street123 fake street123 fake street123 fake street123 fake street123 fake street");
+
+        $this->get_element("name=submit")->click();
+
+        $page = $this->driver->get_source();
+        $this->assertContains("Invalid Address", $page);
+    }
 
     public function tearDown(){
         //Any additional teardown goes here.

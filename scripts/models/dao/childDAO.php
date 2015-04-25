@@ -28,6 +28,10 @@ class childDAO {
         return $child_id;
     }
 
+    /**
+     * @param $id
+     * @return childModel
+     */
     public function find($id){
         $connection = DbConnectionFactory::create();
         $query = "SELECT * FROM child WHERE child_id=:id";
@@ -39,7 +43,6 @@ class childDAO {
 
         $stmt->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'childModel');
         $child=$stmt->fetch();
-        $connection=null;
         $connection=null;
         if ($child!=false) {
             $child->expect_checkin = self::timesCsvToArray($child->expect_checkin);
@@ -114,6 +117,7 @@ class childDAO {
         $this->updateField($child->child_id, 'expect_checkin', self::timesArrayToCsv($child->expect_checkin));
         $this->updateField($child->child_id, 'expect_checkout', self::timesArrayToCsv($child->expect_checkout));
         $this->updateField($child->child_id, 'last_message_status', $child->last_message_status);
+        $this->updateField($child->child_id, 'parent_late_minutes', $child->parent_late_minutes);
     }
 
     public function updateField($child_id, $field, $value){
