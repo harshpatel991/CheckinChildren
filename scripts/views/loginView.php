@@ -21,11 +21,12 @@
 <br>
 <a class="btn btn-default" onclick="autoFillUser(5);">Company - bigcompany3@gmail.com ID: 3</a><br>
 <a class="btn btn-default" onclick="autoFillUser(6);">Employee - employee4@gmail.com  at facility 2 at company 1</a><br>
+<a class="btn btn-default" onclick="autoFillUser(7);">Employee - employee15@gmail.com  at facility 3 at company 3</a><br>
 
 
 <script><!-- TODO: move this to js folder -->
-    var emails = ["bigcompany1@gmail.com", "manager6@gmail.com", "baba_ganush2@gmail.com", "employee17@gmail.com", "parent19@gmail.com", "bigcompany3@gmail.com", "employee4@gmail.com"];
-    var passwords = ["password1", "password6", "password2", "password17", "password19", "password3", "password4"];
+    var emails = ["bigcompany1@gmail.com", "manager6@gmail.com", "baba_ganush2@gmail.com", "employee17@gmail.com", "parent19@gmail.com", "bigcompany3@gmail.com", "employee4@gmail.com", "employee15@gmail.com"];
+    var passwords = ["password1", "password6", "password2", "password17", "password19", "password3", "password4", "password15"];
 
     var emailBox=document.getElementById("email");
     var passwordBox=document.getElementById("password");
