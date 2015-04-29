@@ -86,9 +86,7 @@ class logDAO
      * @param string $additionalInfo Used for reporting errors or failures on a transaction attempt
      */
     public function insert($primaryID, $secondaryID, $secondaryName, $transactionType, $additionalInfo="N/A") {
-        /*
-         * Should insert into logs table: facilityID (query for this), primaryID, secondaryID, transactionType, addionalInfo, dateTime
-         */
+        //Should insert into logs table: facilityID (query for this), primaryID, secondaryID, transactionType, addionalInfo, dateTime
 
         $connection = DbConnectionFactory::create();
         $empDAO=new employeeDAO();
@@ -110,12 +108,17 @@ class logDAO
 
         $connection=null;
     }
-    
-    public function companyInsert($isFacilityEdit, $primaryID, $secondaryID, $secondaryName, $transactionType, $additionalInfo="N/A") {
-        /*
-         * Should insert into logs table: facilityID (query for this), primaryID, secondaryID, transactionType, addionalInfo, dateTime
-         */
 
+    /**
+     * Inserts a company record into the logs
+     * @param bool $isFacilityEdit Is this a record of a facility edit
+     * @param int $primaryID The id of the company
+     * @param int $secondaryID The secondary actors ID (if any)
+     * @param string $secondaryName The name of the secondary actor
+     * @param string $transactionType The type of transaction that occured
+     * @param string $additionalInfo Used for reporting errors or failures on a transaction attempt
+     */
+    public function companyInsert($isFacilityEdit, $primaryID, $secondaryID, $secondaryName, $transactionType, $additionalInfo="N/A") {
         $connection = DbConnectionFactory::create();
 
         $compDAO=new companyDAO();
@@ -132,7 +135,6 @@ class logDAO
             $facid = $secondaryID;
         }
 
-
         $query = 'INSERT INTO logs (primary_id, secondary_id, primary_name, secondary_name, facility_id, transaction_type, additional_info)
             VALUES (:primaryID, :secondaryID, :primaryName, :secondaryName, :facilityid, :transactionType, :additionalInfo)';
 
@@ -146,10 +148,15 @@ class logDAO
         $stmt->bindParam(':additionalInfo', $additionalInfo);
         $stmt->execute();
 
-
         $connection=null;
     }
 
+    /**
+     * Retreives the log information about a certain child
+     * @param int $childId The id of the child whose logs to search for
+     * @param int $limit The limit of logs to retrieve
+     * @return array List of logs
+     */
     public function getChildHistory($childId, $limit){
         $childEvents = array(self::$childCheckIn, self::$childCheckOut, self::$childCreated);
         $connection = DbConnectionFactory::create();
