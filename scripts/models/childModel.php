@@ -3,6 +3,9 @@ require_once(dirname(__FILE__).'/dao/parentDAO.php');
 require_once(dirname(__FILE__).'/dao/facilityDAO.php');
 require_once(dirname(__FILE__).'/../dateTimeProvider.php');
 require_once(dirname(__FILE__).'/childStatusEnum.php');
+/**
+ * Class childModel this class is used for child functions
+ */
 class childModel {
 
     var $child_id;
@@ -18,6 +21,16 @@ class childModel {
     var $last_message_status;
     var $parent_late_minutes;
 
+    /**
+     * Creates a child model
+     * @param int $parent_id the id of the child's parent
+     * @param string $child_name the name of the child
+     * @param string $allergies a string that contains the childs allergies
+     * @param string $trusted_parties a string that contains the names of other adults who can pick up the child
+     * @param int $facility_id the id of the facility the child attends
+     * @param int $child_id a unique identifier for the child
+     * @param int $last_message_status most recent status
+     */
     function __construct($parent_id=0, $child_name="", $allergies="", $trusted_parties="", $facility_id=0, $child_id=0, $last_message_status=-1) {
         $this->parent_id = $parent_id;
         $this->child_name = $child_name;
@@ -28,6 +41,10 @@ class childModel {
         $this->last_message_status = $last_message_status;
     }
 
+    /**
+     * Checks if the child is valid
+     * @return int either 0 for good or some other error code
+     */
     public function isValid() {
         $error_code = $this->isUpdateValid();
         if($error_code > 0) {
@@ -49,6 +66,10 @@ class childModel {
         return errorEnum::no_errors;
     }
 
+    /**
+     * checks if the changes made are valid for updatinga childs info
+     * @return int either 0 for good or some other error code
+     */
     public function isUpdateValid() {
         if (strlen($this->child_name) > 30 ||  strlen($this->child_name) <= 0){
             return errorEnum::invalid_name;
@@ -75,6 +96,11 @@ class childModel {
         return errorEnum::no_errors;
     }
 
+    /**
+     * returns the current status of the child
+     * @param null $currentTime gets the current time
+     * @return int returns the int of the current status for child
+     */
     public function getStatus($currentTime = null){
         if ($currentTime === null){
             $currentTime = dateTimeProvider::getCurrentDateTime();
@@ -107,17 +133,42 @@ class childModel {
         }
     }
 
+    /**
+     * returns the expected checking for that day
+     * @param int $dayOfWeek which day of the week you are looking for
+     * @param bool $readable returns readable version
+     * @return string a readable string of the expected checkin
+     */
     public function getExpectedCheckin($dayOfWeek = -1, $readable = true){
         return self::getExpected($this->expect_checkin, $dayOfWeek, $readable);
     }
 
+    /**
+     * returns the trusted parties
+     * @return string a string of the trusted parties
+     */
     public function getTrustedParties(){
         return $this->trusted_parties;
     }
+
+    /**
+     * returns the expected checkout for that day
+     * @param int $dayOfWeek which day of the week you are looking for
+     * @param bool $readable returns readable version
+     * @return string a readable string of the expected checkin
+     */
     public function getExpectedCheckout($dayOfWeek = -1, $readable = true){
         return self::getExpected($this->expect_checkout, $dayOfWeek, $readable, $this->parent_late_minutes);
     }
 
+    /**
+     * helper fucntion for return expected checkout and checkins
+     * @param array $arr checkout and checkin times to be returned
+     * @param int $dayOfWeek which day
+     * @param bool $readable if it will be readable
+     * @param int $mins how many min into the day
+     * @return string the expected time
+     */
     private static function getExpected($arr, $dayOfWeek, $readable, $mins = 0){
         if ($dayOfWeek === -1){
             $dayOfWeek = dateTimeProvider::getCurrentDateTime()['wday'];
@@ -128,6 +179,10 @@ class childModel {
         return $arr[$dayOfWeek]+$mins;
     }
 
+    /**
+     * Returns checkin times in readable array
+     * @return array the readable results in an array
+     */
    public function expectCheckinReadable(){
        $readable = [];
        for ($i=0; $i<7; $i++){
@@ -135,7 +190,10 @@ class childModel {
        }
        return $readable;
     }
-
+    /**
+     * Returns checkout times in readable array
+     * @return array the readable results in an array
+     */
    public function expectCheckoutReadable(){
        $readable = [];
        for ($i=0; $i<7; $i++){
@@ -144,6 +202,11 @@ class childModel {
        return $readable;
     }
 
+    /**
+     * converfts min value to readble value
+     * @param $mfm value to be converted to readable
+     * @return string
+     */
    private static function readable($mfm){
        if ($mfm < 0){
            return '';
@@ -158,6 +221,11 @@ class childModel {
        return sprintf("%02d:%02d %s", $hrs, $min, $ap);
     }
 
+    /**
+     * Helper function
+     * @param $minutes minutes to be checked
+     * @return bool
+     */
     public static function checkMinutes($minutes){
         for ($i=0; $i<7; $i++){
             if ($minutes==15*$i){
