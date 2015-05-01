@@ -4,6 +4,9 @@
  * User: matt
  */
 
+/**
+ * Class userModel used a base representation for all user. Super class to many other models
+ */
 class userModel
 {
     public $id;
@@ -16,6 +19,10 @@ class userModel
 
     private static $privateKey = 'd@t$yuk';
 
+    /**
+     * Checks if a user is valid
+     * @return int either 0 for good or some other error code
+     */
     public function isValid(){
         $errorCode = $this->isUpdateValid();
         if($errorCode>0) {
@@ -28,6 +35,10 @@ class userModel
         return 0;
     }
 
+    /**
+     * Checks if an update to a user is valid
+     * @return int either 0 for good or some other error code
+     */
     public function isUpdateValid() {
         if (strlen($this->email)>40 || strlen($this->email)<=0 || strpos($this->email, '@')===false) {
             return errorEnum::invalid_email;
@@ -43,6 +54,13 @@ class userModel
         return 0;
     }
 
+    /**
+     * Cosntructs a new user
+     * @param string $email their email
+     * @param string $password their password
+     * @param string $role their role
+     * @param string $id a unique identifier
+     */
     public function __construct( $email="", $password="", $role="", $id=""){
         $this->password=$password;
         $this->email=$email;
@@ -50,10 +68,19 @@ class userModel
         $this->id=$id;
     }
 
+    /**
+     * Returns a hashed password
+     * @param string $password not hashed
+     * @return string hashed version of the password
+     */
     public static function genHashPassword($password){
         return sha1($password);
     }
 
+    /**
+     * returns the authentication token for that user
+     * @return string the token
+     */
     public function genAuthToken(){
         //TODO: This is not exactly a great algorithm, revise in the future.
         //TODO: Require time expiration logic.
@@ -62,6 +89,11 @@ class userModel
 
     }
 
+    /**
+     * gets a random string
+     * @param int $len length of the string
+     * @return string
+     */
     private function genRandomStr($len = 10){
         $numChars = strlen(self::$privateKey);
         $randStr = '';
