@@ -67,7 +67,7 @@ class childModel {
     }
 
     /**
-     * checks if the changes made are valid for updatinga childs info
+     * checks if the changes made are valid for updating a childs info
      * @return int either 0 for good or some other error code
      */
     public function isUpdateValid() {
@@ -204,7 +204,7 @@ class childModel {
 
     /**
      * converfts min value to readble value
-     * @param $mfm value to be converted to readable
+     * @param int $mfm value to be converted to readable
      * @return string
      */
    private static function readable($mfm){
@@ -223,7 +223,7 @@ class childModel {
 
     /**
      * Helper function
-     * @param $minutes minutes to be checked
+     * @param int $minutes minutes to be checked
      * @return bool
      */
     public static function checkMinutes($minutes){
