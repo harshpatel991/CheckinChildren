@@ -1,4 +1,8 @@
 <?php
+/**
+ * Creates a template to loads in the page for the login. Viewed by all public users.
+ */
+
 error_reporting(E_ALL); //turn on error reporting
 ini_set("display_errors", 1);
 ?>

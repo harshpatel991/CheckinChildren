@@ -1,4 +1,8 @@
 <?php
+/**
+ * Creates a template to loads in the for the displaying of managers by companies
+ */
+
 error_reporting(E_ALL); //turn on error reporting
 ini_set("display_errors", 1);
 

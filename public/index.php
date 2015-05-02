@@ -1,4 +1,8 @@
 <?php
+/**
+ * Creates a template to load in the page when the user first logs in, the main screen. Viewed by all users.
+ */
+
 error_reporting(E_ALL); //turn on error reporting
 ini_set("display_errors", 1);
 
