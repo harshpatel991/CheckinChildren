@@ -8,8 +8,14 @@
 require_once(dirname(__FILE__).'/../../scripts/models/dao/logDAO.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
 
+/**
+ * Class logDAOTest test logDAO
+ */
 class logDAOTest extends unitTestBase {
 
+    /**
+     * Test find for facility with id 2
+     */
     public function testFindForFacilityID2() {
         $lDAO = new logDAO();
         $logs = $lDAO->findForFacility(2, 'time_created');
@@ -19,6 +25,9 @@ class logDAOTest extends unitTestBase {
         $this->assertEquals("A Dude", $logs[1]["primary_name"]);
     }
 
+    /**
+     * Test find for facility with id 3
+     */
     public function testFindForFacilityID3() {
         $lDAO = new logDAO();
         $logs = $lDAO->findForFacility(3, 'time_created');
@@ -30,6 +39,9 @@ class logDAOTest extends unitTestBase {
         $this->assertEquals("Other Dude", $logs[11]["primary_name"]);
     }
 
+    /**
+     * Test find for facility ordered by name
+     */
     public function testFindForFacilityOrderedByPrimaryName() {
         $lDAO = new logDAO();
         $logs = $lDAO->findForFacility(2, 'primary_name');
@@ -39,6 +51,9 @@ class logDAOTest extends unitTestBase {
         $this->assertEquals("Rick Grimes", $logs[1]["primary_name"]);
     }
 
+    /**
+     * Test insert
+     */
     public function testSimpleInsert(){
         $lDAO = new logDAO();
 
@@ -54,6 +69,9 @@ class logDAOTest extends unitTestBase {
 
     }
 
+    /**
+     * Test double insert
+     */
     public function testDoubleInsert(){
         $lDAO = new logDAO();
 
@@ -76,6 +94,9 @@ class logDAOTest extends unitTestBase {
         $this->assertEquals("Child Created", $myLog['transaction_type']);
     }
 
+    /**
+     * Test find for facility filtered by checked in
+     */
     public function testFindForFacilityFilterCheckedIn() {
         $lDAO = new logDAO();
         $logs = $lDAO->findForFacility(6, 'time_created', "Child Checked In");
@@ -84,6 +105,9 @@ class logDAOTest extends unitTestBase {
         $this->assertEquals("Child Checked In", $logs[0]['transaction_type']);
     }
 
+    /**
+     * Test find for facility filtered by checked in
+     */
     public function testFindForFacilityFilterCheckedOut() {
         $lDAO = new logDAO();
         $logs = $lDAO->findForFacility(6, 'time_created', "Child Checked Out");
@@ -92,6 +116,9 @@ class logDAOTest extends unitTestBase {
         $this->assertEquals("Child Checked Out", $logs[0]['transaction_type']);
     }
 
+    /**
+     * Test find facility filtered by employee created
+     */
     public function testFindForFacilityFilterEmployeeCreated() {
         $lDAO = new logDAO();
         $logs = $lDAO->findForFacility(6, 'time_created', "Employee Created");
@@ -100,6 +127,9 @@ class logDAOTest extends unitTestBase {
         $this->assertEquals("Employee Created", $logs[0]['transaction_type']);
     }
 
+    /**
+     * Test find Facility filtered by parent created
+     */
     public function testFindForFacilityFilterParentCreated(){
         $lDAO = new logDAO();
         $logs = $lDAO->findForFacility(7, 'time_created', "Parent Created");
@@ -108,6 +138,9 @@ class logDAOTest extends unitTestBase {
         $this->assertEquals("Parent Created", $logs[0]['transaction_type']);
     }
 
+    /**
+     * Test find facility Filtered by child created
+     */
     public function testFindForFacilityFilterChildCreated() {
         $lDAO = new logDAO();
         $logs = $lDAO->findForFacility(7, 'time_created', "Child Created");
@@ -116,6 +149,9 @@ class logDAOTest extends unitTestBase {
         $this->assertEquals("Child Created", $logs[0]['transaction_type']);
     }
 
+    /**
+     * Test find facility filtered by employee promoted
+     */
     public function testFindForFacilityFilterEmployeePromoted() {
         $lDAO = new logDAO();
         $logs = $lDAO->findForFacility(7, 'time_created', "Employee Promoted");
@@ -124,6 +160,9 @@ class logDAOTest extends unitTestBase {
         $this->assertEquals("Employee Promoted", $logs[0]['transaction_type']);
     }
 
+    /**
+     * Test find facility Filtered by Employee Edited
+     */
     public function testFindForFacilityFilterEmployeeEdited() {
         $lDAO = new logDAO();
         $logs = $lDAO->findForFacility(7, 'time_created', "Employee Edited");
@@ -132,6 +171,9 @@ class logDAOTest extends unitTestBase {
         $this->assertEquals("Employee Edited", $logs[0]['transaction_type']);
     }
 
+    /**
+     * Test find for company
+     */
     public function testFindForCompany() {
         $lDAO = new logDAO();
         $logs = $lDAO->findForCompany(5, 'time_created');
@@ -139,6 +181,9 @@ class logDAOTest extends unitTestBase {
         $this->assertEquals(7, count($logs));
     }
 
+    /**
+     * Test find for company ordered by name
+     */
     public function testFindForCompanyOrderByPrimaryName() {
         $lDAO = new logDAO();
         $logs = $lDAO->findForCompany(5, 'transaction_type');
@@ -154,6 +199,9 @@ class logDAOTest extends unitTestBase {
         $this->assertEquals("Parent Created", $logs[6]['transaction_type']);
     }
 
+    /**
+     * Test find for company filtered by employee created
+     */
     public function testFindForCompanyFilterEmployeeCreated() {
         $lDAO = new logDAO();
         $logs = $lDAO->findForCompany(5, 'transaction_type', "Employee Created");
@@ -162,6 +210,9 @@ class logDAOTest extends unitTestBase {
         $this->assertEquals("Employee Created", $logs[0]['transaction_type']);
     }
 
+    /**
+     * Test find for company filtered by parent created
+     */
     public function testFindForCompanyFilterParentCreated() {
         $lDAO = new logDAO();
         $logs = $lDAO->findForCompany(5, 'transaction_type', "Parent Created");
@@ -170,6 +221,9 @@ class logDAOTest extends unitTestBase {
         $this->assertEquals("Parent Created", $logs[0]['transaction_type']);
     }
 
+    /**
+     * Test find for company Filtered by children checked in
+     */
     public function testFindForCompanyFilterChildCheckedIn() {
         $lDAO = new logDAO();
         $logs = $lDAO->findForCompany(5, 'transaction_type', "Child Checked In");
@@ -178,6 +232,9 @@ class logDAOTest extends unitTestBase {
         $this->assertEquals("Child Checked In", $logs[0]['transaction_type']);
     }
 
+    /**
+     * Test for Company insert facility
+     */
     public function testCompanyInsertFacility(){
         $lDAO = new logDAO();
         $lDAO->companyInsert(true, 1,  2, "Test Address", logDAO::$facilityEdited);
@@ -194,6 +251,10 @@ class logDAOTest extends unitTestBase {
         $this->assertEquals("Facility Edited", $result[0]['transaction_type']);
 
     }
+
+    /**
+     * Test for company inserted manager
+     */
     public function testCompanyInsertNotFacility(){
         $lDAO = new logDAO();
 

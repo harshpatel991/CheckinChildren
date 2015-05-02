@@ -3,8 +3,14 @@
 require_once(dirname(__FILE__).'/../../scripts/models/dao/childDAO.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
 
+/**
+ * Class childDAOTest test ChildDAO
+ */
 class childDAOTest extends unitTestBase {
 
+    /**
+     * Tests find function
+     */
     public function testFind()
     {
         $childDAO=new childDAO();
@@ -18,6 +24,9 @@ class childDAOTest extends unitTestBase {
         $this->assertEquals(1, $child->facility_id);
     }
 
+    /**
+     * Test create child function
+     */
     public function testCreate_Child()
     {
         $childDAO = new ChildDAO();
@@ -34,6 +43,9 @@ class childDAOTest extends unitTestBase {
         $this->assertEquals("Tom", $childFound->trusted_parties);
     }
 
+    /**
+     * Test with bad id
+     */
     public function testFindBadID()
     {
         $childDAO = new ChildDAO();
@@ -42,7 +54,9 @@ class childDAOTest extends unitTestBase {
         $this->assertFalse($child);
     }
 
-    //Update the child with id 2
+    /**
+     * Update the child with id 2
+     */
     public function testUpdate()
     {
         $childDAO = new childDAO();
@@ -94,6 +108,9 @@ class childDAOTest extends unitTestBase {
 
     }
 
+    /**
+     * Test delete all children from facility
+     */
     public function testDeleteAllChildrenInFacility(){
         $childDAO = new ChildDAO();
         $children = $childDAO->findChildrenInFacility(5);

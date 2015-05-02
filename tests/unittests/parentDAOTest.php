@@ -3,9 +3,15 @@
 require_once(dirname(__FILE__).'/../../scripts/models/dao/parentDAO.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
 
+/**
+ * Class parentDAOTest tests parentDAP
+ */
 class parentDAOTest extends unitTestBase
 {
 
+    /**
+     * Test find parent
+     */
     public function testFind()
     {
         $parentDAO=new parentDAO();
@@ -20,6 +26,9 @@ class parentDAOTest extends unitTestBase
         $this->assertEquals($parent->carrier, "Verizon Wireless");
     }
 
+    /**
+     * Test create parent
+     */
     public function testCreate_Parent()
     {
         $parentDAO=new parentDAO();
@@ -37,6 +46,9 @@ class parentDAOTest extends unitTestBase
         $this->assertEquals($id, $parent->id);
     }
 
+    /**
+     * Test find with bad parent id
+     */
     public function testFindBadID()
     {
         $parentDAO=new parentDAO();
@@ -46,7 +58,9 @@ class parentDAOTest extends unitTestBase
         $this->assertFalse($parent);
     }
 
-    //Update the parent with id 8
+    /**
+     * Update the parent with id 8
+     */
     public function testUpdate() {
         $parentDAO = new parentDAO();
 

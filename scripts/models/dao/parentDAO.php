@@ -4,11 +4,23 @@
 require_once(dirname(__FILE__).'/../parentModel.php');
 require_once(dirname(__FILE__).'/../db/dbConnectionFactory.php');
 require_once(dirname(__FILE__).'/userDAO.php');
+
+/**
+ * Class parentDAO manages parent table
+ */
 class parentDAO {
 
+    /**
+     * Default contructor
+     */
     public function __construct()
     { }
 
+    /**
+     * Retrieves parent with id
+     * @param int $id Parent id
+     * @return mixed Retrieved Parent model
+     */
     public function find($id){
         $connection = DbConnectionFactory::create();
         $query = "SELECT * FROM parent NATURAL JOIN users WHERE id=:id";
@@ -25,6 +37,10 @@ class parentDAO {
         return $parent;
     }
 
+    /**
+     * Get all parents
+     * @return array Array of All Parents
+     */
     public function findAll(){
         $connection = DbConnectionFactory::create();
         $query = "SELECT * FROM parent NATURAL JOIN users";
@@ -41,6 +57,11 @@ class parentDAO {
     }
 
 
+    /**
+     * Create a new parent
+     * @param parentModel $parent A new parent model
+     * @return string Id assigned to a new parent
+     */
     public function create_parent($parent){
         $newParent=new userModel($parent->email, $parent->password, $parent->role);
         $userDAO=new userDAO();
@@ -52,6 +73,15 @@ class parentDAO {
         return $id;
     }
 
+    /**
+     * Insert parent to parent table
+     * @param string $parent_name Parent's name
+     * @param string $address Parent's address
+     * @param string $phone_number Parent's phone number
+     * @param int $id Id
+     * @param string $contact_pref Alert preference
+     * @param string $carrier Carrier preference
+     */
     private function insert( $parent_name, $address, $phone_number, $id, $contact_pref, $carrier){
         $connection = DbConnectionFactory::create();
 
@@ -71,8 +101,10 @@ class parentDAO {
         $connection=null;
     }
 
-    // Updates the email, parent_name, address, phone_number of a parent
-    // **** DOES NOT UPDATE PASSWORD or ID OF PARENT! ****
+    /**
+     * Updates the email, parent_name, address, phone_number of a parent
+     * @param parentModel $parent Updated parent model
+     */
     public function update($parent) {
         $userDAO=new userDAO();
 
