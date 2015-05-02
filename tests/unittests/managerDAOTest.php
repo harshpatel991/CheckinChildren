@@ -6,7 +6,9 @@ require_once(dirname(__FILE__).'/../../scripts/models/managerModel.php');
 require_once(dirname(__FILE__).'/../../scripts/models/facilityModel.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
 
-
+/**
+ * Class managerDAOTest tests managerDAO
+ */
 class managerDAOTest extends unitTestBase {
     private $name1 = "test1";
     private $name2 = "test2";
@@ -19,7 +21,9 @@ class managerDAOTest extends unitTestBase {
     private $facility1 = "1";
     private $facility2 = "1";
 
-
+    /**
+     * Test find manager
+     */
     public function testFind(){
         tableCleanerDAO::clean("employee");
         tableCleanerDAO::clean("users");
@@ -35,6 +39,9 @@ class managerDAOTest extends unitTestBase {
         $this->assertEquals($id, $tmanagers->id);
     }
 
+    /**
+     * Test get managers in facility
+     */
     public function testGetFacilityManagers(){
         tableCleanerDAO::clean("employee");
         tableCleanerDAO::clean("users");
@@ -55,6 +62,10 @@ class managerDAOTest extends unitTestBase {
         $this->assertEquals($this->name1, $tmanagers[0]->emp_name);
         $this->assertEquals($this->name2, $tmanagers[1]->emp_name);
     }
+
+    /**
+     * Tests Get company Managers
+     */
     public function testGetCompanyManagers(){
         tableCleanerDAO::clean("employee");
         tableCleanerDAO::clean("users");
