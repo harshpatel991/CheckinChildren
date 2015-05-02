@@ -44,7 +44,7 @@ class userModel
             return errorEnum::invalid_email;
         }
 
-        if ((strlen($this->phone_number) > 0) && (strlen($this->phone_number)!=10 || !is_numeric($this->phone_number))){
+        if (strlen($this->phone_number)!=10 || !is_numeric($this->phone_number)){
             return errorEnum::invalid_phone;
         }
         if (strlen($this->address)>50){
