@@ -1,4 +1,8 @@
 <?php
+/**
+ * Creates a template to load in the page to display all employees page viewed by managers and companies
+ */
+
 error_reporting(E_ALL); //turn on error reporting
 ini_set("display_errors", 1);
 

@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: matt
- * Date: 3/3/15
- * Time: 3:42 PM
+ * Loads in a test page for the viewing of the time as set by the date time provider
  */
 
 require_once((dirname(__FILE__).'/../scripts/dateTimeProvider.php'));

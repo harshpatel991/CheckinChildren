@@ -1,4 +1,8 @@
 <?php
+/**
+ * Creates a template to loads in the for the create parent page viewed publicly
+ */
+
 error_reporting(E_ALL); //turn on error reporting
 ini_set("display_errors", 1);
 

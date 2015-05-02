@@ -1,3 +1,5 @@
+<!--Loads in any required imports to run bootstrap (css,js, and font files)-->
+
 <script src="js/jquery-1.11.2.min.js"></script>
 
 <link rel="stylesheet" href="css/bootstrap.css">
