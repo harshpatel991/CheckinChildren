@@ -16,8 +16,6 @@ $emplist='';
 
 foreach ($managers as $manager) {
     $emplist.='<a id='. $manager->id .' class="list-group-item" href="displayEmployee.php?employee_id=' . $manager->id . '">' . ($manager->emp_name) . '</a>';
-//foreach ($managers as $manager) { //Building the table for display
-//    $emplist.="<tr><td>$manager->emp_name</td><td>$manager->facility_id</td></tr>";
 }
 
 ?>
