@@ -26,6 +26,14 @@ class managerDAOTest extends unitTestBase {
     private $facility1 = "7";
     private $facility2 = "7";
 
+    public function setUp(){
+        $dbConn = DbConnectionFactory::create();
+        $sql = file_get_contents(dirname(__FILE__).'/../../sql/destroyTables.sql');
+        $sql .= file_get_contents(dirname(__FILE__).'/../../sql/createDatabase.sql');
+        $dbConn->exec($sql);
+        $dbConn = null;
+        parent::setUp();
+    }
     /**
      * Test find manager
      */
@@ -66,6 +74,7 @@ class managerDAOTest extends unitTestBase {
      * Tests Get company Managers
      */
     public function testGetCompanyManagers(){
+        $db =
         $mfacility1 = new facilityModel($this->company1, "address","5555555555");
         $mfacility2 = new facilityModel($this->company1, "address","5555555555");
 
