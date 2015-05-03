@@ -1,6 +1,6 @@
 <?php
 require_once(dirname(__FILE__).'/../controllers/authController.php');
-require_once(dirname(__FILE__).'/../models/dao/companyDAO.php');
+require_once(dirname(__FILE__) . '/../models/dao/companyDAO.php');
 require_once(dirname(__FILE__).'/../models/companyModel.php');
 
 $companyDAO=new companyDAO();

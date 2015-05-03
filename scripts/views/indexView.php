@@ -2,6 +2,7 @@
 /**
  * This is class displays the home page once a user logs in. For parents, it displays the current status of their child.
  */
+
 require_once(dirname(__FILE__).'/../cookieManager.php');?>
 <head>
     <title>CheckinChildren</title>

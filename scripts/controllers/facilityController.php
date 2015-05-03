@@ -1,9 +1,13 @@
 <?php
 
 require_once(dirname(__FILE__).'/../models/dao/facilityDAO.php');
+
 /**
- * This class is called by the facility view in order to access the facility DAO objects.
+ * Class facilityController
+ *
+ * This classs is called by the facility view in order to access the facility DAO objects.
  */
+
 class facilityController {
 
     /**

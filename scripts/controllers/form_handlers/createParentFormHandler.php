@@ -5,6 +5,7 @@
  * Determines if submitted parent is valid and adds to parentDAO and redirects to index page
  * If parent information is not valid, redirects to createParent page with error
  */
+
 require_once(dirname(__FILE__) . '/../authController.php');
 require_once(dirname(__FILE__) . '/../../errorManager.php');
 require_once(dirname(__FILE__) . '/../../models/dao/parentDAO.php');

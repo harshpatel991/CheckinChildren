@@ -1,16 +1,23 @@
 <?php
-/**
- *
- */
+
 require_once((dirname(__FILE__).'/../models/dao/employeeDAO.php'));
 require_once((dirname(__FILE__).'/../models/employeeModel.php'));
 require_once((dirname(__FILE__).'/../models/dao/childDAO.php'));
 require_once((dirname(__FILE__).'/../models/childStatusEnum.php'));
 require_once((dirname(__FILE__).'/../models/childModel.php'));
 require_once((dirname(__FILE__).'/../dateTimeProvider.php'));
+
+/**
+ * Class checkinController
+ *
+ * Controller to get and organize data for the checkinChildren page
+ */
 class checkinController {
 
     /**
+     * Get children sorted into "buckets" based on their statuses.
+     * Buckets are indexed by childStatus enum.
+     *
      * @param int $empId The employee's id
      * @return childModel[] The children "sorted" into different buckets
      */
@@ -38,8 +45,13 @@ class checkinController {
         return $buckets;
     }
 
+    /**
+     * Get all children found in the employee's facility.
+     *
+     * @param int $empId The employee's id
+     * @return childModel[] The children in the facility
+     */
     public function getChildrenInFacility($empId){
-        //TODO: Use joins to make this more efficient.
         $employeeDAO = new employeeDAO();
         $employee = $employeeDAO->find($empId);
         $childDAO = new childDAO();

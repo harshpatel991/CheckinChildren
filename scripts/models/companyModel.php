@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Elzabad
- * Date: 2/19/2015
- * Time: 1:45 AM
- */
+
 require_once(dirname(__FILE__).'/userModel.php');
 require_once(dirname(__FILE__).'/../errorManager.php');
 
@@ -17,7 +12,7 @@ class companyModel extends userModel{
     var $phone;
 
     /**
-     * constructor class takes in all the values needed
+     * Constructor class takes in all the values needed
      * @param string $company_name the name of the company
      * @param string $address the companies main address
      * @param string $phone phone number

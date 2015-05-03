@@ -43,6 +43,7 @@ class notificationMessageController{
 
     /**
      * Constructor should only be called from notificationMessageFactory, not called directly from other classes.
+     *
      * @param $child    childModel to send notifications from.
      * @param $messageStatus int status of the child to send via notification (should use messageStatus enum)..
      * @param messageAdapter $emailer messageAdapter used to send messages, only used for dependency injection.

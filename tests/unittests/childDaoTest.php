@@ -4,9 +4,11 @@ require_once(dirname(__FILE__).'/../../scripts/models/dao/childDAO.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
 
 /**
- * Class childDAOTest test ChildDAO
+ * Class childDAOTest
+ *
+ * Test childDAO
  */
-class childDAOTest extends unitTestBase {
+class childDaoTest extends unitTestBase {
 
     /**
      * Tests find function
@@ -29,7 +31,7 @@ class childDAOTest extends unitTestBase {
      */
     public function testCreate_Child()
     {
-        $childDAO = new ChildDAO();
+        $childDAO = new childDAO();
 
         $childTest = new childModel(8, "Red Ranger", "None", "Tom", 1);
         $child_id = $childDAO->insert($childTest);
@@ -48,7 +50,7 @@ class childDAOTest extends unitTestBase {
      */
     public function testFindBadID()
     {
-        $childDAO = new ChildDAO();
+        $childDAO = new childDAO();
         $child=$childDAO->find(999999);
 
         $this->assertFalse($child);
@@ -112,7 +114,7 @@ class childDAOTest extends unitTestBase {
      * Test delete all children from facility
      */
     public function testDeleteAllChildrenInFacility(){
-        $childDAO = new ChildDAO();
+        $childDAO = new childDAO();
         $children = $childDAO->findChildrenInFacility(5);
         $this->assertEquals(10,count($children));
 

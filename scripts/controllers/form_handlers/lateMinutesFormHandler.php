@@ -2,12 +2,6 @@
 /**
  * This form handler takes the minutes that the parent is going to be late and updates the child in sql.
  */
-/**
- * Created by PhpStorm.
- * User: alex
- * Date: 4/17/15
- * Time: 5:21 PM
- */
 
 require_once(dirname(__FILE__).'/../authController.php');
 require_once(dirname(__FILE__) .'/../../cookieManager.php');

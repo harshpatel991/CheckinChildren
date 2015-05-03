@@ -194,7 +194,7 @@ class authControllerTest extends unitTestBase
     }
 
     private function loginAsUser($id){
-        $userDao = new UserDAO();
+        $userDao = new userDAO();
         $user = $userDao->find('id',$id);
         $user->auth_token = $user->genAuthToken();
         $userDao->updateField($id, 'auth_token', $user->auth_token);

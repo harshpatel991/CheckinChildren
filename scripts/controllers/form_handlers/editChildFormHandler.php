@@ -4,6 +4,7 @@
  * Determines if submitted child is valid and updates record in childDAO and redirects to displayChild page
  * If child information is not valid, redirects to editChild page with error
  */
+
 require_once(dirname(__FILE__) . '/../authController.php');
 require_once(dirname(__FILE__) . '/../../errorManager.php');
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
@@ -29,7 +30,7 @@ for ($i=0; $i<7; $i++){
 
 $error_code = $child->isUpdateValid();
 if ($error_code === 0) {
-    $childDAO = new ChildDAO();
+    $childDAO = new childDAO();
     $childDAO->update($child);
 
     header("Location: ../../../public/displayChild.php?child_id=".$child_id); //send browser to the page for newly created facility

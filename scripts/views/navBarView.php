@@ -2,6 +2,7 @@
 /**
  *This class displays the stuff at the top of the page, i.e. "CheckinChildren", a role message, and the logout button.
  */
+
 require_once(dirname(__FILE__).'/../cookieManager.php');
 ?>
 

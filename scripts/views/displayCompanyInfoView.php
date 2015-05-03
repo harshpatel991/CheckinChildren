@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set("display_errors",1);
 
 require_once(dirname(__FILE__).'/../controllers/authController.php');
-require_once(dirname(__FILE__).'/../models/dao/companyDAO.php');
+require_once(dirname(__FILE__) . '/../models/dao/companyDAO.php');
 require_once(dirname(__FILE__).'/../models/companyModel.php');
 
 $companyDAO=new companyDAO();
