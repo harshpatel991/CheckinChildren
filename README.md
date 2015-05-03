@@ -61,7 +61,7 @@ If the generator fails, you may also need to instal [GraphViz](https://github.co
 You can also use your own version of phpDocumentor if desired. The latest version has a bug where everything is marked as an error, even when it shouldn't be.
 Unfortunately, this is out of our control and can only be fixed by the maintainers of the phpDocumentor project.
 
-Alternatively, you can find the latest version of the pre-generated documentation hosted [here](www.googledrive.com/host/0BwHi756Z37d0fnZUWElwV0JSVUlpRUFreFpldlZWSGhnTFkwSWRlbDFBTnlSWkVkOE5qdzg).
+Alternatively, you can find the latest version of the pre-generated documentation hosted [here](https://www.googledrive.com/host/0BwHi756Z37d0fnZUWElwV0JSVUlpRUFreFpldlZWSGhnTFkwSWRlbDFBTnlSWkVkOE5qdzg).
 ## Full Documentation
 CheckinChildren/project_documentation.pdf
 ## HTTP Tests
