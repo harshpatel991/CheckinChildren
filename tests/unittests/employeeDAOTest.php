@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: alex
- * Date: 2/16/15
- * Time: 7:04 PM
- */
 
 require_once(dirname(__FILE__).'/../../scripts/models/dao/employeeDAO.php');
 require_once(dirname(__FILE__).'/../../scripts/models/dao/userDAO.php');
