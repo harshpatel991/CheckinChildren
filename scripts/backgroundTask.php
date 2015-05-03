@@ -19,8 +19,9 @@ class backgroundTask
     private $notificationMessageFactory;
 
     /**
-     * Constructs a backgroundTask
-     * @param notificationMessageFactory $notificationMessageFactory used for dependency injection
+     * Constructs a backgroundTask.
+     *
+     * @param notificationMessageFactory $notificationMessageFactory The factory, used for dependency injection in tests.
      */
     public function __construct($notificationMessageFactory = null){
         if(!isset($notificationMessageFactory) || $notificationMessageFactory === null){
@@ -45,7 +46,7 @@ class backgroundTask
     /**
      * Sends notification messages to parents of all children.
      *
-     * @param $children childModel[] the children.
+     * @param childModel[] $children The children.
      */
     private function sendMessagesToParents($children){
         foreach($children as $child){

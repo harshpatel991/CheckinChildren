@@ -309,6 +309,8 @@ class CompanyTest extends SeleniumTestBase
 
         $this->get_element("name=name")->send_keys("Test Man");
         $this->get_element("name=facility_id")->send_keys("1");
+        $this->get_element("name=phone_number")->send_keys("1234567890");
+        $this->get_element("name=address")->send_keys("123 Fake Dr.");
         $this->get_element("name=email")->send_keys("test@mail.com");
         $this->get_element("name=password")->send_keys("password1");
         $this->get_element("name=submit")->click();
@@ -332,6 +334,8 @@ class CompanyTest extends SeleniumTestBase
 
         $this->get_element("name=name")->send_keys("Test Man");
         $this->get_element("name=facility_id")->send_keys("1");
+        $this->get_element("name=phone_number")->send_keys("1234567890");
+        $this->get_element("name=address")->send_keys("123 Fake Dr.");
         $this->get_element("name=email")->send_keys("test@mail.com");
         $this->get_element("name=password")->send_keys("password1");
         $this->get_element("name=submit")->click();
@@ -389,6 +393,8 @@ class CompanyTest extends SeleniumTestBase
 
         $this->get_element("name=name")->send_keys("Test Man");
         $this->get_element("name=facility_id")->send_keys("1");
+        $this->get_element("name=phone_number")->send_keys("1234567890");
+        $this->get_element("name=address")->send_keys("123 Fake Dr.");
         $this->get_element("name=email")->send_keys("test@mail.com");
         $this->get_element("name=password")->send_keys("password1");
         $this->get_element("name=submit")->click();
@@ -444,6 +450,8 @@ class CompanyTest extends SeleniumTestBase
 
         $this->get_element("name=name")->send_keys("Test Man");
         $this->get_element("name=facility_id")->send_keys("1");
+        $this->get_element("name=phone_number")->send_keys("1234567890");
+        $this->get_element("name=address")->send_keys("123 Fake Dr.");
         $this->get_element("name=email")->send_keys("test@mail.com");
         $this->get_element("name=password")->send_keys("password1");
         $this->get_element("name=submit")->click();

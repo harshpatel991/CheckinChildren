@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: alex
- * Date: 2/18/15
- * Time: 8:43 PM
- */
 
 require_once dirname(__FILE__).'/../SeleniumTestBase.php';
 require_once dirname(__FILE__).'/../TestMacros.php';
@@ -32,6 +26,8 @@ class ManagerTest extends SeleniumTestBase {
 
         $this->get_element("name=name")->send_keys("Test Case");
         $this->get_element("name=email")->send_keys("testcase@gmail.com");
+        $this->get_element("name=phone_number")->send_keys("1234567890");
+        $this->get_element("name=address")->send_keys("123 Fake Dr.");
         $this->get_element("name=password")->send_keys("100pass");
 
         $this->get_element("name=submit")->click();

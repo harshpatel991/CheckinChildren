@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: matt
- * Date: 2/17/15
- * Time: 4:27 AM
- */
+
 require_once dirname(__FILE__).'/../SeleniumTestBase.php';
 require_once dirname(__FILE__).'/../TestMacros.php';
 

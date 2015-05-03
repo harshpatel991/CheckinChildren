@@ -1,7 +1,8 @@
 <?php
-// This class doesn't quite work correctly yet, so leave in until we figure out
-// how to generate a 'malicious' POST request with Selenium Server running
 
+/**
+ * Tests permissions restrictions on various pages with various user roles.
+ */
 
 require_once dirname(__FILE__).'/../SeleniumTestBase.php';
 require_once dirname(__FILE__).'/../TestMacros.php';
@@ -65,27 +66,4 @@ class PermissionsTest extends SeleniumTestBase{
         $this->gotoPage('displayEmployee.php?employee_id=15');
         $this->driver->get_element('id=error_message')->assert_text_contains('Invalid Employee');
     }
-
-//    public function testMaliciousPostCreateEmployee(){
-//        testMacros::login($this->driver, "parent19@gmail.com", "password19");
-//        $auth_token = $this->get_cookie('auth_token')['value'];
-//        $user_id = $this->get_cookie('user_id')['value'];
-//
-//        $url = $this->rootUrl.'http://localhost:4444/CheckinChildren/scripts/controllers/form_handlers/createEmployeeFormHandler.php';
-//        var_dump($url);
-//        $data = array('name' => 'Evil Manager', 'email' => 'l33t@h4xor.com', 'role' => 'employee', 'submit' => 'Submit');
-//
-//        $options = array(
-//            'http' => array(
-//                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-//                'method'  => 'POST',
-//                'cookies' => 'user_id='.$user_id.'; auth_token='.$auth_token.'; user_role=parent',
-//                'content' => http_build_query($data)
-//            ),
-//        );
-//        $context  = stream_context_create($options);
-//        $result = file_get_contents($url, false, $context);
-//        var_dump($result);
-//    }
-
 }

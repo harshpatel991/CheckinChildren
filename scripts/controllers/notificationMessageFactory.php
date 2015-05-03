@@ -13,10 +13,10 @@ class notificationMessageFactory{
     /**
      * Creates a notificationMessageController object with a child object and message status.
      *
-     * @param $child childModel used to construct controller.
-     * @param $messageStatus messageStatus used to construct controller.
-     * @param null $emailer messageAdapter used to construct controller, only used for dependency injection.
-     * @return notificationMessageController the controller.
+     * @param childModel $child The child used to construct controller.
+     * @param messageStatus $messageStatus The status used to construct controller.
+     * @param messageAdapter $emailer The adapter used to construct controller, only used for dependency injection.
+     * @return notificationMessageController The controller.
      */
     public function create($child, $messageStatus, $emailer = null){
         if ($emailer === null){

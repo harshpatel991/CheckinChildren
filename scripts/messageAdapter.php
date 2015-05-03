@@ -43,9 +43,9 @@ class messageAdapter
     /**
      * Sends email message to recipient with given message and subject.
      *
-     * @param $to string the email address
-     * @param $subj string the subject
-     * @param $msg string the message
+     * @param string $to the email address
+     * @param string $subj string the subject
+     * @param string $msg The message
      * @return string the result of the operation, should be changed to error handling in the future
      */
     public function sendMail($to, $subj, $msg){
@@ -82,11 +82,11 @@ class messageAdapter
 
     /**
      * Sends SMS message to recipient with given message.
-     * .
-     * @param $toNumber string the phone number
-     * @param $carrier string the carrier (should use carrierEnum)
-     * @param $msg string the message
-     * @return string the result of the operation, should be changed to error handling in the future
+     *
+     * @param string $toNumber The phone number.
+     * @param string $carrier The carrier (should use carrierEnum).
+     * @param string $msg The message.
+     * @return string The result of the operation, should be changed to error handling in the future.
      */
     public function sendSMS($toNumber, $carrier, $msg){
         return $this->sendMail($toNumber.'@'.self::$carrierRouters[$carrier], '', $msg);

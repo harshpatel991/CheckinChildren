@@ -44,9 +44,9 @@ class notificationMessageController{
     /**
      * Constructor should only be called from notificationMessageFactory, not called directly from other classes.
      *
-     * @param $child    childModel to send notifications from.
-     * @param $messageStatus int status of the child to send via notification (should use messageStatus enum)..
-     * @param messageAdapter $emailer messageAdapter used to send messages, only used for dependency injection.
+     * @param childModel $child  The child to send notifications from.
+     * @param int $messageStatus The status of the child to send via notification (should use messageStatus enum).
+     * @param messageAdapter $emailer The messageAdapter used to send messages, only used for dependency injection.
      */
     public function __construct($child, $messageStatus, $emailer){
         $this->emailer = $emailer;
@@ -59,7 +59,7 @@ class notificationMessageController{
     /**
      * Sends the proper notification to parent, if they exist, based on contact preferences.
      *
-     * @return string result message of operation, should be converted to error message in future.
+     * @return string result The message of operation, Should be converted to error message in future.
      */
     public function sendStatusNotification(){
         if (!isset($this->parent) || $this->parent === null){
@@ -107,8 +107,8 @@ class notificationMessageController{
     /**
      * Constructs a string from the templated message by inserting information
      *
-     * @param $str string the template string
-     * @return mixed string the constructed string
+     * @param string $str The template string.
+     * @return mixed string the constructed string.
      */
     private function buildString($str){
         return str_replace('$child_name$', $this->child->child_name, $str);
