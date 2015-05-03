@@ -12,6 +12,11 @@ require_once 'WebDriver/ElementNotVisibleException.php';
 require_once dirname(__FILE__).'/../../scripts/models/db/dbConnectionFactory.php';
 require_once dirname(__FILE__).'/../../config.php';
 
+/**
+ * Class SeleniumTestBase
+ *
+ * Base class for running all Selenium HTTP tests.
+ */
 class SeleniumTestBase extends PHPUnit_Framework_TestCase {
   /**
    * @var WebDriver_Driver
@@ -22,9 +27,10 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
 
   public static $baseUrl = "";
   public static $isWindows = false;
-  public static $headless = false; //only tested on Matt's machine, talk to him if you want to get it working
+  public static $headless = false; //only tested on Matt's machine, talk to him if you want to get it working, uses xvfb
 
   public function setUp() {
+    // Start up SeleniumServer.
     if (self::$isWindows){
       exec('start java -jar ../WebDriver/selenium-server-standalone-2.45.0.jar');
     }
@@ -81,6 +87,7 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
     }
   }
 
+  // Logs screenshot of browser.
   private function logScreenshot(){
     $time = time();
     $imgName = 'screenshots/screenshot-'.$time.'.png';
@@ -91,10 +98,16 @@ class SeleniumTestBase extends PHPUnit_Framework_TestCase {
     fclose($imgFile);
   }
 
+  /**
+   * @param string $pageName Switch to local page.
+   */
   protected function gotoPage($pageName){
     $this->driver->load(self::$baseUrl.$pageName);
   }
 
+  /**
+   * Check retries, retry if necessary on failure.
+   */
   public function tearDown() {
     if ($this->driver && $this->retries < 1) {
       if ($this->hasFailed()) {
