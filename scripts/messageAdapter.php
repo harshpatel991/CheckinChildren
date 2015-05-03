@@ -27,7 +27,7 @@ class messageAdapter
     );
 
     /**
-     * Constructs a messageAdapter object
+     * Constructs a messageAdapter object.
      * Message suppress is only set globally by the config file, defaults to true.
      */
     public function __construct(){
@@ -43,10 +43,10 @@ class messageAdapter
     /**
      * Sends email message to recipient with given message and subject.
      *
-     * @param string $to the email address
-     * @param string $subj string the subject
-     * @param string $msg The message
-     * @return string the result of the operation, should be changed to error handling in the future
+     * @param string $to The email address.
+     * @param string $subj The subject.
+     * @param string $msg The message.
+     * @return string The result of the operation, should be changed to error handling in the future.
      */
     public function sendMail($to, $subj, $msg){
         if (!$this->suppress){
