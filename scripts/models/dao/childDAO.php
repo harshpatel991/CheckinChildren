@@ -4,9 +4,10 @@ require_once(dirname(__FILE__).'/../childModel.php');
 require_once(dirname(__FILE__).'/../db/dbConnectionFactory.php');
 
 /**
- * Class childDAO manages Child table in database
+ * Class childDAO
+ *
+ * Manages Child table in database.
  */
-
 class childDAO {
 
     /**

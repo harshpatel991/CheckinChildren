@@ -1,14 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: matt
- * Date: 2/15/15
- * Time: 4:38 PM
- */
 
 /**
  * This controller checks login credentials. If they are valid, the user moves on to the website.
  */
+
 require_once(dirname(__FILE__) . '/../models/dao/userDAO.php');
 require_once(dirname(__FILE__).'/../models/userModel.php');
 require_once(dirname(__FILE__).'/../cookieManager.php');
@@ -16,7 +11,7 @@ require_once(dirname(__FILE__).'/../cookieManager.php');
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$userDao = new UserDAO();
+$userDao = new userDAO();
 $dbUser = $userDao->find('email', $email);
 $cookieManager = new cookieManager();
 

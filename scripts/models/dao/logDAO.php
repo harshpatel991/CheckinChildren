@@ -5,7 +5,7 @@ require_once(dirname(__FILE__).'/../employeeModel.php');
 require_once(dirname(__FILE__).'/employeeDAO.php');
 require_once(dirname(__FILE__).'/../logModel.php');
 require_once(dirname(__FILE__).'/facilityDAO.php');
-require_once(dirname(__FILE__).'/companyDAO.php');
+require_once(dirname(__FILE__) . '/companyDAO.php');
 
 /**
  * Class logDAO This class access the logging database, allowing for inserting new log entries and loading facility-specific ones.

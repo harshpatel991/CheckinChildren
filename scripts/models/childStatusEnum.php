@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: matt
- * Date: 3/4/15
- * Time: 1:23 PM
- */
 
 class childStatus
 {

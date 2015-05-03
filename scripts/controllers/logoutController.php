@@ -1,10 +1,9 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: matt
- * Date: 2/16/15
- * Time: 5:10 AM
+ * This controller is called to log the user out of the system.
  */
+
 require_once(dirname(__FILE__).'/../cookieManager.php');
 $cookieManager = new cookieManager();
 $cookieManager->clearAuthCookies();

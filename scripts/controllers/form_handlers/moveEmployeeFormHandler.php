@@ -3,6 +3,7 @@
  * The form handler when a company submits form to move an employee to a different facility
  * Updates the employee's facility_id in the database using the employeeDAO and redirects to displayEmployee page
  */
+
 require_once(dirname(__FILE__) . '/../authController.php');
 require_once(dirname(__FILE__) . '/../../errorManager.php');
 require_once(dirname(__FILE__) . '/../../cookieManager.php');

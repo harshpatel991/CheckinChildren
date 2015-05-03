@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: matt
- * Date: 3/16/15
- * Time: 6:41 PM
- */
+
 require_once(dirname(__FILE__).'/notificationMessageController.php');
 
 /**

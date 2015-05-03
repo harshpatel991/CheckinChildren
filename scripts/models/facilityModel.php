@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Me
- * Date: 2/15/15
- * Time: 4:49 PM
- */
+
 require_once(dirname(__FILE__).'/../errorManager.php');
 
 /**

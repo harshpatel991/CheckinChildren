@@ -1,8 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: matt
- */
 
 /**
  * Class userModel used a base representation for all user. Super class to many other models
