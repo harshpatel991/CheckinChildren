@@ -1,6 +1,3 @@
-/**
- * Created by matt on 3/1/15.
- */
 $(document).ready(function(){
     var $confirmModal = $('#confirmModal');
     var $saveButton = $('#saveButton');

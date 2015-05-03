@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: matt
- * Date: 2/16/15
- * Time: 4:11 AM
- */
 
 require_once(dirname(__FILE__) . '/../models/dao/userDAO.php');
 require_once(dirname(__FILE__).'/../models/userModel.php');
@@ -17,15 +11,42 @@ require_once(dirname(__FILE__).'/../models/facilityModel.php');
 require_once(dirname(__FILE__).'/../cookieManager.php');
 require_once(dirname(__FILE__).'/../errorManager.php');
 
+/**
+ * Class authController
+ *
+ * Used to validate authentication and permissions on each page.
+ * Maintains an internal state of permissions and can act with default behavior accordingly.
+ */
 class authController
 {
+    /**
+     * @var int The current internal authentication status
+     */
     public $authStatus;
+
+    /**
+     * @var string The current user's authentication token
+     */
     public $authToken;
+
+    /**
+     * @var int The current user's id
+     */
     public $userId;
+
+    /**
+     * @var string The current user's role
+     */
     public $userRole;
 
     private $cookieManager;
 
+    /**
+     * Constructs an instance of the authController class.
+     * Also validates the user credentials as correct or invalid, sets the $authStatus accordingly.
+     *
+     * @param cookieManager $cookieManager Optional cookieManager object, used for dependency injection in tests.
+     */
     public function __construct($cookieManager = null){
         $this->cookieManager = $cookieManager;
         if ($cookieManager == null){
@@ -51,7 +72,7 @@ class authController
             }
 
             else {
-                $userDao = new UserDAO();
+                $userDao = new userDAO();
                 $user = $userDao->find('id', $this->userId);
 
                 $authenticated = isset($user) && isset($user->auth_token) && $user->auth_token == $this->authToken
@@ -74,6 +95,12 @@ class authController
         }
     }
 
+    /**
+     * Validates that the user has proper roles, and sets the internal state $authStatus accordingly.
+     *
+     * @param string[] $validRoles Valid roles allowed on this page.
+     * @return bool Returns whether the role validation passed.
+     */
     public function verifyRole($validRoles){
         if ($this->authStatus == authStatus::valid){
             if (!in_array($this->userRole, $validRoles)){
@@ -85,6 +112,13 @@ class authController
         return false;
     }
 
+    /**
+     * Validates whether the current user has permissions to interact with a particular child.
+     * Will be invalid if the child does not exist, or the user has no such permissions.
+     *
+     * @param int $childId The id of the child to test against.
+     * @return bool Returns whether the child validation passed.
+     */
     public function verifyChildPermissions($childId){
         if ($this->authStatus == authStatus::valid){
             $childDao = new childDAO();
@@ -121,6 +155,13 @@ class authController
         return false;
     }
 
+    /**
+     * Validates whether the current user has permissions to interact with a particular employee.
+     * Will be invalid if the emploeye does not exist, or the user has no such permissions.
+     *
+     * @param int $empId The id of the employee to test against.
+     * @return bool Returns whether the employee validation passed.
+     */
     public function verifyEmployeePermissions($empId){
         if ($this->authStatus == authStatus::valid) {
             $employeeDao = new employeeDAO();
@@ -150,6 +191,13 @@ class authController
         return false;
     }
 
+    /**
+     * Validates whether the current user has permissions to interact with a particular facility.
+     * Will be invalid if the facility does not exist, or the user has no such permissions.
+     *
+     * @param int $facilityId The id of the facility to validate.
+     * @return bool Returns whether the facility validation passed.
+     */
     public function verifyFacilityPermissions($facilityId){
         if ($this->authStatus == authStatus::valid) {
             $facilityDao = new FacilityDAO();
@@ -167,6 +215,11 @@ class authController
         return false;
     }
 
+    /**
+     * Redirect the page with default behavior depending on the current value of $authStatus.
+     *
+     * @param string $pathToPublic Optional path to public directory if different from default.
+     */
     public function redirectPage($pathToPublic = ''){
         if ($this->authStatus == authStatus::not_logged_in){
             //Not logged in, reditect to login page
@@ -186,6 +239,11 @@ class authController
     }
 }
 
+/**
+ * Class authStatus
+ *
+ * Enum of possible authentication statuses.
+ */
 class authStatus
 {
     const valid = 0;

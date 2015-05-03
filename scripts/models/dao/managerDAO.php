@@ -5,7 +5,9 @@ require_once(dirname(__FILE__).'/../db/dbConnectionFactory.php');
 require_once(dirname(__FILE__).'/userDAO.php');
 
 /**
- * Class managerDAO manages employee table for managers
+ * Class managerDAO
+ *
+ * Manages employee table for managers.
  */
 class managerDAO {
 

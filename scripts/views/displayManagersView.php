@@ -1,8 +1,8 @@
 <?php
-
 /**
  * This page displays all of the managers of a facility.
  */
+
 require_once(dirname(__FILE__).'/../controllers/authController.php');
 require_once(dirname(__FILE__).'/../models/dao/managerDAO.php');
 require_once(dirname(__FILE__).'/../models/managerModel.php');

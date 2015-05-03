@@ -1,8 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: matt
- */
 
 require_once(dirname(__FILE__).'/../facilityModel.php');
 require_once(dirname(__FILE__).'/../db/dbConnectionFactory.php');

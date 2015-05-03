@@ -4,7 +4,6 @@
  * Class carrier
  * Const values for the given mobile phone carriers
  */
-
 class carrier {
     const verizon = "Verizon Wireless";
     const tmobile = "T-Mobile";

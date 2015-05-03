@@ -1,16 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: matt
- */
 
 require_once(dirname(__FILE__).'/../userModel.php');
 require_once(dirname(__FILE__).'/../db/dbConnectionFactory.php');
 
 /**
- * Class UserDAO manages user table
+ * Class userDAO manages user table
  */
-class UserDAO
+class userDAO
 {
     /**
      * Retrieves user with field and value

@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: matt
- * Date: 3/8/15
- * Time: 4:42 PM
- */
+
 require_once(dirname(__FILE__).'/../lib/PHPMailer-master/PHPMailerAutoload.php');
 require_once(dirname(__FILE__).'/models/carrierEnum.php');
 require_once(dirname(__FILE__).'/../config.php');

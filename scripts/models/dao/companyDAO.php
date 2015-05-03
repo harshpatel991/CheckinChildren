@@ -1,19 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Elzabad
- */
+
 require_once(dirname(__FILE__).'/../companyModel.php');
 require_once(dirname(__FILE__).'/../facilityModel.php');
 require_once(dirname(__FILE__).'/../db/dbConnectionFactory.php');
 require_once(dirname(__FILE__).'/userDAO.php');
 
 /**
- * Class CompanyDAO manages Company table in database
+ * Class companyDAO manages Company table in database
  */
-class CompanyDAO {
+class companyDAO {
     /**
      * Add new company to users table
+     *
      * @param companyModel $company Data stored for new company
      * @return string Assigned id to the new company
      */
@@ -29,6 +27,7 @@ class CompanyDAO {
 
     /**
      * Inserts the specified company in the data base
+     *
      * @param companyModel $company Data for new company
      * @param int $id Id of the new company
      * @return string Assigned id to the new company
@@ -49,6 +48,7 @@ class CompanyDAO {
 
     /**
      * Retreives a company matching the specified facility id
+     *
      * @param int $id Id of the company
      * @return mixed Either Returns false if a company is not found or companyModel Object
      */
@@ -65,6 +65,7 @@ class CompanyDAO {
     }
     /**
      * Updates the email, parent_name, address, phone_number of a parent
+     *
      * @param companyModel $company Data for the updated company
      */
     public function update($company) {

@@ -21,7 +21,7 @@ $company_id = $_COOKIE[cookieManager::$userId];
 $company = new companyModel($_POST["company_name"], $_POST["address"], $_POST["phone_number"], $_POST["email"],"", "company", $company_id);
 $error_code = $company->isUpdateValid();
 if ($error_code == 0) {
-    $companyDAO = new CompanyDAO();
+    $companyDAO = new companyDAO();
     $companyDAO->update($company);
 
     header("Location: ../../../public/displayCompanyInfo.php"); //send browser to the page for newly created facility
