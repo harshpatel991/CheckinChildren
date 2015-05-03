@@ -8,6 +8,8 @@ require_once(dirname(__FILE__).'/../errorManager.php');
 class employeeModel extends userModel{
     public $emp_name;
     public $facility_id;
+    public $phone_number;
+    public $address;
 
     /**
      * Used to construct a new employee
@@ -52,13 +54,20 @@ class employeeModel extends userModel{
         if (strlen($this->emp_name)>30 || strlen($this->emp_name)<=0){
             return errorEnum::invalid_name;
         }
-
         if (strlen($this->email)>40 || strlen($this->email)<=0 || strpos($this->email, '@')===false) {
             return errorEnum::invalid_email;
         }
         if (strlen($this->password)>40){
             return errorEnum::invalid_password;
         }
+        if (strlen($this->phone_number)!=10 || !is_numeric($this->phone_number)){
+            return errorEnum::invalid_phone;
+        }
+        if (strlen($this->address)==0 || strlen($this->address)>50){
+            return errorEnum::invalid_address;
+        }
+
+
 
         return parent::isUpdateValid();
     }

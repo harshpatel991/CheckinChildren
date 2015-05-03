@@ -13,18 +13,24 @@ class managerDAOTest extends unitTestBase {
     private $name2 = "test2";
     private $pass1 = "pass1";
     private $pass2 = "pass2";
-    private $company1 = 1;
-    private $company2 = 1;
+    private $company1 = 7;
+    private $company2 = 7;
+    private $managerId1 = 98;
+    private $managerId2 = 99;
+    private $address1 = "1 Address";
+    private $address2 = "2 Address";
+    private $phone1 = "0123456789";
+    private $phone2 = "1234567890";
     private $email1 = "1@1";
     private $email2 = "2@2";
-    private $facility1 = "1";
-    private $facility2 = "1";
+    private $facility1 = "7";
+    private $facility2 = "7";
 
     /**
      * Test find manager
      */
     public function testFind(){
-        $manager = new managerModel($this->name1, $this->pass1, $this->facility1, $this->company1, $this->email1);
+        $manager = new managerModel($this->name1, $this->pass1, $this->facility1, $this->email1, $this->managerId1, $this->address1, $this->phone1);
         $managerDAO = new managerDAO();
 
         $id = $managerDAO->createManager($manager);
@@ -38,13 +44,15 @@ class managerDAOTest extends unitTestBase {
      * Test get managers in facility
      */
     public function testGetFacilityManagers(){
-        $manager1 = new managerModel($this->name1, $this->pass1, $this->facility1, $this->company1, $this->email1);
-        $manager2 = new managerModel($this->name2, $this->pass2, $this->facility2, $this->company2, $this->email2);
+        $manager1 = new managerModel($this->name1, $this->pass1, $this->facility1, $this->email1, 0, $this->address1, $this->phone1);
+        $manager2 = new managerModel($this->name2, $this->pass2, $this->facility1, $this->email2, 0, $this->address2, $this->phone2);
 
         $managerDAO = new managerDAO();
 
         $id1 = $managerDAO->createManager($manager1);
         $id2 = $managerDAO->createManager($manager2);
+        echo $id1;
+        echo $id2;
 
         $tmanagers = $managerDAO->getFacilityManagers($this->facility1);
 
@@ -67,8 +75,8 @@ class managerDAOTest extends unitTestBase {
         $this->facility1 = $facilityDAO->insert($mfacility1);
         $this->facility2 = $facilityDAO->insert($mfacility2);
 
-        $manager1 = new managerModel($this->name1, $this->pass1, $this->facility1, $this->company1, $this->email1);
-        $manager2 = new managerModel($this->name2, $this->pass2, $this->facility2, $this->company2, $this->email2);
+        $manager1 = new managerModel($this->name1, $this->pass1, $this->facility1, $this->email1, 0, $this->address1, $this->phone1);
+        $manager2 = new managerModel($this->name2, $this->pass2, $this->facility2, $this->email2, 0, $this->address2, $this->phone2);
 
 
         $id1 = $managerDAO->createManager($manager1);

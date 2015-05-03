@@ -1,19 +1,69 @@
 <?php
 
+/**
+ * Class childStatus
+ *
+ * Enum to describe the current status of a child.
+ */
 class childStatus
 {
-    const here_due = 0; //here, parent is late
-    const here_ok = 1;  //here, should be
-    const not_here_late = 2; //not here, late
-    const not_here_due = 3;  //not here, will arrive later
-    const not_here_ok = 4;   //not here, not coming
+    /**
+     * Child here, parent is late.
+     */
+    const here_due = 0;
 
-    const info_here_due = "PARENT IS LATE!"; //here, parent is late
-    const info_here_ok = "CHECKED IN. EXPECTING PARENT.";  //here, should be
-    const info_not_here_late = "LATE!"; //not here, late
-    const info_not_here_due = "ARRIVING.";  //not here, will arrive later
-    const info_not_here_ok = "NOT COMING TODAY.";   //not here, not coming
+    /**
+     * Child here, expected to be.
+     */
+    const here_ok = 1;
 
+    /**
+     * Child not here, considered late.
+     */
+    const not_here_late = 2;
+
+    /**
+     * Child not here, expected to arrive later.
+     */
+    const not_here_due = 3;
+
+    /**
+     * Child not here, not expected to be here now.
+     */
+    const not_here_ok = 4;
+
+
+    /**
+     * Message indicating parent is late.
+     */
+    const info_here_due = "PARENT IS LATE!";
+
+    /**
+     * Message indicating a child is checked in, expecting parent.
+     */
+    const info_here_ok = "CHECKED IN. EXPECTING PARENT.";
+
+    /**
+     * Message indicating the child is late.
+     */
+    const info_not_here_late = "LATE!";
+
+    /**
+     * Message indicating the child will arrive later.
+     */
+    const info_not_here_due = "ARRIVING.";
+
+    /**
+     * Message indicating the child is not expected now.
+     */
+    const info_not_here_ok = "NOT COMING TODAY.";
+
+    /**
+     * Get the message string from the child status enum.
+     *
+     * @param int $status The status enum of the child.
+     * @return string The info description string.
+     */
     public static function getInfo($status = 0){
         switch ($status) {
             case self::here_due:
@@ -30,6 +80,11 @@ class childStatus
     }
 }
 
+/**
+ * Class messageStatus
+ *
+ * Current status of the messages sent from the child.
+ */
 class messageStatus{
     const child_late = 0;
     const child_checked_in = 1;
