@@ -2,6 +2,7 @@
 /**
  * This class determines what gets shown on the side bar based on the user's role.
  */
+
  require_once(dirname(__FILE__).'/../cookieManager.php'); ?>
 
 <ul class="list-group">

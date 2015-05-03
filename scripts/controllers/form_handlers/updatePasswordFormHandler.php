@@ -4,6 +4,7 @@
  * Determines if submitted password is valid and updates record in userDAO and redirects to index page
  * If user information is not valid, redirects to updatePassword page with error
  */
+
 require_once(dirname(__FILE__) . '/../authController.php');
 require_once(dirname(__FILE__) . '/../../errorManager.php');
 require_once(dirname(__FILE__).'/../../cookieManager.php');

@@ -4,6 +4,7 @@
  * Depending on the user, it contains links to edit or delete the employee's profile,
  * move the employee to a different facility, and promote/demote an employee to/from a manager
  */
+
 error_reporting(E_ALL);
 ini_set("display_errors",1);
 

@@ -4,6 +4,7 @@
  * Determines if submitted employee is valid and adds to employeeDAO and redirects to displayEmployees page
  * If employee account is not valid, redirects to createEmployee page with error
  */
+
 require_once(dirname(__FILE__) . '/../authController.php');
 require_once(dirname(__FILE__) . '/../../errorManager.php');
 require_once(dirname(__FILE__) . '/../../models/dao/employeeDAO.php');

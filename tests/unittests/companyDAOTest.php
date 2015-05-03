@@ -6,7 +6,7 @@
  * Time: 1:15 AM
  */
 
-require_once(dirname(__FILE__).'/../../scripts/models/dao/companyDAO.php');
+require_once(dirname(__FILE__) . '/../../scripts/models/dao/companyDAO.php');
 require_once(dirname(__FILE__).'/../../scripts/models/companyModel.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
 

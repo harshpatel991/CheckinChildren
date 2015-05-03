@@ -1,7 +1,6 @@
 <?php
 require_once(dirname(__FILE__).'/../../scripts/models/dao/managerDAO.php');
 require_once(dirname(__FILE__).'/../../scripts/models/dao/facilityDAO.php');
-require_once(dirname(__FILE__).'/../../scripts/models/dao/tableCleanerDAO.php');
 require_once(dirname(__FILE__).'/../../scripts/models/managerModel.php');
 require_once(dirname(__FILE__).'/../../scripts/models/facilityModel.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
@@ -25,10 +24,6 @@ class managerDAOTest extends unitTestBase {
      * Test find manager
      */
     public function testFind(){
-        tableCleanerDAO::clean("employee");
-        tableCleanerDAO::clean("users");
-        tableCleanerDAO::clean("facility");
-
         $manager = new managerModel($this->name1, $this->pass1, $this->facility1, $this->company1, $this->email1);
         $managerDAO = new managerDAO();
 
@@ -43,10 +38,6 @@ class managerDAOTest extends unitTestBase {
      * Test get managers in facility
      */
     public function testGetFacilityManagers(){
-        tableCleanerDAO::clean("employee");
-        tableCleanerDAO::clean("users");
-        tableCleanerDAO::clean("facility");
-
         $manager1 = new managerModel($this->name1, $this->pass1, $this->facility1, $this->company1, $this->email1);
         $manager2 = new managerModel($this->name2, $this->pass2, $this->facility2, $this->company2, $this->email2);
 
@@ -67,10 +58,6 @@ class managerDAOTest extends unitTestBase {
      * Tests Get company Managers
      */
     public function testGetCompanyManagers(){
-        tableCleanerDAO::clean("employee");
-        tableCleanerDAO::clean("users");
-        tableCleanerDAO::clean("facility");
-
         $mfacility1 = new facilityModel($this->company1, "address","5555555555");
         $mfacility2 = new facilityModel($this->company1, "address","5555555555");
 
