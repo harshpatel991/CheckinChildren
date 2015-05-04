@@ -1,10 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: alex
- * Date: 3/16/15
- * Time: 10:05 PM
+ * Creates a template to load in the page for the view employee page viewed by managers and companies
  */
+
 error_reporting(E_ALL); //turn on error reporting
 ini_set("display_errors", 1);
 

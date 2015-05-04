@@ -6,6 +6,11 @@ require_once(dirname(__FILE__).'/../../scripts/models/userModel.php');
 require_once(dirname(__FILE__).'/../../scripts/models/dao/userDAO.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
 
+/**
+ * Class authControllerTest
+ *
+ * Tests the authController class
+ */
 class authControllerTest extends unitTestBase
 {
     private $mockCookieManager;
@@ -15,6 +20,7 @@ class authControllerTest extends unitTestBase
         $_SERVER['HTTP_USER_AGENT'] = 'fakeuser';
         $this->mockCookies = array();
 
+        // Setup mock objects to mimick the use of browser cookies for authentication
         $this->mockCookieManager = $this->getMock('cookieManager', array('getCookies', 'setCookie', 'clearAuthCookies'));
 
         $this->mockCookieManager->expects($this->any())->method('getCookies')->will($this->returnCallback(
@@ -194,7 +200,7 @@ class authControllerTest extends unitTestBase
     }
 
     private function loginAsUser($id){
-        $userDao = new UserDAO();
+        $userDao = new userDAO();
         $user = $userDao->find('id',$id);
         $user->auth_token = $user->genAuthToken();
         $userDao->updateField($id, 'auth_token', $user->auth_token);

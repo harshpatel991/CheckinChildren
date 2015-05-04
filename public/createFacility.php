@@ -1,4 +1,8 @@
 <?php
+/**
+ * Creates a template to loads in the for the create facility page viewed by companies
+ */
+
 error_reporting(E_ALL); //turn on error reporting
 ini_set("display_errors", 1);
 

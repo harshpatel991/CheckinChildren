@@ -2,6 +2,7 @@
 /**
  *This class displays the stuff at the top of the page, i.e. "CheckinChildren", a role message, and the logout button.
  */
+
 require_once(dirname(__FILE__).'/../cookieManager.php');
 ?>
 
@@ -25,7 +26,7 @@ require_once(dirname(__FILE__).'/../cookieManager.php');
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
 
           <ul class="nav navbar-nav navbar-right">
-            <?php if (isset($_COOKIE[cookieManager::$userRole])) { //TODO: is this okay to do? ?>
+            <?php if (isset($_COOKIE[cookieManager::$userRole])) { ?>
               <li><p class="navbar-text" id="signed-in" name="signed-in">Currently signed in as a <b><?php echo $_COOKIE[cookieManager::$userRole]; ?></b></p></li>
               <li><p class="navbar-text">ID: <?php echo $_COOKIE[cookieManager::$userId]; ?> </p></li>
 

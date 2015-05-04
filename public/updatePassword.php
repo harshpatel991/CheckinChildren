@@ -1,4 +1,8 @@
 <?php
+/**
+ * Creates a template to load in the page for a user to change their password
+ */
+
 error_reporting(E_ALL); //turn on error reporting
 ini_set("display_errors", 1);
 

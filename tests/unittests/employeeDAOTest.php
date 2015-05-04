@@ -1,17 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: alex
- * Date: 2/16/15
- * Time: 7:04 PM
- */
 
 require_once(dirname(__FILE__).'/../../scripts/models/dao/employeeDAO.php');
 require_once(dirname(__FILE__).'/../../scripts/models/dao/userDAO.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
 
+/**
+ * Class employeeDAOTest test employeeDAO
+ */
 class employeeDAOTest extends unitTestBase {
 
+    /**
+     * Test find employee
+     */
     public function testFind(){
         $employeeDAO=new employeeDAO();
 
@@ -24,6 +24,9 @@ class employeeDAOTest extends unitTestBase {
         $this->assertEquals($employee->password, "2aa60a8ff7fcd473d321e0146afd9e26df395147");
     }
 
+    /**
+     * Test create employee
+     */
     public function testCreate_DCP(){
         $employeeDAO=new employeeDAO();
 
@@ -39,6 +42,9 @@ class employeeDAOTest extends unitTestBase {
         $this->assertEquals($employee->password, sha1("testpass"));
     }
 
+    /**
+     * Test find with bad id
+     */
     public function testBadEmpID()
     {
         $employeeDAO=new employeeDAO();
@@ -48,6 +54,9 @@ class employeeDAOTest extends unitTestBase {
         $this->assertFalse($employee);
     }
 
+    /**
+     * Test get employees from facility
+     */
     public function testgetMultipleFacilityEmployees()
     {
         $employeeDAO = new employeeDAO();
@@ -60,6 +69,10 @@ class employeeDAOTest extends unitTestBase {
             $this->assertTrue(in_array($employee->emp_name, $names));
         }
     }
+
+    /**
+     * Tst delete all employees from facility
+     */
     public function testDeleteAllEmployeesInFacility(){
 
         $employeeDAO = new employeeDAO();
@@ -72,6 +85,9 @@ class employeeDAOTest extends unitTestBase {
         $this->assertEquals(0,count($employees));
     }
 
+    /**
+     * Test delete employee
+     */
     public function testDeleteExistingEmployee(){
         $employeeDAO = new employeeDAO();
         $userDAO = new userDAO();
@@ -83,6 +99,9 @@ class employeeDAOTest extends unitTestBase {
         $this->assertEquals(false, $employees);
     }
 
+    /**
+     * Test delete non existing employee
+     */
     public function testDeleteNonExistingEmployee(){
         $employeeDAO = new employeeDAO();
         $userDAO = new userDAO();

@@ -1,4 +1,10 @@
 <?php
+/**
+ * The view that contains the html an employee sees when viewing children to checkin.
+ * It contains two accordions that contain the sorted children in this facility.
+ * An employee can select children to check in or out, then confirm in a modal with the name of the guardian making the action.
+ * The form submits to the checkChildInOutFormHandler.
+ */
 
 require_once(dirname(__FILE__).'/../controllers/authController.php');
 require_once(dirname(__FILE__).'/../cookieManager.php');
@@ -15,6 +21,8 @@ $time = dateTimeProvider::getCurrentDateTime();
 ?>
 <h1>Check In/Check Out Children</h1>
 <h4>Time: <?php echo dateTimeProvider::readableTime($time); ?></h4>
+
+<!--  The accordion containing sorted children not currently here.  -->
 <h2>Not Here</h2>
 <div class="panel-group" id="nothere-accordion">
     <?php
@@ -34,6 +42,7 @@ $time = dateTimeProvider::getCurrentDateTime();
     ?>
 </div>
 
+<!--  The accordion containing sorted children currently here.  -->
 <h2>Here</h2>
 <div class="panel-group" id="here-accordion">
     <?php
@@ -53,7 +62,7 @@ $time = dateTimeProvider::getCurrentDateTime();
 <br>
 <br><a href="index.php">Back to Home</a>
 
-<!-- Modal -->
+<!-- Confirmation modal that pops up to prompt the employee to confirm current actions -->
     <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -99,6 +108,13 @@ $time = dateTimeProvider::getCurrentDateTime();
 
 <?php
 
+/**
+ * Get the details required to generate the accordion element for this child.
+ *
+ * @param childModel $child
+ * @param int $status The current child's status, expressed as childStatusEnum.
+ * @return array The details used to generate the accordion
+ */
 function getAccordionDetails($child, $status){
     $details = array(
         'buttonText' => 'Check-In',
@@ -137,6 +153,14 @@ function getAccordionDetails($child, $status){
     return $details;
 }
 
+/**
+ * Generate the HTML for an accordion element for a given child.
+ *
+ * @param int $i The index of the accordion element.
+ * @param childModel $child The child associated with this element.
+ * @param int $status The current child's status, expressed as childStatusEnum.
+ * @return string The generated HTML code for the accordion element.
+ */
 function accordionElement($i, $child, $status){
 
     $details = getAccordionDetails($child, $status);

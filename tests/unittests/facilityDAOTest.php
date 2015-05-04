@@ -6,7 +6,9 @@ require_once(dirname(__FILE__).'/UnitTestBase.php');
 
 class facilityDAOTest extends unitTestBase {
 
-    //Tests inserting into facility database
+    /**
+     * Tests inserting into facility database
+     */
     public function testInsertFacility() {
         $facilityDAO = new facilityDAO();
 
@@ -25,7 +27,9 @@ class facilityDAOTest extends unitTestBase {
         $this->assertEquals($phone, $retrievedFacility->phone);
     }
 
-    //Tests finding an existing facility in the database
+    /**
+     * Tests finding an existing facility in the database
+     */
     public function testFindFacility() {
         $facilityDAO = new facilityDAO();
 
@@ -42,7 +46,9 @@ class facilityDAOTest extends unitTestBase {
         $this->assertEquals($phone, $retrievedFacility->phone);
     }
 
-    //Tests finding a facility that does not exist
+    /**
+     * Tests finding a facility that does not exist
+     */
     public function testFindNonExistentFacility() {
         $facilityDAO = new facilityDAO();
         $facility_id = 999999;
@@ -52,7 +58,9 @@ class facilityDAOTest extends unitTestBase {
         $this->assertEquals(FALSE, $retrievedFacility);
     }
 
-    //Tests finding all facilities in a company
+    /**
+     * Tests finding all facilities in a company
+     */
     public function testFindFacilitiesInCompany() {
         $facilityDAO = new facilityDAO();
         $company_id = 5;

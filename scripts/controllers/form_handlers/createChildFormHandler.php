@@ -4,6 +4,7 @@
  * Determines if submitted child is valid and adds to childDAO
  * If child is not valid, redirects to createChild page with error
  */
+
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 require_once(dirname(__FILE__) . '/../authController.php');

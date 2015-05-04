@@ -1,4 +1,9 @@
 <?php
+/**
+ * The view that contains the html that a company/manager sees when viewing the company/facility logs
+ * Allows filtering and sorting of the logs
+ */
+
 require_once(dirname(__FILE__).'/../controllers/authController.php');
 require_once(dirname(__FILE__).'/../models/dao/managerDAO.php');
 require_once(dirname(__FILE__).'/../models/dao/logDAO.php');

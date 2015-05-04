@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Elzabad
- * Date: 2/20/2015
- * Time: 4:41 PM
- */
+
 require_once(dirname(__FILE__).'/../../scripts/models/companyModel.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
 

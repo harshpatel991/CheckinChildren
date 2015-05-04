@@ -1,4 +1,8 @@
 <?php
+/**
+ * Creates a template to load in the page for the displaying of a parents info as viewed by parents
+ */
+
 error_reporting(E_ALL); //turn on error reporting
 ini_set("display_errors", 1);
 
