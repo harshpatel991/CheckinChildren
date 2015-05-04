@@ -1,19 +1,25 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: alex
- * Date: 2/15/15
- * Time: 1:23 PM
- */
 
 require_once(dirname(__FILE__).'/../employeeModel.php');
 require_once(dirname(__FILE__).'/../db/dbConnectionFactory.php');
 require_once(dirname(__FILE__).'/userDAO.php');
+
+/**
+ * Class employeeDAO manages employee table in database
+ */
 class employeeDAO {
 
+    /**
+     * Default constructor
+     */
     public function __construct()
     { }
 
+    /**
+     * Retrieve employee with a given id
+     * @param int $id Employee id
+     * @return mixed Employee with a given id
+     */
     public function find($id){
         $connection = DbConnectionFactory::create();
         $query = "SELECT * FROM employee NATURAL JOIN users WHERE id=:id";
@@ -30,6 +36,11 @@ class employeeDAO {
         return $emp;
     }
 
+    /**
+     * Adds new employee with given data to users table
+     * @param employeeModel $employee New employee model
+     * @return string Assigned id for new employee
+     */
     public function create_DCP($employee){
         $newEmployee=new userModel($employee->email, $employee->password, $employee->role);
         $userDAO=new userDAO();
@@ -41,6 +52,14 @@ class employeeDAO {
         return $id;
     }
 
+    /**
+     * Inserts new employee into employee table
+     * @param string $emp_name Employee name
+     * @param int $facility_id Facility id
+     * @param int $id
+     * @param $phone_number
+     * @param $address
+     */
     private function insert( $emp_name, $facility_id, $id, $phone_number, $address){
         $connection = DbConnectionFactory::create();
 
@@ -58,6 +77,11 @@ class employeeDAO {
         $connection=null;
     }
 
+    /**
+     * Get all employees from facility
+     * @param int $facility_id Facility id
+     * @return array Array of employees
+     */
     public function getFacilityEmployees($facility_id){
         $connection=DbConnectionFactory::create();
 
@@ -76,9 +100,8 @@ class employeeDAO {
     }
 
     /**
-     *
-     * @param $employee
-     * // **** ONLY UPDATES EMAIL AND NAME! ****
+     * Update employee with given id
+     * @param $employee Updated employee model
      */
     public function update($employee){
         $connection=DbConnectionFactory::create();
@@ -112,6 +135,11 @@ class employeeDAO {
         $connection=null;
     }
 
+    /**
+     * Delete employee with given field and value
+     * @param string $field Field
+     * @param string $value Value
+     */
     public function delete($field, $value){
         $connection = DbConnectionFactory::create();
         $query = "DELETE FROM employee WHERE ".$field."=:id";
@@ -120,6 +148,13 @@ class employeeDAO {
         $stmt->execute();
         $connection = null;
     }
+
+    /**
+     * Update field with value
+     * @param int $id Id
+     * @param string $field Field
+     * @param string $value Value
+     */
     public function updateField($id, $field, $value){
         $connection = DbConnectionFactory::create();
         $query = 'UPDATE employee SET '.$field.'=:value WHERE id=:id';

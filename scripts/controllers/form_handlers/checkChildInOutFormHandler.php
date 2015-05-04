@@ -1,8 +1,8 @@
 <?php
 /**
- * The form handler when a employee/manager submits form to check in/ check out children from the facility
+ * The form handler when a employee/manager submits form to check in/check out children from the facility
  * Sets last_checkout/last_checkin values of children and sends appropriate notifications
- * Once completed, redirects to checkinChildren page
+ * Once completed, Redirects to checkinChildren page.
  */
 
 require_once(dirname(__FILE__) . '/../authController.php');
@@ -16,6 +16,7 @@ require_once(dirname(__FILE__) . '/../notificationMessageFactory.php');
 require_once(dirname(__FILE__) . '/../notificationMessageController.php');
 require_once(dirname(__FILE__) . '/../../cookieManager.php');
 
+// Check all authentication information.
 $authController = new authController();
 $authController->verifyRole(['employee','manager']);
 $authController->redirectPage('../../../public/');
@@ -67,6 +68,7 @@ foreach ($checkoutIdArray as $id){
     }
 }
 
+// Get the current time and increment if using test time.
 $curTime= dateTimeProvider::getCurrentDateTime();
 dateTimeProvider::testTimeTick();
 
@@ -80,6 +82,7 @@ $lDAO=new logDAO();
 $cookieManager = new cookieManager();
 $empId=$cookieManager->getCookies()[cookieManager::$userId];
 
+// For each child to checkout, process the checkout and send notifications.
 for ($i=0; $i<count($checkoutIdArray); $i++){
     $id = $checkoutIdArray[$i];
     $cDAO->updateField($id, 'last_checkout', $timeString);
@@ -89,6 +92,7 @@ for ($i=0; $i<count($checkoutIdArray); $i++){
     $lDAO->insert($empId, $child->child_id, $child->child_name, logDAO::$childCheckOut, $checkoutActorArray[$i]);
 }
 
+// For each child to checkin, process the checkin and send notifications.
 for ($i=0; $i<count($checkinIdArray); $i++){
     $id = $checkinIdArray[$i];
     $cDAO->updateField($id, 'last_checkin', $timeString);

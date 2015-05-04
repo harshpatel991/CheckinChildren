@@ -26,6 +26,12 @@ class EmployeeTest extends SeleniumTestBase {
         $this->get_element("id=email")->clear();
         $this->get_element("id=email")->send_keys("pHawthorn@gmail.com");
 
+        $this->get_element("id=phone_number")->clear();
+        $this->get_element("id=phone_number")->send_keys("1234567890");
+
+        $this->get_element("id=address")->clear();
+        $this->get_element("id=address")->send_keys("123 Fake Dr.");
+
         $this->get_element("name=submit")->click();
         $this->get_element("id=edit_employee")->click();
 

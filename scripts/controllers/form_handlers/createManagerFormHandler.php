@@ -4,6 +4,7 @@
  * Determines if submitted manager is valid and adds to managerDAO and redirects to displayManagers page
  * If manager information is not valid, redirects to createManager page with error
  */
+
 require_once(dirname(__FILE__) . '/../authController.php');
 require_once(dirname(__FILE__) . '/../../errorManager.php');
 require_once(dirname(__FILE__) . '/../../models/dao/managerDAO.php');
@@ -25,7 +26,7 @@ $facilityDao = new facilityDAO();
 $facility = $facilityDao->find($_POST['facility_id']);
 
 
-$manager=new managerModel($_POST['name'], $hashedPassword, $_POST['facility_id'], $_POST['email'], 0, $_POST['phone_number'], $_POST['address']);
+$manager=new managerModel($_POST['name'], $hashedPassword, $_POST['facility_id'], $_POST['email'], 0, $_POST['address'], $_POST['phone_number']);
 $error_code = 0;
 if ($facility == false){
     $error_code = errorEnum::facility_not_found;

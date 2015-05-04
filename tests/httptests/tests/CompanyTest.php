@@ -212,6 +212,8 @@ class CompanyTest extends SeleniumTestBase
         $this->get_element("name=facility_id")->send_keys("1");
         $this->get_element("name=email")->send_keys("test@mail.com");
         $this->get_element("name=password")->send_keys("password1");
+        $this->get_element("name=phone_number")->send_keys("1234567890");
+        $this->get_element("name=address")->send_keys("58 great st carol coo, IL");
         $this->get_element("name=submit")->click();
 
         $page = $this->driver->get_source();
@@ -307,6 +309,8 @@ class CompanyTest extends SeleniumTestBase
 
         $this->get_element("name=name")->send_keys("Test Man");
         $this->get_element("name=facility_id")->send_keys("1");
+        $this->get_element("name=phone_number")->send_keys("1234567890");
+        $this->get_element("name=address")->send_keys("123 Fake Dr.");
         $this->get_element("name=email")->send_keys("test@mail.com");
         $this->get_element("name=password")->send_keys("password1");
         $this->get_element("name=submit")->click();
@@ -330,6 +334,8 @@ class CompanyTest extends SeleniumTestBase
 
         $this->get_element("name=name")->send_keys("Test Man");
         $this->get_element("name=facility_id")->send_keys("1");
+        $this->get_element("name=phone_number")->send_keys("1234567890");
+        $this->get_element("name=address")->send_keys("123 Fake Dr.");
         $this->get_element("name=email")->send_keys("test@mail.com");
         $this->get_element("name=password")->send_keys("password1");
         $this->get_element("name=submit")->click();
@@ -387,6 +393,8 @@ class CompanyTest extends SeleniumTestBase
 
         $this->get_element("name=name")->send_keys("Test Man");
         $this->get_element("name=facility_id")->send_keys("1");
+        $this->get_element("name=phone_number")->send_keys("1234567890");
+        $this->get_element("name=address")->send_keys("123 Fake Dr.");
         $this->get_element("name=email")->send_keys("test@mail.com");
         $this->get_element("name=password")->send_keys("password1");
         $this->get_element("name=submit")->click();
@@ -420,6 +428,19 @@ class CompanyTest extends SeleniumTestBase
         $this->assertContains('Bob Dude', $page);
         $this->assertContains('Matt Wallick', $page);
     }
+    public function testViewFacilityChildren() {
+        testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
+
+        $this->get_element("name=view_facilities")->click();
+        $this->get_element("link=1 Facility Rd. Champaign IL 61820")->click();
+        $this->get_element("link=View all Children")->click();
+
+        $page = $this->driver->get_source();
+
+        //assert that the single facility page is shown
+        $this->assertContains('Mark Zuckerberg', $page);
+    }
+
 
     public function testCreateNewManagerAndViewFacilityEmployees() {
         testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
@@ -429,6 +450,8 @@ class CompanyTest extends SeleniumTestBase
 
         $this->get_element("name=name")->send_keys("Test Man");
         $this->get_element("name=facility_id")->send_keys("1");
+        $this->get_element("name=phone_number")->send_keys("1234567890");
+        $this->get_element("name=address")->send_keys("123 Fake Dr.");
         $this->get_element("name=email")->send_keys("test@mail.com");
         $this->get_element("name=password")->send_keys("password1");
         $this->get_element("name=submit")->click();
@@ -510,6 +533,23 @@ class CompanyTest extends SeleniumTestBase
         $this->get_element("link=View all Children")->click();
         $page = $this->driver->get_source();
         $this->assertContains('Mark Zuckerberg', $page);
+    }
+
+    public function testViewChildInfo()
+    {
+        testMacros::login($this->driver, "bigcompany1@gmail.com", "password1");
+
+        $this->get_element("name=view_facilities")->click();
+        $this->get_element("link=1 Facility Rd. Champaign IL 61820")->click();
+        $this->get_element("link=View all Children")->click();
+        $page = $this->driver->get_source();
+
+        $this->assertContains('Mark Zuckerberg', $page);
+        $this->get_element("link=Mark Zuckerberg")->click();
+        $page = $this->driver->get_source();
+        $this->assertContains('Mark Zuckerberg', $page);
+        $this->assertContains('Peanut Butter', $page);
+        $this->assertContains('Chmiel', $page);
     }
     public function tearDown(){
         parent::tearDown();

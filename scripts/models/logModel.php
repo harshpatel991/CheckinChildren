@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class logModel Represents one entry into the log database
+ */
 class logModel
 {
     public $primary_id;

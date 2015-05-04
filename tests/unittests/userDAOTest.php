@@ -3,9 +3,14 @@
 require_once(dirname(__FILE__).'/../../scripts/models/dao/userDAO.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
 
+/**
+ * Class userDAOTest tests userDAO
+ */
 class userDAOTest extends unitTestBase
 {
-
+    /**
+     * Test find user
+     */
     public function testFind()
     {
         $userDAO=new userDAO();
@@ -15,6 +20,9 @@ class userDAOTest extends unitTestBase
         $this->assertEquals($user->password, "a8dbbfa41cec833f8dd42be4d1fa9a13142c85c2");
     }
 
+    /**
+     * Test insert user
+     */
     public function testInsert()
     {
         $userDAO=new userDAO();
@@ -30,7 +38,9 @@ class userDAOTest extends unitTestBase
         $this->assertEquals($id, $user->id);
     }
 
-
+    /**
+     * Test update user email
+     */
     public function testUpdateEmailTest() {
         $userDAO = new userDAO();
         $user=$userDAO->find("id",8);
@@ -41,6 +51,10 @@ class userDAOTest extends unitTestBase
         $this->assertEquals($user->email, "test@test.com");
         $this->assertEquals($user->password, "a8dbbfa41cec833f8dd42be4d1fa9a13142c85c2");
     }
+
+    /**
+     * test update password
+     */
     public function testUpdatePasswordTest() {
         $userDAO = new userDAO();
         $user=$userDAO->find("id",8);
@@ -52,6 +66,9 @@ class userDAOTest extends unitTestBase
         $this->assertEquals($user->password, "pwrd1");
     }
 
+    /**
+     * Test delete user
+     */
     public function testDeleteTest() {
         $userDAO = new userDAO();
         $userTest=$userDAO->find("id",8);
@@ -61,6 +78,10 @@ class userDAOTest extends unitTestBase
         $user=$userDAO->find("id",8);
         $this->assertFalse($user);
     }
+
+    /**
+     * Test delete all users with facility id
+     */
     public function testDeleteFromFacilityTest() {
         $userDAO = new userDAO();
         $userTest=$userDAO->find("id",4);

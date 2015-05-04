@@ -1,14 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Elzabad
- */
+
 require_once(dirname(__FILE__).'/../companyModel.php');
 require_once(dirname(__FILE__).'/../facilityModel.php');
 require_once(dirname(__FILE__).'/../db/dbConnectionFactory.php');
 require_once(dirname(__FILE__).'/userDAO.php');
 
-class CompanyDAO {
+/**
+ * Class companyDAO manages Company table in database
+ */
+class companyDAO {
+    /**
+     * Add new company to users table
+     *
+     * @param companyModel $company Data stored for new company
+     * @return string Assigned id to the new company
+     */
     public function createCompany(companyModel $company){
         $newCompany=new userModel($company->email, $company->password, $company->role);
         $userDAO=new userDAO();
@@ -18,7 +24,14 @@ class CompanyDAO {
         $this->insert($company, $id);
         return $id;
     }
-    //Inserts the specified company in the data base
+
+    /**
+     * Inserts the specified company in the data base
+     *
+     * @param companyModel $company Data for new company
+     * @param int $id Id of the new company
+     * @return string Assigned id to the new company
+     */
     public function insert($company, $id) {
         $connection = DbConnectionFactory::create();
         $query = 'INSERT INTO company (id, company_name, address, phone) VALUES (:id,:company_name, :address, :phone)';
@@ -33,8 +46,12 @@ class CompanyDAO {
         return $facility_id;
     }
 
-    //Retreives a company matching the specified facility id
-    //Returns false if a company is not found
+    /**
+     * Retreives a company matching the specified facility id
+     *
+     * @param int $id Id of the company
+     * @return mixed Either Returns false if a company is not found or companyModel Object
+     */
     public function find($id) {
         $connection = DbConnectionFactory::create();
         $query = 'SELECT * FROM company NATURAL JOIN users WHERE id=:id';
@@ -46,8 +63,11 @@ class CompanyDAO {
         $connection = null;
         return $company;
     }
-    // Updates the email, parent_name, address, phone_number of a parent
-    // **** DOES NOT UPDATE PASSWORD or ID OF PARENT! ****
+    /**
+     * Updates the email, parent_name, address, phone_number of a parent
+     *
+     * @param companyModel $company Data for the updated company
+     */
     public function update($company) {
         $userDAO=new userDAO();
 

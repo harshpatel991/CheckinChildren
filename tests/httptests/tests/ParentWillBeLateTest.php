@@ -1,11 +1,5 @@
 <?php
-/**
- * This class tests the functionality of when the parent says they will be late.
- * Created by PhpStorm.
- * User: alex
- * Date: 4/20/15
- * Time: 6:32 PM
- */
+
 require_once dirname(__FILE__).'/../SeleniumTestBase.php';
 require_once dirname(__FILE__).'/../TestMacros.php';
 

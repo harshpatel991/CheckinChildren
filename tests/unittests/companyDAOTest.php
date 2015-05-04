@@ -1,17 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Elzabad
- * Date: 2/21/2015
- * Time: 1:15 AM
- */
 
-require_once(dirname(__FILE__).'/../../scripts/models/dao/companyDAO.php');
+require_once(dirname(__FILE__) . '/../../scripts/models/dao/companyDAO.php');
 require_once(dirname(__FILE__).'/../../scripts/models/companyModel.php');
 require_once(dirname(__FILE__).'/UnitTestBase.php');
 
+/**
+ * Class companyDAOTest test companyDAO
+ */
 class companyDAOTest extends unitTestBase {
-//Tests inserting into facility database
+    /**
+     * Tests inserting into facility database
+     */
     public function testCreateFacility() {
         $companyDAO = new companyDAO();
 
@@ -31,7 +30,9 @@ class companyDAOTest extends unitTestBase {
 
     }
 
-    //Tests finding an existing facility in the database
+    /**
+     * Tests finding an existing facility in the database
+     */
     public function testFindCompany() {
         $companyDAO = new companyDAO();
 
@@ -47,7 +48,9 @@ class companyDAOTest extends unitTestBase {
         $this->assertEquals($retrievedCompany->role, "company");
     }
 
-    //Tests finding a facility that does not exist
+    /**
+     * Tests finding a facility that does not exist
+     */
     public function testFindNonExistentCompany() {
         $companyDAO = new companyDAO();
         $company_id = 999999;
